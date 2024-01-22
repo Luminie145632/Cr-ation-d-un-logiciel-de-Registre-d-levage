@@ -1,35 +1,34 @@
 import tkinter as tk
 
-class Application(tk.Tk):
-    def __init__(self):
-        super().__init__()
+def on_connexion_click():
+    print("Bouton Connexion cliqué")
 
-        self.title("Barre de Navigation")
+def on_creation_click():
+    print("Bouton Création cliqué")
 
-        # Création de la barre de navigation
-        self.navbar = tk.Menu(self)
+def create_window():
+    window = tk.Tk()
+    window.title("Fenêtre avec Boutons")
 
-        # Ajout des éléments de la barre de navigation
-        self.navbar.add_command(label="Accueil", command=self.accueil)
-        self.navbar.add_command(label="Page 1", command=self.page1)
-        self.navbar.add_command(label="Page 2", command=self.page2)
-        self.navbar.add_command(label="Quitter", command=self.quit)
+    # Configuration de la taille de la fenêtre
+    window.geometry("300x200")
 
-        # Configurer la barre de navigation comme barre de menu principale
-        self.config(menu=self.navbar)
+    # Chemin vers le fichier ICO (remplacez-le par le chemin de votre propre fichier ICO)
+    chemin_logo = "chemin/vers/votre/fichier.ico"
 
-        # Configurer la fenêtre principale
-        self.geometry("400x300")
+    # Modification du logo de la fenêtre
+    window.iconbitmap(chemin_logo)
 
-    def accueil(self):
-        print("Affichage de la page d'accueil")
+    # Création du bouton Connexion
+    btn_connexion = tk.Button(window, text="Connexion", command=on_connexion_click)
+    btn_connexion.pack(pady=10)
 
-    def page1(self):
-        print("Affichage de la page 1")
+    # Création du bouton Création
+    btn_creation = tk.Button(window, text="Création", command=on_creation_click)
+    btn_creation.pack(pady=10)
 
-    def page2(self):
-        print("Affichage de la page 2")
+    # Exécution de la boucle principale
+    window.mainloop()
 
-if __name__ == "__main__":
-    app = Application()
-    app.mainloop()
+# Appel de la fonction pour créer la fenêtre avec les boutons et le logo
+create_window()
