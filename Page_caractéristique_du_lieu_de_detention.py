@@ -18,25 +18,24 @@ class FenetrePrincipale(tk.Tk):
         label_denomination = tk.Label(self, text="Dénomination :")
         label_denomination.pack()
 
-        self.entry_denomination = tk.Entry(self, width=100)  # Ajustez la largeur selon vos besoins
+        self.entry_denomination = tk.Text(self, width=50, height=1)  # Ajustez la largeur et la hauteur selon vos besoins
         self.entry_denomination.focus_set()
         self.entry_denomination.pack()
 
         label_adresse = tk.Label(self, text="Adresse :")
         label_adresse.pack()
 
-        self.entry_adresse = tk.Entry(self, width=100)  # Ajustez la largeur selon vos besoins
+        self.entry_adresse = tk.Text(self, width=50, height=2)  # Ajustez la largeur et la hauteur selon vos besoins
         self.entry_adresse.focus_set()
         self.entry_adresse.pack()
 
         label_activite = tk.Label(self, text="Type d'activité :")
         label_activite.pack()
 
-        self.entry_activite = tk.Entry(self, width=100)  # Ajustez la largeur selon vos besoins
+        self.entry_activite = tk.Text(self, width=50, height=1)  # Ajustez la largeur et la hauteur selon vos besoins
         self.entry_activite.focus_set()
         self.entry_activite.pack()
 
- 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()
     fenetre_principale.mainloop()
