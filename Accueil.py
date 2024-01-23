@@ -1,23 +1,23 @@
 import tkinter as tk
 
-def on_connexion_click():
-    print("Bouton Connexion cliqué")
+class FenetrePrincipale(tk.Tk):
+    def __init__(self):
+        super().__init__()
 
+        self.title("Accueil")
+        self.geometry("1920x1080")
+        self.iconbitmap("horse_sans_fond.ico")
+
+        label_principal = tk.Label(self, text="Accueil")
+        label_principal.pack()
+
+    
 def on_creation_click():
     print("Bouton Création cliqué")
 
 def create_window():
     window = tk.Tk()
     window.title("Fenêtre avec Boutons")
-
-    # Configuration de la taille de la fenêtre
-    window.geometry("300x200")
-
-    # Chemin vers le fichier ICO (remplacez-le par le chemin de votre propre fichier ICO)
-    chemin_logo = "chemin/vers/votre/fichier.ico"
-
-    # Modification du logo de la fenêtre
-    window.iconbitmap(chemin_logo)
 
     # Création du bouton Connexion
     btn_connexion = tk.Button(window, text="Connexion", command=on_connexion_click)
@@ -27,8 +27,6 @@ def create_window():
     btn_creation = tk.Button(window, text="Création", command=on_creation_click)
     btn_creation.pack(pady=10)
 
-    # Exécution de la boucle principale
-    window.mainloop()
-
-# Appel de la fonction pour créer la fenêtre avec les boutons et le logo
-create_window()
+if __name__ == "__main__":
+    fenetre_principale = FenetrePrincipale()
+    fenetre_principale.mainloop()
