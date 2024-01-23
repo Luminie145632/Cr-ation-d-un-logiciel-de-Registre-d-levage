@@ -1,20 +1,42 @@
 import tkinter as tk
+from tkinter import messagebox
 
-def create_window():
-    window = tk.Tk()
-    window.title("CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
+class FenetrePrincipale(tk.Tk):
+    def __init__(self):
+        super().__init__()
 
+        self.title("CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
+        self.geometry("1920x1080")
+        self.iconbitmap("horse_sans_fond.ico")
 
-    # Configuration de la taille de la fenêtre
-    window.geometry("1920x1080")
+        label_principal = tk.Label(self, text="CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
+        label_principal.pack()
 
-    # Image du logo de la fenêtre
-    window.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/horse_sans_fond.ico")
+        label_adresse = tk.Label(self, text="Adresse du lieu de détention et type d’activité")
+        label_adresse.pack()
 
-    
+        label_denomination = tk.Label(self, text="Dénomination :")
+        label_denomination.pack()
 
-    # Exécution de la boucle principale
-    window.mainloop()
+        self.entry_denomination = tk.Entry(self, width=100)  # Ajustez la largeur selon vos besoins
+        self.entry_denomination.focus_set()
+        self.entry_denomination.pack()
 
-# Appel de la fonction pour créer la fenêtre avec les boutons et le logo
-create_window()
+        label_adresse = tk.Label(self, text="Adresse :")
+        label_adresse.pack()
+
+        self.entry_adresse = tk.Entry(self, width=100)  # Ajustez la largeur selon vos besoins
+        self.entry_adresse.focus_set()
+        self.entry_adresse.pack()
+
+        label_activite = tk.Label(self, text="Type d'activité :")
+        label_activite.pack()
+
+        self.entry_activite = tk.Entry(self, width=100)  # Ajustez la largeur selon vos besoins
+        self.entry_activite.focus_set()
+        self.entry_activite.pack()
+
+ 
+if __name__ == "__main__":
+    fenetre_principale = FenetrePrincipale()
+    fenetre_principale.mainloop()
