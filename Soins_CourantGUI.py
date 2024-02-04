@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
 
-class EncadrementZootechnique(Frame):
+class Soins_cournat(Frame):
     def __init__(self, fenetre, height, width, col_titles):
         super().__init__(fenetre)
         self.numberLines = height
@@ -72,13 +72,13 @@ if __name__ == "__main__":
     fenetre.iconbitmap("horse_sans_fond.ico")
     fenetre.resizable(height=False, width=False)
 
-    label_principal = Label(fenetre, text="")
+    label_principal = Label(fenetre, text="Intervention et soins courant")
     label_principal.pack()
 
     # Liste des titres des colonnes
-    col_titles = ["Date", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]
+    col_titles = ["Date", "Type d'intervention", "Intervenant (si vétérianire)", "Tratement", "N ordonnance", ""]
 
-    fenetre_principale = EncadrementZootechnique(fenetre, height=3, width=6, col_titles=col_titles)
+    fenetre_principale = Soins_cournat(fenetre, height=3, width=6, col_titles=col_titles)
     fenetre_principale.mainloop()
 # import tkinter as tk
 # import os
@@ -87,7 +87,7 @@ if __name__ == "__main__":
 # from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, END,Canvas
 
 # tableau_entries = []  # Liste pour stocker les zones de texte
-# class EncadrementZootechnique(Frame):
+# class Soins_cournat(Frame):
 #     def __init__(self, fenetre, height, width, col_titles):
 #         super().__init__(fenetre)
 #         self.numberLines = height
@@ -173,7 +173,7 @@ if __name__ == "__main__":
 #     # Liste des titres des colonnes
 #     col_titles = ["Date", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]
 
-#     fenetre_principale = EncadrementZootechnique(fenetre, height=3, width=6, col_titles=col_titles)
+#     fenetre_principale = Soins_cournat(fenetre, height=3, width=6, col_titles=col_titles)
 #     fenetre_principale.mainloop()
 
 # #     bou1 = Button(fenetre, text='Modifier', command=fenetre.destroy)
