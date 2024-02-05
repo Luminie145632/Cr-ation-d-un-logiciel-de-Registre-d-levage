@@ -9,7 +9,7 @@ class FenetrePrincipale(tk.Tk):
         super().__init__()
 
         self.title("Accueil")
-        self.geometry("1920x1080")
+        self.geometry("1920x1080")  # Définir la taille initiale de la fenêtre
         self.iconbitmap("horse_sans_fond.ico")
 
         # Ajout de la phrase "Bienvenue sur notre application." au centre
@@ -109,7 +109,6 @@ class FenetrePrincipale(tk.Tk):
 
     def renseigner_intervention(self):
         print("Bouton Renseigner Intervention cliqué")
-
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()
