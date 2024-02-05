@@ -1,0 +1,20 @@
+{
+  "Professionnel": [
+    {  
+      "num_siret": "321546",
+      "code_ape": "4256637",
+      "statut_juridique": "LOLO",
+      "denomination": "azd"
+    },
+    {
+      "code_ape": "099",
+      "statut_juridique": "AZ",
+      "denomination": "AZ"
+    },
+    {
+      "code_ape": "099",
+      "statut_juridique": "Ao",
+      "denomination": "AZ"
+    }
+  ]
+}
