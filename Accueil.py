@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+import os
 from PIL import Image, ImageTk
 import glob
-import os
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self):
@@ -21,61 +21,73 @@ class FenetrePrincipale(tk.Tk):
         navbar.pack(side="top", fill="x")
 
         # Création des boutons de la barre de navigation
-        self.btn_mouvement_temporaire = ttk.Button(navbar, text="Mouvement Temporaire", command=self.ouvrir_nouvelle_fenetre)
-        self.btn_lieux_detention = ttk.Button(navbar, text="Lieux de Détention", command=self.ouvrir_fenetre_Lieu_detention)
-        self.btn_presence_caracteristiques = ttk.Button(navbar, text="Présence et Caractéristiques", command=self.renseigner_presence_caracteristiques)
-        self.btn_interventions = ttk.Button(navbar, text="Interventions", command=self.ouvrir_fenetre_Lieu_caratheristiques)
+        btn_mouvement_temporaire = ttk.Button(navbar, text="Mouvement Temporaire", command=self.ouvrir_nouvelle_fenetre)
+        btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
 
-        self.boutons = [self.btn_mouvement_temporaire, self.btn_lieux_detention, self.btn_presence_caracteristiques, self.btn_interventions]
+        btn_lieux_detention = ttk.Button(navbar, text="Lieux de Détention", command=self.ouvrir_fenetre_Lieu_detention)
+        btn_lieux_detention.pack(side="left", expand=True, fill='both')
 
-        for bouton in self.boutons:
-            bouton.pack(side="left", expand=True, fill='both')
+        btn_presence_caracteristiques = ttk.Button(navbar, text="Présence et Caractéristiques", command=self.renseigner_presence_caracteristiques)
+        btn_presence_caracteristiques.pack(side="left", expand=True, fill='both')
+
+        btn_interventions = ttk.Button(navbar, text="Interventions", command=self.ouvrir_fenetre_Lieu_caratheristiques)
+        btn_interventions.pack(side="left", expand=True, fill='both')
 
         # Ajout d'un séparateur pour plus de clarté
         ttk.Separator(navbar, orient="vertical").pack(side="left", padx=5)
 
         # Ajoutez d'autres boutons de la barre de navigation si nécessaire
 
-        # Création du Canvas pour afficher les images
-        self.canvas = tk.Canvas(self, bd=0, highlightthickness=0)
-        self.canvas.pack(side="bottom", fill="both", expand=True)
-
-        # Ajout d'une étiquette pour afficher l'image
-        self.label_image = tk.Label(self.canvas)
+        # Création du Label pour afficher les images
+        self.label_image = tk.Label(self, bd=0, highlightthickness=0)
         self.label_image.pack(side="bottom", fill="both", expand=True)
 
         # Appel à la méthode pour gérer le fond d'image changeant
-        self.setup_animation_arriere_plan()
+        self.setup_background_animation()
 
-    def setup_animation_arriere_plan(self):
-        self.chemins_images = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")  # Mettez le chemin correct vers vos images
-        self.index_image_actuelle = 0
-        self.charger_image()
+        # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
+        self.bind("<Configure>", self.redimensionner_image)
 
-    def charger_image(self):
+    def setup_background_animation(self):
+        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")  # Mettez le chemin correct vers vos images
+        self.current_image_index = 0
+        self.load_image()
+
+    def load_image(self):
         # Charger l'image actuelle
-        chemin_image = self.chemins_images[self.index_image_actuelle]
-        image = Image.open(chemin_image)
+        image_path = self.image_paths[self.current_image_index]
+        image = Image.open(image_path)
 
-        # Adapter l'image à la taille de la fenêtre
-        largeur_fenetre, hauteur_fenetre = self.winfo_width(), self.winfo_height()
-        image = image.resize((largeur_fenetre, hauteur_fenetre), Image.ANTIALIAS if hasattr(Image, 'ANTIALIAS') else Image.NEAREST)
+        # Redimensionner l'image pour prendre toute la fenêtre
+        image = image.resize((self.winfo_width(), self.winfo_height()))
 
         photo = ImageTk.PhotoImage(image)
 
-        # Mettre l'image dans le Label
+        # Mettre à jour l'image dans le label
         self.label_image.configure(image=photo)
         self.label_image.image = photo  # Gardez une référence pour éviter la collecte des déchets
 
         # Mettre à jour l'index pour la prochaine image
-        self.index_image_actuelle = (self.index_image_actuelle + 1) % len(self.chemins_images)
+        self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
         # Placer les boutons au-dessus du Label
-        for bouton in self.boutons:
-            bouton.lift()
+        for child in self.label_image.winfo_children():
+            child.lift()
 
-        # Planifier l'appel de la fonction charger_image après un certain délai (par exemple, 2000 millisecondes)
-        self.after(2000, self.charger_image)
+        # Planifier l'appel de la fonction load_image après un certain délai (par exemple, 2000 millisecondes)
+        self.after(2000, self.load_image)
+
+    def redimensionner_image(self, event):
+        # Redimensionner l'image pour prendre toute la fenêtre
+        image_path = self.image_paths[self.current_image_index]
+        image = Image.open(image_path)
+        image = image.resize((self.winfo_width(), self.winfo_height()))
+
+        photo = ImageTk.PhotoImage(image)
+
+        # Mettre à jour l'image dans le label
+        self.label_image.configure(image=photo)
+        self.label_image.image = photo  # Gardez une référence pour éviter la collecte des déchets
 
     def ouvrir_nouvelle_fenetre(self):
         self.destroy()
@@ -89,8 +101,15 @@ class FenetrePrincipale(tk.Tk):
         self.destroy()
         os.system("python Page_caractéristique_du_lieu_de_detention.py")
 
+    def acceder_lieux_detention(self):
+        print("Bouton Accéder aux Lieux de Détention cliqué")
+
     def renseigner_presence_caracteristiques(self):
         print("Bouton Renseigner Présence et Caractéristiques cliqué")
+
+    def renseigner_intervention(self):
+        print("Bouton Renseigner Intervention cliqué")
+
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()
