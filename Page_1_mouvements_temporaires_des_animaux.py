@@ -67,18 +67,18 @@ class FenetrePrincipale(Frame):
         self.bind("<Configure>", self.redimensionner_image)
 
     def ajouter_ligne(self):
-        # Décalage des widgets vers le bas
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
-        self.label_image.grid(row=self.numberLines + 6, column=0, columnspan=self.numberColumns, sticky='nsew')
-
         # Ajouter une nouvelle ligne
         nouvelle_ligne = []
         for j in range(self.numberColumns):
             cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-            cell.grid(row=self.numberLines + 7, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+            cell.grid(row=self.numberLines + 6, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
             nouvelle_ligne.append(cell)
         self.data.append(nouvelle_ligne)
         self.numberLines += 1
+
+        # Déplacer le bouton et l'image vers le bas
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
+        self.label_image.grid(row=self.numberLines + 7, column=0, columnspan=self.numberColumns, sticky='nsew')
 
     def setup_background_animation(self):
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")  # Mettez le chemin correct vers vos images

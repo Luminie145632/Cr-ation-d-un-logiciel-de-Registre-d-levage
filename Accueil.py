@@ -1,84 +1,52 @@
 import tkinter as tk
-from tkinter import messagebox, Frame, Entry, Button, Label, BOTH
+from tkinter import ttk
 from PIL import Image, ImageTk
 import glob
+import os
 
+class FenetrePrincipale(tk.Tk):
+    def __init__(self):
+        super().__init__()
 
-class FenetrePrincipale(Frame):
-    def __init__(self, fenetre, height, width, col_titles):
-        super().__init__(fenetre)
-        self.numberLines = height
-        self.numberColumns = width
-        self.col_titles = col_titles
-        self.pack(fill=BOTH)
-        
-        # Titre du tableau
-        label_titre_tableau = Label(self, text="MOUVEMENTS TEMPORAIRES DES ANIMAUX")
-        label_titre_tableau.grid(row=0, column=0, columnspan=self.numberColumns, sticky='nsew')
+        self.title("Accueil")
+        self.geometry("1920x1080")  # Définir la taille initiale de la fenêtre
+        self.iconbitmap("horse_sans_fond.ico")
 
-        # Phrase à deux trous
-        label_intro = Label(self, text="Liste des mouvements temporaires entre le")
-        label_intro.grid(row=1, column=0, sticky='nsew')
+        # Ajout de la phrase "Bienvenue sur notre application." au centre
+        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur notre application.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue.pack(side="top", pady=20)
 
-        self.entry_debut = Entry(self, width=5)
-        self.entry_debut.grid(row=1, column=1, sticky='nsew')
+        # Création de la barre de navigation
+        navbar = tk.Frame(self, bd=2, relief=tk.GROOVE)
+        navbar.pack(side="top", fill="x")
 
-        label_et_le = Label(self, text="et le")
-        label_et_le.grid(row=1, column=2, sticky='nsew')
+        # Création des boutons de la barre de navigation
+        btn_mouvement_temporaire = tk.Button(navbar, text="Mouvement Temporaire", command=self.ouvrir_nouvelle_fenetre)
+        btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
 
-        self.entry_fin = Entry(self, width=5)
-        self.entry_fin.grid(row=1, column=3, sticky='nsew')
+        btn_lieux_detention = tk.Button(navbar, text="Lieux de Détention", command=self.ouvrir_fenetre_Lieu_detention)
+        btn_lieux_detention.pack(side="left", expand=True, fill='both')
 
-        # Phrase additionnelle
-        label_option = Label(self, text="(Option 1 : mouvements peu fréquents)")
-        label_option.grid(row=2, column=0, columnspan=self.numberColumns, sticky='nsew')
+        btn_presence_caracteristiques = tk.Button(navbar, text="Présence et Caractéristiques", command=self.renseigner_presence_caracteristiques)
+        btn_presence_caracteristiques.pack(side="left", expand=True, fill='both')
 
-        # Ajout des titres de colonnes
-        for j in range(self.numberColumns):
-            col_title = Label(self, text=self.col_titles[j], width=15, relief="solid", bg="lightgray", anchor="w")
-            col_title.grid(row=3, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+        btn_interventions = tk.Button(navbar, text="Interventions", command=self.ouvrir_fenetre_Lieu_caratheristiques)
+        btn_interventions.pack(side="left", expand=True, fill='both')
 
-        # Ajout des données du tableau
-        self.data = []
-        for i in range(4, self.numberLines + 4):
-            line = []
-            for j in range(self.numberColumns):
-                cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-                cell.grid(row=i, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-                line.append(cell)
-            self.data.append(line)
+        # Ajout d'un séparateur pour plus de clarté
+        ttk.Separator(navbar, orient="vertical").pack(side="left", padx=5)
 
-        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-        for j in range(self.numberColumns):
-            self.grid_columnconfigure(j, weight=1)
-
-        # Bouton pour ajouter une nouvelle ligne
-        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=15, height=1)
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
+        # Ajoutez d'autres boutons de la barre de navigation si nécessaire
 
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
-        self.label_image.grid(row=self.numberLines + 5, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-        # Appel à la méthode pour gérer le fond d'image changeant
-        self.setup_background_animation()
+        self.label_image.pack(side="bottom", fill="both", expand=True)
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
         self.bind("<Configure>", self.redimensionner_image)
 
-    def ajouter_ligne(self):
-        # Ajouter une nouvelle ligne
-        nouvelle_ligne = []
-        for j in range(self.numberColumns):
-            cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-            cell.grid(row=self.numberLines + 6, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-            nouvelle_ligne.append(cell)
-        self.data.append(nouvelle_ligne)
-        self.numberLines += 1
-
-        # Déplacer le bouton et l'image vers le bas
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-        self.label_image.grid(row=self.numberLines + 7, column=0, columnspan=self.numberColumns, sticky='nsew')
+        # Appel à la méthode pour gérer le fond d'image changeant
+        self.setup_background_animation()
 
     def setup_background_animation(self):
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")  # Mettez le chemin correct vers vos images
@@ -102,6 +70,10 @@ class FenetrePrincipale(Frame):
         # Mettre à jour l'index pour la prochaine image
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
+        # Placer les boutons au-dessus du Label
+        for child in self.label_image.winfo_children():
+            child.lift()
+
         # Planifier l'appel de la fonction load_image après un certain délai (par exemple, 2000 millisecondes)
         self.after(2000, self.load_image)
 
@@ -117,14 +89,22 @@ class FenetrePrincipale(Frame):
         self.label_image.configure(image=photo)
         self.label_image.image = photo  # Gardez une référence pour éviter la collecte des déchets
 
+    def ouvrir_nouvelle_fenetre(self):
+        self.destroy()
+        os.system("python Page_1_mouvements_temporaires_des_animaux.py")
+
+    def ouvrir_fenetre_Lieu_detention(self):
+        self.destroy()
+        os.system("python Lieu_detention.py")
+
+    def ouvrir_fenetre_Lieu_caratheristiques(self):
+        self.destroy()
+        os.system("python Page_caractéristique_du_lieu_de_detention.py")
+
+    def renseigner_presence_caracteristiques(self):
+        print("Bouton Renseigner Présence et Caractéristiques cliqué")
+
 
 if __name__ == "__main__":
-    fenetre = tk.Tk()
-    fenetre.title("MOUVEMENTS TEMPORAIRES DES ANIMAUX")
-    fenetre.geometry("1920x1080")
-    fenetre.iconbitmap("horse_sans_fond.ico")
-
-    col_titles = ["Date de sortie", "Nom de l'équidé", "Motif", "Etape éventuelle (adresse)", "Lieu de destination (Adresse)", "Date de retour"]
-    
-    fenetre_principale = FenetrePrincipale(fenetre, height=3, width=6, col_titles=col_titles)
+    fenetre_principale = FenetrePrincipale()
     fenetre_principale.mainloop()
