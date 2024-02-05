@@ -183,7 +183,7 @@ class FenetrePrincipale(Frame):
         if isinstance(profesionnel, Profesionnel):
          return json.dumps({"nom": profesionnel.nom, "prenom": profesionnel.prenom, "adresse": profesionnel.adresse , "tel": profesionnel.tel,"Siret":profesionnel.siret,"code_Ape":profesionnel.code_ape,"statut_juridique":profesionnel.statut_juridique,"denomination":profesionnel.denomination})
         #profesionnel =Profesionnel(nom,prenom,adresse,tel ,self, num_siret, code_ape, statut_juridique, denomination)
-   
+                                               
 
 
     def ajouter_ligne(self):

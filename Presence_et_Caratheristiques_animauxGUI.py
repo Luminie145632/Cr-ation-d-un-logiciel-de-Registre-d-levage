@@ -17,7 +17,7 @@ class Presence_CaratherisisGUI(Frame):
         self.numberLines = 1
         self.numberColumns=width
         self.pack(fill=BOTH)
-
+        #ouou
         tex1 = Label(self, text='Encadrement Zootechnique Sanitaire et Médical des Animaux', fg='cyan')
         tex1.grid(row=0, column=0, columnspan=8)
 

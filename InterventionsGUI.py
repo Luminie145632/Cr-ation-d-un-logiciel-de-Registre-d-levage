@@ -94,7 +94,7 @@ class InterventionsGUI(Frame):
         "Délai d’attente competition (facultatif)": delai_attente_compet,
         "Délai d’attente abattage ou exclusion abattage": delai_attente_kill
      
-    }
+    }            
 
 
     # profesionnel =Profesionnel(code_ape, statut_juridique, denomination)

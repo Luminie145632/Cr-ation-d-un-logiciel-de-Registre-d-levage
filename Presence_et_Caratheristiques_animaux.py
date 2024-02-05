@@ -1,6 +1,6 @@
 # Définition de la classe lieu_de_detention
 class Presence_Caratherisis:
-    # Constructeur de la classe lieu_de_detention
+    # Constructeur de la classe lieu_de_detention     mk,pm lk
     def __init__(self, denomination, adresse, type_activite, plan_du_lieu_de_detention, SIRE, particulier, professionnel, personne_physique, personne_morale, code_APE, statut_juridique, responsable_de_la_tenue_du_registre, coordonnées_du_detenteur, tel, portable, mail):
         # Attributs de la classe
         self.denomination = denomination

@@ -29,7 +29,7 @@ class Professionnel:
 
    def set_statut_juridique(self, statut_juridique):
         self._statut_juridique = statut_juridique
-
+#yoouuuupi
    def set_denomination(self, denomination):
         self._denomination = denomination
 
