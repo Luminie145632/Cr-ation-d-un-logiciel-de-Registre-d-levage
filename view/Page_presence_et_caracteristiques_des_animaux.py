@@ -65,7 +65,7 @@ if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("PRÉSENCE ET CARACTÉRISTIQUES DES ANIMAUX")
     fenetre.geometry("1920x1080")
-    fenetre.iconbitmap("horse_sans_fond.ico")
+    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
     col_titles = ["Nom", "N° SIRE", "N° Transpondeur", "Nom et coordonnées du propriétaires", "Date de première entrée", "Adresse de provenance", "Date de sortie définitive", "Adresse de destination"]
     

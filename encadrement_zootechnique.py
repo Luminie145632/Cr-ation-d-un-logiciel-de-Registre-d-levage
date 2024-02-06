@@ -67,9 +67,9 @@ class EncadrementZootechnique(Frame):
 
 if __name__ == "__main__":
     fenetre = Tk()
-    fenetre.title("")
-    fenetre.geometry("960x540")
-    fenetre.iconbitmap("horse_sans_fond.ico")
+    fenetre.title("Encadrement Zootechnique")
+    fenetre.geometry("1920x1080")# Définir la taille initiale de la fenêtre
+    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
     fenetre.resizable(height=False, width=False)
 
     label_principal = Label(fenetre, text="")

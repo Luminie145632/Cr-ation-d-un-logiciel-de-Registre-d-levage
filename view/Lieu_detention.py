@@ -21,8 +21,6 @@ class FenetrePrincipale(Frame):
         label_titre_tableau = Label(self, text="Informations concernant le détenteur des équidés")
         label_titre_tableau.grid(row=0, column=0, columnspan=self.numberColumns, sticky='nsew')
         
-
-        
         # Phrase à deux trous
         label_intro = Label(self, text="Numéro de détenteur (SIRE) :")
         label_intro.grid(row=1, column=0, sticky='nsew')
@@ -203,7 +201,6 @@ class FenetrePrincipale(Frame):
         # Afficher le bouton à la nouvelle position
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
 
-    
 if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("MOUVEMENTS TEMPORAIRES DES ANIMAUX")
