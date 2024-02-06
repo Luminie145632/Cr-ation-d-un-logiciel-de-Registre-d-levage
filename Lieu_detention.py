@@ -206,7 +206,7 @@ if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("MOUVEMENTS TEMPORAIRES DES ANIMAUX")
     fenetre.geometry("1920x1080")
-    fenetre.iconbitmap("horse_sans_fond.ico")
+    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
     col_titles = ["Date de sortie", "Nom de l'équidé", "Motif", "Etape éventuelle (adresse)", "Lieu de destination (Adresse)", "Date de retour"]
     

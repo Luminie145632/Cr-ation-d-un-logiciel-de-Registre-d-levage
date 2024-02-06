@@ -10,7 +10,7 @@ class FenetrePrincipale(tk.Tk):
 
         self.title("Accueil")
         self.geometry("1920x1080")  # Définir la taille initiale de la fenêtre
-        self.iconbitmap("horse_sans_fond.ico")
+        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Ajout de la phrase "Bienvenue sur notre application." au centre
         etiquette_bienvenue = tk.Label(self, text="Bienvenue sur notre application.", font=("Helvetica", 16, "bold"))

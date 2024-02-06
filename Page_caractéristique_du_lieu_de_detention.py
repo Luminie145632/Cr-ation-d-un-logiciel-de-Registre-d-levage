@@ -7,7 +7,7 @@ class FenetrePrincipale(tk.Tk):
 
         self.title("CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
         self.geometry("1920x1080")
-        self.iconbitmap("horse_sans_fond.ico")
+        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         label_principal = tk.Label(self, text="CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
         label_principal.pack()
