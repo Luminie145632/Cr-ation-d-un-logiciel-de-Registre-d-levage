@@ -6,6 +6,8 @@ import Profesionnel
 import Particulier
 import Practicien
 import json
+from PIL import Image, ImageTk
+import glob
 
 class FenetrePrincipale(Frame):
     def __init__(self, fenetre, height, width, col_titles):
@@ -28,7 +30,7 @@ class FenetrePrincipale(Frame):
         self.entry_Sire = Entry(self, width=5)
         self.entry_Sire.grid(row=1, column=1, sticky='nsew')
 
-        label_et_le = Label(self, text="Paticulier")
+        label_et_le = Label(self, text="Particulier")
         label_et_le.grid(row=1, column=2, sticky='nsew')
 
         self.entry_particulier = Entry(self, width=5)
@@ -48,11 +50,11 @@ class FenetrePrincipale(Frame):
         self.entry_denomination = Entry(self, width=5)
         self.entry_denomination.grid(row=3, column=3, sticky='nsew')
 
-        label_option = Label(self, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) ")
+        label_option = Label(self, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :")
         label_option.grid(row=4, column=0, columnspan=self.numberColumns, sticky='nsew')
         
-        self.entry_coordonnees = Entry(self, width=5)
-        self.entry_coordonnees.grid(row=4, column=3, sticky='nsew')
+        self.entry_coordonnees = Entry(self, width=8)
+        self.entry_coordonnees.grid(row=4, column=6, sticky='nsew')
 
         label_option = Label(self, text="Adresse :")
         label_option.grid(row=5, column=0, columnspan=self.numberColumns, sticky='nsew')
@@ -185,7 +187,6 @@ class FenetrePrincipale(Frame):
         #profesionnel =Profesionnel(nom,prenom,adresse,tel ,self, num_siret, code_ape, statut_juridique, denomination)
                                                
 
-
     def ajouter_ligne(self):
         # Cacher le bouton"
         self.bouton_ajouter_ligne.grid_remove()
@@ -202,6 +203,7 @@ class FenetrePrincipale(Frame):
         # Afficher le bouton à la nouvelle position
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
 
+    
 if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("MOUVEMENTS TEMPORAIRES DES ANIMAUX")

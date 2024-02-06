@@ -116,6 +116,7 @@ class FenetrePrincipale(Frame):
         # Mettre à jour l'image dans le label
         self.label_image.configure(image=photo)
         self.label_image.image = photo  # Gardez une référence pour éviter la collecte des déchets
+    
 
 
 if __name__ == "__main__":
