@@ -40,7 +40,7 @@ class Soins_cournat(Frame):
         self.can1.grid(row=self.numberLines + 2, column=0, columnspan=self.numberColumns, pady=5)
 
         # Charger l'image avec PIL
-        image = Image.open("cheval_blanc.png")
+        image = Image.open("/Creation_dun_logiciel_de_Registre_delevage/images/cheval_blanc.png")
         # Augmenter la taille de l'image (dans cet exemple, je l'ai doublée)
         image = image.resize((960, 540), Image.BICUBIC)
         # Convertir l'image en format Tkinter PhotoImage
@@ -68,9 +68,9 @@ class Soins_cournat(Frame):
 if __name__ == "__main__":
     fenetre = Tk()
     fenetre.title("")
-    fenetre.geometry("960x540")
-    fenetre.iconbitmap("horse_sans_fond.ico")
-    fenetre.resizable(height=False, width=False)
+    fenetre.geometry("1920x1080")
+    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+    fenetre.resizable(height=True, width=True)
 
     label_principal = Label(fenetre, text="Intervention et soins courant")
     label_principal.pack()

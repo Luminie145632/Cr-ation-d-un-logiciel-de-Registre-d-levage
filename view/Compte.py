@@ -7,7 +7,7 @@ class FenetrePrincipale(tk.Tk):
 
         self.title("Accueil")
         self.geometry("1920x1080")  # Taille de la fenêtre ajustée
-        self.iconbitmap("horse_sans_fond.ico")
+        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Création du label avec le message en gras et plus grand
         message_label = tk.Label(self, text="Bienvenue, veuillez vous connecter à votre compte pour accéder à vos informations.\nSi vous n'avez pas de compte, nous vous invitons à créer un compte.", font=("Helvetica", 24, "bold"))

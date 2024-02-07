@@ -52,7 +52,7 @@ if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("Encadrement Zootechnique Sanitaire et médical des animaux")
     fenetre.geometry("1920x1080")
-    fenetre.iconbitmap("horse_sans_fond.ico")
+    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
     label_principal = Label(fenetre, text="Encadrement Zootechnique Sanitaire et médical des animaux")
     label_principal.pack()
