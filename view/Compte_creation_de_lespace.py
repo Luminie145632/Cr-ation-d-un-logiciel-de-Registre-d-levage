@@ -1,4 +1,10 @@
+# Compte_creation_de_lespace.py
 import tkinter as tk
+import sys
+sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
+from PIL import Image, ImageTk
+import glob
+import os
 from tkinter import ttk
 from PIL import Image, ImageTk
 import glob
@@ -7,7 +13,7 @@ class FenetrePrincipale(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Création de compte")
+        self.title("Création de l'espace de votre compte")
         self.geometry("1920x1080")  # Taille de la fenêtre ajustée
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
