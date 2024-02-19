@@ -7,7 +7,7 @@ class FenetrePrincipale(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Formulaire de création d'un compte professionnel")
+        self.title("Formulaire de création d'un compte particulier")
         self.geometry("1920x1080")  # Taille de la fenêtre ajustée
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
@@ -65,11 +65,10 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 10), sticky="w")
 
         self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=True, row=1)
-        self.create_radio_buttons(partie_frame, row=2)  # Boutons radio sous le titre
-        self.create_label_entry(partie_frame, "N° SIRET :", "entry_siret", "Saisissez votre N° SIRET", required=True, row=3)
-        self.create_label_entry(partie_frame, "Code APE :", "entry_code_ape", "Saisissez votre Code APE", required=True, row=4)
-        self.create_label_entry(partie_frame, "Statut juridique :", "entry_statut_juridique", "Saisissez votre statut juridique (facultatif)", required=False, row=5)
-        self.create_label_entry(partie_frame, "Dénomination :", "entry_denomination", "Saisissez votre dénomination (facultatif)", required=False, row=6)
+        self.create_label_entry(partie_frame, "Titre :", "entry_siret", "Saisissez votre titre", required=True, row=2)
+        self.create_label_entry(partie_frame, "Prénom :", "entry_code_ape", "Saisissez votre prénom", required=True, row=3)
+        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_statut_juridique", "Saisissez votre nom d'usage", required=True, row=4)
+        self.create_label_entry(partie_frame, "NUMAGRIT :", "entry_denomination", "Saisissez votre NUMAGRIT (facultatif)", required=False, row=5)
 
     def creer_partie_2(self, row):
         partie_frame = tk.Frame(self.formulaire_frame)
@@ -96,28 +95,6 @@ class FenetrePrincipale(tk.Tk):
         self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=True, row=4)
         self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=True, row=5)
         self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=True, row=6)
-
-    def create_radio_buttons(self, frame, row):
-        # Frame pour les boutons radio
-        radio_frame = tk.Frame(frame)
-        radio_frame.grid(row=row, column=0, pady=10, sticky="w")
-
-        # Variable commune pour les boutons radio
-        self.var_choix = tk.StringVar()
-
-        # Création des boutons radio
-        choix1 = tk.Radiobutton(radio_frame, text="Personne Physique", value="Choix 1", variable=self.var_choix, command=self.update_radio_buttons)
-        choix1.grid(row=0, column=0, padx=20)
-
-        choix2 = tk.Radiobutton(radio_frame, text="Personne Morale", value="Choix 2", variable=self.var_choix, command=self.update_radio_buttons)
-        choix2.grid(row=0, column=1, padx=20)
-
-        # Configurer le poids de la colonne pour permettre l'ajustement dynamique
-        frame.grid_columnconfigure(0, weight=1)
-
-    def update_radio_buttons(self):
-        # Désactiver la validation si l'un des boutons radio est sélectionné
-        self.validate_entries()
 
     def create_label_entry(self, frame, label_text, entry_name, placeholder_text, required=True, row=0):
         label_frame = tk.Frame(frame)
@@ -166,12 +143,12 @@ class FenetrePrincipale(tk.Tk):
         # Ajoutez les informations de chaque partie au message
 
         messagebox.showinfo("Formulaire d'inscription", message)
+        self.grab_set()
 
     def validate_entries(self):
         # Valider que toutes les zones de saisie obligatoires sont remplies
         entries = [
             (self.entry_num_detenteur, "Numéro de détenteur (SIRE)"),
-            (self.var_choix, "Type de détenteur"),
             (self.entry_siret, "N° SIRET"),
             (self.entry_code_ape, "Code APE"),
             (self.entry_adresse, "Adresse"),
@@ -190,11 +167,6 @@ class FenetrePrincipale(tk.Tk):
             if not self.is_entry_valid(entry, label_text):
                 return False
 
-        # Valider que l'un des boutons radio est sélectionné
-        if not self.var_choix.get():
-            messagebox.showerror("Erreur", "Veuillez choisir le type de personne.")
-            return False
-
         return True
 
     def is_entry_valid(self, entry, label_text):
@@ -207,11 +179,13 @@ class FenetrePrincipale(tk.Tk):
 
         if value in ("", placeholder_text):
             messagebox.showerror("Erreur", f"Veuillez remplir toutes les zones de saisie obligatoire : {label_text}")
+            self.grab_set()
             return False
 
         # Vérifier l'adresse e-mail
         if "mail" in label_text.lower() and "@" not in value:
             messagebox.showerror("Erreur", "L'adresse e-mail n'est pas valide. Veuillez inclure un @ dans l'adresse e-mail.")
+            self.grab_set()
             return False
 
         return True
