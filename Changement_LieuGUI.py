@@ -2,19 +2,17 @@ import json
 from tkinter import *
 from tkinter import ttk 
 import os
+
+
 def charger_donnees():
     with open('lieux.json', 'r') as file:
         data = json.load(file)
     return data['lieux']
 
-
-
 def ouvrir_open_new_window():
     fen1.destroy()  # Ferme la fenêtre actuelle
     # Crée une nouvelle fenêtre (remplacez "test_q.py" par le chemin réel de votre fichier)
     os.system("python test_q.py")
-
-
 
 def charger_donnees_equide():
     with open('equide.json', 'r') as file_equide:
@@ -40,11 +38,11 @@ def afficher_info_lieu(ville):
                     tree.delete(item)
                 
                 for equide in equides:
+
                      nom=equide.get('nom')
                      race=equide.get('race')
                      poids=equide.get('poids')
                      adresse_equide=equide.get('adresse')
-                     print("nom")
                      if adresse_equide==adresse:
                         
                         tree.insert('','end',values=(nom,race,poids))
@@ -106,18 +104,9 @@ city_frame.pack(side=TOP)
 region_frame.pack(side=TOP)
 Departement_frame.pack(side=TOP)
 
-# city_frame.pack(side=RIGHT)
-# region_frame.pack(side=RIGHT)
-# Departement_frame.pack(side=RIGHT)
-
-# label_frame6.pack(side=LEFT)
-# label_frame7.pack(side=LEFT)
-# label_frame8.pack(side=LEFT)
-
 label_frame6.pack(side=BOTTOM)
 label_frame7.pack(side=BOTTOM)
 label_frame8.pack(side=BOTTOM)
-
 
 # Créer le tableau
 tree = ttk.Treeview(frame2, columns=('Nom', 'Race', 'Poids'), show='headings')
@@ -125,8 +114,6 @@ tree.heading('Nom', text='Nom')
 tree.heading('Race', text='Race')
 tree.heading('Poids', text='Poids')
 tree.pack(side=TOP)
-
-
 
 # Définir l'action à effectuer lorsque la valeur du menu déroulant change
 var_ville.trace("w", lambda *args: afficher_info_lieu(var_ville.get()))

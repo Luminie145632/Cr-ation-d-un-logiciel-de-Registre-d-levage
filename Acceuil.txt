@@ -1,13 +1,19 @@
-# Accueil.py
 import sys
-sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
-import tkinter as tk
+
+#sys.path.append('..\\Cr-ation-d-un-logiciel-de-Registre-d-levage')  
+#sys.path.append('..\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\controller\\')
+# Maintenant, vous pouvez importer le fichier depuis le dossier parent
+import Methode1
+import Choix
+import Command
+import tkinter as tk #Cr-ation-d-un-logiciel-de-Registre-d-levage
 from tkinter import ttk
 from PIL import Image, ImageTk
-import glob
+import glob  
 import os
-import Methode1
+import controller
 
+#from Azur.Methode_1 import ouvrir_fichier, fermer_fichier
 #from controller.Methode_1 import ouvrir_fichier, fermer_fichier
 
 class FenetrePrincipale(tk.Tk):
@@ -16,12 +22,13 @@ class FenetrePrincipale(tk.Tk):
 
         self.title("Accueil")
         self.geometry("1920x1080")
+      
         try:
          self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
-        except Exception:
-           print(" photo de cheval ") 
+        except Exception :
+         print("Mache pas ")
         # Ajout de la phrase "Bienvenue sur notre application." au centre
-        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur notre application.", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.pack(side="top", pady=20)
 
         # Création de la barre de navigation
@@ -32,7 +39,7 @@ class FenetrePrincipale(tk.Tk):
         btn_caracteristiques_lieu = tk.Button(navbar, text="Caractéristiques du Lieu de Détention", command=self.ouvrir_caracteristiques_lieu)
         btn_caracteristiques_lieu.pack(side="left", expand=True, fill='both')
 
-        btn_mouvement_temporaire = tk.Button(navbar, text="Encadrement Zootechnique, Sanitaire et Medical des Animaux", command=self.open_new_window)
+        btn_mouvement_temporaire = tk.Button(navbar, text="Encadrement Zootechnique, Sanitaire et Medical des Animaux", command=self.ouvrir_nouvelle_fenetre)
         btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
 
         btn_mouvement_temporaire = tk.Button(navbar, text="Présence et Caractéristiques des Animaux", command=self.ouvrir_caractheristiques)
@@ -41,11 +48,25 @@ class FenetrePrincipale(tk.Tk):
         btn_mouvement_temporaire = tk.Button(navbar, text="Mouvement Temporaire des Animaux", command=self.ouvrir_nouvelle_fenetre)
         btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
 
-        btn_mouvement_temporaire = tk.Button(navbar, text="Intervents et Soins Courants", command=self.ouvrir_interventions)
+        btn_mouvement_temporaire = tk.Button(navbar, text="Intervents et Soins Courants", command=self.open_healthcare)
         btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
 
-        btn_mouvement_temporaire = tk.Button(navbar, text="Contrôle du Registre d'élevage", command=self.ouvrir_registre_elevage)
+        btn_mouvement_temporaire = tk.Button(navbar, text="Contrôle du Registre d'élevage", command=self.open_control)
         btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
+
+        #btn_mouvement_temporaire = tk.Button(navbar, text="Mouvement Temporaire", command=self.ouvrir_nouvelle_fenetre)
+        #btn_mouvement_temporaire.pack(side="left", expand=True, fill='both')
+
+        #btn_lieux_detention = tk.Button(navbar, text="Lieux de Détention", command=self.ouvrir_fenetre_Lieu_detention)
+        #btn_lieux_detention.pack(side="left", expand=True, fill='both')
+
+        #btn_presence_caracteristiques = tk.Button(navbar, text="Présence et Caractéristiques", command=self.renseigner_presence_caracteristiques)
+        #btn_presence_caracteristiques.pack(side="left", expand=True, fill='both')
+
+        #btn_interventions = tk.Button(navbar, text="Interventions", command=self.ouvrir_fenetre_Lieu_caratheristiques)
+        #btn_interventions.pack(side="left", expand=True, fill='both')
+
+    # Ajoutez d'autres boutons de la barre de navigation si nécessaire
 
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
@@ -55,38 +76,35 @@ class FenetrePrincipale(tk.Tk):
         self.bind("<Configure>", self.redimensionner_image)
 
         # Appel à la méthode pour gérer le fond d'image changeant
-        try:
-         self.setup_background_animation()
-        except Exception:
-          print(" Marche pas photo de fond ") 
+        self.setup_background_animation()
+
+
+
+    def ouvrir_fichier(Page_caractéristique_du_lieu_de_detention):
+              try:
+               fichier = open(Page_caractéristique_du_lieu_de_detention, 'r')
+               contenu = Page_caractéristique_du_lieu_de_detention.read()
+               print("Contenu du fichier :")
+               print(contenu)
+               return fichier  # Retourne le fichier ouvert
+              except FileNotFoundError:
+               print(f"Le fichier {Page_caractéristique_du_lieu_de_detention} n'a pas été trouvé.")
+              return None
+
+    def fermer_fichier(accueil):
+        if accueil:
+           accueil.close()
+           print("Fichier fermé.")
+        else:
+           print("Aucun fichier à fermer.")
+
     def setup_background_animation(self):
-      
-        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
-        self.current_image_index = 0
-        self.load_image()
-
-    # def load_image(self):
-    #     image_path = self.image_paths[self.current_image_index]
-    #     image = Image.open(image_path)
-    #     image = image.resize((self.winfo_width(), self.winfo_height()))
-    #     photo = ImageTk.PhotoImage(image)
-    #     self.label_image.configure(image=photo)
-    #     self.label_image.image = photo
-    #     self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
-
-    #     for child in self.label_image.winfo_children():
-    #         child.lift()
-
-    #     self.after(2000, self.load_image)
-
-    def redimensionner_image(self, event):
-        image_path = self.image_paths[self.current_image_index]
-        image = Image.open(image_path)
-        image = image.resize((self.winfo_width(), self.winfo_height()))
-        photo = ImageTk.PhotoImage(image)
-        self.label_image.configure(image=photo)
-        self.label_image = photo
-
+        try:
+         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
+         self.current_image_index = 0
+         self.load_image()
+        except Exception :
+         print("Mache pas ")
 
     def load_image(self):
         image_path = self.image_paths[self.current_image_index]
@@ -109,25 +127,17 @@ class FenetrePrincipale(tk.Tk):
         image = image.resize((self.winfo_width(), self.winfo_height()))
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
-        self.label_image = photo
+        self.label_image.image = photo
        except Exception:
-        print("photo march pas ")
+        print("Accor")
     def open_control(self):
-     chemin_fichier = "/Creation_dun_logiciel_de_Registre_delevage/view/Page_controle_du_registre_delevage.py"
-     fichier = Methode1.ouvrir_fichier(chemin_fichier)
-
+        chemin_fichier = "/Creation_dun_logiciel_de_Registre_delevage/view/Page_controle_du_registre_delevage.py"
+        fichier = Methode1.ouvrir_fichier(chemin_fichier)
+       
     #checked
     def ouvrir_caracteristiques_lieu(self):
      self.destroy()
-     os.system("python Page_caracteristique_du_lieu_de_detention.py")
-
-    def ouvrir_interventions(self):
-     self.destroy()
-     os.system("python Soins_CourantGUI.py") 
-
-    def ouvrir_registre_elevage(self):
-     self.destroy()
-     os.system("python Page_controle_du_registre_delevage.py") 
+     os.system("Page_caracteristique_du_lieu_de_detention.py")
     
     #  chemin_fichier = "/Creation_dun_logiciel_de_Registre_delevage/view/Page_caracteristique_du_lieu_de_detention.py"
     #  fichier = Methode1.ouvrir_fichier(chemin_fichier)
@@ -138,43 +148,39 @@ class FenetrePrincipale(tk.Tk):
     #checked
     def open_healthcare(self):
         self.destroy()
-        os.system("python Soins_CourantGUI.py")
+        os.system("Soins_CourantGUI.py")
+    
+
 
         # chemin_fichier = "/Creation_dun_logiciel_de_Registre_delevage/view/Soins_CourantGUI.py"
         # fichier = Methode1.ouvrir_fichier(chemin_fichier)
         # #fermer_fichier(fichier)
         # # Ajoutez ici le code pour traiter le contenu du fichier si nécessaire
+
+
+   
+   
+   
     def ouvrir_caractheristiques(self):
-     self.destroy()
-     os.system("python Presence_et_Caratheristiques_animauxGUI.py")
-
-    def ouvrir_nouvelle_fenetre(self):
-     self.destroy()
-     os.system("python Page_1_mouvements_temporaires_des_animaux.py")
-    
-    def open_new_window(self):
-     self.destroy()
-     os.system("python Page_1_mouvements_temporaires_des_animaux.py")
-    
-
-# ... (autres méthodes)
+        self.destroy()
+        os.system("python Presence_et_Caratheristiques_animauxGUI.py")
         
-
-
-
-
-
-    # def ouvrir_caracteristiques_lieu(self):
-    #     chemin_fichier = "/Creation_dun_logiciel_de_Registre_delevage/view/Page_caractéristique_du_lieu_de_detention.py"
-    #     fichier = ouvrir_fichier(chemin_fichier)
+    #  chemin_fichier = "/Creation_dun_logiciel_de_Registre_delevage/view/Page_presence_et_caracteristiques_des_animaux.py"
+    #  c=controller
+    #  fichier = Methode1.ouvrir_fichier(chemin_fichier)
     #     #fermer_fichier(fichier)
     #     # Ajoutez ici le code pour traiter le contenu du fichier si nécessaire
 
-    # def ouvrir_nouvelle_fenetre(self):
-    #     self.destroy()
-    #     os.system("python Page_1_mouvements_temporaires_des_animaux.py")
+
+
+    def ouvrir_nouvelle_fenetre(self):
+        self.destroy()
+        os.system("python Page_1_mouvements_temporaires_des_animaux.py")
 
 # ... (autres méthodes)
+        
+   
+     
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()

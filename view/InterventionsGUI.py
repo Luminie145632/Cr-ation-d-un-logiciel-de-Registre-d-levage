@@ -62,16 +62,22 @@ class InterventionsGUI(Frame):
         self.can1 = Canvas(self, bg='blue', width=450, height=450)
         self.can1.grid(row=7 + self.height, column=0, columnspan=self.numberColumns, pady=5)
 
+
+
+        try:
         # Charger l'image avec PIL
-        image = Image.open("/Creation_dun_logiciel_de_Registre_delevage/images/cheval_blanc.png")
+         image = Image.open("/Creation_dun_logiciel_de_Registre_delevage/images/cheval_blanc.png")
         # Augmenter la taille de l'image (dans cet exemple, je l'ai doublée)
-        image = image.resize((960, 540), Image.BICUBIC)
+         image = image.resize((960, 540), Image.BICUBIC)
         # Convertir l'image en format Tkinter PhotoImage
-        self.image = ImageTk.PhotoImage(image)
+         self.image = ImageTk.PhotoImage(image)
+         self.can1.create_image(0, 0, anchor=tk.NW, image=self.image)
+
+        except Exception:
+            print("Ne marche pas")
 
         # Afficher l'image sur le canvas
-        self.can1.create_image(0, 0, anchor=tk.NW, image=self.image)
-
+       
     def valider_informations(self):
         # Votre logique pour valider les informations
         pass
@@ -84,7 +90,11 @@ if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("Présence et caractéristiques des animaux")
     fenetre.geometry("1920x1080")
-    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+    try:
+     fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+    except Exception:
+     print("enjkezbzkj")
+    
     col_titles = ["Date", "Type intervention", "N° Transpondeur", "(Traitement) Nom de Médicament", "(Traitement) Voie d'Administration, dose (facultatif si ordonnance) à conserver 5 ans",
                   "(Traitement) Date de début", "(Traitement) Date de fin ", "N°d’ordonnance", "Délai d’Attente Compétition(facultatif)", "Délai d’attente Abatage ou Exclusion Abattage"]
     fenetre_principale = InterventionsGUI(fenetre, height=3, width=10, col_titles=col_titles)

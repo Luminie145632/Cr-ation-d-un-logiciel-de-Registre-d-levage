@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox,Button
 from PIL import Image, ImageTk
 import glob
 import os
@@ -10,8 +10,12 @@ class FenetrePrincipale(tk.Tk):
 
         self.title("CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
         self.geometry("1920x1080")
-        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
-
+        
+        try:
+         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+        except Exception:
+           print("Marche pas")
+           
         label_principal = tk.Label(self, text="CARACTÉRISTIQUES DU LIEU DE DÉTENTION")
         label_principal.pack()
 
@@ -42,18 +46,31 @@ class FenetrePrincipale(tk.Tk):
         # Ajouter un label pour afficher les images
         self.label_image = tk.Label(self)
         self.label_image.pack()
+        
+        self.btn_mouvement_temporaire = Button(self, text="Retour au menu principal", command=  self.return_main_menu )#self.signaler_mouvement_temporaire)
+        self.btn_mouvement_temporaire.pack()
+
+
 
         # Appeler la méthode setup_background_animation pour démarrer l'animation des images
         self.setup_background_animation()
 
     def setup_background_animation(self):
-        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
-        self.current_image_index = 0
-        self.load_image()
-
+        try:
+         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
+         self.current_image_index = 0
+         self.load_image()
+        except Exception:
+         print("Lool")    
     def load_image(self):
         image_path = self.image_paths[self.current_image_index]
-        image = Image.open(image_path)
+        
+        try:
+        
+         image = Image.open(image_path)
+
+        except Exception:
+         print("Lool")   
         image = image.resize((self.winfo_width(), self.winfo_height()))
         photo = ImageTk.PhotoImage(image)
 
@@ -63,6 +80,12 @@ class FenetrePrincipale(tk.Tk):
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
         self.after(2000, self.load_image)
+
+    def return_main_menu(self):
+     self.destroy()
+     os.system("python Accueil.py")
+
+     
 
     def redimensionner_image(self, event):
         image_path = self.image_paths[self.current_image_index]

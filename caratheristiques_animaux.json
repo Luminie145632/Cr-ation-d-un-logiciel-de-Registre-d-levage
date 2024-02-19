@@ -1,0 +1,92 @@
+{
+  "caratheristiques_animaux": [
+    {
+      "Nom": "Nom_animal_1",
+      "SIRE": "123456780",
+      "transpondeur": "987654321",
+      "Nom et coordonnees du proprietaire": {
+        "Nom": "Proprietaire_1",
+        "Coordonnees": {
+          "Adresse": "Adresse_1",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date de premiere entree": "2022-01-01",
+      "Adresse de provenance": "Provenance_1",
+      "Date de sortie definitive": "2022-12-31",
+      "Adresse de destination": "Destination_1"
+    },
+    {
+      "Nom": "Nom_animal_2",
+      "N\u00c2\u00b0 SIRE": "987654321",
+      "N\u00c2\u00b0 transpondeur": "123456789",
+      "Nom et coordonn\u00c3\u00a9es du propri\u00c3\u00a9taire": {
+        "Nom": "Propri\u00c3\u00a9taire_2",
+        "Coordonn\u00c3\u00a9es": {
+          "Adresse": "Adresse_2",
+          "Ville": "Ville_2",
+          "Code postal": "54321"
+        }
+      },
+      "Date de premi\u00c3\u00a8re entr\u00c3\u00a9e": "2022-02-01",
+      "Adresse de provenance": "Provenance_2",
+      "Date de sortie d\u00c3\u00a9finitive": "2022-11-30",
+      "Adresse de destination": "Destination_2"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "Z",
+      "N\u00b0 SIRE": "6",
+      "N\u00b0 transpondeur": "7",
+      "Nom et coordonn\u00e9es du propri\u00e9taire": {
+        "Nom": "TU",
+        "Coordonn\u00e9es": {
+          "Adresse": "UT",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date de premi\u00e8re entr\u00e9e": "09/09/2003",
+      "Adresse de provenance": "UT",
+      "Date de sortie d\u00e9finitive": "09/06/60",
+      "Adresse de destination": "Destination_1"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "Wati",
+      "NO_SIRE": "120000",
+      "NO_transpondeur": "2900000",
+      "Nom_coordonnees_proprietaire": {
+        "Nom": "Djakarta",
+        "Coordonnees": {
+          "Adresse": "RUE POOL",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date_premiere_entree": "09/09/2021",
+      "Adresse_provenance": "RUE POOL",
+      "Date_sortie_definitive": "09/09/2024",
+      "Adresse_destination": "Destination_1"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "Blaise",
+      "NO_SIRE": "0909",
+      "NO_transpondeur": "111",
+      "Nom_coordonnees_proprietaire": {
+        "Nom": "111",
+        "Coordonnees": {
+          "Adresse": "1",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date_premiere_entree": "1",
+      "Adresse_provenance": "1",
+      "Date_sortie_definitive": "1",
+      "Adresse_destination": "Destination_1"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "caratheristiques_animaux": [
+    {
+      "Nom": "Nom_animal_1",
+      "NeSIRE": "123456780",
+      "Netranspondeur": "987654321",
+      "Nom et coordonnees du proprietaire": {
+        "Nom": "Proprietaire_1",
+        "Coordonnees": {
+          "Adresse": "Adresse_1",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date de premiere entree": "2022-01-01",
+      "Adresse de provenance": "Provenance_1",
+      "Date de sortie definitive": "2022-12-31",
+      "Adresse de destination": "Destination_1"
+    },
+    {
+      "Nom": "Nom_animal_2",
+      "NeSIRE": "987654321",
+      "Netranspondeur": "123456789",
+      "Nom et coordonnees du proprietaire": {
+        "Nom": "Proprietaire_2",
+        "Coordonnees": {
+          "Adresse": "Adresse_2",
+          "Ville": "Ville_2",
+          "Code postal": "54321"
+        }
+      },
+      "Date de premiere entree": "2022-02-01",
+      "Adresse de provenance": "Provenance_2",
+      "Date de sortie definitive": "2022-11-30",
+      "Adresse de destination": "Destination_2"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "Z",
+      "NeSIRE": "6",
+      "Netranspondeur": "7",
+      "Nom et coordonnees du proprietaire": {
+        "Nom": "TU",
+        "Coordonnees": {
+          "Adresse": "UT",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date de premiere entree": "09/09/2003",
+      "Adresse de provenance": "UT",
+      "Date de sortie definitive": "09/06/60",
+      "Adresse de destination": "Destination_1"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "Wati",
+      "NO_SIRE": "120000",
+      "NO_transpondeur": "2900000",
+      "Nom_coordonnees_proprietaire": {
+        "Nom": "Djakarta",
+        "Coordonnees": {
+          "Adresse": "RUE POOL",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date_premiere_entree": "09/09/2021",
+      "Adresse_provenance": "RUE POOL",
+      "Date_sortie_definitive": "09/09/2024",
+      "Adresse_destination": "Destination_1"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "Blaise",
+      "NO_SIRE": "0909",
+      "NO_transpondeur": "111",
+      "Nom_coordonnees_proprietaire": {
+        "Nom": "111",
+        "Coordonnees": {
+          "Adresse": "1",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date_premiere_entree": "1",
+      "Adresse_provenance": "1",
+      "Date_sortie_definitive": "1",
+      "Adresse_destination": "Destination_1"
+    },
+    {
+      "num_siret": "321546",
+      "Nom": "AZOK",
+      "NO_SIRE": "000090890",
+      "NO_transpondeur": "11111110000",
+      "Nom_coordonnees_proprietaire": {
+        "Nom": "QUUUIE",
+        "Coordonnees": {
+          "Adresse": "youyou",
+          "Ville": "Ville_1",
+          "Code postal": "12345"
+        }
+      },
+      "Date_premiere_entree": "09/09/2006",
+      "Adresse_provenance": "youyou",
+      "Date_sortie_definitive": "20/09/2009",
+      "Adresse_destination": "Destination_1"
+    }
+  ]
+}

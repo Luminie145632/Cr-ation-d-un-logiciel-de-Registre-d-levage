@@ -6,10 +6,7 @@ class Menu_navigation:
         pass
    
 fen1 = Tk()
-
-
 image = PhotoImage(file="white_horse.png")
-
 
 def ouvrir_nouvelle_fenetre():
     fen1.destroy()  # Ferme la fenêtre actuelle
