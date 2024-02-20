@@ -1,8 +1,7 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import glob
-import random
 import string
 import json
 
@@ -10,7 +9,7 @@ class FenetrePrincipale(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Accueil")
+        self.title("Page de création des identifiants de compte")
         self.geometry("1920x1080")
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
@@ -39,6 +38,11 @@ class FenetrePrincipale(tk.Tk):
         self.label_prenom = tk.Label(self.formulaire_frame, text="Prénom:")
         self.entry_prenom = tk.Entry(self.formulaire_frame)
 
+        self.label_mot_de_passe = tk.Label(self.formulaire_frame, text="Mot de passe:")
+        self.entry_mot_de_passe = tk.Entry(self.formulaire_frame, show="*")  # Mot de passe masqué par défaut
+
+        self.btn_oeil = ttk.Button(self.formulaire_frame, text="👁", command=self.toggle_mot_de_passe, style="Toggle.TButton")
+
         self.btn_soumettre = tk.Button(self.formulaire_frame, text="Valider", command=self.soumettre_formulaire)
 
         # Placement des éléments du formulaire
@@ -48,11 +52,21 @@ class FenetrePrincipale(tk.Tk):
         self.label_prenom.grid(row=1, column=0, padx=10, pady=5)
         self.entry_prenom.grid(row=1, column=1, padx=10, pady=5)
 
+        self.label_mot_de_passe.grid(row=2, column=0, padx=10, pady=5)
+        self.entry_mot_de_passe.grid(row=2, column=1, padx=10, pady=5)
+        self.btn_oeil.grid(row=2, column=2, padx=5, pady=5)
+
         self.btn_soumettre.grid(row=3, column=0, columnspan=2, pady=10)
 
         # Variables pour stocker les informations générées
         self.identifiant = tk.StringVar()
-        self.code = tk.StringVar()
+
+        # Style pour le bouton Toggle
+        style = ttk.Style()
+        style.configure("Toggle.TButton", padding=(5, 5))
+
+        # Variable pour le suivi de l'état du mot de passe (affiché ou masqué)
+        self.mot_de_passe_visible = False
 
     def setup_background_animation(self):
         self.image_paths = glob.glob("images/*.png")
@@ -82,38 +96,33 @@ class FenetrePrincipale(tk.Tk):
         self.label_image.image = photo
 
     def generer_identifiant(self, nom, prenom):
-        # Génération de l'identifiant en combinant les trois premières lettres du nom et du prénom
-        identifiant = (nom[:3] + prenom[:3]).lower()
+        # Génération de l'identifiant en combinant la première lettre du prénom et les 5 premières lettres du nom
+        identifiant = (prenom[0] + nom[:5]).lower()
         return identifiant
 
-    def generer_code(self):
-        # Génération d'un code aléatoire de 6 chiffres
-        code = ''.join(random.choices(string.digits, k=6))
-        return code
+    def toggle_mot_de_passe(self):
+        # Fonction pour basculer entre l'affichage et le masquage du mot de passe
+        self.mot_de_passe_visible = not self.mot_de_passe_visible
+        if self.mot_de_passe_visible:
+            self.entry_mot_de_passe.configure(show="")
+        else:
+            self.entry_mot_de_passe.configure(show="*")
 
     def soumettre_formulaire(self):
         nom = self.entry_nom.get()
         prenom = self.entry_prenom.get()
+        mot_de_passe = self.entry_mot_de_passe.get()
+
+        # Vérifier que le mot de passe contient uniquement des chiffres et des lettres et a une longueur maximale de 7 caractères
+        if not (mot_de_passe.isalnum() and len(mot_de_passe) <= 24):
+            messagebox.showwarning("Mot de passe invalide", "Le mot de passe doit contenir uniquement des chiffres et des lettres et avoir une longueur maximale de 24 caractères.")
+            return
 
         self.identifiant.set(self.generer_identifiant(nom, prenom))
-        self.code.set(self.generer_code())
 
         # Afficher les informations dans une boîte de message
-        message = f"Nom: {nom}\nPrénom: {prenom}\nIdentifiant: {self.identifiant.get()}\nCode: {self.code.get()}"
+        message = f"Nom: {nom}\nPrénom: {prenom}\nIdentifiant: {self.identifiant.get()}\nMot de passe: {mot_de_passe}"
         messagebox.showinfo("Informations de connexion à votre espace", message)
-
-        # Appel de la fonction pour afficher les informations depuis un autre fichier
-        self.afficher_informations()
-
-    def afficher_informations(self):
-        # Charger les informations depuis un fichier (par exemple, un fichier JSON)
-        try:
-            with open("informations_utilisateur.json", "r") as fichier:
-                donnees_utilisateur = json.load(fichier)
-                # Afficher les informations à partir du fichier
-                messagebox.showinfo("Informations utilisateur", f"Informations provenant du fichier:\n{json.dumps(donnees_utilisateur, indent=2)}")
-        except FileNotFoundError:
-            messagebox.showwarning("Fichier introuvable", "Le fichier d'informations utilisateur n'a pas été trouvé.")
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()

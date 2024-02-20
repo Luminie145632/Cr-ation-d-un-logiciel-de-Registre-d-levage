@@ -104,6 +104,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Variable commune pour les boutons radio
         self.var_choix = tk.StringVar()
+        self.var_choix.set(None)  # Ajuste la valeur par défaut à None
 
         # Création des boutons radio
         choix1 = tk.Radiobutton(radio_frame, text="Personne Physique", value="Choix 1", variable=self.var_choix, command=self.update_radio_buttons)
@@ -134,6 +135,8 @@ class FenetrePrincipale(tk.Tk):
         entry = tk.Entry(frame, textvariable=entry_var, fg="black")
         entry.grid(row=row, column=1, pady=5, sticky="w")
 
+        entry.placeholder_text = placeholder_text  # Ajout de l'attribut placeholder_text à l'objet Entry
+
         entry.insert(0, placeholder_text)
         entry.bind("<FocusIn>", lambda event, var=entry_var: self.on_entry_focus_in(var, placeholder_text, entry))
         entry.bind("<FocusOut>", lambda event, var=entry_var: self.on_entry_focus_out(var, placeholder_text, entry))
@@ -153,68 +156,56 @@ class FenetrePrincipale(tk.Tk):
             var.set(placeholder_text)
             entry.config(fg='grey')
 
-    def soumettre_formulaire(self):
-        # Récupération des valeurs des champs pour chaque partie
-        # ...
-
-        # Vérification des champs obligatoires pour chaque partie
-        if not self.validate_entries():
-            return
-
-        # Affichage des informations dans une boîte de dialogue
-        message = "Informations du formulaire :\n"
-        # Ajoutez les informations de chaque partie au message
-
-        messagebox.showinfo("Formulaire d'inscription", message)
+    def get_entry_value(self, entry):
+        value = entry.get()
+        placeholder_text = entry.placeholder_text if hasattr(entry, 'placeholder_text') else ""
+        return value if value != placeholder_text else ""
 
     def validate_entries(self):
-        # Valider que toutes les zones de saisie obligatoires sont remplies
-        entries = [
-            (self.entry_num_detenteur, "Numéro de détenteur (SIRE)"),
-            (self.var_choix, "Type de détenteur"),
-            (self.entry_siret, "N° SIRET"),
-            (self.entry_code_ape, "Code APE"),
-            (self.entry_adresse, "Adresse"),
-            (self.entry_tel, "Téléphone"),
-            (self.entry_portable, "Portable"),
-            (self.entry_mail, "Adresse e-mail"),
-            (self.entry_prenom, "Prénom"),
-            (self.entry_nom_usage, "Nom d'usage"),
-            (self.entry_adresse_partie_4, "Adresse (Partie 4)"),
-            (self.entry_tel_partie_4, "Téléphone (Partie 4)"),
-            (self.entry_portable_partie_4, "Portable (Partie 4)"),
-            (self.entry_mail_partie_4, "Adresse e-mail (Partie 4)")
-        ]
+        # Vous pouvez ajouter ici la logique de validation
+        pass
 
-        for entry, label_text in entries:
-            if not self.is_entry_valid(entry, label_text):
-                return False
+    def soumettre_formulaire(self):
+        # Récupération des valeurs des champs pour chaque partie
+        num_detenteur = self.get_entry_value(self.entry_num_detenteur)
+        choix_type_detenteur = self.var_choix.get()
+        siret = self.get_entry_value(self.entry_siret)
+        code_ape = self.get_entry_value(self.entry_code_ape)
+        statut_juridique = self.get_entry_value(self.entry_statut_juridique)
+        denomination = self.get_entry_value(self.entry_denomination)
+        adresse = self.get_entry_value(self.entry_adresse)
+        tel = self.get_entry_value(self.entry_tel)
+        portable = self.get_entry_value(self.entry_portable)
+        mail = self.get_entry_value(self.entry_mail)
+        prenom = self.get_entry_value(self.entry_prenom)
+        nom_usage = self.get_entry_value(self.entry_nom_usage)
+        adresse_partie_4 = self.get_entry_value(self.entry_adresse_partie_4)
+        tel_partie_4 = self.get_entry_value(self.entry_tel_partie_4)
+        portable_partie_4 = self.get_entry_value(self.entry_portable_partie_4)
+        mail_partie_4 = self.get_entry_value(self.entry_mail_partie_4)
 
-        # Valider que l'un des boutons radio est sélectionné
-        if not self.var_choix.get():
-            messagebox.showerror("Erreur", "Veuillez choisir le type de personne.")
-            return False
+        # Affichage des informations dans une boîte de dialogue
+        message = (
+            f"Numéro de détenteur (SIRE) : {num_detenteur}\n"
+            f"Type de détenteur : {choix_type_detenteur}\n"
+            f"N° SIRET : {siret}\n"
+            f"Code APE : {code_ape}\n"
+            f"Statut juridique : {statut_juridique}\n"
+            f"Dénomination : {denomination}\n"
+            f"Adresse : {adresse}\n"
+            f"Téléphone : {tel}\n"
+            f"Portable : {portable}\n"
+            f"Adresse e-mail : {mail}\n"
+            f"Prénom : {prenom}\n"
+            f"Nom d'usage : {nom_usage}\n"
+            f"Adresse : {adresse_partie_4}\n"
+            f"Téléphone : {tel_partie_4}\n"
+            f"Portable : {portable_partie_4}\n"
+            f"Adresse e-mail : {mail_partie_4}"
+        )
 
-        return True
+        messagebox.showinfo("Récapitulatif des informations", message)
 
-    def is_entry_valid(self, entry, label_text):
-        if isinstance(entry, tk.Entry):
-            value = entry.get()
-            placeholder_text = getattr(entry, 'placeholder_text', None)
-        elif isinstance(entry, tk.StringVar):
-            value = entry.get()
-            placeholder_text = None
-
-        if value in ("", placeholder_text):
-            messagebox.showerror("Erreur", f"Veuillez remplir toutes les zones de saisie obligatoire : {label_text}")
-            return False
-
-        # Vérifier l'adresse e-mail
-        if "mail" in label_text.lower() and "@" not in value:
-            messagebox.showerror("Erreur", "L'adresse e-mail n'est pas valide. Veuillez inclure un @ dans l'adresse e-mail.")
-            return False
-
-        return True
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()
