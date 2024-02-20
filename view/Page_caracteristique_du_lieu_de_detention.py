@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 import glob
 import os
 
-class FenetrePrincipale(tk.Tk):
+class FenetrePrincipaleCaracth(tk.Tk):
     def __init__(self):
         super().__init__()
 
@@ -97,5 +97,5 @@ class FenetrePrincipale(tk.Tk):
         self.label_image.image = photo
 
 if __name__ == "__main__":
-    fenetre_principale = FenetrePrincipale()
+    fenetre_principale = FenetrePrincipaleCaracth()
     fenetre_principale.mainloop()

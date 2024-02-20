@@ -64,8 +64,6 @@ class FenetrePrincipale(Frame):
         btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command=  self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
         btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
         
-
-
         btn_mouvement_retour = Button(self, text="Retour au menu principal", command=  self.return_main_menu, width=15, height=1 )#self.signaler_mouvement_temporaire)
         btn_mouvement_retour.grid(row=self.numberLines + 7, columnspan=self.numberColumns, sticky='nsew')
 
@@ -165,6 +163,7 @@ class FenetrePrincipale(Frame):
         self.load_image()
        except Exception:
           print("rrrr") 
+
     def load_image(self):
         # Charger l'image actuelle
         image_path = self.image_paths[self.current_image_index]
