@@ -7,7 +7,7 @@ import glob
 import os
 from tkinter import ttk
 from PIL import Image, ImageTk
-import glob
+
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self):
