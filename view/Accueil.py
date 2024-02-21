@@ -26,9 +26,9 @@ class FenetrePrincipale(tk.Tk):
         self.title("Accueil")
         self.geometry("1920x1080")
         try:
-         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+            self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
         except Exception:
-           print(" photo de cheval ") 
+            print(" photo de cheval ") 
         # Ajout de la phrase "Bienvenue sur notre application." au centre
         etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application.", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.grid(row=10, column=0, sticky="ew")

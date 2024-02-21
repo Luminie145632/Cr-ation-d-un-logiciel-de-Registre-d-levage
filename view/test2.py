@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, Canvas, Scrollbar
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import glob
 
@@ -7,20 +7,14 @@ class FenetrePrincipale(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Formulaire de création d'un compte professionnel")
-        self.geometry("800x600")  # Ajustez la taille selon vos besoins
+        self.title("Formulaire de création d'un compte particulier")
+        self.geometry("1920x1080")  # Taille de la fenêtre ajustée
+        # Chemin vers l'icône
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
-        # Ajout d'une barre de défilement vertical directement à la fenêtre principale
-        scrollbar = Scrollbar(self, orient="vertical")
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
         # Création du canvas pour afficher les images
-        self.canvas = Canvas(self, width=1920, height=1080, yscrollcommand=scrollbar.set)
-        self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        # Configurer la barre de défilement pour contrôler le canvas
-        scrollbar.config(command=self.canvas.yview)
+        self.canvas = tk.Canvas(self, width=1920, height=1080)
+        self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=False)
 
         # Création du label pour afficher l'image
         self.label_image = tk.Label(self.canvas)
@@ -35,12 +29,15 @@ class FenetrePrincipale(tk.Tk):
         titre_page.grid(row=0, column=0, pady=20)
 
         # Création des parties du formulaire
-        self.creer_partie_1(row=1, relx=None, rely=None)
-        self.creer_partie_2(row=2, relx=None, rely=None)
-        self.creer_partie_3(row=3, relx=None, rely=None)
+        self.creer_partie_1(row=1)
+        self.creer_partie_2(row=2)
+        self.creer_partie_3(row=3)
 
         btn_soumettre = tk.Button(self.formulaire_frame, text="Valider", command=self.soumettre_formulaire)
         btn_soumettre.grid(row=4, column=0, pady=10)
+
+         # Appel à la méthode pour gérer le fond d'image changeant
+        self.setup_background_animation()
 
         # Appel à la méthode pour gérer le fond d'image changeant
         self.setup_background_animation()
@@ -60,84 +57,69 @@ class FenetrePrincipale(tk.Tk):
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
         self.after(2000, self.load_image)
-        self.afficher_contenu_sur_image()
+        #self.afficher_contenu_sur_image()
 
-    def afficher_contenu_sur_image(self):
-        # Obtenez la position actuelle de défilement verticale
-        y_scroll_position = self.canvas.yview()[0]
+        # Configurer la zone défilable pour ajuster la taille en fonction du contenu
+        self.formulaire_frame.update_idletasks()
+        #canvas.config(scrollregion=canvas.bbox("all"))
 
-        # Ajustez la position du formulaire en fonction du défilement
-        x_position = 100
-        y_position = 200 + y_scroll_position * self.winfo_height()
+        # Centrer la fenêtre après la création
+        self.center_window()
 
-        self.formulaire_frame.place(x=x_position, y=y_position)
+    def center_window(self):
+        # Centrer la fenêtre sur l'écran
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        window_width = self.winfo_reqwidth()
+        window_height = self.winfo_reqheight()
 
-    def creer_partie_1(self, row, relx=20, rely=20):
+        x_position = (screen_width - window_width) // 2
+        y_position = (screen_height - window_height) // 2
+
+        self.geometry("+{}+{}".format(x_position, y_position))
+
+    def creer_partie_1(self, row):
         partie_frame = tk.Frame(self.formulaire_frame)
-        partie_frame.grid(row=row, column=0, pady=20, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
+        partie_frame.grid(row=row, column=0, pady=20)
 
         etiquette_bienvenue_1 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 10), sticky="w")
 
-        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=True, row=1, relx=relx, rely=rely)
-        self.create_radio_buttons(partie_frame, row=2, relx=relx, rely=rely)  # Boutons radio sous le titre
-        self.create_label_entry(partie_frame, "N° SIRET :", "entry_siret", "Saisissez votre N° SIRET", required=True, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Code APE :", "entry_code_ape", "Saisissez votre Code APE", required=True, row=4, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Statut juridique :", "entry_statut_juridique", "Saisissez votre statut juridique (facultatif)", required=False, row=5, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Dénomination :", "entry_denomination", "Saisissez votre dénomination (facultatif)", required=False, row=6, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=True, row=1)
+        self.create_label_entry(partie_frame, "Titre :", "entry_siret", "Saisissez votre titre", required=True, row=2)
+        self.create_label_entry(partie_frame, "Prénom :", "entry_code_ape", "Saisissez votre prénom", required=True, row=3)
+        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_statut_juridique", "Saisissez votre nom d'usage", required=True, row=4)
+        self.create_label_entry(partie_frame, "NUMAGRIT :", "entry_denomination", "Saisissez votre NUMAGRIT (facultatif)", required=False, row=5)
 
-    def creer_partie_2(self, row, relx, rely):
+    def creer_partie_2(self, row):
         partie_frame = tk.Frame(self.formulaire_frame)
-        partie_frame.grid(row=row, column=0, pady=20, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
+        partie_frame.grid(row=row, column=0, pady=20)
 
         etiquette_bienvenue_2 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 10), sticky="w")
 
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", required=False, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numéro de votre téléphone", required=False, row=2, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", required=False, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Mail :", "entry_mail", "Saisissez votre adresse e-mail", required=False, row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", required=False, row=1)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numéro de votre téléphone", required=False, row=2)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", required=False, row=3)
+        self.create_label_entry(partie_frame, "Mail :", "entry_mail", "Saisissez votre adresse e-mail", required=False, row=4)
 
-    def creer_partie_3(self, row, relx, rely):
+    def creer_partie_3(self, row):
         partie_frame = tk.Frame(self.formulaire_frame)
-        partie_frame.grid(row=row, column=0, pady=20, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
+        partie_frame.grid(row=row, column=0, pady=20)
 
         etiquette_bienvenue_3 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 10), sticky="w")
 
-        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", required=True, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", required=True, row=2, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", required=True, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=True, row=4, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=True, row=5, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=True, row=6, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", required=True, row=1)
+        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", required=True, row=2)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", required=True, row=3)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=True, row=4)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=True, row=5)
+        self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=True, row=6)
 
-    def create_radio_buttons(self, frame, row, relx, rely):
-        # Frame pour les boutons radio
-        radio_frame = tk.Frame(frame)
-        radio_frame.grid(row=row, column=0, pady=10, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
-
-        # Variable commune pour les boutons radio
-        self.var_choix = tk.StringVar()
-        self.var_choix.set(None)  # Ajuste la valeur par défaut à None
-
-        # Création des boutons radio
-        choix1 = tk.Radiobutton(radio_frame, text="Personne Physique", value="Choix 1", variable=self.var_choix, command=self.update_radio_buttons)
-        choix1.grid(row=0, column=0, padx=20)
-
-        choix2 = tk.Radiobutton(radio_frame, text="Personne Morale", value="Choix 2", variable=self.var_choix, command=self.update_radio_buttons)
-        choix2.grid(row=0, column=1, padx=20)
-
-        # Configurer le poids de la colonne pour permettre l'ajustement dynamique
-        frame.grid_columnconfigure(0, weight=1)
-
-    def update_radio_buttons(self):
-        # Désactiver la validation si l'un des boutons radio est sélectionné
-        self.validate_entries()
-
-    def create_label_entry(self, frame, label_text, entry_name, placeholder_text, required=True, row=0, relx=None, rely=None):
+    def create_label_entry(self, frame, label_text, entry_name, placeholder_text, required=True, row=0):
         label_frame = tk.Frame(frame)
-        label_frame.grid(row=row, column=0, pady=5, padx=(self.winfo_width() * relx, 5) if relx is not None else (10, 5), sticky="w")
+        label_frame.grid(row=row, column=0, pady=5, padx=(10, 5), sticky="w")
 
         if required:
             ast_label = tk.Label(label_frame, text="*", fg="red")
@@ -148,9 +130,7 @@ class FenetrePrincipale(tk.Tk):
 
         entry_var = tk.StringVar()
         entry = tk.Entry(frame, textvariable=entry_var, fg="black")
-        entry.grid(row=row, column=1, pady=5, padx=(self.winfo_width() * relx, 5) if relx is not None else (10, 5), sticky="w")
-
-        entry.placeholder_text = placeholder_text  # Ajout de l'attribut placeholder_text à l'objet Entry
+        entry.grid(row=row, column=1, pady=5, sticky="w")
 
         entry.insert(0, placeholder_text)
         entry.bind("<FocusIn>", lambda event, var=entry_var: self.on_entry_focus_in(var, placeholder_text, entry))
@@ -171,19 +151,9 @@ class FenetrePrincipale(tk.Tk):
             var.set(placeholder_text)
             entry.config(fg='grey')
 
-    def get_entry_value(self, entry):
-        value = entry.get()
-        placeholder_text = entry.placeholder_text if hasattr(entry, 'placeholder_text') else ""
-        return value if value != placeholder_text else ""
-
-    def validate_entries(self):
-        # Vous pouvez ajouter ici la logique de validation
-        pass
-
     def soumettre_formulaire(self):
         # Récupération des valeurs des champs pour chaque partie
         num_detenteur = self.get_entry_value(self.entry_num_detenteur)
-        choix_type_detenteur = self.var_choix.get()
         siret = self.get_entry_value(self.entry_siret)
         code_ape = self.get_entry_value(self.entry_code_ape)
         statut_juridique = self.get_entry_value(self.entry_statut_juridique)
@@ -202,7 +172,6 @@ class FenetrePrincipale(tk.Tk):
         # Affichage des informations dans une boîte de dialogue
         message = (
             f"Numéro de détenteur (SIRE) : {num_detenteur}\n"
-            f"Type de détenteur : {choix_type_detenteur}\n"
             f"N° SIRET : {siret}\n"
             f"Code APE : {code_ape}\n"
             f"Statut juridique : {statut_juridique}\n"
