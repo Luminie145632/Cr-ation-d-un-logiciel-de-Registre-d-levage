@@ -12,7 +12,7 @@ class FenetrePrincipale(tk.Tk):
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Ajout de la phrase au centre
-        etiquette_bienvenue = tk.Label(self, text="Voici la page qui vous permet de nous contacter.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue = tk.Label(self, text="Voici la page qui vous permet de nous contacter", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.pack(side="top", pady=20)
 
         # Création du Label pour afficher les images
@@ -30,22 +30,22 @@ class FenetrePrincipale(tk.Tk):
         self.formulaire_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         # Création des étiquettes, champs de saisie et bouton
-        label_nom = tk.Label(self.formulaire_frame, text="Nom:")
+        label_nom = tk.Label(self.formulaire_frame, text="Nom :")
         label_nom.grid(row=0, column=0, padx=10, pady=5)
         champ_nom = tk.Entry(self.formulaire_frame)
         champ_nom.grid(row=0, column=1, padx=10, pady=5)
 
-        label_email = tk.Label(self.formulaire_frame, text="E-mail:")
+        label_email = tk.Label(self.formulaire_frame, text="E-mail :")
         label_email.grid(row=1, column=0, padx=10, pady=5)
         champ_email = tk.Entry(self.formulaire_frame)
         champ_email.grid(row=1, column=1, padx=10, pady=5)
 
-        label_message = tk.Label(self.formulaire_frame, text="Message:")
+        label_message = tk.Label(self.formulaire_frame, text="Message :")
         label_message.grid(row=2, column=0, padx=10, pady=5)
         champ_message = tk.Text(self.formulaire_frame, height=10, width=30)
         champ_message.grid(row=2, column=1, padx=10, pady=5)
 
-        bouton_envoyer = tk.Button(self.formulaire_frame, text="Envoyer", command=lambda: self.envoyer_message(champ_nom, champ_email, champ_message))
+        bouton_envoyer = tk.Button(self.formulaire_frame, text="Envoyer le message", command=lambda: self.envoyer_message(champ_nom, champ_email, champ_message))
         bouton_envoyer.grid(row=3, column=0, columnspan=2, pady=10)
 
     def setup_background_animation(self):
