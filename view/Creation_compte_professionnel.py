@@ -38,9 +38,6 @@ class FenetrePrincipale(tk.Tk):
         # Appel à la méthode pour gérer le fond d'image changeant
         self.setup_background_animation()
 
-     # Appel à la méthode pour gérer le fond d'image changeant
-        self.setup_background_animation()
-
     def setup_background_animation(self):
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
         self.current_image_index = 0
