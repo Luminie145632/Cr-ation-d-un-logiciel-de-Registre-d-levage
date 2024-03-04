@@ -140,9 +140,6 @@ class FenetrePrincipale(tk.Tk):
          btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command= lambda: self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
          btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
         
-        #  btn_mouvement_retour = Button(self, text="Retour au menu principal", command=  self.return_main_menu, width=15, height=1 )#self.signaler_mouvement_temporaire)
-        #  btn_mouvement_retour.grid(row=self.numberLines + 7, columnspan=self.numberColumns, sticky='nsew')
-
         # Création du Label pour afficher les images
          self.label_image = tk.Label(self, bd=0, highlightthickness=0)
          self.label_image.grid(row=self.numberLines + 9, column=0, columnspan=self.numberColumns, sticky='nsew')
@@ -152,6 +149,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
          self.bind("<Configure>", self.redimensionner_image)  
+    
     def load_image(self):
         
         try:
@@ -172,6 +170,7 @@ class FenetrePrincipale(tk.Tk):
          self.after(2000, self.load_image)
         except Exception:
           print(" ça marche pas ")
+    
     def redimensionner_image(self, event):
        try:
         image_path = self.image_paths[self.current_image_index]
@@ -184,6 +183,30 @@ class FenetrePrincipale(tk.Tk):
         print("photo march pas ")  
     
 
+    # view informations
+    def view_caratherisis_detention_place(self):
+     with open('caracteristiques_lieu_detention.json', 'r') as file:
+        data = json.load(file)
+    
+    # Affichage des animaux dans les zones de texte
+     for i, animal in enumerate(data['caracteristiques_lieu_detention'], start=15):
+        text_fields = []
+
+        for j, key in enumerate(self.col_title):
+            text_field = Entry(self, width=3) 
+            text_field.grid(row=i, column=j, sticky='nsew')
+            # Récupérer la valeur de la clé si elle existe, sinon utiliser une chaîne vide
+            value = animal.get(key, '')
+            text_field.insert(END, f"{key}: {value}\n")
+            text_fields.append(text_field)
+        self.data.append(text_fields)
+        
+     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+    
+     btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+    
     def view_animals(self):
      with open('caratheristiques_animaux.json', 'r') as file:
         data = json.load(file)
@@ -209,85 +232,7 @@ class FenetrePrincipale(tk.Tk):
             self.date_sortie=line[1]    
 
      print(" marche pas ")
-    
-    # def view_animals(self):
-    #  with open('caratheristiques_animaux.json', 'r') as file:
-    #     data = json.load(file)
-    
-    # # Affichage des animaux dans les zones de texte
-    #  for i, animal in enumerate(data['caratheristiques_animaux'], start=15):
-    #     text_fields = []
-    #     for j, key in enumerate(self.col_title):
-    #         text_field = Text(self, wrap=WORD)
-    #         text_field.grid(row=i, column=j, sticky='nsew')
-    #         value = animal.get(key, '')
-    #         text_field.insert(END, f"{key}: {value}\n")
-    #         text_fields.append(text_field)
-    #     self.data.append(text_fields)
-  
-    # def view_animals(self):
-     
-         
-    #  with open('caratheristiques_animaux.json', 'r') as file:
-    #     data = json.load(file)
-        
-    # # Création d'un champ de texte pour afficher les informations
-    # #  text_field = Text(self, wrap=WORD)
-    # #  text_field.grid(row=13, column=0, columnspan=self.numberColumns, sticky='nsew')
-    # #  text_field2 = Text(self, wrap=WORD)
-    # #  text_field2.grid(row=14, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-    #  self.data = []
-    #  for i in range(15,23):
-    #   line = []
-    #    # for j in range(8):
-    #   for animal in data['caratheristiques_animaux']:
-    #     text_field1 = Text(self, wrap=WORD)
-    #     text_field1.grid(row=i, column=0, sticky='nsew')
-    #     text_field1.insert(END, f"Nom: {animal['Nom']}\n")
-        
-    #     text_field2 = Text(self, wrap=WORD)
-    #     text_field2.grid(row=i, column=1, sticky='nsew')
-    #     text_field2.insert(END, f"Numéro SIRE: {animal.get('NeSIRE', '')}\n")
-    
-    #     text_field3 = Text(self, wrap=WORD)
-    #     text_field2.grid(row=i, column=2, sticky='nsew')
-    #     text_field3.insert(END, f"Numéro transpondeur: {animal.get('Netranspondeur', '')}\n")
-        
-    #     text_field3 = Text(self, wrap=WORD)
-    #     text_field2.grid(row=i, column=3, sticky='nsew')
-    #     text_field3.insert(END, f"Numéro transpondeur: {animal.get('Netranspondeur', '')}\n")
-
-    #     text_field4 = Text(self, wrap=WORD)
-    #     text_field4.grid(row=i, column=4, sticky='nsew')
-    #     text_field4.insert(END, f"Date de première entrée: {animal.get('Date de premiere entree', '')}\n")
-
-    #     text_field5 = Text(self, wrap=WORD)
-    #     text_field5.grid(row=i, column=5, sticky='nsew')
-    #     text_field5.insert(END, f"Adresse de provenance: {animal.get('Adresse de provenance', '')}\n")
-
-    #     text_field5 = Text(self, wrap=WORD)
-    #     text_field5.grid(row=i, column=6, sticky='nsew')
-    #     text_field5.insert(END, f"Adresse de destination: {animal.get('Adresse de destination', '')}\n\n")
-
-    #     # text_field6 = Text(self, wrap=WORD)
-    #     # text_field6.grid(row=i, column=6, sticky='nsew')
-    #     # text_field6.insert(END, f"Date de première entrée: {animal.get('Date de premiere entree', '')}\n")
-
-    #     line.append(text_field1)
-
-
-    #     self.data.append(line)
-
-    # # # self.date_sortie=line[1]    
-
-    #  print(" marche pas ")
-
-    # Récupération des informations et ajout dans le champ de texte
-    #   for animal in data['caratheristiques_animaux']:
-
-
-       # text_field.insert(END, f"Nom et coordonnées du propriétaire: {animal.get('Nom et coordonnees du proprietaire')}\n")
+    # def view_informations_(slef):  
     
     
     
@@ -360,7 +305,7 @@ class FenetrePrincipale(tk.Tk):
         # Déplacer le bouton et l'image vers le bas
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
      self.label_image.grid(row=self.numberLines + 8, column=0, columnspan=self.numberColumns, sticky='nsew')
-    #open       
+    #open the windows of the navigation map     
     def ouvrir_caracteristiques_lieu_detention(self):
     # Assurez-vous que les données précédentes sont effacées si nécessaire
      self.supprimer_widgets()  # Assurez-vous que cette méthode est correctement implémentée
@@ -371,12 +316,9 @@ class FenetrePrincipale(tk.Tk):
                       ,"x","x","x"]
                      
     # Ajout de l'espace entre le menu de navigation et "Sire"
-    # etiquette_bienvenue.grid(row=11, column=0, columnspan=len(self.col_title), sticky="ew")
-    # Affichage des titres des colonnes
      
      for j, col_tmp in enumerate(self.col_title):
-      # col_width = 4  # max(14, len(col_tmp) )  # Calcul de la largeur en fonction de la longueur du titre
-       
+  
        col_tmp = self.col_title[j]
        col_title_label = tk.Label(self,text=col_tmp,width=22,relief="solid",bg="lightgray",font=("Helvetica", 8)) # , anchor="w")
        col_title_label.grid(row=11,column=j,sticky='nsew')
@@ -394,17 +336,19 @@ class FenetrePrincipale(tk.Tk):
         self.data.append(row_data)
 
 
-             # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
+        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
      for j in range(self.numberColumns):
         self.grid_columnconfigure(j, weight=1) 
 
     # Bouton de validationxx
      self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
-
+     
      btn_valider = tk.Button(self, text="Valider", command=self.valider_carathersitiques_lieu)
      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
-    
+
+     btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=self.valider_carathersitiques_lieu)
+     btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')
     def open_encadrement_zootechnique(self):
        self.supprimer_widgets()  # Assurez-vous que cette méthode est correctement implémentée
     
@@ -441,10 +385,13 @@ class FenetrePrincipale(tk.Tk):
     # Bouton de validation
        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
-    
+
        btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew') 
 
+       btn_valider = tk.Button(self, text="Afficher les informations concernant l'encadrement zoottechnique des animaux", command=self.view_zootechnical_supervision)
+       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')
+  
     def ouvrir_controle_registre_elevage(self,width):
          # Ajout des titres de colonnes
          self.numberLines = width
@@ -475,12 +422,13 @@ class FenetrePrincipale(tk.Tk):
          # Bouton pour ajouter une nouvelle ligne
          self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
          self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
-             
+
+         btn_valider = tk.Button(self, text="Afficher les informations concernant le controle de mon registre d'élévage", command=self.valider_carathersitiques_lieu)
+         btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
+
          self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=lambda : self.valider_informations_controle())
          self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')
         
-        #  self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
-        #  self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
     def ouvrir_interventions(self,width):
          self.supprimer_widgets()  
          self.numberLines = width
@@ -535,11 +483,11 @@ class FenetrePrincipale(tk.Tk):
           self.can1.create_image(0, 0, anchor=NW, image=self.image)
          except Exception:
             print("l'image ne marche pas ")      
-    def open_healthcare(self):
+    # def open_healthcare(self):
         
-        col_titles = ["Nom", "n° SIRE", "n° Transpondeur", "Nom et coordonnées du propriétaires", "Date de première entrée", "Adresse de provenance","Date de sortie définitive","Adresse de destination"]  
-        fenetre_principale = Soins_cournat(tk.Tk(), height=20, width=10, col_titles=col_titles)
-        fenetre_principale.mainloop()
+    #     col_titles = ["Nom", "n° SIRE", "n° Transpondeur", "Nom et coordonnées du propriétaires", "Date de première entrée", "Adresse de provenance","Date de sortie définitive","Adresse de destination"]  
+    #     fenetre_principale = Soins_cournat(tk.Tk(), height=20, width=10, col_titles=col_titles)
+    #     fenetre_principale.mainloop()
     def ouvrir_caractheristiques_animaux(self):
     
      self.supprimer_widgets()
@@ -547,18 +495,13 @@ class FenetrePrincipale(tk.Tk):
       # Définition des titres des colonnes
      self.col_title = ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"]
     
-     
-
-     #col_width = max(8, len(col_tmp) + 2) 
-    # for j in range(7):
      for j, col_tmp in enumerate(self.col_title):
       print("nombres " +str(self.numberColumns))
       col_tmp = self.col_title[j]
-     # col_width = max(8, len(col_tmp) + 2) 
       col_title = tk.Label(self, text=col_tmp, width=28, relief="solid", bg="lightgray")#, anchor="w")
       col_title.grid(row=13,column=j,sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
 
-         # Ajout des données du tableau
+     # Ajout des données du tableau
      self.data = []
      for i in range( 15, 24):
         line = []
@@ -582,8 +525,7 @@ class FenetrePrincipale(tk.Tk):
      btn_consulter_animaux.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
 
      # Ajout des données du tableau
-     self.data = []
-
+     self.data = []  
     def view_animals(self):
      with open('caratheristiques_animaux.json', 'r') as file:
         data = json.load(file)
@@ -606,14 +548,70 @@ class FenetrePrincipale(tk.Tk):
     
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_caratheristiques_animaux)
      btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+    def view_zootechnical_supervision(self):
+    
+      with open('encadrement_zootechnique.json', 'r') as file:
+        data = json.load(file)
+    
+        # Affichage des animaux dans les zones de texte
+        for i, animal in enumerate(data['caratheristiques_animaux'], start=15):
+         text_fields = []
+
+         for j, key in enumerate(self.col_title):
+            text_field = Entry(self, width=3) #,state='readonly')# , wrap=WORD)
+            text_field.grid(row=i, column=j, sticky='nsew')
+            # Récupérer la valeur de la clé si elle existe, sinon utiliser une chaîne vide
+            value = animal.get(key, '')
+            text_field.insert(END, f"{key}: {value}\n")
+            text_fields.append(text_field)
+        self.data.append(text_fields)
         
-    #  btn_valider = Button(self, text="Consulter mes animaux", command=self.view_animals)
-    #  btn_valider.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
+        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+    
+        btn_valider = Button(self, text="Modifier les informations", command=self.valider_encadrement_Zootechnique_animaux)
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+    def view_temporary_movements(self):
+       self.supprimer_widgets()
+     
+      # Définition des titres des colonnes
+       self.col_title = ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"]
+    
+       for j, col_tmp in enumerate(self.col_title):
+        print("nombres " +str(self.numberColumns))
+        col_tmp = self.col_title[j]
+        col_title = tk.Label(self, text=col_tmp, width=28, relief="solid", bg="lightgray")#, anchor="w")
+        col_title.grid(row=13,column=j,sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+
+     # Ajout des données du tableau
+        self.data = []
+       for i in range( 15, 24):
+        line = []
+        for j in range(8):
+            cell = Entry(self, width=28)
+            cell.grid(row=i, column=j, sticky='nsew')
+            line.append(cell)
+        self.data.append(line) 
+     # Boutons pour ajouter une ligne, valider et consulter les animaux
         
-     city_frame = Label(self, text='', fg='black')
-     region_frame = Label(self, text='', fg='black')
-     Departement_frame = Label(self, text='', fg='black')
-  # Ajuster la ligne en conséquence
+    # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
+       for j in range(self.numberColumns):
+        self.grid_columnconfigure(j, weight=1)     
+        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+    
+        btn_valider = Button(self, text="Valider", command= self.valider_caratheristiques_animaux)
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+    
+        btn_consulter_animaux = Button(self, text="Consulter mes animaux", command=self.view_animals)
+        btn_consulter_animaux.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
+
+        # Ajout des données du tableau
+        self.data = []  
+       
+
+
+    # Ajuster la ligne en conséquence
     def ouvrir_mouvement_temporaires(self, width):
       
         self.supprimer_widgets()
@@ -670,7 +668,7 @@ class FenetrePrincipale(tk.Tk):
         btn_mouvement_temporaire = tk.Button(self, text="Valider", command= self.valider_mouvements_temporaires, width=15, height=1)#self.signaler_mouvement_temporaire)
         btn_mouvement_temporaire.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
         
-        btn_mouvement_temporaire = tk.Button(self, text="Voir l'historique de mes mouvements", command= self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
+        btn_mouvement_temporaire = tk.Button(self, text="Voir l'historique de mes mouvements", command= self.view_temporary_movements, width=15, height=1)#self.signaler_mouvement_temporaire)
         btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
          
         # Création du Label pour afficher les images
@@ -682,7 +680,6 @@ class FenetrePrincipale(tk.Tk):
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
         self.bind("<Configure>", self.redimensionner_image)
-    
     def setup_background_animation(self):
       
      self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
@@ -706,9 +703,6 @@ class FenetrePrincipale(tk.Tk):
 
      for child in self.label_image.winfo_children():
         child.lift()
-     
-     
-
 
     #valider
     def valider_mouvements_temporaires(self):
