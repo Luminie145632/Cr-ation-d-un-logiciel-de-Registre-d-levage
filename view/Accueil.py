@@ -1,4 +1,4 @@
-# Accueil.py   # le code est sur ChatGPT
+# Accueil.py
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
 import tkinter as tk
@@ -69,11 +69,6 @@ class FenetrePrincipale(tk.Tk):
          self.setup_background_animation()
         except Exception:     
           print(" Marche pas photo de fond ") 
-
-
-
-
-
 
     def setup_background_animation(self):
       
@@ -267,9 +262,6 @@ class FenetrePrincipale(tk.Tk):
          image_path = self.image_paths[self.current_image_index]
          image = Image.open(image_path)
          image = image.resize((self.winfo_width(), self.winfo_height()))
-        
-     
-
          photo = ImageTk.PhotoImage(image)
          self.label_image.configure(image=photo)
          self.label_image.image = photo
@@ -277,7 +269,6 @@ class FenetrePrincipale(tk.Tk):
         
         except Exception:
           print(" ça marche pas ")   
-
 
         for child in self.label_image.winfo_children():
             child.lift()
@@ -424,7 +415,6 @@ class FenetrePrincipale(tk.Tk):
         "Adresse_destination": "Destination_1"
      
     }
-
 
     # profesionnel =Profesionnel(code_ape, statut_juridique, denomination)
         with open('caratheristiques_animaux.json', 'r') as json_file:
