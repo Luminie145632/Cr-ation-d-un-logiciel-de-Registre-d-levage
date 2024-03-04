@@ -1,4 +1,4 @@
-# Accueil.py
+# Accueil.py  
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
 import tkinter as tk
@@ -15,51 +15,57 @@ from Page_controle_du_registre_delevage import FenetrePrincipaleControle
 import json
 from tkinter import *
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
+
 #from controller.Methode_1 import ouvrir_fichier, fermer_fichier
 
 class FenetrePrincipale(tk.Tk):
-    def __init__(self,width):
+    def __init__(self,width,col_titles,height):
         super().__init__()
 
-        self.numberColumns = width   
+        self.numberColumns = width 
+        self.numberLines = height
+        self.col_title=col_titles
+        self.data=[]  
          
         self.title("Accueil")
         self.geometry("1920x1080")
+
         try:
-            self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
         except Exception:
-            print(" photo de cheval ") 
+           print(" photo de cheval ") 
+
         # Ajout de la phrase "Bienvenue sur notre application." au centre
         etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application.", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.grid(row=10, column=0, sticky="ew")
 
         # Création de la barre de navigation
         navbar = tk.Frame(self, bd=2, relief=tk.GROOVE)
-        navbar.grid(row=0, column=0, sticky="ew")
+        navbar.grid(row=10 ,  columnspan= len(self.col_title), sticky="ew")
 
-        # Création des boutons de la barre de navigation
-        btn_caracteristiques_lieu = tk.Button(navbar, text="Caractéristiques du Lieu de Détention", command=self.ouvrir_caracteristiques_lieu)
-        btn_caracteristiques_lieu.grid(row=1, column=0, sticky="ew")
+        # Création des boutons de la barre de navigation # checked
+        btn_caracteristiques_lieu = tk.Button(navbar, text="Caractéristiques du Lieu de Détention", command=self.ouvrir_caracteristiques_lieu_detention) # del title
+        btn_caracteristiques_lieu.grid(row=0, column=1 , sticky="ew")
 
-        btn_mouvement_temporaire = tk.Button(navbar, text="Encadrement Zootechnique, Sanitaire et Medical des Animaux", command=self.open_new_window)
-        btn_mouvement_temporaire.grid(row=2, column=0, sticky="ew")
+        btn_mouvement_temporaire = tk.Button(navbar, text="Encadrement Zootechnique, Sanitaire et Medical des Animaux", command=self.open_encadrement_zootechnique) #det title
+        btn_mouvement_temporaire.grid(row=0, column=2, sticky="ew")
 
-        btn_mouvement_temporaire = tk.Button(navbar, text="Présence et Caractéristiques des Animaux", command=self.ouvrir_caractheristiques)
-        btn_mouvement_temporaire.grid(row=3, column=0, sticky="ew")
+        #checked 
+        btn_mouvement_temporaire = tk.Button(navbar, text="Présence et Caractéristiques des Animaux", command=self.ouvrir_caractheristiques_animaux) #det title
+        btn_mouvement_temporaire.grid(row=0, column=3, sticky="ew")
 
+        btn_mouvement_temporaire_mvt = tk.Button(navbar, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires(width)) #det title
+        btn_mouvement_temporaire_mvt.grid(row=0, column=4, sticky="ew")
 
-        btn_mouvement_temporaire_mvt = tk.Button(navbar, text="Mouvement Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires(width))
-        btn_mouvement_temporaire_mvt.grid(row=3, column=0, sticky="ew")
+        btn_mouvement_temporaire = tk.Button(navbar, text="Intervents et Soins Courants", command=lambda:self.ouvrir_interventions(width)) # det title
+        btn_mouvement_temporaire.grid(row=0, column=5, sticky="ew")
 
-        btn_mouvement_temporaire = tk.Button(navbar, text="Intervents et Soins Courants", command=self.ouvrir_interventions)
-        btn_mouvement_temporaire.grid(row=4, column=0, sticky="ew")
-
-        btn_mouvement_temporaire = tk.Button(navbar, text="Contrôle du Registre d'élevage", command=self.ouvrir_registre_elevage)
-        btn_mouvement_temporaire.grid(row=5, column=0, sticky="ew")   
+        btn_mouvement_temporaire = tk.Button(navbar, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage(width)) # det title
+        btn_mouvement_temporaire.grid(row=0, column=6, sticky="ew")   
 
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
-        self.label_image.grid(row=7, column=0, sticky="ew")
+        self.label_image.grid(row=0, column=7, sticky="ew")
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
         self.bind("<Configure>", self.redimensionner_image)
@@ -69,7 +75,7 @@ class FenetrePrincipale(tk.Tk):
          self.setup_background_animation()
         except Exception:     
           print(" Marche pas photo de fond ") 
-
+    # pages
     def setup_background_animation(self):
       
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
@@ -131,14 +137,13 @@ class FenetrePrincipale(tk.Tk):
          btn_mouvement_temporaire = Button(self, text="Valider", command=  self.valider_informations, width=15, height=1)#self.signaler_mouvement_temporaire)
          btn_mouvement_temporaire.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
         
-         btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command=  self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
+         btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command= lambda: self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
          btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
         
         # Création du Label pour afficher les images
          self.label_image = tk.Label(self, bd=0, highlightthickness=0)
          self.label_image.grid(row=self.numberLines + 9, column=0, columnspan=self.numberColumns, sticky='nsew')
-        
-      
+          
         # Appel à la méthode pour gérer le fond d'image changeant
          self.setup_background_animation()
 
@@ -152,15 +157,14 @@ class FenetrePrincipale(tk.Tk):
          image_path = self.image_paths[self.current_image_index]
          image = Image.open(image_path)
          image = image.resize((self.winfo_width(), self.winfo_height()))
+     
          photo = ImageTk.PhotoImage(image)
          self.label_image.configure(image=photo)
          self.label_image.image = photo
          self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
         
-        except Exception:
-          print(" ça marche pas ")   
 
-        for child in self.label_image.winfo_children():
+         for child in self.label_image.winfo_children():
             child.lift()
 
          self.after(2000, self.load_image)
@@ -204,7 +208,6 @@ class FenetrePrincipale(tk.Tk):
      btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
     
     def view_animals(self):
-    
      with open('caratheristiques_animaux.json', 'r') as file:
         data = json.load(file)
     
@@ -855,40 +858,40 @@ class FenetrePrincipale(tk.Tk):
      for row in self.data:
         # Créer un dictionnaire avec les nouvelles caractéristiques
         nouveau_caract = {
-           
-       "num_siret": "321546",
-        "Nom": nom,
-        "NO_SIRE": sire,
-        "NO_transpondeur": no_transpondeur,
-        "Nom_coordonnees_proprietaire": {
-          "Nom": nom_proprio,
-          "Coordonnees": {
-            "Adresse": adresse_provenance,
-            "Ville": "Ville_1",
-            "Code postal": "12345"
-          }
-        },
-        "Date_premiere_entree": date_entree,
-        "Adresse_provenance": adresse_provenance,
-        "Date_sortie_definitive": date_sortie_def,
-        "Adresse_destination": "Destination_1"
-     
-    }
+            "Nom": row[0].get(),
+            "NeSIRE": row[1].get(),
+            "Netranspondeur": row[2].get(),
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": row[3].get(),
+                "Coordonnees": {
+                    "Adresse": row[4].get(),
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": row[5].get(),
+            "Adresse de provenance": row[6].get(),
+            "Date de sortie definitive": row[7].get(),  # Changer l'indice à 6
+            "Adresse de destination": "zz",##row[8].get()
+        }
 
-    # profesionnel =Profesionnel(code_ape, statut_juridique, denomination)
-        with open('caratheristiques_animaux.json', 'r') as json_file:
-         data = json.load(json_file)
+        # Ajouter le nouveau caractère à la liste
+        nouveaux_caract.append(nouveau_caract)
 
-    # Ajouter le nouveau professionnel à la liste des professionnels
-         data["caratheristiques_animaux"].append(nouveau_caract)
+    # Charger les données existantes depuis le fichier JSON
+     with open('caratheristiques_animaux.json', 'r') as json_file:
+        data = json.load(json_file)
+       
+    # Ajouter les nouveaux caractéristiques à la liste existante
+        data["caratheristiques_animaux"].extend(nouveaux_caract)
 
     # Réécrire le fichier JSON avec la nouvelle structure
-        with open('caratheristiques_animaux.json', 'w') as json_file:
-         json.dump(data, json_file, indent=2)
+     with open('caratheristiques_animaux.json', 'w') as json_file:
+        json.dump(data, json_file, indent=2)
 
-    # Retourner le JSON du nouveau professionnel (à des fins de débogage ou autre)
-         return json.dumps(nouveau_caract)
 
 if __name__ == "__main__":
-    fenetre_principale = FenetrePrincipale(width=20)
+    col_titles = ["Date", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]
+
+    fenetre_principale = FenetrePrincipale(width=20,col_titles=col_titles,height=19)
     fenetre_principale.mainloop()
