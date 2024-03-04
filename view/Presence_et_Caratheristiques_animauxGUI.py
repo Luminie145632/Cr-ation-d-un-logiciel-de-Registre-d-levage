@@ -29,7 +29,7 @@ class Presence_CaratherisisGUI(Frame):
 
         # Ajout des données du tableau
         self.data = []
-        for i in range(1, self.numberLines + 1):
+        for i in range(self.numberColumns ):
             line = []
             for j in range(self.numberColumns):
                 cell = Entry(self, width=20)
@@ -42,12 +42,6 @@ class Presence_CaratherisisGUI(Frame):
         for j in range(self.numberColumns):
             self.grid_columnconfigure(j, weight=1)
         
-        # self.can1 = Canvas(self, bg='blue', width=450, height=450)
-        # self.can1.grid(row=self.numberLines + 2, column=0, columnspan=self.numberColumns, pady=5)
-
-        # Ajout du Canvas
-        # self.can1 = Canvas(self, bg='blue', width=450, height=450)
-        # self.can1.grid(row=self.numberLines + 2, column=0, columnspan=self.numberColumns, pady=5)
         try:
         # Charger l'image avec PIL
          image = Image.open("cheval_blanc.png")
@@ -55,7 +49,6 @@ class Presence_CaratherisisGUI(Frame):
          image = image.resize((960, 540), Image.BICUBIC)
         # Convertir l'image en format Tkinter PhotoImage
          self.image = ImageTk.PhotoImage(image)
-
         # Afficher l'image sur le canvas
          self.can1.create_image(0, 0, anchor=tk.NW, image=self.image)
         
@@ -151,66 +144,6 @@ class Presence_CaratherisisGUI(Frame):
     # Retourner le JSON du nouveau professionnel (à des fins de débogage ou autre)
          return json.dumps(nouveau_caract)
     
-    # def view_animals(self):
-    #    with open('caratheristiques_animaux.json', 'r') as file:
-    #     data = json.load(file)
-    
-    #     lieux =  data['caratheristiques_animaux']
-    #   #  equides= charger_donnees_equide()
-    #     liste_equides_affiches = []
-
-    #    # Créer une liste déroulante avec les villes disponibles
-    #     options_villes = [lieu.get('ville', lieu.get('Ville', '')) for lieu in lieux]
-    #     var_ville = StringVar( fenetre)
-    #     var_ville.set(options_villes[0])  # Définit la première ville comme valeur par défaut
-    #     menu_deroulant_ville = OptionMenu(fenetre, var_ville, *options_villes)
-    #     menu_deroulant_ville.pack(side=TOP)
-       
-    
-
-
-    # def afficher_info_caratheristiques(carathersitiques):
-
-    #  for lieu in carathersitiques:
-    #     if lieu['caratheristiques_animaux'] == carathersitiques:
-           
-    #         ville = lieu.get('Nom', '')
-    #         SIRE=lieu.get('SIRE','')
-    #         transpondeur = lieu.get('transpondeur', '')
-    #         Nom_proprietaire=lieu.get('Nom et coordonnees du proprietaire','')
-    #         Date_entree = lieu.get('Date de premiere entree', '') 
-    #         adresse=lieu.get('Adresse de provenance','')
-    #         Date_sortie = lieu.get('Date de sortie definitive', '')  
-    #         Adresse_destination = lieu.get('Adresse de destination', '')
-
-
-    #         departement = lieu.get('departement', 0)
-            
-    #         # Ajouter une condition pour afficher les informations seulement si la ville est l'une des trois actions spécifiques
-    #         city_frame.config(text=f'Ville: {ville}', fg='black')
-    #         region_frame.config(text=f'Région: {region}', fg='black')
-    #         Departement_frame.config(text=f'Département: {departement}', fg='black')
-    #             #effacer le tableau existant
-    #         for item in tree.get_children():
-    #             tree.delete(item)
-                
-    #             for equide in equides:
-    #                  nom=equide.get('nom')
-    #                  race=equide.get('race')
-    #                  poids=equide.get('poids')
-    #                  adresse_equide=equide.get('adresse')
-    #                  print("nom")
-    #                  if adresse_equide==adresse:
-                        
-    #                     tree.insert('','end',values=(nom,race,poids))
-
-    #         else:
-    #          city_frame.config(text='', fg='black')
-    #          region_frame.config(text='', fg='black')
-    #          Departement_frame.config(text='', fg='black')
-
-
-
     def return_main_menu(self):
         self.destroy()
         os.system("python Accueil.py")

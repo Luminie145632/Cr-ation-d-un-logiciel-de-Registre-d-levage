@@ -1,0 +1,29 @@
+{
+    "caracteristiques_lieu_detention": [
+        {
+            "detenteur_equides": {
+                 "Sire": "1111" ,
+                 "Statut Juridique": "III" ,
+                 "Denomination": "ooo"  
+                 
+            },
+            "coordonee_detenteur": {
+                "Adresse": "1111" ,
+                "Tel": "III" ,
+                "Portable": "ooo" , 
+                "mail": "oooo"
+                
+           },
+           "responsable_registre_elevage":{
+             "prenom":"eee",
+             "nom_usage":"ee",
+             "Adresse":"xxx",
+             "tel":"lll",
+             "Portable":"oo",
+             "mail":"xx" 
+
+
+           }
+        }
+    ]    
+}        
