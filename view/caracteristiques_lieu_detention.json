@@ -2,23 +2,23 @@
     "caracteristiques_lieu_detention": [
         {
             "detenteur_equides": {
-                "Sire": "KIKI",
-                "Statut Juridique": "99",
-                "Denomination": "AAA"
+                "Sire": "iii",
+                "Statut Juridique": "iii",
+                "Denomination": "iii"
             },
             "coordonee_detenteur": {
-                "Adresse": "A",
-                "Tel": "11",
-                "Portable": "99",
-                "mail": "11"
+                "Adresse": "iii",
+                "Tel": "iii",
+                "Portable": "iii",
+                "mail": "iii"
             },
             "responsable_registre_elevage": {
-                "prenom": "1",
-                "nom_usage": "1",
-                "Adresse": "1",
-                "tel": "1",
-                "Portable": "1",
-                "mail": "1"
+                "prenom": "iii",
+                "nom_usage": "iiiii",
+                "Adresse": "iii",
+                "tel": "iii",
+                "Portable": "iii",
+                "mail": "iii"
             }
         },
         {
