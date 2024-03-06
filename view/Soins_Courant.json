@@ -1,562 +1,564 @@
-[
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+{
+    "interventions": [
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "999",
-        "Type_intervention": "UIUI",
-        "Intervenant": "UIUI",
-        "Traitement": {
-            "Nom du medicament": "UIUI",
-            "Voie administration": "4444",
-            "Date dedebut": "00000",
-            "Date dedefin": "97777"
+        {
+            "Date": "sousou",
+            "Type intervention": "e",
+            "Intervenant": "e",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': 'e', 'Voie administration': 'e', 'Date dedebut': 'e', 'Date dedefin': 'e'}",
+                "Voie administration": "e",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "e",
+            "Delai attente competition": "e",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "9777",
-        "Delai_attente_competition": "9777",
-        "Delai_attente_abattage": "9777"
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
         },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    },
-    {
-        "Date": "",
-        "Type_intervention": "",
-        "Intervenant": "",
-        "Traitement": {
-            "Nom du medicament": "",
-            "Voie administration": "",
-            "Date dedebut": "",
-            "Date dedefin": ""
-        },
-        "N_ordonnance": "",
-        "Delai_attente_competition": "",
-        "Delai_attente_abattage": ""
-    }
-]
+        {
+            "Date": "",
+            "Type intervention": "",
+            "Intervenant": "",
+            "Traitement": {
+                "Nom du medicament": "{'Nom du medicament': '', 'Voie administration': '', 'Date dedebut': '', 'Date dedefin': ''}",
+                "Voie administration": "",
+                "Date dedebut": "",
+                "Date dedefin": ""
+            },
+            "N ordonnance": "",
+            "Delai attente competition": "",
+            "Delai attente abattage": ""
+        }
+    ]
+}

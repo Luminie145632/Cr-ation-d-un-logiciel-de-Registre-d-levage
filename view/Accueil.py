@@ -182,7 +182,6 @@ class FenetrePrincipale(tk.Tk):
        except Exception:
         print("photo march pas ")  
     
-
     # view informations
     def view_caratherisis_detention_place(self):
      with open('caracteristiques_lieu_detention.json', 'r') as file:
@@ -205,8 +204,7 @@ class FenetrePrincipale(tk.Tk):
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
     
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
-    
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')  
     def view_animals(self):
      with open('caratheristiques_animaux.json', 'r') as file:
         data = json.load(file)
@@ -233,9 +231,6 @@ class FenetrePrincipale(tk.Tk):
 
      print(" marche pas ")
     # def view_informations_(slef):  
-    
-    
-    
     def controle_registre(self,width):    
 
         self.numberLines = width
@@ -305,15 +300,15 @@ class FenetrePrincipale(tk.Tk):
         # Déplacer le bouton et l'image vers le bas
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
      self.label_image.grid(row=self.numberLines + 8, column=0, columnspan=self.numberColumns, sticky='nsew')
-    #open the windows of the navigation map     
+    #open the windows of the navigation menu     
     def ouvrir_caracteristiques_lieu_detention(self):
     # Assurez-vous que les données précédentes sont effacées si nécessaire
      self.supprimer_widgets()  # Assurez-vous que cette méthode est correctement implémentée
 
     # Calcul de la longueur de la phrase "Caractéristiques lieu de détention"
     # Définition des titres des colonnes
-     self.col_title = ["Sire","statut juridique","denomination","Adresse", " numéro de Téléphone", "Portable", "Mail","prenom","nom_usage","Adresse","portable","mail"
-                      ,"x","x","x"]
+     self.col_title = ["Sire","Statut Juridique","Denomination","Adresse", "numero de Telephone", "Portable", "Mail","prenom","nom_usage","Adresse","portable","mail"
+                      ,"Telephone","Tel","tel"]
                      
     # Ajout de l'espace entre le menu de navigation et "Sire"
      
@@ -340,20 +335,20 @@ class FenetrePrincipale(tk.Tk):
      for j in range(self.numberColumns):
         self.grid_columnconfigure(j, weight=1) 
 
-    # Bouton de validationxx
+    # Bouton de validation
      self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
      
      btn_valider = tk.Button(self, text="Valider", command=self.valider_carathersitiques_lieu)
      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-     btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=self.valider_carathersitiques_lieu)
-     btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')
+     btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=self.regarder_carachersitiques_lieu_detention)
+     btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
     def open_encadrement_zootechnique(self):
        self.supprimer_widgets()  # Assurez-vous que cette méthode est correctement implémentée
     
     # Définition des titres des colonnes
-       self.col_title =   ["Lieu habituel et durée détention moyenne", "Nom et coordonnées vétérinaire traitant", "Nom et coordonnées vétérinaire sanitaire" ,"Nom et coordonnées du référent bien-être animal(pour les structures équines professionnelles)", "Nom, adresse et N° de téléphone desOrganisme(s) à vocation sanitaire reconnu(s) et dessociétés mères (facultatif)", "Nom, adresse et N° de téléphone du maréchalferrant (facultatif)","Nom, adresse et N° de téléphone du dentiste(facultatif)"] #Nom, adresse et N° de téléphone du dentiste(facultatif)
+       self.col_title =   ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)
     
     # Affichage des titres des colonnes
        for j, col_tmp in enumerate(self.col_title):
@@ -390,13 +385,13 @@ class FenetrePrincipale(tk.Tk):
        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew') 
 
        btn_valider = tk.Button(self, text="Afficher les informations concernant l'encadrement zoottechnique des animaux", command=self.view_zootechnical_supervision)
-       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')
-  
+       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew') 
     def ouvrir_controle_registre_elevage(self,width):
          # Ajout des titres de colonnes
          self.numberLines = width
          self.supprimer_widgets()  
-         self.col_title = ["Date", "Organisme de controle ", "Motif de controle", "Nom du controleur ", "Cachet","Signature"]
+         self.col_title = ["Date", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet","Signature"]
+        
          tex1 = Label(self, text='Encadrement Zootechnique Sanitaire et Médical des Animaux', fg='cyan')
          tex1.grid(row=14, column=0, columnspan=8)
          
@@ -423,21 +418,21 @@ class FenetrePrincipale(tk.Tk):
          self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
          self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
 
-         btn_valider = tk.Button(self, text="Afficher les informations concernant le controle de mon registre d'élévage", command=self.valider_carathersitiques_lieu)
+         btn_valider = tk.Button(self, text="Afficher les informations concernant le controle de mon registre d'élévage", command=self.view_control)
          btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-         self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=lambda : self.valider_informations_controle())
-         self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')
-        
+         self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=lambda : self.valider_informations_controle)
+         self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')                                                                
     def ouvrir_interventions(self,width):
+           
          self.supprimer_widgets()  
          self.numberLines = width
-         self.col_title = ["Date", "Type d'intervention", "Intervenant (si vétérianire)", "Traitement", "N ordonnance","Date de début", "Date de fin","N°d’ordonnance","Délai attente compétition(facultatif)","Délai attente abatage ou exclusion abattage"]
+         self.col_title = ["Date", "Type intervention", "Intervenant", "Traitement", "N ordonnance","Date de debut","Date de fin","Delai attente competition","Delai attente abattage"]
          tex1 = Label(self, text='Encadrement Zootechnique Sanitaire et Médical des Animaux', fg='cyan')
          tex1.grid(row=15, column=0, columnspan=8)
-
+          
         # Ajout des titres de colonnes
-         for j in range(10):
+         for j in range(9):
             col_title_item=self.col_title[j]
             col_title_label = Label(self, text=str(col_title_item), width=34, relief="solid", bg="lightgray", anchor="w",font=("Helvetica", 8))
             col_title_label.grid(row=16, column=j, sticky='nsew')
@@ -464,12 +459,9 @@ class FenetrePrincipale(tk.Tk):
          btn_mouvement_temporaire = Button(self, text="Valider", command=  self.valider_informations_intervention, width=20, height=1 )#self.signaler_mouvement_temporaire)
          btn_mouvement_temporaire.grid(row=self.numberLines + 3,  columnspan=self.numberColumns, sticky='nsew')
 
-         btn_valider = Button(self, text="Consulter l'historitque de mes Soins", command=self.view_animals)
+         btn_valider = Button(self, text="Consulter l'historique de mes Soins", command=self.view_informations_intervention)
          btn_valider.grid(row=self.numberLines + 4,  columnspan=self.numberColumns, sticky='nsew')
          
-       # Ajout du Canvas
-       # self.can1 = Canvas(self, bg='blue', width=450, height=450)
-       # self.can1.grid(row=self.numberLines + 5, column=0, columnspan=self.numberColumns, pady=5)
 
          try:
         # Charger l'image avec PIL
@@ -483,17 +475,12 @@ class FenetrePrincipale(tk.Tk):
           self.can1.create_image(0, 0, anchor=NW, image=self.image)
          except Exception:
             print("l'image ne marche pas ")      
-    # def open_healthcare(self):
-        
-    #     col_titles = ["Nom", "n° SIRE", "n° Transpondeur", "Nom et coordonnées du propriétaires", "Date de première entrée", "Adresse de provenance","Date de sortie définitive","Adresse de destination"]  
-    #     fenetre_principale = Soins_cournat(tk.Tk(), height=20, width=10, col_titles=col_titles)
-    #     fenetre_principale.mainloop()
     def ouvrir_caractheristiques_animaux(self):
     
      self.supprimer_widgets()
      
       # Définition des titres des colonnes
-     self.col_title = ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"]
+     self.col_title = ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Adresse proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"]
     
      for j, col_tmp in enumerate(self.col_title):
       print("nombres " +str(self.numberColumns))
@@ -505,7 +492,7 @@ class FenetrePrincipale(tk.Tk):
      self.data = []
      for i in range( 15, 24):
         line = []
-        for j in range(8):
+        for j in range(9):
             cell = Entry(self, width=28)
             cell.grid(row=i, column=j, sticky='nsew')
             line.append(cell)
@@ -523,15 +510,14 @@ class FenetrePrincipale(tk.Tk):
     
      btn_consulter_animaux = Button(self, text="Consulter mes animaux", command=self.view_animals)
      btn_consulter_animaux.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
-
-     # Ajout des données du tableau
-     self.data = []  
+    #open datas functions
     def view_animals(self):
+    
      with open('caratheristiques_animaux.json', 'r') as file:
         data = json.load(file)
     
     # Affichage des animaux dans les zones de texte
-     for i, animal in enumerate(data['caratheristiques_animaux'], start=15):
+     for i, animal in enumerate(data['caractheristiques'], start=15):
         text_fields = []
 
         for j, key in enumerate(self.col_title):
@@ -547,75 +533,141 @@ class FenetrePrincipale(tk.Tk):
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
     
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_caratheristiques_animaux)
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')  
+    def regarder_carachersitiques_lieu_detention(self):
+
+    
+     with open('caracteristiques_lieu_detention.json', 'r') as file:
+        data = json.load(file)
+
+        # Parcourir les données
+        for i, element in enumerate(data['caracteristiques_lieu_detention'], start=15):
+            text_fields = []
+
+            # Parcourir les clés des sous-dictionnaires
+            for key in element:
+                # Récupérer le sous-dictionnaire correspondant à la clé
+                sub_dict = element[key]
+
+                # Parcourir les clés et valeurs du sous-dictionnaire
+                for j, sub_key in enumerate(sub_dict, start=1):
+                    value = sub_dict[sub_key]
+
+                    # Trouver l'index de la colonne correspondant à la clé
+                    col_index = self.col_title.index(sub_key)
+
+                    # Insérer la valeur dans le champ d'entrée correspondant
+                    entry = self.data[i-15][col_index]
+                    entry.delete(0, 'end')  # Supprimer le contenu précédent
+                    entry.insert(0, value)  # Insérer la nouvelle valeur
+
+    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
+        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+        btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')    
     def view_zootechnical_supervision(self):
     
-      with open('encadrement_zootechnique.json', 'r') as file:
+     with open('encadrement_zootechnique.json', 'r') as file:
+    
         data = json.load(file)
-    
-        # Affichage des animaux dans les zones de texte
-        for i, animal in enumerate(data['caratheristiques_animaux'], start=15):
-         text_fields = []
 
-         for j, key in enumerate(self.col_title):
-            text_field = Entry(self, width=3) #,state='readonly')# , wrap=WORD)
-            text_field.grid(row=i, column=j, sticky='nsew')
-            # Récupérer la valeur de la clé si elle existe, sinon utiliser une chaîne vide
-            value = animal.get(key, '')
-            text_field.insert(END, f"{key}: {value}\n")
-            text_fields.append(text_field)
-        self.data.append(text_fields)
-        
-        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+        # Parcourir les données
+        for i, element in enumerate(data['encadrement'], start=1):
+            text_fields = []
+
+            # Parcourir les clés des sous-dictionnaires
+            for key in element:
+                # Récupérer la valeur correspondante à la clé
+                value = element[key]
+
+                # Trouver l'index de la colonne correspondant à la clé
+                col_index = self.col_title.index(key)
+
+                # Insérer la valeur dans le champ d'entrée correspondant
+                entry = self.data[i-1][col_index]
+                entry.delete(0, 'end')  # Supprimer le contenu précédent
+                entry.insert(0, value)  # Insérer la nouvelle valeur
+
+    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
+     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+     btn_valider = Button(self, text="Modifier les informations", command=self.valider_encadrement_Zootechnique_animaux)
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+    def view_control(self):
     
-        btn_valider = Button(self, text="Modifier les informations", command=self.valider_encadrement_Zootechnique_animaux)
-        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+     with open('controles.json', 'r') as file:
+        data = json.load(file)
+
+        # Parcourir les données
+        for i, element in enumerate(data['controle'], start=1):
+            text_fields = []
+
+            # Parcourir les clés des sous-dictionnaires
+            for key in element:
+                # Récupérer la valeur correspondante à la clé
+                value = element[key]
+
+                # Trouver l'index de la colonne correspondant à la clé
+                col_index = self.col_title.index(key)
+
+                # Vérifier si l'indice i est valide pour self.data
+                if i < len(self.data):
+                    # Insérer la valeur dans le champ d'entrée correspondant
+                    entry = self.data[i - 1][col_index]
+                    entry.delete(0, 'end')  # Supprimer le contenu précédent
+                    entry.insert(0, value)  # Insérer la nouvelle valeur
+                else:
+                    print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
+
+    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
+     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+     btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
     def view_temporary_movements(self):
-       self.supprimer_widgets()
+     #  self.supprimer_widgets()
      
       # Définition des titres des colonnes
-       self.col_title = ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"]
-    
-       for j, col_tmp in enumerate(self.col_title):
-        print("nombres " +str(self.numberColumns))
-        col_tmp = self.col_title[j]
-        col_title = tk.Label(self, text=col_tmp, width=28, relief="solid", bg="lightgray")#, anchor="w")
-        col_title.grid(row=13,column=j,sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+      # self.col_title = ["Date de sortie", "Nom equide", "Motif", "Etape eventuelle (adresse)", "Lieu de destination (Adresse)", "Date de retour"]
+       with open('mouvements_temporaires.json', 'r') as file:
+        data = json.load(file)
 
-     # Ajout des données du tableau
-        self.data = []
-       for i in range( 15, 24):
-        line = []
-        for j in range(8):
-            cell = Entry(self, width=28)
-            cell.grid(row=i, column=j, sticky='nsew')
-            line.append(cell)
-        self.data.append(line) 
-     # Boutons pour ajouter une ligne, valider et consulter les animaux
-        
-    # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-       for j in range(self.numberColumns):
-        self.grid_columnconfigure(j, weight=1)     
+        # Parcourir les données
+        for i, element in enumerate(data['mouvements_temporaires'], start=1):
+            text_fields = []
+
+            # Parcourir les clés des sous-dictionnaires
+            for key in element:
+                # Récupérer la valeur correspondante à la clé
+                value = element[key]
+
+                # Trouver l'index de la colonne correspondant à la clé
+                col_index = self.col_title.index(key)
+
+                # Vérifier si l'indice i est valide pour self.data
+                if i < len(self.data):
+                    # Insérer la valeur dans le champ d'entrée correspondant
+                    entry = self.data[i - 1][col_index]
+                    entry.delete(0, 'end')  # Supprimer le contenu précédent
+                    entry.insert(0, value)  # Insérer la nouvelle valeur
+                else:
+                    print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
+
+    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
         self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
-    
-        btn_valider = Button(self, text="Valider", command= self.valider_caratheristiques_animaux)
-        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
-    
-        btn_consulter_animaux = Button(self, text="Consulter mes animaux", command=self.view_animals)
-        btn_consulter_animaux.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
 
-        # Ajout des données du tableau
-        self.data = []  
-       
-
-
-    # Ajuster la ligne en conséquence
+        btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')   
+   
     def ouvrir_mouvement_temporaires(self, width):
       
         self.supprimer_widgets()
-        self.col_title = ["Date de sortie", "Nom de l'équidé", "Motif", "Etape éventuelle (adresse)", "Lieu de destination (Adresse)", "Date de retour"]
+        self.col_title = ["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
         self.numberLines = width
         self.numberColumns = width
         
@@ -680,6 +732,38 @@ class FenetrePrincipale(tk.Tk):
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
         self.bind("<Configure>", self.redimensionner_image)
+    def view_informations_intervention(self):
+       
+     with open('Soins_Courant.json', 'r') as file:
+        data = json.load(file)
+
+        # Parcourir les données
+        for i, element in enumerate(data['interventions'], start=1):
+            text_fields = []
+
+            # Parcourir les clés des sous-dictionnaires
+            for key in element:
+                # Récupérer la valeur correspondante à la clé
+                value = element[key]
+
+                # Trouver l'index de la colonne correspondant à la clé
+                col_index = self.col_title.index(key)
+
+                # Vérifier si l'indice i est valide pour self.data
+                if i < len(self.data):
+                    # Insérer la valeur dans le champ d'entrée correspondant
+                    entry = self.data[i - 1][col_index]
+                    entry.delete(0, 'end')  # Supprimer le contenu précédent
+                    entry.insert(0, value)  # Insérer la nouvelle valeur
+                else:
+                    print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
+
+    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
+     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+     btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_intervention())
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')     
     def setup_background_animation(self):
       
      self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
@@ -703,30 +787,28 @@ class FenetrePrincipale(tk.Tk):
 
      for child in self.label_image.winfo_children():
         child.lift()
-
-    #valider
+    #valider       
     def valider_mouvements_temporaires(self):
-     caracteristiques_lieu_detention = []
+     mouvements = []
 
-    # Parcourir toutes les lignes de données
+     # Parcourir toutes les lignes de données
      for row_data in self.data:
         mouvements_temporaires = {
-       
-            "Date_sortie": self.data[0][0].get(),
-            "Nom_equide": self.data[0][1].get(),
-            "Motif": self.data[0][2].get(),
-            "Etape_eventuelle": self.data[0][3].get(),
-            "Lieu_destination": self.data[0][4].get(),
-            "Date_retour": self.data[0][5].get(),
-
-
-
+            "Date de sortie": row_data[0].get(),
+            "Nom equide": row_data[1].get(),
+            "Motif": row_data[2].get(),
+            "Etape eventuelle": row_data[3].get(),
+            "Lieu de destination (Adresse)": row_data[4].get(),
+            "Date de retour": row_data[5].get(),
         }
+
+        mouvements.append(mouvements_temporaires)  # Ajouter chaque mouvement à la liste
 
     # Écriture des données dans un fichier JSON
      with open('mouvements_temporaires.json', 'w') as json_file:
-        json.dump({"mouvements_temporaires": mouvements_temporaires}, json_file, indent=4)      
+        json.dump({"mouvements_temporaires": mouvements}, json_file, indent=4)  
     def valider_carathersitiques_lieu(self):
+    
      caracteristiques_lieu_detention = []
 
     # Parcourir toutes les lignes de données
@@ -788,20 +870,20 @@ class FenetrePrincipale(tk.Tk):
          
        encadrement = {
         "Lieu Habituel et coordonee de detention": row_data[0].get(),
-        "Nom et coordonées du veterianire traitant": row_data[1].get(),
-        "Nom et coordonnées du veterinaire sanitaire": row_data[2].get(),
-        "Nom et coordonnées du referent bien-etre animal(pour les structures équines professionnelles)": row_data[3].get(),
-        "Nom, adresse et N° de telephone desOrganisme(s) à vocation sanitaire reconnu(s) et dessociétés mères (facultatif": row_data[4].get(),
-        "Nom, adresse et N° de telephone du maréchalferrant (facultatif)": row_data[5].get(),  # ← Utilisez l'indice 5 ici
-        "Nom, adresse et N° de telephone du dentiste(facultatif)": row_data[6].get()  # ← Cet indice est en dehors des limites de la liste
+        "Nom et coordonees veterianire traitant": row_data[1].get(),
+        "Nom et coordonnees du veterinaire sanitaire": row_data[2].get(),
+        "Nom et coordonnees du referent bien-etre animal": row_data[3].get(),
+        "Nom adresse tel des Organismes sanitaires reconnus": row_data[4].get(),
+        "Nom, adresse tel marcechal ferrand": row_data[5].get(),  # ← Utilisez l'indice 5 ici
+        "Nom, adresse et N de telephone du dentiste": row_data[6].get()  # ← Cet indice est en dehors des limites de la liste
        }
-
-
+       
+       
        intervention_data.append(encadrement)
 
     # Écriture des données dans un fichier JSON
      with open('encadrement_zootechnique.json', 'w') as json_file:
-      json.dump(intervention_data, json_file, indent=4)  
+      json.dump({"encadrement":intervention_data}, json_file, indent=4) 
     def valider_informations_lieu(self):
     # Collecte des données depuis les champs d'entrée
      intervention_data = []
@@ -825,31 +907,32 @@ class FenetrePrincipale(tk.Tk):
 
     # Écriture des données dans un fichier JSON
      with open('interventions.json', 'w') as json_file:
-      json.dump(intervention_data, json_file, indent=4)
+      json.dump(intervention_data, json_file, indent=4)    
     def valider_informations_intervention(self):
-        mouvements_temporaires = []
-        for row in self.data:
-            mouvement = {
-        "Date": row[0].get(),
-        "Type_intervention": row[1].get(),
-        "Intervenant": row[2].get(),
-        "Traitement": {
-            "Nom du medicament": row[3].get(),
-            "Voie administration": row[4].get(),
-            "Date dedebut": row[5].get(),
-            "Date dedefin": row[6].get(),
-          },
-        
-      
-        "N_ordonnance": row[7].get(),
-        "Delai_attente_competition": row[8].get(),
-        "Delai_attente_abattage": row[9].get()
-               
-            }   
-            mouvements_temporaires.append(mouvement)
+     interventions = []  # Initialiser la liste des interventions
+    
+     for row in self.data:
+        # Créer un dictionnaire pour chaque intervention
+        intervention = {
+            "Date": row[0].get(),
+            "Type intervention": row[1].get(),
+            "Intervenant": row[2].get(),
+            "Traitement": {
+                "Nom du medicament": row[3].get(),
+                "Voie administration": row[4].get(),
+                "Date dedebut": row[5].get(),
+                "Date dedefin": row[6].get(),
+            },
+            "N ordonnance": row[7].get(),
+            "Delai attente competition": row[8].get(),
+            "Delai attente abattage": row[9].get()
+        }
 
-        with open('Soins_Courant.json', 'w') as f:
-            json.dump(mouvements_temporaires, f, indent=4)           
+        interventions.append(intervention)  # Ajouter l'intervention à la liste
+    
+    # Écrire le fichier JSON avec la liste des interventions
+     with open('Soins_Courant.json', 'w') as f:
+        json.dump({"interventions": interventions}, f, indent=4)            
     def valider_caratheristiques_animaux(self):
     # Initialiser une liste pour stocker les nouveaux caractéristiques
      nouveaux_caract = []
@@ -857,14 +940,14 @@ class FenetrePrincipale(tk.Tk):
     # Récupérer les informations depuis les champs d'entrée
      for row in self.data:
         # Créer un dictionnaire avec les nouvelles caractéristiques
-        nouveau_caract = {
+        caratheristiques_animaux = {
             "Nom": row[0].get(),
             "NeSIRE": row[1].get(),
             "Netranspondeur": row[2].get(),
             "Nom et coordonnees du proprietaire": {
                 "Nom proprietaire": row[3].get(),
                 "Coordonnees": {
-                    "Adresse": row[4].get(),
+                    "Adresse proprietaire": row[4].get(),
                     "Ville": "Ville_1",
                     "Code postal": "12345"
                 }
@@ -872,22 +955,16 @@ class FenetrePrincipale(tk.Tk):
             "Date de premiere entree": row[5].get(),
             "Adresse de provenance": row[6].get(),
             "Date de sortie definitive": row[7].get(),  # Changer l'indice à 6
-            "Adresse de destination": "zz",##row[8].get()
+            "Adresse de destination":  row[8].get()
         }
 
         # Ajouter le nouveau caractère à la liste
-        nouveaux_caract.append(nouveau_caract)
-
-    # Charger les données existantes depuis le fichier JSON
-     with open('caratheristiques_animaux.json', 'r') as json_file:
-        data = json.load(json_file)
-       
-    # Ajouter les nouveaux caractéristiques à la liste existante
-        data["caratheristiques_animaux"].extend(nouveaux_caract)
-
+        nouveaux_caract.append(caratheristiques_animaux)
+            
     # Réécrire le fichier JSON avec la nouvelle structure
      with open('caratheristiques_animaux.json', 'w') as json_file:
-        json.dump(data, json_file, indent=2)
+        json.dump({"caractheristiques":nouveaux_caract}, json_file, indent=4) 
+
 
 
 if __name__ == "__main__":

@@ -1,276 +1,242 @@
 {
-  "caratheristiques_animaux": [
-    {
-      "Nom": "Nom_animal_1",
-      "NeSIRE": "123456780",
-      "Netranspondeur": "987654321",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Proprietaire_1",
-        "Coordonnees": {
-          "Adresse": "Adresse_1",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
+    "caractheristiques": [
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "",
+            "NeSIRE": "",
+            "Netranspondeur": "",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "",
+                "Coordonnees": {
+                    "Adresse proprietaire": "",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "",
+            "Adresse de provenance": "",
+            "Date de sortie definitive": "",
+            "Adresse de destination": ""
+        },
+        {
+            "Nom": "daqo",
+            "NeSIRE": "NeSIRE: \n",
+            "Netranspondeur": "Netranspondeur: \n",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "Nom proprietaire: \n",
+                "Coordonnees": {
+                    "Adresse proprietaire": "Adresse proprietaire: \n",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "Date de premiere entree: \n",
+            "Adresse de provenance": "Adresse de provenance: \n",
+            "Date de sortie definitive": "Date de sortie definitive: \n",
+            "Adresse de destination": "Adresse de destination: \n"
+        },
+        {
+            "Nom": "Nom: koko \n\n",
+            "NeSIRE": "NeSIRE: yuyu \n\n",
+            "Netranspondeur": "Netranspondeur: opop \n\n",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "Nom proprietaire: \n",
+                "Coordonnees": {
+                    "Adresse proprietaire": "Adresse proprietaire: \n",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "Date de premiere entree: Date de premiere entree: \n\n",
+            "Adresse de provenance": "Adresse de provenance: Adresse de provenance: \n\n",
+            "Date de sortie definitive": "Date de sortie definitive: Date de sortie definitive: \n\n",
+            "Adresse de destination": "Adresse de destination: Adresse de destination: \n\n"
+        },
+        {
+            "Nom": "Nom: Nom: \n\n",
+            "NeSIRE": "NeSIRE: NeSIRE: \n\n",
+            "Netranspondeur": "Netranspondeur: Netranspondeur: \n\n",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "Nom proprietaire: \n",
+                "Coordonnees": {
+                    "Adresse proprietaire": "Adresse proprietaire: \n",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "Date de premiere entree: Date de premiere entree: \n\n",
+            "Adresse de provenance": "Adresse de provenance: Adresse de provenance: \n\n",
+            "Date de sortie definitive": "Date de sortie definitive: Date de sortie definitive: \n\n",
+            "Adresse de destination": "Adresse de destination: Adresse de destination: \n\n"
+        },
+        {
+            "Nom": "Nom: Nom: Nom: Nom: \n\n\n\n",
+            "NeSIRE": "NeSIRE: NeSIRE: NeSIRE: NeSIRE: \n\n\n\n",
+            "Netranspondeur": "Netranspondeur: Netranspondeur: Netranspondeur: Netranspondeur: \n\n\n\n",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "Nom proprietaire: \n",
+                "Coordonnees": {
+                    "Adresse proprietaire": "Adresse proprietaire: \n",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "Date de premiere entree: Date de premiere entree: Date de premiere entree: Date de premiere entree: \n\n\n\n",
+            "Adresse de provenance": "Adresse de provenance: Adresse de provenance: Adresse de provenance: Adresse de provenance: \n\n\n\n",
+            "Date de sortie definitive": "Date de sortie definitive: Date de sortie definitive: Date de sortie definitive: Date de sortie definitive: \n\n\n\n",
+            "Adresse de destination": "Adresse de destination: Adresse de destination: Adresse de destination: Adresse de destination: \n\n\n\n"
+        },
+        {
+            "Nom": "Nom: Nom: Nom: Nom: Nom: Nom: \n\n\n\n\n\n",
+            "NeSIRE": "NeSIRE: NeSIRE: NeSIRE: NeSIRE: NeSIRE: NeSIRE: \n\n\n\n\n\n",
+            "Netranspondeur": "Netranspondeur: Netranspondeur: Netranspondeur: Netranspondeur: Netranspondeur: Netranspondeur: \n\n\n\n\n\n",
+            "Nom et coordonnees du proprietaire": {
+                "Nom proprietaire": "Nom proprietaire: \n",
+                "Coordonnees": {
+                    "Adresse proprietaire": "Adresse proprietaire: \n",
+                    "Ville": "Ville_1",
+                    "Code postal": "12345"
+                }
+            },
+            "Date de premiere entree": "Date de premiere entree: Date de premiere entree: Date de premiere entree: Date de premiere entree: Date de premiere entree: Date de premiere entree: \n\n\n\n\n\n",
+            "Adresse de provenance": "Adresse de provenance: Adresse de provenance: Adresse de provenance: Adresse de provenance: Adresse de provenance: Adresse de provenance: \n\n\n\n\n\n",
+            "Date de sortie definitive": "Date de sortie definitive: Date de sortie definitive: Date de sortie definitive: Date de sortie definitive: Date de sortie definitive: Date de sortie definitive: \n\n\n\n\n\n",
+            "Adresse de destination": "Adresse de destination: Adresse de destination: Adresse de destination: Adresse de destination: Adresse de destination: Adresse de destination: \n\n\n\n\n\n"
         }
-      },
-      "Date de premiere entree": "2022-01-01",
-      "Adresse de provenance": "Provenance_1",
-      "Date de sortie definitive": "2022-12-31",
-      "Adresse de destination": "Destination_1"
-    },
-    {
-      "Nom": "Nom: Nom_animal_2\n",
-      "NO_SIRE": "NeSIRE: 987654321\n",
-      "Netranspondeur": "Netranspondeur: 123456789\n",
-      "Nom_coordonnees_proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Adresse de provenance: Provenance_2\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Date de premiere entree: 2022-02-01\n",
-      "Adresse de provenance": "Adresse de provenance: Provenance_2\n",
-      "Date de sortie definitive": "Adresse de provenance: Provenance_2\n",
-      "Adresse de destination": "Adresse de destination: Destination_2\n"
-    },
-    {
-      "Nom": "TIIIOIOIOI",
-      "NeSIRE": "NeSIRE: 123456780\n",
-      "Netranspondeur": "Netranspondeur: 987654321\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Adresse de provenance: Provenance_1\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Date de premiere entree: 2022-01-01\n",
-      "Adresse de provenance": "Adresse de provenance: Provenance_1\n",
-      "Date de sortie definitive": "Date de sortie definitive: 2022-12-31\n",
-      "Adresse de destination": "Adresse de destination: Destination_1\n"
-    },
-    {
-      "Nom": "Nom: TUTU",
-      "NeSIRE": "NeSIRE: 123456780\n",
-      "Netranspondeur": "Netranspondeur: 987654321\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: 2022-01-01\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Provenance_1\n",
-      "Adresse de provenance": "Date de sortie definitive: 2022-12-31\n",
-      "Date de sortie definitive": "Adresse de destination: Destination_1\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: OPOPOPOP",
-      "NeSIRE": "NeSIRE: 123456780\n",
-      "Netranspondeur": "Netranspondeur: 987654321\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: 2022-01-01\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Provenance_1\n",
-      "Adresse de provenance": "Date de sortie definitive: 2022-12-31\n",
-      "Date de sortie definitive": "Adresse de destination: Destination_1\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: Nom_animal_2\n\n",
-      "NeSIRE": "NeSIRE: \n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 123456789\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Date de premiere entree: 2022-02-01\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Adresse de provenance: Provenance_2\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de provenance: Provenance_2\n\n",
-      "Date de sortie definitive": "Adresse de destination: Adresse de destination: Destination_2\n\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: TIIIOIOIOI\n",
-      "NeSIRE": "NeSIRE: NeSIRE: 123456780\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 987654321\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Date de premiere entree: 2022-01-01\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Adresse de provenance: Provenance_1\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Date de sortie definitive: 2022-12-31\n\n",
-      "Date de sortie definitive": "Adresse de destination: Adresse de destination: Destination_1\n\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: TUTU\n",
-      "NeSIRE": "NeSIRE: NeSIRE: 123456780\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 987654321\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Adresse de provenance: Provenance_1\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Date de sortie definitive: 2022-12-31\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de destination: Destination_1\n\n",
-      "Date de sortie definitive": "Adresse de destination: zz\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "BEBE",
-      "NeSIRE": "NeSIRE: 123456780\n",
-      "Netranspondeur": "Netranspondeur: 987654321\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: 2022-01-01\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Provenance_1\n",
-      "Adresse de provenance": "Date de sortie definitive: 2022-12-31\n",
-      "Date de sortie definitive": "Adresse de destination: Destination_1\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: Nom_animal_2\n\n",
-      "NeSIRE": "NeSIRE: \n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 123456789\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Date de premiere entree: 2022-02-01\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Adresse de provenance: Provenance_2\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de provenance: Provenance_2\n\n",
-      "Date de sortie definitive": "Adresse de destination: Adresse de destination: Destination_2\n\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: TIIIOIOIOI\n",
-      "NeSIRE": "NeSIRE: NeSIRE: 123456780\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 987654321\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Date de premiere entree: 2022-01-01\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Adresse de provenance: Provenance_1\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Date de sortie definitive: 2022-12-31\n\n",
-      "Date de sortie definitive": "Adresse de destination: Adresse de destination: Destination_1\n\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: TUTU\n",
-      "NeSIRE": "NeSIRE: NeSIRE: 123456780\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 987654321\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Adresse de provenance: Provenance_1\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Date de sortie definitive: 2022-12-31\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de destination: Destination_1\n\n",
-      "Date de sortie definitive": "Adresse de destination: zz\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: OPOPOPOP\n",
-      "NeSIRE": "NeSIRE: NeSIRE: 123456780\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: 987654321\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Adresse de provenance: Provenance_1\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Date de sortie definitive: 2022-12-31\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de destination: Destination_1\n\n",
-      "Date de sortie definitive": "Adresse de destination: zz\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: Nom: Nom_animal_2\n\n\n",
-      "NeSIRE": "NeSIRE: NeSIRE: \n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: Netranspondeur: 123456789\n\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Adresse de provenance: Adresse de provenance: Provenance_2\n\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Date de sortie definitive: Adresse de provenance: Provenance_2\n\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de destination: Adresse de destination: Destination_2\n\n\n",
-      "Date de sortie definitive": "Adresse de destination: zz\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: TIIIOIOIOI\n\n",
-      "NeSIRE": "NeSIRE: NeSIRE: NeSIRE: 123456780\n\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: Netranspondeur: 987654321\n\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Adresse de provenance: Adresse de provenance: Provenance_1\n\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Date de sortie definitive: Date de sortie definitive: 2022-12-31\n\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de destination: Adresse de destination: Destination_1\n\n\n",
-      "Date de sortie definitive": "Adresse de destination: zz\n",
-      "Adresse de destination": "zz"
-    },
-    {
-      "Nom": "Nom: Nom: Nom: TUTU\n\n",
-      "NeSIRE": "NeSIRE: NeSIRE: NeSIRE: 123456780\n\n\n",
-      "Netranspondeur": "Netranspondeur: Netranspondeur: Netranspondeur: 987654321\n\n\n",
-      "Nom et coordonnees du proprietaire": {
-        "Nom proprietaire": "Nom proprietaire: \n",
-        "Coordonnees": {
-          "Adresse": "Date de premiere entree: Adresse de provenance: Date de sortie definitive: 2022-12-31\n\n\n",
-          "Ville": "Ville_1",
-          "Code postal": "12345"
-        }
-      },
-      "Date de premiere entree": "Adresse de provenance: Date de sortie definitive: Adresse de destination: Destination_1\n\n\n",
-      "Adresse de provenance": "Date de sortie definitive: Adresse de destination: zz\n\n",
-      "Date de sortie definitive": "Adresse de destination: zz\n",
-      "Adresse de destination": "zz"
-    }
-  ]
+    ]
 }

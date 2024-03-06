@@ -2,44 +2,44 @@
     "caracteristiques_lieu_detention": [
         {
             "detenteur_equides": {
-                "Sire": "iii",
-                "Statut Juridique": "iii",
-                "Denomination": "iii"
+                "Sire": "a",
+                "Statut Juridique": "a",
+                "Denomination": "a"
             },
             "coordonee_detenteur": {
-                "Adresse": "iii",
-                "Tel": "iii",
-                "Portable": "iii",
-                "mail": "iii"
+                "Adresse": "a",
+                "Tel": "a",
+                "Portable": "a",
+                "mail": "a"
             },
             "responsable_registre_elevage": {
-                "prenom": "iii",
-                "nom_usage": "iiiii",
-                "Adresse": "iii",
-                "tel": "iii",
-                "Portable": "iii",
-                "mail": "iii"
+                "prenom": "a",
+                "nom_usage": "a",
+                "Adresse": "a",
+                "tel": "a",
+                "Portable": "a",
+                "mail": "a"
             }
         },
         {
             "detenteur_equides": {
-                "Sire": "",
-                "Statut Juridique": "",
-                "Denomination": ""
+                "Sire": "r",
+                "Statut Juridique": "r",
+                "Denomination": "r"
             },
             "coordonee_detenteur": {
-                "Adresse": "",
-                "Tel": "",
-                "Portable": "",
-                "mail": ""
+                "Adresse": "r",
+                "Tel": "r",
+                "Portable": "r",
+                "mail": "r"
             },
             "responsable_registre_elevage": {
-                "prenom": "",
-                "nom_usage": "",
-                "Adresse": "",
-                "tel": "",
-                "Portable": "",
-                "mail": ""
+                "prenom": "r",
+                "nom_usage": "r",
+                "Adresse": "r",
+                "tel": "r",
+                "Portable": "r",
+                "mail": "r"
             }
         },
         {
