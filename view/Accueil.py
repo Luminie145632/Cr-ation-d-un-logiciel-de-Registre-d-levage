@@ -75,12 +75,14 @@ class FenetrePrincipale(tk.Tk):
          self.setup_background_animation()
         except Exception:     
           print(" Marche pas photo de fond ") 
+
     # pages
     def setup_background_animation(self):
       
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
         self.current_image_index = 0
         self.load_image()
+
     def redimensionner_image(self, event):
     
         image_path = self.image_paths[self.current_image_index]
@@ -89,6 +91,7 @@ class FenetrePrincipale(tk.Tk):
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
         self.label_image = photo
+
     def Mouvements_temporaires(self,numberColumns):
    
        label_titre_tableau = Label(self, text="MOUVEMENTS OEMPORAIRES DES ANIMAUX")
@@ -204,7 +207,8 @@ class FenetrePrincipale(tk.Tk):
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
     
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')  
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+ 
     def view_animals(self):
      with open('caratheristiques_animaux.json', 'r') as file:
         data = json.load(file)
@@ -230,6 +234,7 @@ class FenetrePrincipale(tk.Tk):
             self.date_sortie=line[1]    
 
      print(" marche pas ")
+
     # def view_informations_(slef):  
     def controle_registre(self,width):    
 
@@ -263,7 +268,8 @@ class FenetrePrincipale(tk.Tk):
         
         self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
         self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
-    #checked           
+    #checked  
+         
     def create_text(self):
        for i in range(10, 15):
            line = []
@@ -272,7 +278,9 @@ class FenetrePrincipale(tk.Tk):
              cell.grid(row=i, column=j, sticky='nsew')
              line.append(cell)
              self.data.append(line) #je veux que lorsque l'on appuie sur le bouton valider les informations entrées dans les champ de texte soient mises dans le fichier json suivant
-       return self.data   
+       return self.data
+    
+
     def supprimer_widgets(self):
      # Parcours de tous les widgets de la fenêtre
      for widget in self.winfo_children():
@@ -287,6 +295,7 @@ class FenetrePrincipale(tk.Tk):
                 widget.destroy()       
          for title in self.col_title:
             self.col_title.remove(title) 
+
     def ajouter_ligne(self):
         # Ajouter une nouvelle ligne
      nouvelle_ligne = []
@@ -300,6 +309,7 @@ class FenetrePrincipale(tk.Tk):
         # Déplacer le bouton et l'image vers le bas
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
      self.label_image.grid(row=self.numberLines + 8, column=0, columnspan=self.numberColumns, sticky='nsew')
+
     #open the windows of the navigation menu     
     def ouvrir_caracteristiques_lieu_detention(self):
     # Assurez-vous que les données précédentes sont effacées si nécessaire
@@ -343,7 +353,8 @@ class FenetrePrincipale(tk.Tk):
      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
      btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=self.regarder_carachersitiques_lieu_detention)
-     btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
+     btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')
+
     def open_encadrement_zootechnique(self):
        self.supprimer_widgets()  # Assurez-vous que cette méthode est correctement implémentée
     
@@ -385,7 +396,8 @@ class FenetrePrincipale(tk.Tk):
        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew') 
 
        btn_valider = tk.Button(self, text="Afficher les informations concernant l'encadrement zoottechnique des animaux", command=self.view_zootechnical_supervision)
-       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew') 
+       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')
+
     def ouvrir_controle_registre_elevage(self,width):
          # Ajout des titres de colonnes
          self.numberLines = width
@@ -422,7 +434,8 @@ class FenetrePrincipale(tk.Tk):
          btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
          self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=lambda : self.valider_informations_controle)
-         self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')                                                                
+         self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')
+                                                               
     def ouvrir_interventions(self,width):
            
          self.supprimer_widgets()  
@@ -474,7 +487,8 @@ class FenetrePrincipale(tk.Tk):
         # Afficher l'image sur le canvas
           self.can1.create_image(0, 0, anchor=NW, image=self.image)
          except Exception:
-            print("l'image ne marche pas ")      
+            print("l'image ne marche pas ")
+ 
     def ouvrir_caractheristiques_animaux(self):
     
      self.supprimer_widgets()
@@ -510,6 +524,7 @@ class FenetrePrincipale(tk.Tk):
     
      btn_consulter_animaux = Button(self, text="Consulter mes animaux", command=self.view_animals)
      btn_consulter_animaux.grid(row=self.numberLines + 6, columnspan=len(self.col_title), sticky='nsew')
+
     #open datas functions
     def view_animals(self):
     
@@ -533,7 +548,8 @@ class FenetrePrincipale(tk.Tk):
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
     
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_caratheristiques_animaux)
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')  
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+ 
     def regarder_carachersitiques_lieu_detention(self):
 
     
@@ -566,7 +582,8 @@ class FenetrePrincipale(tk.Tk):
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
 
         btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
-        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')    
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+   
     def view_zootechnical_supervision(self):
     
      with open('encadrement_zootechnique.json', 'r') as file:
@@ -596,6 +613,7 @@ class FenetrePrincipale(tk.Tk):
 
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_encadrement_Zootechnique_animaux)
      btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+
     def view_control(self):
     
      with open('controles.json', 'r') as file:
@@ -627,7 +645,8 @@ class FenetrePrincipale(tk.Tk):
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
 
      btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+    
     def view_temporary_movements(self):
      #  self.supprimer_widgets()
      
@@ -732,6 +751,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
         self.bind("<Configure>", self.redimensionner_image)
+
     def view_informations_intervention(self):
        
      with open('Soins_Courant.json', 'r') as file:
@@ -763,7 +783,8 @@ class FenetrePrincipale(tk.Tk):
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
 
      btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_intervention())
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')     
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+  
     def setup_background_animation(self):
       
      self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
@@ -787,7 +808,8 @@ class FenetrePrincipale(tk.Tk):
 
      for child in self.label_image.winfo_children():
         child.lift()
-    #valider       
+
+    #valider    
     def valider_mouvements_temporaires(self):
      mouvements = []
 
@@ -806,7 +828,8 @@ class FenetrePrincipale(tk.Tk):
 
     # Écriture des données dans un fichier JSON
      with open('mouvements_temporaires.json', 'w') as json_file:
-        json.dump({"mouvements_temporaires": mouvements}, json_file, indent=4)  
+        json.dump({"mouvements_temporaires": mouvements}, json_file, indent=4)
+
     def valider_carathersitiques_lieu(self):
     
      caracteristiques_lieu_detention = []
@@ -844,6 +867,7 @@ class FenetrePrincipale(tk.Tk):
     # Écriture des données dans un fichier JSON
      with open('caracteristiques_lieu_detention.json', 'w') as json_file:
         json.dump({"caracteristiques_lieu_detention": caracteristiques_lieu_detention}, json_file, indent=4)
+
     def valider_informations_controle(self):
         controle_data = []
 
@@ -862,6 +886,7 @@ class FenetrePrincipale(tk.Tk):
         # Écriture des données dans un fichier JSON
         with open('controles.json', 'w') as json_file:
             json.dump({"controle": controle_data}, json_file, indent=4)
+
     def valider_encadrement_Zootechnique_animaux(self):
         # Collecte des données depuis les champs d'entrée
      intervention_data = []
@@ -878,12 +903,12 @@ class FenetrePrincipale(tk.Tk):
         "Nom, adresse et N de telephone du dentiste": row_data[6].get()  # ← Cet indice est en dehors des limites de la liste
        }
        
-       
        intervention_data.append(encadrement)
 
     # Écriture des données dans un fichier JSON
      with open('encadrement_zootechnique.json', 'w') as json_file:
       json.dump({"encadrement":intervention_data}, json_file, indent=4) 
+
     def valider_informations_lieu(self):
     # Collecte des données depuis les champs d'entrée
      intervention_data = []
@@ -907,7 +932,8 @@ class FenetrePrincipale(tk.Tk):
 
     # Écriture des données dans un fichier JSON
      with open('interventions.json', 'w') as json_file:
-      json.dump(intervention_data, json_file, indent=4)    
+      json.dump(intervention_data, json_file, indent=4)   
+ 
     def valider_informations_intervention(self):
      interventions = []  # Initialiser la liste des interventions
     
@@ -932,7 +958,8 @@ class FenetrePrincipale(tk.Tk):
     
     # Écrire le fichier JSON avec la liste des interventions
      with open('Soins_Courant.json', 'w') as f:
-        json.dump({"interventions": interventions}, f, indent=4)            
+        json.dump({"interventions": interventions}, f, indent=4)
+        
     def valider_caratheristiques_animaux(self):
     # Initialiser une liste pour stocker les nouveaux caractéristiques
      nouveaux_caract = []
@@ -964,8 +991,6 @@ class FenetrePrincipale(tk.Tk):
     # Réécrire le fichier JSON avec la nouvelle structure
      with open('caratheristiques_animaux.json', 'w') as json_file:
         json.dump({"caractheristiques":nouveaux_caract}, json_file, indent=4) 
-
-
 
 if __name__ == "__main__":
     col_titles = ["Date", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]

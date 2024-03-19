@@ -1,5 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, END
+from PIL import Image, ImageTk
+import glob
+import sys
+from tkinter import ttk
+from tkinter import Button  
+import os
+from Presence_et_Caratheristiques_animauxGUI import Presence_CaratherisisGUI
+import json
+from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 
 class FenetrePrincipale(Frame):
     def __init__(self, fenetre, height, width, col_titles):
@@ -9,6 +18,8 @@ class FenetrePrincipale(Frame):
         self.col_titles = col_titles
         self.pack(fill=BOTH)
         
+    
+
         # Ajout des titres de colonnes
         for j in range(self.numberColumns):
             col_title = Label(self, text=self.col_titles[j], width=20, relief="solid", bg="lightgray", anchor="w")

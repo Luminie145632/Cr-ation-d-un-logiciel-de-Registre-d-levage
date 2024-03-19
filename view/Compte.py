@@ -11,7 +11,7 @@ class FenetrePrincipale(tk.Tk):
         self.geometry("1920x1080")
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
-        message_label = tk.Label(self, text="Bienvenue, veuillez vous connecter à votre compte pour accéder à vos informations.\nSi vous n'avez pas de compte, nous vous invitons à créer un compte.", font=("Helvetica", 24, "bold"))
+        message_label = tk.Label(self, text="Bienvenue, veuillez vous connecter à votre compte pour accéder à vos informations.\nSi vous n'avez pas de compte, nous vous invitons à créer votre compte.", font=("Helvetica", 24, "bold"))
         message_label.pack(pady=20)
 
         self.canvas = tk.Canvas(self, width=1920, height=800)
@@ -32,16 +32,14 @@ class FenetrePrincipale(tk.Tk):
         print("Bouton Connexion cliqué")
 
     def executer_script_creation_compte(self):
-        try:
-            # Exécutez le script Python depuis un fichier externe
+
+        # Exécutez le script Python depuis un fichier externe
             with open("/Creation_dun_logiciel_de_Registre_delevage/view/Creation_identifiant_code_PIN.py", "r") as script_file:
                 script_code = script_file.read()
                 exec(script_code)
-        except Exception as e:
-            print(f"Une erreur s'est produite : {e}")
 
     def setup_background_animation(self):
-        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
+        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.jpg")
         self.current_image_index = 0
         self.load_image()
 
