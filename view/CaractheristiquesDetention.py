@@ -1,11 +1,11 @@
-# Accueil.py  
+# Accueil.py          
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
 import tkinter as tk
 from tkinter import ttk
-from tkinter import Button  
+from tkinter import Button         
 from PIL import Image, ImageTk
-import glob
+import glob    
 import os
 import Methode1
 import json

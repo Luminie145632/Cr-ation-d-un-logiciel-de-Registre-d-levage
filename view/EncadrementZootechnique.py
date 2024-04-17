@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
 import tkinter as tk
-import glob
+import glob     
 import os
 import Methode1
 import json

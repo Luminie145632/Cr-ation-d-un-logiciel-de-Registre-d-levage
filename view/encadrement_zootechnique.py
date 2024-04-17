@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-
+      
 class EncadrementZootechnique(Frame):
     def __init__(self, fenetre, height, width, col_titles):
         super().__init__(fenetre)
