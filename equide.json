@@ -1,0 +1,68 @@
+{
+    "equides": [
+      { 
+
+        "nom": "Cheval1",
+        "race": "Pur-sang",
+        "no_sir": 123456789,
+        "adresse":"OOOOOOOOOO",
+        "age": 5,
+        "poids": 600
+        
+      },
+      
+      
+      { 
+
+        "nom": "Cheval2",
+        "race": "sang de bourbe",
+        "no_sir": 123456780,
+        "adresse":"OOOOOOOOOO",
+        "age": 8,
+        "poids": 600
+        
+      },
+      { 
+
+      "nom": "Cheval3",
+      "race": "okobbu",
+      "no_sir": 123456780,
+      "adresse":"OOOOOOOOOO",
+      "age": 8,
+      "poids": 600
+      
+    },
+      {
+        "nom": "Jument1",
+        "race": "Arabe",
+        "no_sir": 987654321,
+        "adresse":"YYYYYYYY",
+        "age": 7,
+        "poids": 550
+      },
+      {
+        "nom": "Poney1",
+        "race": "Shetland",
+        "no_sir": 456789012,
+        "adresse":"XXXXXX",
+        "age": 3,
+        "poids": 300
+      },
+      {
+        "nom": "Âne1",
+        "race": "Grand Noir du Berry",
+        "no_sir": 567890123,
+        "adresse":"ZZZZZZ",
+        "age": 8,
+        "poids": 400
+      },
+      {
+        "nom": "Cheval de trait1",
+        "race": "Percheron",
+        "no_sir": 789012345,
+        "age": 6,
+        "poids": 800
+      }
+    ]
+  }
+  
