@@ -24,7 +24,7 @@ class FenetrePrincipale(tk.Tk):
         self.formulaire_frame.pack(side=tk.LEFT, padx=100, pady=200)  # Ajustez selon vos besoins
 
         # Création d'un titre pour la page
-        titre_page = tk.Label(self.formulaire_frame, text="Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
+        titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
         titre_page.grid(row=0, column=0, pady=20)
 
         # Création des parties du formulaire
@@ -52,7 +52,7 @@ class FenetrePrincipale(tk.Tk):
         self.label_image.image = photo
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
-        self.after(2000, self.load_image)
+        self.after(6000, self.load_image)
         self.afficher_contenu_sur_image()
 
     def afficher_contenu_sur_image(self):
@@ -60,8 +60,8 @@ class FenetrePrincipale(tk.Tk):
         y_scroll_position = self.canvas.yview()[0]
 
         # Ajustez la position du formulaire en fonction du défilement
-        x_position = 50
-        y_position = 100 + y_scroll_position * self.winfo_height()
+        x_position = 500
+        y_position = 125 + y_scroll_position * self.winfo_height()
 
         self.formulaire_frame.place(x=x_position, y=y_position)
 

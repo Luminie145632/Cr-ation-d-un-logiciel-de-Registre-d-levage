@@ -32,10 +32,10 @@ class FenetrePrincipale(tk.Tk):
         self.formulaire_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         # Création des étiquettes, champs de saisie et bouton
-        self.label_identifiant = tk.Label(self.formulaire_frame, text="Identifiant:")
+        self.label_identifiant = tk.Label(self.formulaire_frame, text="Identifiant :")
         self.entry_identifiant = tk.Entry(self.formulaire_frame)
 
-        self.label_mot_de_passe = tk.Label(self.formulaire_frame, text="Mot de passe:")
+        self.label_mot_de_passe = tk.Label(self.formulaire_frame, text="Mot de passe :")
         self.entry_mot_de_passe = tk.Entry(self.formulaire_frame, show="*")  # Mot de passe masqué par défaut
 
         self.btn_oeil = ttk.Button(self.formulaire_frame, text="👁", command=self.toggle_mot_de_passe, style="Toggle.TButton")

@@ -7,7 +7,7 @@ class FenetrePrincipale(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Formulaire de création d'un compte professionnel")
+        self.title("Page de création de l'espace d'un compte professionnel")
         self.geometry("1920x1080")  # Ajustez la taille selon vos besoins
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
@@ -24,7 +24,7 @@ class FenetrePrincipale(tk.Tk):
         self.formulaire_frame.pack(side=tk.LEFT, padx=100, pady=200)  # Ajustez selon vos besoins
 
         # Création d'un titre pour la page
-        titre_page = tk.Label(self.formulaire_frame, text="Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
+        titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
         titre_page.grid(row=0, column=0, pady=20)
 
         # Création des parties du formulaire
@@ -52,7 +52,7 @@ class FenetrePrincipale(tk.Tk):
         self.label_image.image = photo
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
-        self.after(2000, self.load_image)
+        self.after(6000, self.load_image)
         self.afficher_contenu_sur_image()
 
     def afficher_contenu_sur_image(self):
@@ -60,8 +60,8 @@ class FenetrePrincipale(tk.Tk):
         y_scroll_position = self.canvas.yview()[0]
 
         # Ajustez la position du formulaire en fonction du défilement
-        x_position = 50
-        y_position = 100 + y_scroll_position * self.winfo_height()
+        x_position = 500
+        y_position = 125 + y_scroll_position * self.winfo_height()
 
         self.formulaire_frame.place(x=x_position, y=y_position)
 
@@ -72,10 +72,10 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_1 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=True, row=1, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=False, row=1, relx=relx, rely=rely)
         self.create_radio_buttons(partie_frame, row=2, relx=relx, rely=rely)  # Boutons radio sous le titre
-        self.create_label_entry(partie_frame, "N° SIRET :", "entry_siret", "Saisissez votre N° SIRET", required=True, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Code APE :", "entry_code_ape", "Saisissez votre Code APE", required=True, row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "N° SIRET :", "entry_siret", "Saisissez votre N° SIRET", required=False, row=3, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Code APE :", "entry_code_ape", "Saisissez votre Code APE", required=False, row=4, relx=relx, rely=rely)
         self.create_label_entry(partie_frame, "Statut juridique :", "entry_statut_juridique", "Saisissez votre statut juridique (facultatif)", required=False, row=5, relx=relx, rely=rely)
         self.create_label_entry(partie_frame, "Dénomination :", "entry_denomination", "Saisissez votre dénomination (facultatif)", required=False, row=6, relx=relx, rely=rely)
 
@@ -98,12 +98,12 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_3 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", required=True, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", required=True, row=2, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", required=True, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=True, row=4, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=True, row=5, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=True, row=6, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", required=False, row=1, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", required=False, row=2, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", required=False, row=3, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=False, row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=False, row=5, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=False, row=6, relx=relx, rely=rely)
 
     def create_radio_buttons(self, frame, row, relx=5, rely=5):
         # Frame pour les boutons radio

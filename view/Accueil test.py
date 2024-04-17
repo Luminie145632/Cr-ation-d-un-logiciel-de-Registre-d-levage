@@ -14,6 +14,7 @@ import json
 #from tkinter import * (Cause des problèmes si décommenté)
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 #from controller.Methode_1 import ouvrir_fichier, fermer_fichier
+import PyPDF2
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self, width, col_titles, height):
@@ -106,7 +107,7 @@ class FenetrePrincipale(tk.Tk):
             child.lift()
 
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
-        self.after(2000, self.load_image)
+        self.after(6000, self.load_image)
 
     def redimensionner_image(self, event):
         if self.photo:
@@ -157,7 +158,7 @@ class FenetrePrincipale(tk.Tk):
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Ajout de la phrase "Bienvenue sur notre application." au centre
-        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.grid(row=10, column=0, sticky="ew")
 
         # Création de la barre de navigation
@@ -209,67 +210,6 @@ class FenetrePrincipale(tk.Tk):
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
         self.label_image = photo
-
-    #def Mouvements_temporaires(self,numberColumns):
-   
-       #label_titre_tableau = Label(self, text="MOUVEMENTS OEMPORAIRES DES ANIMAUX")
-       #label_titre_tableau.grid(row=0, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-        # Phrase à deux trous
-       #label_intro = Label(self, text="Liste des mouvements temporaires entre le")
-       #label_intro.grid(row=1, column=0, sticky='nsew')
-
-       #self.entry_debut = Entry(self, width=5)
-       #self.entry_debut.grid(row=1, column=1, sticky='nsew')
-
-       #label_et_le = Label(self, text="et le")
-       #label_et_le.grid(row=1, column=2, sticky='nsew')
-
-       #self.entry_fin = Entry(self, width=5)
-       #self.entry_fin.grid(row=1, column=3, sticky='nsew')
-
-        # Phrase additionnelle
-       #label_option = Label(self, text="(Option 1 : mouvements peu fréquents)")
-       #label_option.grid(row=2, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-        # Ajout des titres de colonnes
-       #for j in range(self.numberColumns):
-         #col_title = Label(self, text=self.col_titles[j], width=15, relief="solid", bg="lightgray", anchor="w")
-         #col_title.grid(row=3, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-
-        # Ajout des données du tableau
-         #self.data = []
-         #for i in range(4, self.numberLines + 4):
-            #line = []
-            #for j in range(self.numberColumns):
-                #cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-                #cell.grid(row=i, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-                #line.append(cell)
-            #self.data.append(line)
-
-        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-         #for j in range(self.numberColumns):
-            #self.grid_columnconfigure(j, weight=1)
-
-        # Bouton pour ajouter une nouvelle ligne
-         #self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=15, height=1)
-         #self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
-        
-         #btn_mouvement_temporaire = Button(self, text="Valider", command=  self.valider_informations, width=15, height=1)#self.signaler_mouvement_temporaire)
-         #btn_mouvement_temporaire.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
-        
-         #btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command= lambda: self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
-         #btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-        
-        # Création du Label pour afficher les images
-         #self.label_image = tk.Label(self, bd=0, highlightthickness=0)
-         #self.label_image.grid(row=self.numberLines + 9, column=0, columnspan=self.numberColumns, sticky='nsew')
-          
-        # Appel à la méthode pour gérer le fond d'image changeant
-         #self.setup_background_animation()
-
-        # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
-         #self.bind("<Configure>", self.redimensionner_image)  
     
     def load_image(self):
         

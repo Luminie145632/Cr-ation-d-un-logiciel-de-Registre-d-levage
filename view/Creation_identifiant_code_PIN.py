@@ -12,7 +12,7 @@ class FenetrePrincipale(tk.Tk):
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Ajout de la phrase au centre
-        etiquette_bienvenue = tk.Label(self, text="Veuillez compléter les différents champs pour pouvoir ensuite vous connecter à votre espace.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue = tk.Label(self, text="Veuillez compléter les différents champs pour pouvoir  vous connecter à votre espace.", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.pack(side="top", pady=20)
 
         # Création du Label pour afficher les images
@@ -30,16 +30,16 @@ class FenetrePrincipale(tk.Tk):
         self.formulaire_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         # Création des étiquettes, champs de saisie et bouton
-        self.label_nom = tk.Label(self.formulaire_frame, text="Nom:")
+        self.label_nom = tk.Label(self.formulaire_frame, text="Nom :")
         self.entry_nom = tk.Entry(self.formulaire_frame)
 
-        self.label_prenom = tk.Label(self.formulaire_frame, text="Prénom:")
+        self.label_prenom = tk.Label(self.formulaire_frame, text="Prénom :")
         self.entry_prenom = tk.Entry(self.formulaire_frame)
 
-        self.label_mot_de_passe = tk.Label(self.formulaire_frame, text="Mot de passe:")
+        self.label_mot_de_passe = tk.Label(self.formulaire_frame, text="Mot de passe :")
         self.entry_mot_de_passe = tk.Entry(self.formulaire_frame, show="*")  # Mot de passe masqué par défaut
 
-        self.label_confirmation_mot_de_passe = tk.Label(self.formulaire_frame, text="Confirmer le mot de passe:")
+        self.label_confirmation_mot_de_passe = tk.Label(self.formulaire_frame, text="Confirmer le mot de passe :")
         self.entry_confirmation_mot_de_passe = tk.Entry(self.formulaire_frame, show="*")  # Mot de passe masqué par défaut
 
         self.btn_oeil = ttk.Button(self.formulaire_frame, text="👁", command=self.toggle_mot_de_passe, style="Toggle.TButton")

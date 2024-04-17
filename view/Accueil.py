@@ -30,10 +30,9 @@ class FenetrePrincipale(tk.Tk):
         self.title("Accueil")
         self.geometry("1920x1080")
 
-        try:
-         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
-        except Exception:
-           print(" photo de cheval ") 
+    
+        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+       
 
         # Ajout de la phrase "Bienvenue sur notre application." au centre
         etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application.", font=("Helvetica", 16, "bold"))
@@ -71,10 +70,7 @@ class FenetrePrincipale(tk.Tk):
         self.bind("<Configure>", self.redimensionner_image)
 
         # Appel à la méthode pour gérer le fond d'image changeant
-        try:
-         self.setup_background_animation()
-        except Exception:     
-          print(" Marche pas photo de fond ") 
+        self.setup_background_animation()
 
     # pages
     def setup_background_animation(self):
@@ -154,36 +150,30 @@ class FenetrePrincipale(tk.Tk):
          self.bind("<Configure>", self.redimensionner_image)  
     
     def load_image(self):
-        
-        try:
+        image_path = self.image_paths[self.current_image_index]
+        image = Image.open(image_path)
+        image = image.resize((self.winfo_width(), self.winfo_height()))
      
-         image_path = self.image_paths[self.current_image_index]
-         image = Image.open(image_path)
-         image = image.resize((self.winfo_width(), self.winfo_height()))
-     
-         photo = ImageTk.PhotoImage(image)
-         self.label_image.configure(image=photo)
-         self.label_image.image = photo
-         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
+        photo = ImageTk.PhotoImage(image)
+        self.label_image.configure(image=photo)
+        self.label_image.image = photo
+        self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
         
 
-         for child in self.label_image.winfo_children():
+        for child in self.label_image.winfo_children():
             child.lift()
 
-         self.after(2000, self.load_image)
-        except Exception:
-          print(" ça marche pas ")
+        self.after(2000, self.load_image)
+        
     
     def redimensionner_image(self, event):
-       try:
         image_path = self.image_paths[self.current_image_index]
         image = Image.open(image_path)
         image = image.resize((self.winfo_width(), self.winfo_height()))
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
         self.label_image = photo
-       except Exception:
-        print("photo march pas ")  
+
     
     # view informations
     def view_caratherisis_detention_place(self):
@@ -232,8 +222,6 @@ class FenetrePrincipale(tk.Tk):
             self.data.append(line)
 
             self.date_sortie=line[1]    
-
-     print(" marche pas ")
 
     # def view_informations_(slef):  
     def controle_registre(self,width):    
@@ -474,20 +462,6 @@ class FenetrePrincipale(tk.Tk):
 
          btn_valider = Button(self, text="Consulter l'historique de mes Soins", command=self.view_informations_intervention)
          btn_valider.grid(row=self.numberLines + 4,  columnspan=self.numberColumns, sticky='nsew')
-         
-
-         try:
-        # Charger l'image avec PIL
-          image = Image.open("/Creation_dun_logiciel_de_Registre_delevage/images/cheval_blanc.png")
-        # Augmenter la taille de l'image (dans cet exemple, je l'ai doublée)
-          image = image.resize((960, 540), Image.BICUBIC)
-        # Convertir l'image en format Tkinter PhotoImage
-          self.image = ImageTk.PhotoImage(image)
-        
-        # Afficher l'image sur le canvas
-          self.can1.create_image(0, 0, anchor=NW, image=self.image)
-         except Exception:
-            print("l'image ne marche pas ")
  
     def ouvrir_caractheristiques_animaux(self):
     

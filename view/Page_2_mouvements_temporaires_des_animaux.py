@@ -33,6 +33,9 @@ class FenetrePrincipale(Frame):
         for j in range(self.numberColumns):
             self.cadre.grid_columnconfigure(j, weight=1)
 
+        # Ajout du fond d'image en dessous du tableau
+        self.setup_background_animation()
+
         # Ajout de la première ligne avec "Année" et "Mois"
         label_annee = Label(self.cadre, text="Année", width=10, relief="solid", bg="lightgray")
         label_annee.grid(row=0, column=0, sticky='nsew')
@@ -81,9 +84,6 @@ class FenetrePrincipale(Frame):
             entry_legend.grid(row=self.numberLines - 1 + (i - 1) // 4, column=((i - 1) % 4) * 8 + 1, columnspan=7, sticky='nsew')
             entries_legend.append(entry_legend)
 
-        # Ajout du fond d'image en dessous de la légende
-        self.setup_background_animation()
-
         # Configurer la toile pour surveiller la taille du cadre et ajuster le défilement en conséquence
         self.cadre.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
 
@@ -116,10 +116,6 @@ class FenetrePrincipale(Frame):
 
         # Continuer le chargement des images
         self.after(2000, self.load_image)
-
-    def redimensionner_image(self, event):
-        # Code pour redimensionner l'image si nécessaire
-        pass
 
 if __name__ == "__main__":
     self = tk.Tk()

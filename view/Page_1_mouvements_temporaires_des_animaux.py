@@ -14,8 +14,10 @@ class FenetrePrincipale(Frame):
         self.col_titles = col_titles
         self.pack(fill=BOTH)
         
+        
+
         # Titre du tableau
-        label_titre_tableau = Label(self, text="MOUVEMENTS OEMPORAIRES DES ANIMAUX")
+        label_titre_tableau = Label(self, text="MOUVEMENTS TEMPORAIRES DES ANIMAUX")
         label_titre_tableau.grid(row=0, column=0, columnspan=self.numberColumns, sticky='nsew')
 
         # Phrase à deux trous
@@ -58,22 +60,19 @@ class FenetrePrincipale(Frame):
         self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=15, height=1)
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
         
-        btn_mouvement_temporaire = Button(self, text="Valider", command=  self.valider_informations, width=15, height=1)#self.signaler_mouvement_temporaire)
+        btn_mouvement_temporaire = Button(self, text="Valider", command=self.valider_informations, width=15, height=1)
         btn_mouvement_temporaire.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
         
-        btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command=  self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
-        btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
+        btn_voir_histoire = Button(self, text="Voir l'histoire de mes mouvements", command=self.view_animals, width=15, height=1)
+        btn_voir_histoire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
         
-        btn_mouvement_retour = Button(self, text="Retour au menu principal", command=  self.return_main_menu, width=15, height=1 )#self.signaler_mouvement_temporaire)
-        btn_mouvement_retour.grid(row=self.numberLines + 7, columnspan=self.numberColumns, sticky='nsew')
-
-
+        btn_retour_menu = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=15, height=1)
+        btn_retour_menu.grid(row=self.numberLines + 7, columnspan=self.numberColumns, sticky='nsew')
 
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
         self.label_image.grid(row=self.numberLines + 9, column=0, columnspan=self.numberColumns, sticky='nsew')
-        
-      
+
         # Appel à la méthode pour gérer le fond d'image changeant
         self.setup_background_animation()
 
@@ -91,33 +90,26 @@ class FenetrePrincipale(Frame):
         self.numberLines += 1
 
         # Déplacer le bouton et l'image vers le bas
-        # self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-        # self.label_image.grid(row=self.numberLines + 7, column=0, columnspan=self.numberColumns, sticky='nsew')
-        
-        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=15, height=1)
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
+        self.label_image.grid(row=self.numberLines + 9, column=0, columnspan=self.numberColumns, sticky='nsew')
 
-   
     def view_animals(self):
-    
-     with open('mouvements_temporaires.json', 'r') as file:
-        data = json.load(file)
+        with open('mouvements_temporaires.json', 'r') as file:
+            data = json.load(file)
         
-    # Création d'un champ de texte pour afficher les informations
-     text_field = Text(self, wrap=WORD)
-     text_field.grid(row=13, column=0, columnspan=self.numberColumns, sticky='nsew')
-     text_field2 = Text(self, wrap=WORD)
-     text_field2.grid(row=14, column=0, columnspan=self.numberColumns, sticky='nsew')
-    # Récupération des informations et ajout dans le champ de texte
-     for animal in data:
-        text_field.insert(END, f"Date Sortie: {animal.get('Date_de_sortie')}\n")
-        text_field.insert(END, f"Nom equide: {animal.get('Nom_equide', '')}\n")
-        text_field.insert(END, f"Motif: {animal.get('Motif', '')}\n")
-       # text_field.insert(END, f"Nom et coordonnées du propriétaire: {animal.get('Nom et coordonnees du proprietaire')}\n")
-        text_field.insert(END, f"Etape_eventuelle: {animal.get('Etape_eventuelle', '')}\n")
-        text_field.insert(END, f"Lieu_destination: {animal.get('Lieu_destination', '')}\n")
-        text_field.insert(END, f"Date_retour: {animal.get('Date_retour', '')}\n")
-       
+        # Création d'un champ de texte pour afficher les informations
+        text_field = Text(self, wrap=WORD)
+        text_field.grid(row=13, column=0, columnspan=self.numberColumns, sticky='nsew')
+        
+        # Récupération des informations et ajout dans le champ de texte
+        for animal in data:
+            text_field.insert(END, f"Date Sortie: {animal.get('Date_de_sortie')}\n")
+            text_field.insert(END, f"Nom equide: {animal.get('Nom_equide', '')}\n")
+            text_field.insert(END, f"Motif: {animal.get('Motif', '')}\n")
+            text_field.insert(END, f"Etape_eventuelle: {animal.get('Etape_eventuelle', '')}\n")
+            text_field.insert(END, f"Lieu_destination: {animal.get('Lieu_destination', '')}\n")
+            text_field.insert(END, f"Date_retour: {animal.get('Date_retour', '')}\n")
+
     def valider_informations(self):
         mouvements_temporaires = []
         for row in self.data:
@@ -133,90 +125,50 @@ class FenetrePrincipale(Frame):
 
         with open('mouvements_temporaires.json', 'w') as f:
             json.dump(mouvements_temporaires, f, indent=4)
-                                 
-
-    def ajouter_ligne(self):
-        # Ajouter une nouvelle ligne
-        nouvelle_ligne = []
-        for j in range(self.numberColumns):
-            cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-            cell.grid(row=self.numberLines + 6, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-            nouvelle_ligne.append(cell)
-        self.data.append(nouvelle_ligne)
-        self.numberLines += 1
-
-        # Déplacer le bouton et l'image vers le bas
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-        self.label_image.grid(row=self.numberLines + 8, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-
 
     def return_main_menu(self):         
-     self.destroy()                 
-     os.system("python Accueil.py")   
-
+        self.destroy()                 
+        os.system("python Accueil.py")   
 
     def setup_background_animation(self): 
-       try:
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")  # Mettez le chemin correct vers vos images
         self.current_image_index = 0
         self.load_image()
-       except Exception:
-          print("rrrr") 
-
+        
     def load_image(self):
         # Charger l'image actuelle
         image_path = self.image_paths[self.current_image_index]
-        try:
-         image = Image.open(image_path)
+        image = Image.open(image_path)
 
         # Redimensionner l'image pour prendre toute la fenêtre
-         image = image.resize((self.winfo_width(), self.winfo_height()))
-
-         photo = ImageTk.PhotoImage(image)
+        image = image.resize((self.winfo_width(), self.winfo_height()))
+        photo = ImageTk.PhotoImage(image)
 
         # Mettre à jour l'image dans le label
-         self.label_image.configure(image=photo)
-         self.label_image = photo  # Gardez une référence pour éviter la collecte des déchets
-         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
+        self.label_image.configure(image=photo)
+        self.label_image.image = photo  # Gardez une référence pour éviter la collecte des déchets
+        self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
-        except Exception:
-         print("eee") 
-        # Mettre à jour l'index pour la prochaine image
-   
         # Planifier l'appel de la fonction load_image après un certain délai (par exemple, 2000 millisecondes)
         self.after(2000, self.load_image)
 
     def redimensionner_image(self, event):
         # Redimensionner l'image pour prendre toute la fenêtre
         
-        
-        try:
-         image_path = self.image_paths[self.current_image_index]
-         image = Image.open(image_path)
-         image = image.resize((self.winfo_width(), self.winfo_height()))
-         photo = ImageTk.PhotoImage(image)
+        image_path = self.image_paths[self.current_image_index]
+        image = Image.open(image_path)
+        image = image.resize((self.winfo_width(), self.winfo_height()))
+        photo = ImageTk.PhotoImage(image)
 
         # Mettre à jour l'image dans le label
-         self.label_image.configure(image=photo)
-         self.label_image.image = photo  
-        
-        
-        except Exception: 
-         print("lolo")
-
-     # Gardez une référence pour éviter la collecte des déchets
-    
-
+        self.label_image.configure(image=photo)
+        self.label_image.image = photo  # Gardez une référence pour éviter la collecte des déchets
 
 if __name__ == "__main__":
     fenetre = tk.Tk()
-    fenetre.title("MOUVEMENTS OEMPORAIRES DES ANIMAUX")
+    fenetre.title("MOUVEMENTS TEMPORAIRES DES ANIMAUX")
     fenetre.geometry("1920x1080")
-    try:
-     fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
-    except Exception:
-     print("ouuu")
+    fenetre.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
     col_titles = ["Date de sortie", "Nom de l'équidé", "Motif", "Etape éventuelle (adresse)", "Lieu de destination (Adresse)", "Date de retour"]
     
     fenetre_principale = FenetrePrincipale(fenetre, height=3, width=6, col_titles=col_titles)
