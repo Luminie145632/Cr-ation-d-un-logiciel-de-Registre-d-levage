@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 import os
-from tkinter import *
 from PIL import Image, ImageTk
 import json
 
@@ -21,27 +20,33 @@ class Presence_CaratherisisGUI(Frame):
         #ouou
         tex1 = Label(self, text='Encadrement Zootechnique Sanitaire et Médical des Animaux', fg='cyan')
         tex1.grid(row=0, column=0, columnspan=8)
-        # Ajout des titres de colonnes
 
+        # Ajout des titres de colonnes
         for j in range(self.numberColumns):
-         col_title = Label(self, text=self.col_titles[j], width=20, relief="solid", bg="lightgray", anchor="w")
-         col_title.grid(row=0, column=j, sticky='nsew')
+            col_title = Label(self, text=self.col_titles[j], width=20, relief="solid", bg="lightgray", anchor="w")
+            col_title.grid(row=0, column=j, sticky='nsew')
 
         # Ajout des données du tableau
         self.data = []
-        for i in range(self.numberColumns ):
+        for i in range(1, self.numberLines + 1):
             line = []
             for j in range(self.numberColumns):
                 cell = Entry(self, width=20)
                 cell.grid(row=i, column=j, sticky='nsew')
                 line.append(cell)
             self.data.append(line)
-
+        
             self.date_sortie=line[1]    
         # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
         for j in range(self.numberColumns):
             self.grid_columnconfigure(j, weight=1)
         
+        self.can1 = Canvas(self, bg='blue', width=450, height=450)
+        self.can1.grid(row=self.numberLines + 2, column=0, columnspan=self.numberColumns, pady=5)
+
+        # Ajout du Canvas
+        self.can1 = Canvas(self, bg='blue', width=450, height=450)
+        self.can1.grid(row=self.numberLines + 2, column=0, columnspan=self.numberColumns, pady=5)
         try:
         # Charger l'image avec PIL
          image = Image.open("cheval_blanc.png")
@@ -49,6 +54,7 @@ class Presence_CaratherisisGUI(Frame):
          image = image.resize((960, 540), Image.BICUBIC)
         # Convertir l'image en format Tkinter PhotoImage
          self.image = ImageTk.PhotoImage(image)
+
         # Afficher l'image sur le canvas
          self.can1.create_image(0, 0, anchor=tk.NW, image=self.image)
         
@@ -58,44 +64,11 @@ class Presence_CaratherisisGUI(Frame):
         btn_valider = Button(self, text="Valider", command=self.valider_informations)
         btn_valider.grid(row=10, column=0, columnspan=self.numberColumns, sticky='nsew')
 
-        btn_valider = Button(self, text="Consulter mes animaux", command=self.view_animals)
-        btn_valider.grid(row=11, column=0, columnspan=self.numberColumns, sticky='nsew')
-        
-        city_frame = Label(self, text='', fg='black')
-        region_frame = Label(self, text='', fg='black')
-        Departement_frame = Label(self, text='', fg='black')
-
         # Création des boutons de la barre de navigation
         btn_mouvement_temporaire = Button(self, text="Retour au menu principal", command=self.return_main_menu)
-        btn_mouvement_temporaire.grid(row=12, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-
-    def view_animals(self):
-    
-     with open('caratheristiques_animaux.json', 'r') as file:
-        data = json.load(file)
-        
-    # Création d'un champ de texte pour afficher les informations
-     text_field = Text(self, wrap=WORD)
-     text_field.grid(row=13, column=0, columnspan=self.numberColumns, sticky='nsew')
-     text_field2 = Text(self, wrap=WORD)
-     text_field2.grid(row=14, column=0, columnspan=self.numberColumns, sticky='nsew')
-    # Récupération des informations et ajout dans le champ de texte
-     for animal in data['caratheristiques_animaux']:
-        text_field.insert(END, f"Nom: {animal['Nom']}\n")
-        text_field.insert(END, f"Numéro SIRE: {animal.get('NeSIRE', '')}\n")
-        text_field.insert(END, f"Numéro transpondeur: {animal.get('Netranspondeur', '')}\n")
-       # text_field.insert(END, f"Nom et coordonnées du propriétaire: {animal.get('Nom et coordonnees du proprietaire')}\n")
-        text_field.insert(END, f"Date de première entrée: {animal.get('Date de premiere entree', '')}\n")
-        text_field2.insert(END, f"Adresse de provenance: {animal.get('Adresse de provenance', '')}\n")
-        text_field2.insert(END, f"Date de sortie définitive: {animal.get('Date de sortie definitive', '')}\n")
-        text_field2.insert(END, f"Adresse de destination: {animal.get('Adresse de destination', '')}\n\n")
-
-
-
+        btn_mouvement_temporaire.grid(row=11, column=0, columnspan=self.numberColumns, sticky='nsew')
 
     def valider_informations(self):
-     
         # Récupérer les informations depuis les champs d'entrée (à adapter en fonction de votre logique)
         nom = self.data[0][0].get()
         sire = self.data[0][1].get()
@@ -143,7 +116,6 @@ class Presence_CaratherisisGUI(Frame):
 
     # Retourner le JSON du nouveau professionnel (à des fins de débogage ou autre)
          return json.dumps(nouveau_caract)
-    
     def return_main_menu(self):
         self.destroy()
         os.system("python Accueil.py")
@@ -151,13 +123,12 @@ class Presence_CaratherisisGUI(Frame):
 if __name__ == "__main__":
     fenetre = tk.Tk()
     fenetre.title("Présence et caractéristiques des animaux")
-    fenetre.geometry("1200x750")
-  
+    fenetre.geometry("960x540")
     try:
      fenetre.iconbitmap("horse_sans_fond.ico")
     except Exception:
        print("azaz")
-    fenetre.resizable(height=True, width=True)
+   # fenetre.resizable(height=False, width=False)
   
     col_titles = ["Nom", "n° SIRE", "n° Transpondeur", "Nom et coordonnées du propriétaires", "Date de première entrée", "Adresse de provenance","Date de sortie définitive","Adresse de destination"]  
     fenetre_principale = Presence_CaratherisisGUI(fenetre, height=3, width=8, col_titles=col_titles)

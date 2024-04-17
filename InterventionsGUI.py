@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import *
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 import os
 from PIL import Image, ImageTk
@@ -61,47 +60,10 @@ class InterventionsGUI(Frame):
         
         btn_valider = Button(self, text="Valider", command=self.valider_informations)
         btn_valider.grid(row=10, column=0, columnspan=self.numberColumns, sticky='nsew')
-         
-        btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes Interventions", command=  self.view_animals, width=15, height=1)#self.signaler_mouvement_temporaire)
-        btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-        
-
 
         # Création des boutons de la barre de navigation
         btn_mouvement_temporaire = Button(self, text="Retour au menu principal", command=self.return_main_menu)
         btn_mouvement_temporaire.grid(row=11, column=0, columnspan=self.numberColumns, sticky='nsew')
-    
-
-
-    def view_animals(self):
-    
-     with open('Interventions.json', 'r') as file:
-        data = json.load(file)
-        
-    # Création d'un champ de texte pour afficher les informations
-     text_field = Text(self, wrap=WORD)
-     text_field.grid(row=13, column=0, columnspan=self.numberColumns, sticky='nsew')
-     text_field2 = Text(self, wrap=WORD)
-     text_field2.grid(row=14, column=0, columnspan=self.numberColumns, sticky='nsew')
-    # Récupération des informations et ajout dans le champ de texte
-     for animal in data:
-        text_field.insert(END, f"Date Sortie: {animal.get('Date')}\n")
-        text_field.insert(END, f"Nom equide: {animal.get('Type intervention', '')}\n")
-        text_field.insert(END, f"Motif: {animal.get('Traitement', '')}\n")
-       # text_field.insert(END, f"Nom et coordonnées du propriétaire: {animal.get('Nom et coordonnees du proprietaire')}\n")
-        text_field.insert(END, f"Etape_eventuelle: {animal.get('Nom medicament', '')}\n")
-        text_field.insert(END, f"Lieu_destination: {animal.get('Voie administration', '')}\n")
-        text_field.insert(END, f"Date_retour: {animal.get('Date de debut', '')}\n")
-        text_field2.insert(END, f"Date_retour: {animal.get('Date de fin', '')}\n")
-        text_field2.insert(END, f"Date_retour: {animal.get('Nedeordonnance', '')}\n")
-        text_field2.insert(END, f"Date_retour: {animal.get('Delai deattente competition (facultatif)', '')}\n")
-        text_field2.insert(END, f"Date_retour: {animal.get('Delai deattente abattage ou exclusion abattage', '')}\n")
-
-        
-        
-
-
-
 
     def valider_informations(self):
         # Récupérer les informations depuis les champs d'entrée (à adapter en fonction de votre logique)

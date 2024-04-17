@@ -3,7 +3,7 @@ from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, END
 import os
 import json
 
-class FenetrePrincipaleControle(Frame):
+class FenetrePrincipale(Frame):
     def __init__(self, fenetre, height, width, col_titles):
         super().__init__(fenetre)
         self.numberLines = height
@@ -33,13 +33,13 @@ class FenetrePrincipaleControle(Frame):
         # Bouton pour ajouter une nouvelle ligne
         self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=20, height=1)
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 1, columnspan=self.numberColumns, sticky='nsew')
-             
+        
+        self.bouton_ajouter_ligne = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 2, columnspan=self.numberColumns, sticky='nsew')
+
         self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=self.valider_informations, width=20, height=1)
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=self.numberColumns, sticky='nsew')
         
-        self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
-        self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
-
         
         
 
@@ -60,11 +60,8 @@ class FenetrePrincipaleControle(Frame):
         self.data.append(nouvelle_ligne)
         self.numberLines += 1
 
-
-
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=self.numberColumns, sticky='nsew') 
         # Afficher le bouton à la nouvelle position
-        self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 2, columnspan=self.numberColumns, sticky='nsew')
 
     def return_main_menu(self):
       self.destroy()
@@ -126,7 +123,7 @@ if __name__ == "__main__":
     label_principal.pack()
 
     # Liste des titres des colonnes
-    col_titles = ["Date oo", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]
+    col_titles = ["Date", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]
 
-    fenetre_principale = FenetrePrincipaleControle(fenetre, height=3, width=6, col_titles=col_titles)
+    fenetre_principale = FenetrePrincipale(fenetre, height=3, width=6, col_titles=col_titles)
     fenetre_principale.mainloop()

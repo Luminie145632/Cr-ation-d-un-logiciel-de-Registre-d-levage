@@ -4,51 +4,39 @@
       "Date": "2024-02-10",
       "Type intervention": "Vaccination",
       "Traitement": true,
-      "Nom medicament": "VaccineX",
+      "Nom m\u00c3\u00a9dicament": "VaccineX",
       "Voie administration": "Injection",
       "Date de debut": "2024-02-10",
       "Date de fin": "2024-02-12",
-      "Nedeordonnance": "ABC123",
-      "Delai deattente competition (facultatif)": "7 days",
-      "Delai deattente abattage ou exclusion abattage": "14 days"
+      "N\u00c2\u00b0d\u00e2\u20ac\u2122ordonnance": "ABC123",
+      "D\u00c3\u00a9lai d\u00e2\u20ac\u2122attente competition (facultatif)": "7 days",
+      "D\u00c3\u00a9lai d\u00e2\u20ac\u2122attente abattage ou exclusion abattage": "14 days"
     },
-    {
+    {         
       "Date": "2024-03-05",
       "Type intervention": "Deworming",
-      "Ne Transpondeur": "987654321",
+      "N\u00c2\u00b0 Transpondeur": "987654321",
       "Traitement": true,
-      "Nom medicament": "DewormerY",
+      "Nom m\u00c3\u00a9dicament": "DewormerY",
       "Voie administration": "Oral",
       "Dose (facultatif si ordonnance)": "1 tablet",
-      "Date de debut": "2024-03-05",
+      "Date de d\u00c3\u00a9but": "2024-03-05",
       "Date de fin": "2024-03-06",
-      "Nedeordonnance": "XYZ789",
-      "Delai deattente competition (facultatif)": "10 days",
-      "Delai deattente abattage ou exclusion abattage": "21 days"
+      "N\u00c2\u00b0d\u00e2\u20ac\u2122ordonnance": "XYZ789",
+      "D\u00c3\u00a9lai d\u00e2\u20ac\u2122attente comp\u00c3\u00a9tition (facultatif)": "10 days",
+      "D\u00c3\u00a9lai d\u00e2\u20ac\u2122attente abattage ou exclusion abattage": "21 days"
     },
     {
       "Date": "12",
       "Type intervention": "12",
       "Traitement": "12",
-      "Nom medicament": "NUN",
+      "Nom m\u00e9dicament": "NUN",
       "Voie administration": "OUI",
       "Date de debut": "09/09/2003",
       "Date de fin": "09/09/2012",
-      "Nedeordonnance": "12121",
-      "Delai deattente competition (facultatif)": "15",
-      "Delai deattente abattage ou exclusion abattage": "15"
-    },
-    {
-      "Date": "111",
-      "Type intervention": "AZAZ",
-      "Traitement": "ZZZZ",
-      "Nom medicament": "ZZZZ",
-      "Voie administration": "ZZZZ",
-      "Date de debut": "ZZZ",
-      "Date de fin": "ZZZ",
-      "Nedeordonnance": "ZZZZ",
-      "Delai deattente competition (facultatif)": "ZZZ",
-      "Delai deattente abattage ou exclusion abattage": "ZZZ"
+      "N\u00b0d\u2019ordonnance": "12121",
+      "D\u00e9lai d\u2019attente competition (facultatif)": "15",
+      "D\u00e9lai d\u2019attente abattage ou exclusion abattage": "15"
     }
   ]
 }
