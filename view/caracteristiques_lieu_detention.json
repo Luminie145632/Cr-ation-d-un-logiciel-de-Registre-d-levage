@@ -2,44 +2,359 @@
     "caracteristiques_lieu_detention": [
         {
             "detenteur_equides": {
-                "Sire": "a",
-                "Statut Juridique": "a",
-                "Denomination": "a"
+                "Sire": "111",
+                "Statut Juridique": "222",
+                "Denomination": "222"
             },
             "coordonee_detenteur": {
-                "Adresse": "a",
-                "Tel": "a",
-                "Portable": "a",
-                "mail": "a"
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
             },
             "responsable_registre_elevage": {
-                "prenom": "a",
-                "nom_usage": "a",
-                "Adresse": "a",
-                "tel": "a",
-                "Portable": "a",
-                "mail": "a"
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
             }
         },
         {
             "detenteur_equides": {
-                "Sire": "r",
-                "Statut Juridique": "r",
-                "Denomination": "r"
+                "Sire": "zzz",
+                "Statut Juridique": "zzz",
+                "Denomination": "zzz"
             },
             "coordonee_detenteur": {
-                "Adresse": "r",
-                "Tel": "r",
-                "Portable": "r",
-                "mail": "r"
+                "Adresse": "zzz",
+                "Tel": "zz",
+                "Portable": "zzz",
+                "mail": ""
             },
             "responsable_registre_elevage": {
-                "prenom": "r",
-                "nom_usage": "r",
-                "Adresse": "r",
-                "tel": "r",
-                "Portable": "r",
-                "mail": "r"
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": "zzz"
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "koko",
+                "Statut Juridique": "koko",
+                "Denomination": "kko"
+            },
+            "coordonee_detenteur": {
+                "Adresse": "koko",
+                "Tel": "",
+                "Portable": "koko",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "koko",
+                "nom_usage": "koko",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "koko",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "koko",
+                "Statut Juridique": "koko",
+                "Denomination": "koko"
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
+            }
+        },
+        {
+            "detenteur_equides": {
+                "Sire": "",
+                "Statut Juridique": "",
+                "Denomination": ""
+            },
+            "coordonee_detenteur": {
+                "Adresse": "",
+                "Tel": "",
+                "Portable": "",
+                "mail": ""
+            },
+            "responsable_registre_elevage": {
+                "prenom": "",
+                "nom_usage": "",
+                "Adresse": "",
+                "tel": "",
+                "Portable": "",
+                "mail": ""
             }
         },
         {
