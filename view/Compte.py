@@ -22,10 +22,10 @@ class FenetrePrincipale(tk.Tk):
         self.boutons_frame = tk.Frame(self)
         self.boutons_frame.pack(pady=5)  # Ajoute un espacement en y pour séparer du reste
 
-        btn_creation = ttk.Button(self.boutons_frame, text="Création d'un compte", command=self.executer_script_creation_compte, style="TButton")
+        btn_creation = ttk.Button(self.boutons_frame, text="Création d'un compte", command=lambda:self.ouvrir_caracteristiques_lieu_detention(), style="TButton")
         btn_creation.pack(side=tk.LEFT, padx=10)  # Aligne à gauche avec un espace horizontal
 
-        btn_connexion = ttk.Button(self.boutons_frame, text="Connexion", command=self.on_connexion_click, style="TButton")
+        btn_connexion = ttk.Button(self.boutons_frame, text="Connexion", command=lambda:self.Compte_connexion(), style="TButton")
         btn_connexion.pack(side=tk.LEFT, padx=10)  # Aligne à gauche avec un espace horizontal
 
         # Canevas pour l'animation de fond
@@ -39,7 +39,7 @@ class FenetrePrincipale(tk.Tk):
 
     def executer_script_creation_compte(self):
         # Exécutez le script Python depuis un fichier externe
-        with open("view/Creation_identifiant_code_PIN.py", "r") as script_file:  # Modifiez le chemin du script si nécessaire
+        with open("/view/Creation_identifiant_code_PIN.py", "r") as script_file:  # Modifiez le chemin du script si nécessaire
             script_code = script_file.read()
             exec(script_code)
 

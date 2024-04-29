@@ -1,0 +1,28 @@
+{
+    "comptes": [
+        {
+            "Nom": "test",
+            "Pr\u00c3\u00a9nom": "test",
+            "Mot de passe": "test",
+            "Identifiant": "test"
+        },
+        {
+            "Nom": "Kennedy",
+            "Pr\u00e9nom": "John-Killian",
+            "Mot de passe": "Azerty1234",
+            "Identifiant": "jkenne"
+        },
+        {
+            "Nom": "BUB",
+            "Pr\u00e9nom": "Alexander",
+            "Mot de passe": "Azerty1234",
+            "Identifiant": "abub"
+        },
+        {
+            "Nom": "SANS",
+            "Pr\u00e9nom": "Virginie",
+            "Mot de passe": "sans1234",
+            "Identifiant": "vsans"
+        }
+    ]
+}

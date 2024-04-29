@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import glob
+import json
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self):
@@ -12,7 +13,7 @@ class FenetrePrincipale(tk.Tk):
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Ajout de la phrase au centre
-        etiquette_bienvenue = tk.Label(self, text="Veuillez compléter les différents champs pour pouvoir  vous connecter à votre espace.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue = tk.Label(self, text="Veuillez compléter les différents champs pour pouvoir vous connecter à votre espace.", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.pack(side="top", pady=20)
 
         # Création du Label pour afficher les images
@@ -62,9 +63,6 @@ class FenetrePrincipale(tk.Tk):
 
         self.btn_soumettre.grid(row=4, column=0, columnspan=2, pady=10)
 
-        # Variables pour stocker les informations générées
-        self.identifiant = tk.StringVar()
-
         # Style pour le bouton Toggle
         style = ttk.Style()
         style.configure("Toggle.TButton", padding=(5, 5))
@@ -90,6 +88,34 @@ class FenetrePrincipale(tk.Tk):
             child.lift()
 
         self.after(2000, self.load_image)
+
+    def creacompte(self, identifiant):
+        # Collecte des informations du formulaire
+        nom = self.entry_nom.get()
+        prenom = self.entry_prenom.get()
+        mot_de_passe = self.entry_mot_de_passe.get()
+
+        # Création d'un dictionnaire pour stocker les informations du compte
+        compte = {
+            "Nom": nom,
+            "Prénom": prenom,
+            "Mot de passe": mot_de_passe,
+            "Identifiant": identifiant
+        }
+
+        # Lecture des données existantes du fichier JSON s'il en existe
+        try:
+            with open('comptes.json', 'r') as json_file:
+                comptes_data = json.load(json_file)["comptes"]
+        except FileNotFoundError:
+            comptes_data = []
+
+        # Ajout du nouveau compte à la liste
+        comptes_data.append(compte)
+
+        # Écriture des données dans un fichier JSON
+        with open('comptes.json', 'w') as json_file:
+            json.dump({"comptes": comptes_data}, json_file, indent=4)
 
     def redimensionner_image(self, event):
         image_path = self.image_paths[self.current_image_index]
@@ -137,7 +163,9 @@ class FenetrePrincipale(tk.Tk):
 
         # Si tout est valide, générer l'identifiant et afficher les informations
         identifiant = self.generer_identifiant(nom, prenom)
-        messagebox.showinfo("Informations du compte", f"Nom: {nom}\nPrénom: {prenom}\nIdentifiant: {identifiant}\nMot de passe: {mot_de_passe}")
+        self.creacompte(identifiant)
+
+        messagebox.showinfo("Informations du compte", f"Nom : {nom}\nPrénom : {prenom}\nIdentifiant : {identifiant}\nMot de passe : {mot_de_passe}")
 
 
 if __name__ == "__main__":

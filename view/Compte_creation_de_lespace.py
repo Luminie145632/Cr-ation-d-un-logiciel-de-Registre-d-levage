@@ -29,10 +29,24 @@ class FenetrePrincipale(tk.Tk):
         self.demo_widget = DemoWidget(self)
         self.demo_widget.place(relx=0.5, rely=0.5, anchor='center')
 
+        # Cadre pour afficher les informations
+        self.info_frame = tk.Frame(self)
+        self.info_frame.pack(pady=20)  # Ajouter un espacement
+
         # Création de l'image en arrière-plan
         self.setup_background_animation()
 
+        # Liaison de la méthode de mise à jour des informations à la variable de choix
+        self.demo_widget.var_choix.trace_add("write", self.mettre_a_jour_informations)
+
         self.bind("<Configure>", self.redimensionner_image)
+
+        # Dictionnaire pour stocker les pages
+        self.pages = {}
+
+        # Créer les pages pour les particuliers et les professionnels
+        self.pages["Particulier"] = PageParticulier(self.info_frame)
+        self.pages["Professionnel"] = PageProfessionnel(self.info_frame)
 
     def setup_background_animation(self):
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
@@ -65,6 +79,12 @@ class FenetrePrincipale(tk.Tk):
         self.label_image.configure(image=photo)
         self.label_image.image = photo
 
+    def mettre_a_jour_informations(self, *args):
+        choix = self.demo_widget.var_choix.get()
+        # Vérifier le choix et afficher la page correspondante
+        if choix in self.pages:
+            self.pages[choix].afficher()
+
 class DemoWidget(tk.Frame):
     CHOIX = ["Particulier", "Professionnel"]
 
@@ -80,6 +100,30 @@ class DemoWidget(tk.Frame):
 
         # Déselectionner tous les boutons radio par défaut
         self.var_choix.set(None)
+
+class PageParticulier(tk.Frame):
+    def __init__(self, root):
+        super().__init__(root)
+
+        # Création des widgets pour la page des particuliers
+        self.label_particulier = tk.Label(self, text="Informations pour les particuliers...")
+        self.label_particulier.pack()
+
+    def afficher(self):
+        # Afficher la page des particuliers
+        self.pack(fill=tk.BOTH, expand=True)
+
+class PageProfessionnel(tk.Frame):
+    def __init__(self, root):
+        super().__init__(root)
+
+        # Création des widgets pour la page des professionnels
+        self.label_professionnel = tk.Label(self, text="Informations pour les professionnels...")
+        self.label_professionnel.pack()
+
+    def afficher(self):
+        # Afficher la page des professionnels
+        self.pack(fill=tk.BOTH, expand=True)
 
 if __name__ == "__main__":
     # Définition des titres de colonnes

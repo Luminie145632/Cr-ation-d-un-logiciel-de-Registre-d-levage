@@ -103,13 +103,24 @@ class FenetrePrincipale(tk.Tk):
 
         # Vérifier que l'identifiant et le mot de passe ne sont pas vides
         if not identifiant or not mot_de_passe:
-            messagebox.showwarning("Champs vides", "Veuillez remplir tous les champs.")
+            messagebox.showwarning("Champs vides", "Veuillez remplir tous les champs de saisies")
             return
 
         # Effectuer ici la vérification de l'identifiant et du mot de passe (par exemple, vérifier dans une base de données)
+        def checkfile(identifiant, mot_de_passe):
+            with open("comptes.json") as comptes:
+                data = json.load(comptes)
+                for compte in data['comptes']:
+                    if (identifiant == compte["Identifiant"]) and (mot_de_passe == compte["Mot de passe"]):
+                        print("Les informations de connexion sont valides")
+                        return True
+                print("Les informations de connexion ne sont pas valides")
+                messagebox.showwarning("Connexion échouée", "Identifiant ou mot de passe incorrect")
+                return False
 
         # Afficher un message de réussite de connexion avec une boîte de message personnalisée
-        self.message_connexion_reussie(f"Bienvenue, {identifiant} dans votre espace !")
+        if checkfile(identifiant, mot_de_passe):
+            self.message_connexion_reussie(f"Bienvenue, {identifiant} dans votre espace !")
 
     def message_connexion_reussie(self, message):
         # Créer une boîte de message personnalisée pour s'adapter à la longueur du texte
