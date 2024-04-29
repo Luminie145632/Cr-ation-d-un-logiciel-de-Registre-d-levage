@@ -12,7 +12,7 @@ from PIL import Image, ImageTk
 from Page_caracteristique_du_lieu_de_detention import FenetrePrincipaleCaracth
 from Soins_CourantGUI import Soins_cournat
 from Presence_et_Caratheristiques_animauxGUI import Presence_CaratherisisGUI
-from Page_controle_du_registre_delevage import FenetrePrincipaleControle
+#from Page_controle_du_registre_delevage import FenetrePrincipaleControle
 from CaractheristiquesDetention import CaratheristiquesDetention
 from EncadrementZootechnique import EncadrementZootechnique
 from CaratheristiquesAnimaux import CaractheristiquesAnimaux 
@@ -119,8 +119,8 @@ class FenetrePrincipale(tk.Tk):
 
        # Mettre à jour la taille du cadre intérieur pour que la scrollbar fonctionne correctement
        self.inner_frame.update_idletasks()
-       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
-     
+       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))  
+
   def ouvrir_caracteristiques_lieu_detention(self):
   
       self.navbar_frame = tk.Frame(self.navbar_canvas)
@@ -147,14 +147,12 @@ class FenetrePrincipale(tk.Tk):
       self.inner_frame.update_idletasks()
       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
           # Redimensionner le canevas lorsque la taille de la fenêtre change
-      self.bind("<Configure>", self.redimensionner_canevas)
- 
+      self.bind("<Configure>", self.redimensionner_canevas) 
   def setup_background_animation(self):
       
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
         self.current_image_index = 0
         self.load_image()
-
   def redimensionner_image(self, event):
     
         image_path = self.image_paths[self.current_image_index]
@@ -163,7 +161,7 @@ class FenetrePrincipale(tk.Tk):
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
         self.label_image = photo
-
+  
   def Mouvements_temporaires(self,numberColumns):
    
        label_titre_tableau = Label(self, text="MOUVEMENTS OEMPORAIRES DES ANIMAUX")
@@ -223,8 +221,7 @@ class FenetrePrincipale(tk.Tk):
          self.setup_background_animation()
 
         # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
-         self.bind("<Configure>", self.redimensionner_image)    
-     
+         self.bind("<Configure>", self.redimensionner_image)       
   def load_image(self):
         
         try:
@@ -244,7 +241,6 @@ class FenetrePrincipale(tk.Tk):
          self.after(2000, self.load_image)
         except Exception:
           print(" ça marche pas ")
-
   def redimensionner_image(self, event):
       
        try:
@@ -257,8 +253,31 @@ class FenetrePrincipale(tk.Tk):
         self.label_image = photo
        
        except Exception:
-        print("photo march pas ")   
+        print("photo march pas ")          
+
+  def afficher_elements_canevas(self):
+        # Création du cadre à l'intérieur du canevas
+        self.navbar_frame = tk.Frame(self.navbar_canvas)
+        self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
+                
+        # Ajout de l'espace entre le menu de navigation et "Sire"
+        for j in range(len(self.col_title)):
+            col_tmp = self.col_title[j]
+            col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
+            col_title.grid(row=13, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
         
+        # Création des champs d'entrée
+        for i in range(20):
+            row_data = []
+            for j in range(len(self.col_title)):
+                cell = tk.Entry(self.navbar_frame, width=22)
+                cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
+                row_data.append(cell)
+            self.data.append(row_data)
+
+        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
+        for j in range(len(self.col_title)):
+            self.navbar_frame.grid_columnconfigure(j, weight=1) 
   def view_caratherisis_detention_place(self):
      
       with open('caracteristiques_lieu_detention.json', 'r') as file:
@@ -283,27 +302,68 @@ class FenetrePrincipale(tk.Tk):
       btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
       btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
   def view_animals(self):
-      
-        print("appel view animal")
-      #  self.navbar_canvas.create_window((0, 0), window=animal_frame, anchor='nw')
-        with open('lieu_detention.json', 'r') as file:
-            data = json.load(file)
+     
+  #       with open('lieu_detention.json', 'r') as file:
+  #           data = json.load(file)
 
-        for i, animal in enumerate( data['encadrement']  ):#, start=15):
+  #       for i, animal in enumerate( data['encadrement']  ):#, start=15):
+  #      
+
+     with open('caracteristiques_animaux.json', 'r') as file:
+        data = json.load(file)
+
+        # Parcourir les données
+        for i, element in enumerate(data['caracteristiques'], start=1):
             text_fields = []
-            for j, key in enumerate(self.col_title):
-                text_field = tk.Entry(self.inner_frame, width=3)
-                text_field.grid(row=i, column=j, sticky='nsew')
-                value = animal.get(key, '')
-                text_field.insert(tk.END,  value)#  f"{key}: {value}\n")
-                text_fields.append(text_field)
-            self.data.append(text_fields)
 
-        for j in range(len(self.col_title)):
-          self.inner_frame.grid_columnconfigure(j, weight=1)
-        self.inner_frame.update_idletasks()
-        self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))      
+            # Parcourir les clés des sous-dictionnaires
+            for key in element:
+                # Récupérer la valeur correspondante à la clé
+                value = element[key]
 
+                # Trouver l'index de la colonne correspondant à la clé
+                col_index = self.col_title.index(key)
+
+                # Vérifier si l'indice i est valide pour self.data
+                if i < len(self.data):
+                    # Insérer la valeur dans le champ d'entrée correspondant
+                    entry = self.data[i - 1][col_index]
+                    entry.delete(0, 'end')  # Supprimer le contenu précédent
+                    entry.insert(0, value)  # Insérer la nouvelle valeur
+                else:
+                    print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
+
+     # Ajouter les boutons en dehors de la boucle pour éviter la duplication
+     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+     btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
+     
+     # Redimensionner le canevas lorsque la taille de la fenêtre change
+     self.bind("<Configure>", self.redimensionner_canevas)
+
+
+
+  #       print("appel view animal")
+  #     #  self.navbar_canvas.create_window((0, 0), window=animal_frame, anchor='nw')
+  #       with open('lieu_detention.json', 'r') as file:
+  #           data = json.load(file)
+
+  #       for i, animal in enumerate( data['encadrement']  ):#, start=15):
+  #           text_fields = []
+  #           for j, key in enumerate(self.col_title):
+  #               text_field = tk.Entry(self.inner_frame, width=3)
+  #               text_field.grid(row=i, column=j, sticky='nsew')
+  #               value = animal.get(key, '')
+  #               text_field.insert(tk.END,  value)#  f"{key}: {value}\n")
+  #               text_fields.append(text_field)
+  #           self.data.append(text_fields)
+
+  #       for j in range(len(self.col_title)):
+  #         self.inner_frame.grid_columnconfigure(j, weight=1)
+  #       self.inner_frame.update_idletasks()
+  #       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))      
   def controle_registre(self,width):    
 
         self.numberLines = width
@@ -335,7 +395,7 @@ class FenetrePrincipale(tk.Tk):
         self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=self.numberColumns, sticky='nsew')
         
         self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
-        self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')        
+        self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')         
   def create_text(self):
        for i in range(10, 15):
            line = []
@@ -368,26 +428,13 @@ class FenetrePrincipale(tk.Tk):
             print(" destruction de "+str(widget)) 
   def ajouter_ligne(self):
          # Ajouter une nouvelle ligne
-       nouvelle_ligne = []
-       for j in range(self.numberColumns):
-            cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-            cell.grid(row=self.numberLines + 6, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-            nouvelle_ligne.append(cell)
-       self.data.append(nouvelle_ligne)
-       self.numberLines += 1
-
-        # Déplacer le bouton et l'image vers le bas
-       self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-       self.label_image.grid(row=self.numberLines + 8, column=0, columnspan=self.numberColumns, sticky='nsew')
-    #open the windows of the navigation menu 
-
-  def ouvrir_mouvement_temporaires(self, width,height):
       # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
+      self.col_title =  ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Adresse proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"] 
+          
     # Ajout de l'espace entre le menu de navigation et "Sire"
-      for j in range(len(self.col_title)):
+      for j in range(9):#len(self.col_title)):
         col_tmp = self.col_title[j]
         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
@@ -407,59 +454,57 @@ class FenetrePrincipale(tk.Tk):
 
     # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
-      
-      # Bouton de validation
+
+    # Bouton de validation
       self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
       self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
      
-      btn_valider = tk.Button(self, text="Valider", command=self.valider_mouvements_temporaires) 
+      btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-      btn_valider = tk.Button(self, text="Afficher l'historique de mes mouvements", command=lambda: Movements.view_temporary_movements(self))
-      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
-      
-      # cool
-      
-    # # Création du cadre à l'intérieur du canevas
-    #   self.navbar_frame = tk.Frame(self.navbar_canvas)
-    #   self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-    #   self.col_title =  ["Nom","NeSIRE","Netranspondeur","Nom proprietaire","Adresse proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"] 
-          
-    # # Ajout de l'espace entre le menu de navigation et "Sire"
-    #   for j in range(9):#len(self.col_title)):
-    #     col_tmp = self.col_title[j]
-    #     col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
-    #     col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+      btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=lambda:self.view_animals())
+      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')       
+
+  def ouvrir_mouvement_temporaires(self, width,height):
     
-    # # Création des champs d'entrée
-    #   for i in range(20):
-    #     row_data = []
-    #     for j in range(len(self.col_title)):
-    #         cell = tk.Entry(self.navbar_frame, width=22)
-    #         cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
-    #         row_data.append(cell)
-    #     self.data.append(row_data)
+    # Création du cadre à l'intérieur du canevas
+      self.navbar_frame = tk.Frame(self.navbar_canvas)
+      self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
+      self.col_title = ["Date_de_sortie", "Nom_equide", "Motif", "Etape_eventuelle", "Lieu_destination", "Date_retour"]  #["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
+    # Ajout de l'espace entre le menu de navigation et "Sire"
+      for j in range(len(self.col_title)):#len(self.col_title)):
+        col_tmp = self.col_title[j]
+        col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
+        col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+    
+    # Création des champs d'entrée
+      for i in range(20):
+        row_data = []
+        for j in range(len(self.col_title)):
+            cell = tk.Entry(self.navbar_frame, width=22)
+            cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
+            row_data.append(cell)
+        self.data.append(row_data)
 
-    # # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-    #   for j in range(len(self.col_title)):
-    #     self.navbar_frame.grid_columnconfigure(j, weight=1) 
+    # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
+      for j in range(len(self.col_title)):
+        self.navbar_frame.grid_columnconfigure(j, weight=1) 
 
-    # # Redimensionner le canevas lorsque la taille de la fenêtre change
-    #   self.bind("<Configure>", self.redimensionner_canevas)
+    # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.bind("<Configure>", self.redimensionner_canevas)
 
-    # # Bouton de validation
-    #   self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-    #   self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
+    # Bouton de validation
+      self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+      self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
      
-    #   btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
-    #   btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
+      btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
+      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-    #   btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=lambda:self.view_animals())
-    #   btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
- 
+      btn_valider = tk.Button(self, text="Afficher mouvements temporaires ", command=lambda: Movements.view_temporary_movements(self))
+      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')    
   def open_encadrement_zootechnique(self,width):
+   
    # Création du cadre à l'intérieur du canevas
-   #   self.supprimer_widgets( ) #  width,self.col_title,self.height)
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
       self.col_title =  ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)
@@ -483,9 +528,6 @@ class FenetrePrincipale(tk.Tk):
       for j in range(len(self.col_title)):
         self.navbar_frame.grid_columnconfigure(j, weight=1) 
 
-    # Redimensionner le canevas lorsque la taille de la fenêtre change
-      self.bind("<Configure>", self.redimensionner_canevas)
-
     # Bouton de validation
       self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
       self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
@@ -493,19 +535,20 @@ class FenetrePrincipale(tk.Tk):
       btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-      btn_valider = tk.Button(self, text="Koko l'encadrement zootechnique", command=lambda:EncadrementZootechnique.view_zootechnical_supervision(self))
+      btn_valider = tk.Button(self, text="encadrement zootechnique", command=lambda:EncadrementZootechnique.view_zootechnical_supervision(self))
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
-
+   # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.bind("<Configure>", self.redimensionner_canevas)
+ 
   def redimensionner_canevas(self, event):
-      self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
-
+      self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all")) 
   def ouvrir_controle_registre_elevage(self, width,height):
       # Création du cadre à l'intérieur du canevas
-    #  self.supprimer_widgets( ) #  width,self.col_title,height)
+      #  self.supprimer_widgets( ) #  width,self.col_title,height)
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
       self.col_title = ["Date", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet","Signature"]
-     
+
       # Ajout de l'espace entre le menu de navigation et "Sire"
       for j in range(len(self.col_title)):
         col_tmp = self.col_title[j]
@@ -525,9 +568,6 @@ class FenetrePrincipale(tk.Tk):
       for j in range(len(self.col_title)):
         self.navbar_frame.grid_columnconfigure(j, weight=1) 
 
-    # Redimensionner le canevas lorsque la taille de la fenêtre change
-      self.bind("<Configure>", self.redimensionner_canevas)
-
     # Bouton pour ajouter une nouvelle ligne
       self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
       self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
@@ -537,16 +577,16 @@ class FenetrePrincipale(tk.Tk):
 
       self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=lambda : self.valider_informations_controle)
       self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')                                                                 
+    # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.bind("<Configure>", self.redimensionner_canevas)
+
   def ouvrir_interventions(self,width,height):
-  #    self.supprimer_widgets( ) #  width,self.col_title,height)
-    # Ajout de l'espace entre le menu de navigation et "Sire"
-       # Création du cadre à l'intérieur du canevas
+    # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Date", "Type intervention", "Intervenant", "Traitement", "N ordonnance","Date de debut","Date de fin","Delai attente competition","Delai attente abattage"]  # ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)
-         
+      self.col_title = ["Date", "Type intervention", "Intervenant", "Traitement", "N ordonnance","Date de debut","Date de fin","Delai attente competition","Delai attente abattage"]  # ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)   # ["Date_de_sortie", "Nom_equide", "Motif", "Etape_eventuelle", "Lieu_destination", "Date_retour"]  #["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
     # Ajout de l'espace entre le menu de navigation et "Sire"
-      for j in range(len(self.col_title)):
+      for j in range(len(self.col_title)):#len(self.col_title)):
         col_tmp = self.col_title[j]
         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
@@ -564,9 +604,6 @@ class FenetrePrincipale(tk.Tk):
       for j in range(len(self.col_title)):
         self.navbar_frame.grid_columnconfigure(j, weight=1) 
 
-    # Redimensionner le canevas lorsque la taille de la fenêtre change
-      self.bind("<Configure>", self.redimensionner_canevas)
-
     # Bouton de validation
       self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
       self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
@@ -574,11 +611,14 @@ class FenetrePrincipale(tk.Tk):
       btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-      btn_valider = tk.Button(self, text="Koko l'encadrement zootechnique", command=lambda:Interventions.view_informations_intervention(self))
-      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')     
-  
-  def ouvrir_caractheristiques_animaux(self,width,height):
+      btn_valider = tk.Button(self, text="Afficher interventions", command=lambda: Interventions.view_informations_intervention(self))
+      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
 
+          # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.bind("<Configure>", self.redimensionner_canevas)
+      
+  def ouvrir_caractheristiques_animaux(self,width,height):
+    
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
@@ -615,7 +655,13 @@ class FenetrePrincipale(tk.Tk):
 
       btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=lambda:self.view_animals())
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
+
+ # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.bind("<Configure>", self.redimensionner_canevas)
  
+  
+  
+  # fontions de validations
   def valider_mouvements_temporaires(self):
       
       mouvements = []
@@ -792,30 +838,6 @@ class FenetrePrincipale(tk.Tk):
     # Réécrire le fichier JSON avec la nouvelle structure
       with open('caratheristiques_animaux.json', 'w') as json_file:
          json.dump({"caractheristiques":nouveaux_caract}, json_file, indent=4) 
-
-  def afficher_elements_canevas(self):
-        # Création du cadre à l'intérieur du canevas
-        self.navbar_frame = tk.Frame(self.navbar_canvas)
-        self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-                
-        # Ajout de l'espace entre le menu de navigation et "Sire"
-        for j in range(len(self.col_title)):
-            col_tmp = self.col_title[j]
-            col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
-            col_title.grid(row=13, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-        
-        # Création des champs d'entrée
-        for i in range(20):
-            row_data = []
-            for j in range(len(self.col_title)):
-                cell = tk.Entry(self.navbar_frame, width=22)
-                cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
-                row_data.append(cell)
-            self.data.append(row_data)
-
-        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-        for j in range(len(self.col_title)):
-            self.navbar_frame.grid_columnconfigure(j, weight=1) 
 
 
 

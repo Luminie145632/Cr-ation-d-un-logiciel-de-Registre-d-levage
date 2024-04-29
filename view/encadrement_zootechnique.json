@@ -1,21 +1,201 @@
 {
     "encadrement": [
         {
-            "Lieu Habituel et coordonee de detention": "aa",
-            "Nom et coordonees veterianire traitant": "aa",
-            "Nom et coordonnees du veterinaire sanitaire": "aa",
-            "Nom et coordonnees du referent bien-etre animal": "aa",
-            "Nom adresse tel des Organismes sanitaires reconnus": "aa",
-            "Nom, adresse tel marcechal ferrand": "aa",
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
             "Nom, adresse et N de telephone du dentiste": ""
         },
         {
-            "Lieu Habituel et coordonee de detention": "ss",
-            "Nom et coordonees veterianire traitant": "ss",
-            "Nom et coordonnees du veterinaire sanitaire": "ss",
-            "Nom et coordonnees du referent bien-etre animal": "ss",
-            "Nom adresse tel des Organismes sanitaires reconnus": "ss",
-            "Nom, adresse tel marcechal ferrand": "ss",
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "ee",
+            "Nom et coordonees veterianire traitant": "ee",
+            "Nom et coordonnees du veterinaire sanitaire": "ee",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'koko', 'Voie administration': 'ee', 'Date dedebut': 'ee', 'Date dedefin': 'ee'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "ee",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "gtgt",
+            "Nom et coordonees veterianire traitant": "gtgt",
+            "Nom et coordonnees du veterinaire sanitaire": "gtgt",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'koko', 'Voie administration': 'gtgt', 'Date dedebut': 'ggtgt', 'Date dedefin': 'hyhuh'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "huhu",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "ded",
+            "Nom et coordonees veterianire traitant": "rere",
+            "Nom et coordonnees du veterinaire sanitaire": "rere",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'koko', 'Voie administration': 'rer', 'Date dedebut': 'rere', 'Date dedefin': 'rere'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "rere",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'kkokkio', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': ' kiki', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': ' kiki', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'kiki', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'kiki', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "sousou",
+            "Nom et coordonees veterianire traitant": "e",
+            "Nom et coordonnees du veterinaire sanitaire": "e",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': '{\\'UJU\\': \"{\\'UJU\\': \\'e\\', \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'e\\', \\'Date dedefin\\': \\'e\\'}\", \\'Voie administration\\': \\'e\\', \\'Date dedebut\\': \\'\\', \\'Date dedefin\\': \\'\\'}', 'Voie administration': 'e', 'Date dedebut': 'xxx', 'Date dedefin': 'xxx'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "e",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "ee",
+            "Nom et coordonees veterianire traitant": "ee",
+            "Nom et coordonnees du veterinaire sanitaire": "ee",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'koko', 'Voie administration': 'ee', 'Date dedebut': 'ee', 'Date dedefin': 'ee'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "ee",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "gtgt",
+            "Nom et coordonees veterianire traitant": "gtgt",
+            "Nom et coordonnees du veterinaire sanitaire": "gtgt",
+            "Nom et coordonnees du referent bien-etre animal": "{'Nom du medicament': 'koko', 'Voie administration': 'gtgt', 'Date dedebut': 'ggtgt', 'Date dedefin': 'hyhuh'}",
+            "Nom adresse tel des Organismes sanitaires reconnus": "huhu",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "",
+            "Nom et coordonees veterianire traitant": "",
+            "Nom et coordonnees du veterinaire sanitaire": "",
+            "Nom et coordonnees du referent bien-etre animal": "",
+            "Nom adresse tel des Organismes sanitaires reconnus": "",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "",
+            "Nom et coordonees veterianire traitant": "",
+            "Nom et coordonnees du veterinaire sanitaire": "",
+            "Nom et coordonnees du referent bien-etre animal": "",
+            "Nom adresse tel des Organismes sanitaires reconnus": "",
+            "Nom, adresse tel marcechal ferrand": "",
+            "Nom, adresse et N de telephone du dentiste": ""
+        },
+        {
+            "Lieu Habituel et coordonee de detention": "",
+            "Nom et coordonees veterianire traitant": "",
+            "Nom et coordonnees du veterinaire sanitaire": "",
+            "Nom et coordonnees du referent bien-etre animal": "",
+            "Nom adresse tel des Organismes sanitaires reconnus": "",
+            "Nom, adresse tel marcechal ferrand": "",
             "Nom, adresse et N de telephone du dentiste": ""
         },
         {
