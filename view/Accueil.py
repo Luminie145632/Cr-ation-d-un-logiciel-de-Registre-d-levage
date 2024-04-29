@@ -1,9 +1,11 @@
 # Accueil.py  
+# flag tag github pull
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
 import tkinter as tk
 import glob
 import os
+import os.path
 import Methode1
 import json
 from tkinter import ttk
@@ -24,7 +26,32 @@ from tkinter import *
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 
 class FenetrePrincipale(tk.Tk):
-     
+##tag
+
+
+
+    #  intervention_data = []
+
+    #   for row_data in self.data:
+         
+    #    encadrement = {
+    #     "Lieu Habituel et coordonee de detention": row_data[0].get(),
+    #     "Nom et coordonees veterianire traitant": row_data[1].get(),
+    #     "Nom et coordonnees du veterinaire sanitaire": row_data[2].get(),
+    #     "Nom et coordonnees du referent bien-etre animal": row_data[3].get(),
+    #     "Nom adresse tel des Organismes sanitaires reconnus": row_data[4].get(),
+    #     "Nom, adresse tel marcechal ferrand": row_data[5].get(),  # ← Utilisez l'indice 5 ici
+    #     "Nom, adresse et N de telephone du dentiste": row_data[6].get()  # ← Cet indice est en dehors des limites de la liste
+    #    }
+       
+       
+    #    intervention_data.append(encadrement)
+
+    # # Écriture des données dans un fichier JSON
+    #   with open('encadrement_zootechnique.json', 'w') as json_file:
+    #    json.dump({"encadrement":intervention_data}, json_file, indent=4)     
+
+## tag
 
   def __init__(self,width,col_titles,height):
      
@@ -88,6 +115,23 @@ class FenetrePrincipale(tk.Tk):
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
         self.label_image.grid(row=0, column=7, sticky="ew")
+
+        # Texte additionnel
+        texte_instruction = "Pour générer le document PDF qui va regrouper toutes les informations que vous avez entré dans les différentes parties de l'application."
+        #  etiquette_instruction.grid(row=2, column=0, columnspan=self.numberColumns, sticky="nsew")
+        etiquette_instruction = tk.Label(self, text=texte_instruction, font=("Helvetica", 12))
+        etiquette_instruction.grid(row=19, column=0, columnspan=self.numberColumns, sticky="nsew")
+
+
+        # Texte additionnel2
+        texte_instruction2 = "Veuillez cliquer sur le bouton suivant :"
+        etiquette_instruction2 = tk.Label(self, text=texte_instruction2, font=("Helvetica", 12))
+        etiquette_instruction2.grid(row=20, column=0, columnspan=self.numberColumns, sticky="nsew")
+
+        # Bouton pour générer le document PDF
+      #  btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=self.generer_document_pdf, font=("Helvetica", 14, "bold"))
+        btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=self.generer_document_pdf, font=("Helvetica", 16, "bold"))
+        btn_generer_pdf.place(relx=0.375, rely=0.55, anchor="center")
      
         try:
          self.setup_background_animation()
@@ -342,28 +386,10 @@ class FenetrePrincipale(tk.Tk):
      
      # Redimensionner le canevas lorsque la taille de la fenêtre change
      self.bind("<Configure>", self.redimensionner_canevas)
-
-
-
-  #       print("appel view animal")
-  #     #  self.navbar_canvas.create_window((0, 0), window=animal_frame, anchor='nw')
-  #       with open('lieu_detention.json', 'r') as file:
-  #           data = json.load(file)
-
-  #       for i, animal in enumerate( data['encadrement']  ):#, start=15):
-  #           text_fields = []
-  #           for j, key in enumerate(self.col_title):
-  #               text_field = tk.Entry(self.inner_frame, width=3)
-  #               text_field.grid(row=i, column=j, sticky='nsew')
-  #               value = animal.get(key, '')
-  #               text_field.insert(tk.END,  value)#  f"{key}: {value}\n")
-  #               text_fields.append(text_field)
-  #           self.data.append(text_fields)
-
-  #       for j in range(len(self.col_title)):
-  #         self.inner_frame.grid_columnconfigure(j, weight=1)
-  #       self.inner_frame.update_idletasks()
-  #       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))      
+  def generer_document_pdf(self):
+        # Ajoutez ici la logique pour générer le document PDF avec les informations de l'application
+        pass
+    
   def controle_registre(self,width):    
 
         self.numberLines = width
@@ -464,7 +490,7 @@ class FenetrePrincipale(tk.Tk):
 
       btn_valider = tk.Button(self, text="Afficher mes lieux de détention", command=lambda:self.view_animals())
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')       
-
+   #ok
   def ouvrir_mouvement_temporaires(self, width,height):
     
     # Création du cadre à l'intérieur du canevas
@@ -539,7 +565,6 @@ class FenetrePrincipale(tk.Tk):
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
    # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
- 
   def redimensionner_canevas(self, event):
       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all")) 
   def ouvrir_controle_registre_elevage(self, width,height):
@@ -579,7 +604,7 @@ class FenetrePrincipale(tk.Tk):
       self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')                                                                 
     # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
-
+  #checked
   def ouvrir_interventions(self,width,height):
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
@@ -616,7 +641,7 @@ class FenetrePrincipale(tk.Tk):
 
           # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
-      
+  #ok 
   def ouvrir_caractheristiques_animaux(self,width,height):
     
     # Création du cadre à l'intérieur du canevas
@@ -658,9 +683,6 @@ class FenetrePrincipale(tk.Tk):
 
  # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
- 
-  
-  
   # fontions de validations
   def valider_mouvements_temporaires(self):
       
@@ -842,6 +864,6 @@ class FenetrePrincipale(tk.Tk):
 
 
 if __name__ == "__main__":
-    app = FenetrePrincipale(width=10, col_titles=["Colonne 1", "Colonne 2","c","c","c","colonne","c","c"], height=10)
+    app = FenetrePrincipale(width=1920, col_titles=["Colonne 1", "Colonne 2","c","c","c","colonne","c","c"], height=1080)
     app.mainloop() 
 
