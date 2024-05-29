@@ -1,6 +1,9 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import glob
+import os
+import subprocess
+import json
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self, width, col_titles, height):
@@ -13,16 +16,16 @@ class FenetrePrincipale(tk.Tk):
         self.col_title = col_titles
         self.data = []
 
-        # self.title("Création de l'espace compte")
-        # self.geometry("1920x1080")  
-        # self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+        self.title("Création de l'espace compte")
+        self.geometry("1920x1080")  
+        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
-        # # Création du label pour afficher l'image
+        # Création du label pour afficher l'image
         self.label_image = tk.Label(self)
         self.label_image.pack(fill=tk.BOTH, expand=tk.YES)
 
         # Création du titre
-        self.etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page de création de votre compte", font=("Helvetica", 16, "bold"))
+        self.etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page de création de votre espace", font=("Helvetica", 16, "bold"))
         self.etiquette_bienvenue.place(relx=0.5, y=10, anchor="n")
 
         # Création du widget DemoWidget
@@ -34,7 +37,7 @@ class FenetrePrincipale(tk.Tk):
         self.info_frame.pack(pady=20)  # Ajouter un espacement
 
         # Création de l'image en arrière-plan
-     #   self.setup_background_animation()
+        self.setup_background_animation()
 
         # Liaison de la méthode de mise à jour des informations à la variable de choix
         self.demo_widget.var_choix.trace_add("write", self.mettre_a_jour_informations)
@@ -48,13 +51,11 @@ class FenetrePrincipale(tk.Tk):
         self.pages["Particulier"] = PageParticulier(self.info_frame)
         self.pages["Professionnel"] = PageProfessionnel(self.info_frame)
 
-    # def setup_background_animation(self):
-        # self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
-        # self.current_image_index = 0
-        # self.load_image()
+    def setup_background_animation(self):
+        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
+        self.current_image_index = 0
+        self.load_image()
 
-
-    
     def load_image(self):
         image_path = self.image_paths[self.current_image_index]
         image = Image.open(image_path)
@@ -86,6 +87,7 @@ class FenetrePrincipale(tk.Tk):
         # Vérifier le choix et afficher la page correspondante
         if choix in self.pages:
             self.pages[choix].afficher()
+            self.destroy()  # Fermer la fenêtre principale
 
 class DemoWidget(tk.Frame):
     CHOIX = ["Particulier", "Professionnel"]
@@ -103,29 +105,23 @@ class DemoWidget(tk.Frame):
         # Déselectionner tous les boutons radio par défaut
         self.var_choix.set(None)
 
-class PageParticulier(tk.Frame):
+class PageParticulier:
     def __init__(self, root):
-        super().__init__(root)
-
-        # Création des widgets pour la page des particuliers
-        self.label_particulier = tk.Label(self, text="Informations pour les particuliers...")
-        self.label_particulier.pack()
+        # Vous pouvez mettre ici les éléments qui doivent être configurés au moment de la création de la page
+        pass
 
     def afficher(self):
-        # Afficher la page des particuliers
-        self.pack(fill=tk.BOTH, expand=True)
+        # Ouvrir le fichier Python pour les particuliers
+        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Creation_compte_particuliers.py"])
 
-class PageProfessionnel(tk.Frame):
+class PageProfessionnel:
     def __init__(self, root):
-        super().__init__(root)
-
-        # Création des widgets pour la page des professionnels
-        self.label_professionnel = tk.Label(self, text="Informations pour les professionnels...")
-        self.label_professionnel.pack()
+        # Vous pouvez mettre ici les éléments qui doivent être configurés au moment de la création de la page
+        pass
 
     def afficher(self):
-        # Afficher la page des professionnels
-        self.pack(fill=tk.BOTH, expand=True)
+        # Ouvrir le fichier Python pour les professionnels
+        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Creation_compte_professionnel.py"])
 
 if __name__ == "__main__":
     # Définition des titres de colonnes
