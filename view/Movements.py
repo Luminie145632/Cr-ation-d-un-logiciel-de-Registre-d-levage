@@ -11,11 +11,8 @@ from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 class Movements:
     
     def view_temporary_movements(self):
-
-
-
-
-     with open('mouvements_temporaires.json', 'r') as file:
+     
+     with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\mouvements_temporaires.json', 'r') as file:
         data = json.load(file)
 
         # Parcourir les données

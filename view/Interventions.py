@@ -9,38 +9,64 @@ import json
 from tkinter import ttk
 from tkinter import Button  
 from PIL import Image, ImageTk
-
+        
 class Interventions:
-   
-   def view_informations_intervention(self):
-      with open('Soins_Courant.json', 'r') as file:
-        data = json.load(file)
-        # Parcourir les données
-        for i, element in enumerate(data['interventions'], start=1):
-            text_fields = []
 
-            # Parcourir les clés des sous-dictionnaires
+  def view_informations_intervention(self):
+    with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\Soins_Courant.json', 'r') as file:
+        data = json.load(file)
+
+        for i, element in enumerate(data['interventions'], start=1):
+            print("indice" + str(i))
+            
             for key in element:
-                # Récupérer la valeur correspondante à la clé
+                print("indice key" + str(key))
+                print(f"Erreur: L'indice {i} koko")
                 value = element[key]
 
-                # Trouver l'index de la colonne correspondant à la clé
                 col_index = self.col_title.index(key)
 
-                # Vérifier si l'indice i est valide pour self.data
-                if i < len(self.data):
-                    # Insérer la valeur dans le champ d'entrée correspondant
-                    entry = self.data[i - 1][col_index]
-                    entry.delete(0, 'end')  # Supprimer le contenu précédent
-                    entry.insert(0, value)  # Insérer la nouvelle valeur
-                else:
-                    print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
+                while len(self.data) < i:
+                    self.ajouter_ligne()
 
-    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
-      self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+                entry = self.data[i - 1][col_index]
+                entry.delete(0, 'end')
+                entry.insert(0, value)
 
-      btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
-      btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
+        self.bouton_ajouter_ligne = tk.Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+        btn_valider = tk.Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
+
+    # def view_informations_intervention(self):
+    #   with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\Soins_Courant.json', 'r') as file:
+    #     data = json.load(file)
+
+    #     for i, element in enumerate(data['interventions'], start=1):
+    #         print("indice" + str(i))
+            
+    #         for key in element:
+    #             print("indice key" + str(key))
+    #             print(f"Erreur: L'indice {i} koko")
+    #             value = element[key]
+
+    #             col_index = self.col_title.index(key)
+
+    #             if i > len(self.data):
+    #                 self.ajouter_ligne()
+
+    #             if i <= len(self.data):
+    #                 entry = self.data[i - 1][col_index]
+    #                 entry.delete(0, 'end')
+    #                 entry.insert(0, value)
+    #             else:
+    #                 print(f"Erreur: L'indice {i} dépasse la taille de self.data. numéro " + str(len(self.data)))
+
+    #     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+    #     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+    #     btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
+    #     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')
 
 

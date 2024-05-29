@@ -13,11 +13,11 @@ class FenetrePrincipale(tk.Tk):
         self.col_title = col_titles
         self.data = []
 
-        self.title("Création de l'espace compte")
-        self.geometry("1920x1080")  
-        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+        # self.title("Création de l'espace compte")
+        # self.geometry("1920x1080")  
+        # self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
-        # Création du label pour afficher l'image
+        # # Création du label pour afficher l'image
         self.label_image = tk.Label(self)
         self.label_image.pack(fill=tk.BOTH, expand=tk.YES)
 
@@ -34,7 +34,7 @@ class FenetrePrincipale(tk.Tk):
         self.info_frame.pack(pady=20)  # Ajouter un espacement
 
         # Création de l'image en arrière-plan
-        self.setup_background_animation()
+     #   self.setup_background_animation()
 
         # Liaison de la méthode de mise à jour des informations à la variable de choix
         self.demo_widget.var_choix.trace_add("write", self.mettre_a_jour_informations)
@@ -48,11 +48,13 @@ class FenetrePrincipale(tk.Tk):
         self.pages["Particulier"] = PageParticulier(self.info_frame)
         self.pages["Professionnel"] = PageProfessionnel(self.info_frame)
 
-    def setup_background_animation(self):
-        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
-        self.current_image_index = 0
-        self.load_image()
+    # def setup_background_animation(self):
+        # self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
+        # self.current_image_index = 0
+        # self.load_image()
 
+
+    
     def load_image(self):
         image_path = self.image_paths[self.current_image_index]
         image = Image.open(image_path)

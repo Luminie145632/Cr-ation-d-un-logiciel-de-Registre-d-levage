@@ -14,6 +14,7 @@ from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 
 class CaratheristiquesDetention:
  
+ 
  def __init__(self, width, col_titles, height):
         super().__init__()
 
@@ -38,81 +39,78 @@ class CaratheristiquesDetention:
 
       # Redimensionner le canevas lorsque la taille de la fenêtre change
         self.bind("<Configure>", self.redimensionner_canevas)
- def ouvrir_caracteristiques_lieu_detention(self, width):
-    self.navbar_frame = tk.Frame(self.navbar_canvas)
-    self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-    self.col_title = ["Date", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet","Signature"]
 
-    for j in range(len(self.col_title)):
-        col_tmp = self.col_title[j]
-        col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
-        col_title.grid(row=13, column=j, sticky='nsew')
+#  def ouvrir_caracteristiques_lieu_detention(self, width):
+#     self.navbar_frame = tk.Frame(self.navbar_canvas)
+#     self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
+#     self.col_title = ["Date", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet","Signature"]
 
-    for i in range(20):
-        row_data = []
-        for j in range(len(self.col_title)):
-            cell = tk.Entry(self.navbar_frame, width=22)
-            cell.grid(row=i+14, column=j, sticky='nsew')
-            row_data.append(cell)
-        self.data.append(row_data)
+#     for j in range(len(self.col_title)):
+#         col_tmp = self.col_title[j]
+#         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
+#         col_title.grid(row=13, column=j, sticky='nsew')
 
-    for j in range(len(self.col_title)):
-        self.navbar_frame.grid_columnconfigure(j, weight=1)
+#     for i in range(20):     
+#         row_data = []
+#         for j in range(len(self.col_title)):
+#             cell = tk.Entry(self.navbar_frame, width=22)
+#             cell.grid(row=i+14, column=j, sticky='nsew')
+#             row_data.append(cell)
+#         self.data.append(row_data)
 
-    self.bind("<Configure>", self.redimensionner_canevas)
-#  def regarder_carachersitiques_lieu_detention(self):
+#     for j in range(len(self.col_title)):
+#         self.navbar_frame.grid_columnconfigure(j, weight=1)
 
-#      with open('caracteristiques_lieu_detention.json', 'r') as file:
-#         data = json.load(file)
-
-#         # Parcourir les données
-#         for i, element in enumerate(data['caracteristiques_lieu_detention'], start=15):
-#             text_fields = []
-
-#             # Parcourir les clés des sous-dictionnaires
-#             for key in element:
-#                 # Récupérer le sous-dictionnaire correspondant à la clé
-#                 sub_dict = element[key]
-
-#                 # Parcourir les clés et valeurs du sous-dictionnaire
-#                 for j, sub_key in enumerate(sub_dict, start=1):
-#                     value = sub_dict[sub_key]
-
-#                     # Trouver l'index de la colonne correspondant à la clé
-#                     col_index = self.col_title.index(sub_key)
-
-#                     # Insérer la valeur dans le champ d'entrée correspondant
-#                     entry = self.data[i-15][col_index]
-#                     entry.delete(0, 'end')  # Supprimer le contenu précédent
-#                     entry.insert(0, value)  # Insérer la nouvelle valeur
-#                     # text_field.insert(END, f"{key}: {value}\n")
-#                     # text_fields.append(text_field)
-
-#     # Ajouter les boutons en dehors de la boucle pour éviter la duplication
-#         self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-#         self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
-
-#         btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
-#         btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')         
-#         #Barre de défilement verticale pour le Canvas
-
-#         # Barre de défilement verticale pour le Canvas
-#                 # Création du cadre à l'intérieur du canevas
-#         self.navbar_frame = tk.Frame(self.navbar_canvas)
-#         self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-#         scrollbar = tk.Scrollbar(self, orient="vertical", command=self.navbar_canvas.yview)  
-
-#         # Configuration du Canvas pour le défilement
-#         self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-#       #  self.navbar_canvas.config(yscrollcommand=scrollbar)
-       
-#         scrollbar.grid(row=10, column=len(self.col_title) + 1, sticky='ns')
-#         self.navbar_canvas.config(yscrollcommand=scrollbar.set)
-
-#         self.bind("<Configure>", self.redimensionner_canevas)    
+#     self.bind("<Configure>", self.redimensionner_canevas)
 
  def redimensionner_canevas(self, event):
     self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+
+
+
+ def regarder_carachersitiques_lieu_detention(self):  
+
+ #def view_zootechnical_supervision(self):
+        with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\lieu_detention.json', 'r') as file:      
+
+            data = json.load(file)
+
+
+
+            for i, element in enumerate(data['encadrement'], start=1):
+
+                print("indice "+str(i))
+                while i > len(self.data):
+                    self.ajouter_ligne()
+
+
+            # Parcourir les clés des sous-dictionnaires
+                for key in element:
+                # Récupérer la valeur correspondante à la clé
+                    value = element[key]
+
+                # Trouver l'index de la colonne correspondant à la clé
+                    col_index = self.col_title.index(key)
+
+                # Vérifier si l'indice i est valide pour self.data
+                    if i < len(self.data):
+                    # Insérer la valeur dans le champ d'entrée correspondant
+                        entry = self.data[i - 1][col_index]
+                        entry.delete(0, 'end')  # Supprimer le contenu précédent
+                        entry.insert(0, value)  # Insérer la nouvelle valeur
+                    elif i>=len(self.data):
+                      while i >=len(self.data):
+                       self.ajouter_ligne()
+                       print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
+
+    # Ajouter les boutons en dehors de la boucle pour éviter la duplication
+        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+
+        btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_encadrement_Zootechnique_animaux)
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
+# Redimensionner le canevas lorsque la taille de la fenêtre change
+        self.bind("<Configure>", self.redimensionner_canevas) 
 
  def ouvrir_caracteristiques_lieu_detention(self,width):
     # Assurez-vous que les données précédentes sont effacées si nécessaire
@@ -146,7 +144,7 @@ class CaratheristiquesDetention:
      for j in range(self.numberColumns):
         self.grid_columnconfigure(j, weight=1) 
 
-     # Bouton de validation
+     # Bouton de validation   
      self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
      
@@ -157,6 +155,7 @@ class CaratheristiquesDetention:
      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
      # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
      self.bind("<Configure>", self.redimensionner_image) 
+
  def redimensionner_canevas(self, event):
     self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
