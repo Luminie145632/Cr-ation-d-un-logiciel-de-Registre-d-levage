@@ -1,0 +1,40 @@
+{
+    "comptes": [
+        {
+            "Num\u00e9ro de d\u00e9tenteur (SIRE)": "275828",
+            "Titre": "Saisissez votre titre",
+            "Pr\u00e9nom": "Saisissez votre pr\u00e9nom",
+            "Nom d'usage": "Saisissez votre nom d'usage",
+            "NUMAGRIT": "Saisissez votre NUMAGRIT",
+            "Adresse": "Saisissez votre adresse",
+            "T\u00e9l\u00e9phone": "Saisissez le num\u00e9ro de votre t\u00e9l\u00e9phone",
+            "Portable": "Saisissez le num\u00e9ro de votre portable",
+            "Adresse e-mail": "Saisissez votre adresse e-mail",
+            "Mail": "Saisissez votre adresse e-mail"
+        },
+        {
+            "Num\u00e9ro de d\u00e9tenteur (SIRE)": "dzed",
+            "Titre": "Saisissez votre titre",
+            "Pr\u00e9nom": "Saisissez votre pr\u00e9nom",
+            "Nom d'usage": "Saisissez votre nom d'usage",
+            "NUMAGRIT": "Saisissez votre NUMAGRIT",
+            "Adresse": "Saisissez votre adresse",
+            "T\u00e9l\u00e9phone": "Saisissez le num\u00e9ro de votre t\u00e9l\u00e9phone",
+            "Portable": "Saisissez le num\u00e9ro de votre portable",
+            "Adresse e-mail": "Saisissez votre adresse e-mail",
+            "Mail": "Saisissez votre adresse e-mail"
+        },
+        {
+            "Num\u00e9ro de d\u00e9tenteur (SIRE)": "Saisissez votre num\u00e9ro de d\u00e9tenteur",
+            "Titre": "zrze",
+            "Pr\u00e9nom": "Saisissez votre pr\u00e9nom",
+            "Nom d'usage": "Saisissez votre nom d'usage",
+            "NUMAGRIT": "Saisissez votre NUMAGRIT",
+            "Adresse": "Saisissez votre adresse",
+            "T\u00e9l\u00e9phone": "Saisissez le num\u00e9ro de votre t\u00e9l\u00e9phone",
+            "Portable": "Saisissez le num\u00e9ro de votre portable",
+            "Adresse e-mail": "Saisissez votre adresse e-mail",
+            "Mail": "Saisissez votre adresse e-mail"
+        }
+    ]
+}

@@ -1,20 +1,10 @@
 import tkinter as tk
+from tkinter import messagebox
+from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 import glob
-import sys
-from tkinter import ttk
-from tkinter import Button  
-import os
-import Methode1
-from Page_caracteristique_du_lieu_de_detention import FenetrePrincipaleCaracth
-from Soins_CourantGUI import Soins_cournat
-from Presence_et_Caratheristiques_animauxGUI import Presence_CaratherisisGUI
-#from Page_controle_du_registre_delevage import FenetrePrincipale
-import json
-#from tkinter import * (Cause des problèmes si décommenté)
-from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
-#from controller.Methode_1 import ouvrir_fichier, fermer_fichier
 import PyPDF2
+import subprocess
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self, width, col_titles, height):
@@ -27,8 +17,8 @@ class FenetrePrincipale(tk.Tk):
         self.col_title = col_titles
         self.data = []
 
-        self.title("Page de l'application")
-        self.geometry("1920x1080")  
+        self.title("Page d'accueil de votre espace")
+        self.geometry("1920x1080")
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         self.setup_background_animation()
@@ -58,6 +48,10 @@ class FenetrePrincipale(tk.Tk):
         btn_mouvement_temporaire = tk.Button(navbar, text="Contrôle du Registre d'élevage", command=lambda: self.ouvrir_controle_registre_elevage(self.numberColumns))
         btn_mouvement_temporaire.grid(row=0, column=6, sticky="ew")
 
+        # Bouton de déconnexion
+        btn_deconnexion = tk.Button(navbar, text="Déconnexion", command=self.deconnexion)
+        btn_deconnexion.grid(row=0, column=7, sticky="ew")
+
         # Texte additionnel
         texte_instruction = "Pour générer le document PDF qui va regrouper toutes les informations que vous avez entrées dans les différentes parties de l'application."
         etiquette_instruction = tk.Label(self, text=texte_instruction, font=("Helvetica", 12))
@@ -71,7 +65,14 @@ class FenetrePrincipale(tk.Tk):
         # Bouton pour générer le document PDF
         btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=self.generer_document_pdf, font=("Helvetica", 14, "bold"))
         btn_generer_pdf.place(relx=0.5, rely=0.5, anchor="center")
-    
+
+    def deconnexion(self):
+        # Ajoutez ici la logique pour déconnecter l'utilisateur
+        messagebox.showinfo("Déconnexion", "Vous vous êtes déconnecté avec succès de votre espace")
+        # Exécute le script Python externe
+        subprocess.run(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Compte.py"])
+        self.destroy()  # Ferme la fenêtre actuelle
+
     def afficher_pdf(self):
         # Ouvrir un dialogue pour sélectionner le fichier PDF
         filename = askopenfilename(filetypes=[("/Creation_dun_logiciel_de_Registre_delevage/", "*.pdf")])
@@ -98,17 +99,17 @@ class FenetrePrincipale(tk.Tk):
         self.current_image_index = 0
         self.load_image()
 
-        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de notre application.", font=("Helvetica", 16, "bold"))
-        etiquette_bienvenue.grid(row=0, column=0, columnspan=self.numberColumns, sticky="nsew")  
+        etiquette_bienvenue = tk.Label(self, text="Bienvenue sur la page d'accueil de votre compte.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue.grid(row=0, column=0, columnspan=self.numberColumns, sticky="nsew")
 
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
-        self.label_image.grid(row=5, column=0, columnspan=self.numberColumns, sticky='nsew')  
+        self.label_image.grid(row=5, column=0, columnspan=self.numberColumns, sticky='nsew')
 
-        self.grid_rowconfigure(1, weight=0)  
-        self.grid_rowconfigure(2, weight=0)  
-        self.grid_rowconfigure(3, weight=0)  
-        self.grid_rowconfigure(4, weight=0)  
-        self.grid_rowconfigure(5, weight=1)  
+        self.grid_rowconfigure(1, weight=0)
+        self.grid_rowconfigure(2, weight=0)
+        self.grid_rowconfigure(3, weight=0)
+        self.grid_rowconfigure(4, weight=0)
+        self.grid_rowconfigure(5, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
     def load_image(self):
@@ -164,4 +165,3 @@ if __name__ == "__main__":
     col_titles = ["Date", "Organisme de contrôle", "Motif de contrôle", "Nom du contrôleur", "Cachet", "Signature"]
     fenetre_principale = FenetrePrincipale(width=1920, col_titles=col_titles, height=1080)
     fenetre_principale.mainloop()
-

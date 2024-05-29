@@ -1,0 +1,23 @@
+{
+    "comptes": [
+        {},
+        {
+            "Numero de detenteur (SIRE)": "Saisissez votre 5785785785numero de detenteur",
+            "Type de detenteur": "None",
+            "Numero de SIRET": "Saisissez votre Numero de SIRET",
+            "Code APE": "Saisissez votre Code APE",
+            "Statut juridique": "Saisissez votre statut juridique (facultatif)",
+            "Denomination": "Saisissez votre denomination (facultatif)",
+            "Adresse": "Saisissez votre adresse",
+            "Telephone": "Saisissez le numero de votre telephone",
+            "Portable": "Saisissez le numero de votre portable",
+            "Adresse e-mail": "Saisissez votre adresse e-mail",
+            "Prenom": "Saisissez votre prenom",
+            "Nom d'usage": "Saisissez votre nom d'usage",
+            "Adresse (responsable)": "Saisissez votre adresse",
+            "Telephone (responsable)": "Saisissez le numero de votre telephone",
+            "Portable (responsable)": "Saisissez le numero de votre portable",
+            "Adresse e-mail (responsable)": "Saisissez votre adresse e-mail"
+        }
+    ]
+}

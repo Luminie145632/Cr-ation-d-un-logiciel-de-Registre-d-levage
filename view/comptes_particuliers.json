@@ -1,0 +1,52 @@
+{
+    "comptes": [
+        {
+            "Numero de detenteur (SIRE)": "296142",
+            "Titre": "Proprietaire",
+            "Prenom": "Lacia",
+            "Nom d'usage": "Lacia",
+            "NUMAGRIT": "1498349",
+            "Adresse": " 1 Avenue du Charles de Gaules",
+            "Telephone": "0298883",
+            "Portable": "029343",
+            "Adresse e-mail": "lacia@chevaldor.fr",
+            "Mail": "lacia@chevaldor.fr"
+        },
+        {
+            "Numero de detenteur (SIRE)": "289428",
+            "Titre": "zadaezdeazdeazd",
+            "Prenom": "zijrzerj",
+            "Nom d'usage": "f;zef;ezlrk",
+            "NUMAGRIT": "Saisissez votre NUMAGRIT",
+            "Adresse": "lmzd;fzef84854",
+            "Telephone": "84262428",
+            "Portable": "42982892",
+            "Adresse e-mail": "zekddzje@czecze",
+            "Mail": "po;zkdoae@fojezpjzp"
+        },
+        {
+            "Numero de detenteur (SIRE)": "fsdf",
+            "Titre": "Saisissez votre titre",
+            "Prenom": "Saisissez votre prenom",
+            "Nom d'usage": "Saisissez votre nom d'usage",
+            "NUMAGRIT": "Saisissez votre NUMAGRIT",
+            "Adresse": "Saisissez votre adresse",
+            "Telephone": "Saisissez le numero de votre telephone",
+            "Portable": "Saisissez le numero de votre portable",
+            "Adresse e-mail": "Saisissez votre adresse e-mail",
+            "Mail": "Saisissez votre adresse e-mail"
+        },
+        {
+            "Numero de detenteur (SIRE)": "sdqd",
+            "Titre": "qsdq",
+            "Prenom": "Saisissez votre pr\u00e9nom",
+            "Nom d'usage": "Saisissez votre nom d'usage",
+            "NUMAGRIT": "Saisissez votre NUMAGRIT",
+            "Adresse": "Saisissez votre adresse",
+            "Telephone": "Saisissez le num\u00e9ro de votre t\u00e9l\u00e9phone",
+            "Portable": "Saisissez le num\u00e9ro de votre portable",
+            "Adresse e-mail": "Saisissez votre adresse e-mail",
+            "Mail": "Saisissez votre adresse e-mail"
+        }
+    ]
+}

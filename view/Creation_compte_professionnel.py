@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import glob
+import subprocess
+import json
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self):
@@ -65,7 +67,7 @@ class FenetrePrincipale(tk.Tk):
 
         self.formulaire_frame.place(x=x_position, y=y_position)
 
-    def creer_partie_1(self, row, relx=5, rely=5):
+    def creer_partie_1(self, row, relx=None, rely=None):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 2), sticky="w")
 
@@ -79,7 +81,7 @@ class FenetrePrincipale(tk.Tk):
         self.create_label_entry(partie_frame, "Statut juridique :", "entry_statut_juridique", "Saisissez votre statut juridique (facultatif)", required=False, row=5, relx=relx, rely=rely)
         self.create_label_entry(partie_frame, "Dénomination :", "entry_denomination", "Saisissez votre dénomination (facultatif)", required=False, row=6, relx=relx, rely=rely)
 
-    def creer_partie_2(self, row, relx=5, rely=5):
+    def creer_partie_2(self, row, relx=None, rely=None):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
@@ -87,11 +89,11 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
         self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", required=False, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numéro de votre téléphone", required=False, row=2, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Téléphone :", "entry_tel", "Saisissez le numéro de votre téléphone", required=False, row=2, relx=relx, rely=rely)
         self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", required=False, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Mail :", "entry_mail", "Saisissez votre adresse e-mail", required=False, row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse e-mail :", "entry_mail", "Saisissez votre adresse e-mail", required=False, row=4, relx=relx, rely=rely)
 
-    def creer_partie_3(self, row, relx=5, rely=5):
+    def creer_partie_3(self, row, relx=None, rely=None):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
@@ -103,7 +105,8 @@ class FenetrePrincipale(tk.Tk):
         self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", required=False, row=3, relx=relx, rely=rely)
         self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=False, row=4, relx=relx, rely=rely)
         self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=False, row=5, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=False, row=6, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse e-mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=False, row=6, relx=relx, rely=rely)
+
 
     def create_radio_buttons(self, frame, row, relx=5, rely=5):
         # Frame pour les boutons radio
@@ -115,63 +118,56 @@ class FenetrePrincipale(tk.Tk):
         self.var_choix.set(None)  # Ajuste la valeur par défaut à None
 
         # Création des boutons radio
-        choix1 = tk.Radiobutton(radio_frame, text="Personne Physique", value="Choix 1", variable=self.var_choix, command=self.update_radio_buttons)
+        choix1 = tk.Radiobutton(radio_frame, text="Personne Physique", value="Personne physique", variable=self.var_choix, command=self.update_radio_buttons)
         choix1.grid(row=0, column=0, padx=20)
 
-        choix2 = tk.Radiobutton(radio_frame, text="Personne Morale", value="Choix 2", variable=self.var_choix, command=self.update_radio_buttons)
+        choix2 = tk.Radiobutton(radio_frame, text="Personne Morale", value="Personne morale", variable=self.var_choix, command=self.update_radio_buttons)
         choix2.grid(row=0, column=1, padx=20)
 
-        # Configurer le poids de la colonne pour permettre l'ajustement dynamique
-        frame.grid_columnconfigure(0, weight=1)
-
     def update_radio_buttons(self):
-        # Désactiver la validation si l'un des boutons radio est sélectionné
-        self.validate_entries()
+        choix_selectionne = self.var_choix.get()
 
-    def create_label_entry(self, frame, label_text, entry_name, placeholder_text, required=True, row=0, relx=None, rely=None):
-        label_frame = tk.Frame(frame)
-        label_frame.grid(row=row, column=0, pady=5, padx=(self.winfo_width() * relx, 5) if relx is not None else (5, 5), sticky="w")
+        if choix_selectionne == "Personne physique":
+            self.entry_siret.config(state="disabled")  # Désactiver le champ SIRET
+            self.entry_code_ape.config(state="disabled")  # Désactiver le champ Code APE
+        else:
+            self.entry_siret.config(state="normal")  # Activer le champ SIRET
+            self.entry_code_ape.config(state="normal")  # Activer le champ Code APE
 
-        if required:
-            ast_label = tk.Label(label_frame, text="*", fg="red")
-            ast_label.grid(row=0, column=0, padx=(0, 5), pady=5)
+    def create_label_entry(self, frame, label_text, entry_var_name, entry_placeholder, required=False, row=1, relx=5, rely=5):
+        # Création d'un frame pour l'étiquette et le champ de saisie
+        label_entry_frame = tk.Frame(frame)
+        label_entry_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
-        label = tk.Label(label_frame, text=label_text)
-        label.grid(row=0, column=1, sticky="w", pady=5)
+        # Création de l'étiquette
+        label = tk.Label(label_entry_frame, text=label_text, font=("Helvetica", 12))
+        label.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        entry_var = tk.StringVar()
-        entry = tk.Entry(frame, textvariable=entry_var, fg="black")
-        entry.grid(row=row, column=1, pady=5, padx=(self.winfo_width() * relx, 5) if relx is not None else (5, 5), sticky="w")
+        # Création du champ de saisie
+        entry_var = tk.StringVar(value=entry_placeholder)
+        entry = tk.Entry(label_entry_frame, textvariable=entry_var, font=("Helvetica", 12), foreground="gray")
+        entry.grid(row=1, column=0, padx=(10, 0), sticky="w")
 
-        entry.placeholder_text = placeholder_text  # Ajout de l'attribut placeholder_text à l'objet Entry
+        # Effacement du texte par défaut lors du clic sur le champ de saisie
+        entry.bind("<FocusIn>", lambda event, e=entry: self.on_entry_click(e))
+        entry.bind("<FocusOut>", lambda event, e=entry, p=entry_placeholder: self.on_focus_out(e, p))
 
-        entry.insert(0, placeholder_text)
-        entry.bind("<FocusIn>", lambda event, var=entry_var: self.on_entry_focus_in(var, placeholder_text, entry))
-        entry.bind("<FocusOut>", lambda event, var=entry_var: self.on_entry_focus_out(var, placeholder_text, entry))
+        # Stockage du champ de saisie dans une variable d'instance
+        setattr(self, entry_var_name, entry)
 
-        # Configurer le poids de la colonne pour permettre l'ajustement dynamique
-        frame.grid_columnconfigure(1, weight=1)
+    def on_entry_click(self, entry):
+        if entry.get() == entry.cget("textvariable"):
+            entry.delete(0, "end")
+            entry.config(foreground="black")
 
-        setattr(self, entry_name, entry)
-
-    def on_entry_focus_in(self, var, placeholder_text, entry):
-        if var.get() == placeholder_text:
-            var.set('')
-            entry.config(fg='black')
-
-    def on_entry_focus_out(self, var, placeholder_text, entry):
-        if not var.get():
-            var.set(placeholder_text)
-            entry.config(fg='grey')
+    def on_focus_out(self, entry, placeholder):
+        if entry.get() == "":
+            entry.insert(0, placeholder)
+            entry.config(foreground="gray")
 
     def get_entry_value(self, entry):
         value = entry.get()
-        placeholder_text = entry.placeholder_text if hasattr(entry, 'placeholder_text') else ""
-        return value if value != placeholder_text else ""
-
-    def validate_entries(self):
-        # Vous pouvez ajouter ici la logique de validation
-        pass
+        return value if value != entry.cget("textvariable") else ""
 
     def soumettre_formulaire(self):
         # Récupération des valeurs des champs pour chaque partie
@@ -194,26 +190,70 @@ class FenetrePrincipale(tk.Tk):
 
         # Affichage des informations dans une boîte de dialogue
         message = (
-            f"Numéro de détenteur (SIRE) : {num_detenteur}\n"
-            f"Type de détenteur : {choix_type_detenteur}\n"
+            f"Numero de detenteur (SIRE) : {num_detenteur}\n"
+            f"Type de detenteur : {choix_type_detenteur}\n"
             f"N° SIRET : {siret}\n"
             f"Code APE : {code_ape}\n"
             f"Statut juridique : {statut_juridique}\n"
-            f"Dénomination : {denomination}\n"
+            f"Denomination : {denomination}\n"
             f"Adresse : {adresse}\n"
-            f"Téléphone : {tel}\n"
+            f"Telephone : {tel}\n"
             f"Portable : {portable}\n"
             f"Adresse e-mail : {mail}\n"
-            f"Prénom : {prenom}\n"
+            f"Prenom : {prenom}\n"
             f"Nom d'usage : {nom_usage}\n"
             f"Adresse : {adresse_partie_4}\n"
-            f"Téléphone : {tel_partie_4}\n"
+            f"Telephone : {tel_partie_4}\n"
             f"Portable : {portable_partie_4}\n"
             f"Adresse e-mail : {mail_partie_4}"
         )
 
         messagebox.showinfo("Récapitulatif des informations", message)
 
+        # Appel à la méthode creacompte pour enregistrer les données dans le fichier JSON
+        self.creacompte()
+
+        # Ouvrir la nouvelle fenêtre et fermer l'ancienne
+        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Accueil testV2.py"])
+        self.destroy()
+
+    def creacompte(self):
+        # Collecte des informations du formulaire
+        comptes = {
+            "Numero de detenteur (SIRE)": self.get_entry_value(self.entry_num_detenteur),
+            "Type de detenteur": self.var_choix.get(),
+            "N° SIRET": self.get_entry_value(self.entry_siret),
+            "Code APE": self.get_entry_value(self.entry_code_ape),
+            "Statut juridique": self.get_entry_value(self.entry_statut_juridique),
+            "Denomination": self.get_entry_value(self.entry_denomination),
+            "Adresse": self.get_entry_value(self.entry_adresse),
+            "Telephone": self.get_entry_value(self.entry_tel),
+            "Portable": self.get_entry_value(self.entry_portable),
+            "Adresse e-mail": self.get_entry_value(self.entry_mail),
+            "Prenom": self.get_entry_value(self.entry_prenom),
+            "Nom d'usage": self.get_entry_value(self.entry_nom_usage),
+            "Adresse (responsable)": self.get_entry_value(self.entry_adresse_partie_4),
+            "Telephone (responsable)": self.get_entry_value(self.entry_tel_partie_4),
+            "Portable (responsable)": self.get_entry_value(self.entry_portable_partie_4),
+            "Adresse e-mail (responsable)": self.get_entry_value(self.entry_mail_partie_4)
+        }
+
+        # Lecture des données existantes du fichier JSON s'il en existe
+        try:
+            with open('/Creation_dun_logiciel_de_Registre_delevage/view/comptes_professionnels.json', 'r') as json_file:
+                comptes_data = json.load(json_file)["comptes"]
+        except FileNotFoundError:
+            comptes_data = []
+
+        # Ajout du nouveau compte à la liste
+        comptes_data.append(comptes)
+
+        # Écriture des données dans un fichier JSON
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/comptes_professionnels.json', 'w') as json_file:
+            json.dump({"comptes": comptes_data}, json_file, indent=4)
+
 if __name__ == "__main__":
-    fenetre_principale = FenetrePrincipale()
-    fenetre_principale.mainloop()
+    app = FenetrePrincipale()
+    app.mainloop()
+
+

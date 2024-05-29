@@ -1,0 +1,18 @@
+{
+    "num_detenteur": "gdgd",
+    "type_detenteur": "Non professionnel",
+    "siret": "gdgd",
+    "code_ape": "Saisissez votre Code APE",
+    "statut_juridique": "Saisissez votre statut juridique (facultatif)",
+    "denomination": "Saisissez votre dénomination (facultatif)",
+    "adresse": "Saisissez votre adresse",
+    "tel": "Saisissez le numéro de votre téléphone",
+    "portable": "Saisissez le numéro de votre portable",
+    "mail": "Saisissez votre adresse e-mail",
+    "prenom": "Saisissez votre prénom",
+    "nom_usage": "Saisissez votre nom d'usage",
+    "adresse_partie_4": "Saisissez votre adresse",
+    "tel_partie_4": "Saisissez le numéro de votre téléphone",
+    "portable_partie_4": "Saisissez le numéro de votre portable",
+    "mail_partie_4": "Saisissez votre adresse e-mail"
+}

@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import glob
-import string
 import json
+import subprocess
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self):
@@ -63,7 +63,7 @@ class FenetrePrincipale(tk.Tk):
         self.mot_de_passe_visible = False
 
     def setup_background_animation(self):
-        self.image_paths = glob.glob("images/*.png")
+        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
         self.current_image_index = 0
         self.load_image()
 
@@ -125,6 +125,9 @@ class FenetrePrincipale(tk.Tk):
     def message_connexion_reussie(self, message):
         # Créer une boîte de message personnalisée pour s'adapter à la longueur du texte
         messagebox.showinfo("Connexion réussie", message)
+        # Ouvrir la nouvelle fenêtre et fermer l'ancienne
+        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Accueil testV2.py"])
+        self.destroy()
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()

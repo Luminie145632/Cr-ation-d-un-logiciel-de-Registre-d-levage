@@ -3,6 +3,8 @@ from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import glob
 import json
+import subprocess
+
 
 class FenetrePrincipale(tk.Tk):
     def __init__(self):
@@ -13,7 +15,7 @@ class FenetrePrincipale(tk.Tk):
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Ajout de la phrase au centre
-        etiquette_bienvenue = tk.Label(self, text="Veuillez compléter les différents champs pour pouvoir vous connecter à votre espace.", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue = tk.Label(self, text="Veuillez compléter les différents champs pour pouvoir créer votre espace.", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue.pack(side="top", pady=20)
 
         # Création du Label pour afficher les images
@@ -98,7 +100,7 @@ class FenetrePrincipale(tk.Tk):
         # Création d'un dictionnaire pour stocker les informations du compte
         compte = {
             "Nom": nom,
-            "Prénom": prenom,
+            "Prenom": prenom,
             "Mot de passe": mot_de_passe,
             "Identifiant": identifiant
         }
@@ -166,7 +168,12 @@ class FenetrePrincipale(tk.Tk):
         self.creacompte(identifiant)
 
         messagebox.showinfo("Informations du compte", f"Nom : {nom}\nPrénom : {prenom}\nIdentifiant : {identifiant}\nMot de passe : {mot_de_passe}")
+        self.executer_script_creation_compte()
 
+    def executer_script_creation_compte(self):
+        # Exécute le script Python externe
+        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/compte_creation_de_lespace.py"])
+        self.destroy()  # Ferme la fenêtre actuelle
 
 if __name__ == "__main__":
     fenetre_principale = FenetrePrincipale()
