@@ -110,7 +110,7 @@ class FenetrePrincipale(tk.Tk):
         btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\nouilles.pdf', 4))
         btn_generer_pdf.place(relx=0.375, rely=0.55, anchor="center")
         
-        self.setup_background_animation()
+        #self.setup_background_animation()
         self.create_navigation_panel()
         self.bind("<Configure>", self.redimensionner_canevas)
   
@@ -187,7 +187,7 @@ class FenetrePrincipale(tk.Tk):
       
         self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
         self.current_image_index = 0
-        self.load_image()
+        #self.load_image()
 
   def redimensionner_image(self, event):
     
@@ -311,7 +311,7 @@ class FenetrePrincipale(tk.Tk):
   def load_image(self):
 
         image_path = self.image_paths[self.current_image_index]
-        image = Image.open(image_path)
+        #image = Image.open(image_path)
         image = image.resize((self.winfo_width(), self.winfo_height()))
      
         photo = ImageTk.PhotoImage(image)
