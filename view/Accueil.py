@@ -1,5 +1,3 @@
-# Accueil.py  
-# flag tag github pull
 import io
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
@@ -11,9 +9,7 @@ import Methode1
 import json
 import PyPDF2
 import pypdf
-#import PyPDF
 import tableprint
-   
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
@@ -40,8 +36,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-#from PyPDF2 import PdfReader, PdfWriter
-from pypdf import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter, PageObject
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.platypus import SimpleDocTemplate
@@ -72,50 +67,36 @@ class FenetrePrincipale(tk.Tk):
         except Exception:
             print("photo de cheval")
 
-        self.navbar_canvas = tk.Canvas(self, bd=2, relief=tk.GROOVE)
+        self.navbar_canvas = tk.Canvas(self, bd=2, relief=tk.GROOVE  , width=1200, height=400) #, width=1600, height=800)
        # self.navbar_canvas = tk.Canvas(self.root)
         self.navbar_canvas.grid(row=10, columnspan=len(self.col_title), sticky="ew")
      
         self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL, command=self.navbar_canvas.yview)
         self.scrollbar.grid(row=10, column=len(self.col_title) + 5, sticky="ns")        
-       # self.navbar_canvas.configure(yscrollcommand=self.scrollbar.set)
+ 
         self.navbar_canvas.config(yscrollcommand=self.scrollbar.set)
-
-        self.navbar_frame = tk.Frame(self.navbar_canvas)
+        self.navbar_frame = tk.Frame(self.navbar_canvas, width=1600, height=600)
         self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-       # self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
 
         # Création d'un cadre intérieur pour les Entry widgets
-        self.inner_frame = tk.Frame(self.navbar_frame)
-        self.inner_frame.grid(row=0, column=0, sticky='nsew')
-
-        self.create_navigation_panel()
-        self.bind("<Configure>", self.redimensionner_canevas)
-
-        # Création d'un cadre intérieur pour les Entry widgets
-        self.inner_frame = tk.Frame(self.navbar_frame, width=500, height=500)
-        self.inner_frame.grid(row=0, column=0, sticky='nsew')
-
-        # Création des boutons de la barre de navigation # Caractéristiques Lieu de Détention
-        btn_caracteristiques_lieu = tk.Button(self, text="Caractéristiques", command=self.ouvrir_caracteristiques_lieu_detention())
-        btn_caracteristiques_lieu.grid(row=0, column=1 , sticky="ew")
+        self.inner_frame = Frame(self.navbar_frame)
 
         # Encadrement Zootechnique, Sanitaire et Medical des Animaux
-        btn_encadrement = tk.Button(self, text="Encadrement", command=lambda:self.open_encadrement_zootechnique())
-        btn_encadrement.grid(row=0, column=2, sticky="ew")
-
+        self.btn_encadrement = tk.Button(self, text="Encadrement", command=lambda:self.open_encadrement_zootechnique())
+        self.btn_encadrement.grid(row=0, column=2, sticky="ew")
+             
         # Présence et Caractéristiques des Animaux
-        btn_mouvement_temporaire = tk.Button(self, text="Présence", command=lambda:self.ouvrir_caractheristiques_animaux())
-        btn_mouvement_temporaire.grid(row=0, column=3, sticky="ew")
+        self.btn_caractheristiques_animaux = tk.Button(self, text="Présence", command=lambda:self.ouvrir_caractheristiques_animaux())
+        self.btn_caractheristiques_animaux.grid(row=0, column=3, sticky="ew")
         
-        btn_mouvement_temporaire_mvt = tk.Button(self, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires(width,height))
-        btn_mouvement_temporaire_mvt.grid(row=0, column=4, sticky="ew")
+        self.btn_mouvement_temporaire = tk.Button(self, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires(width,height))
+        self.btn_mouvement_temporaire.grid(row=0, column=4, sticky="ew")
         
-        btn_mouvement_temporaire = tk.Button(self, text="Intervents et Soins Courants", command=lambda:self.ouvrir_interventions())
-        btn_mouvement_temporaire.grid(row=0, column=5, sticky="ew")
+        self.btn_intervention_soins = tk.Button(self, text="Intervents et Soins Courants", command=lambda:self.ouvrir_interventions())
+        self.btn_intervention_soins.grid(row=0, column=5, sticky="ew")
 
-        btn_mouvement_temporaire = tk.Button(self, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage())
-        btn_mouvement_temporaire.grid(row=0, column=6, sticky="ew")
+        self.btn_controle_registre = tk.Button(self, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage())
+        self.btn_controle_registre.grid(row=0, column=6, sticky="ew")
     
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
@@ -126,7 +107,6 @@ class FenetrePrincipale(tk.Tk):
         #  etiquette_instruction.grid(row=2, column=0, columnspan=self.numberColumns, sticky="nsew")
         etiquette_instruction = tk.Label(self, text=texte_instruction, font=("Helvetica", 12))
         etiquette_instruction.grid(row=19, column=0, columnspan=self.numberColumns, sticky="nsew")
-
 
         # Texte additionnel2
         texte_instruction2 = "Veuillez cliquer sur le bouton suivant :"
@@ -199,10 +179,7 @@ class FenetrePrincipale(tk.Tk):
       self.inner_frame.update_idletasks()
       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
 
-
-
-
-          # Redimensionner le canevas lorsque la taille de la fenêtre change
+    # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
 
     # Bouton de validation
@@ -283,7 +260,7 @@ class FenetrePrincipale(tk.Tk):
      
   def Mouvements_temporaires(self,numberColumns):
    
-       label_titre_tableau = Label(self, text="MOUVEMENTS OEMPORAIRES DES ANIMAUX")
+       label_titre_tableau = Label(self, text="MOUVEMENTS TEMPORAIRES DES ANIMAUX")
        label_titre_tableau.grid(row=0, column=0, columnspan=self.numberColumns, sticky='nsew')
 
        # Phrase à deux trous
@@ -374,7 +351,7 @@ class FenetrePrincipale(tk.Tk):
         self.label_image = photo
        
        except Exception:
-        print("photo march pas ")          
+        print("photo marche pas ")          
   # print the  elements from the databases
   def afficher_elements_canevas(self):
         # Création du cadre à l'intérieur du canevas
@@ -398,7 +375,8 @@ class FenetrePrincipale(tk.Tk):
 
         # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
         for j in range(len(self.col_title)):
-           self.navbar_frame.grid_columnconfigure(j, weight=1) 
+           self.navbar_frame.grid_columnconfigure(j, weight=1)
+
   def view_caratherisis_detention_place(self):
      
       with open('caracteristiques_lieu_detention.json', 'r') as file:
@@ -422,38 +400,6 @@ class FenetrePrincipale(tk.Tk):
        
       btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
       btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
-  # def view_animals(self):
-
-  #    with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_animaux.json', 'r') as file:
-  #       data = json.load(file)
-
-  #       # Parcourir les données
-  #       for i, element in enumerate(data['caracteristiques'], start=1):
-  #         #  text_fields = []
-
-  #           # Parcourir les clés des sous-dictionnaires
-  #           for key in element:
-  #               # Récupérer la valeur correspondante à la clé
-  #               value = element[key]
-
-  #               # Trouver l'index de la colonne correspondant à la clé
-  #               col_index = self.col_title.index(key)
-
-  #               if i > len(self.data):
-  #                   self.ajouter_ligne()
-
-  #               # Vérifier si l'indice i est valide pour self.data
-  #               if i < len(self.data):
-  #                   # Insérer la valeur dans le champ d'entrée correspondant
-
-  #                   entry = self.data[i - 1][col_index]
-  #                   print(" la valeur est  "+entry )
-  #                   entry.delete(0, 'end')  # Supprimer le contenu précédent
-  #                   entry.insert(0, value)  # Insérer la nouvelle valeur
-  #               else:
-  #                   print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
-
-
   def view_animals(self):
      print("flag view animals")
      with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_animaux.json', 'r') as file:
@@ -486,100 +432,10 @@ class FenetrePrincipale(tk.Tk):
 
      btn_valider = Button(self, text="Modifier les informations", command=self.valider_caratheristiques_animaux)         
      btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')                                  
-# Redimensionner le canevas lorsque la taille de la fenêtre change                                                
+    # Redimensionner le canevas lorsque la taille de la fenêtre change                                                
      self.bind("<Configure>", self.redimensionner_canevas)
 
-        # with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_animaux.json', 'r') as file:
-        #     data = json.load(file)
 
-        #     for i, element in enumerate(data['caracteristiques'], start=1):
-        #         for key in element:
-        #             value = element[key]
-
-        #             if key in self.col_title:
-        #                 col_index = self.col_title.index(key)
-
-        #                 while len(self.data) < i:
-        #                     self.ajouter_ligne()
-
-        #                 entry = self.data[i - 1][col_index]
-        #                 # entry.delete(0, 'end')
-        #                 entry.insert(0, value)
-
-
-
-
-
-        # # Ajouter les boutons en dehors de la boucle pour éviter la duplication
-        # self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-        # self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
-
-        # btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
-        # btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
-     
-        # # Redimensionner le canevas lorsque la taille de la fenêtre change
-        # self.bind("<Configure>", self.redimensionner_canevas)
-   # def view_temporary_movements(self):
-
-
-  def PDF_mouvement_temporaires(self, chemin_fichier):
-    # Lire le PDF existant
-    existing_pdf = PdfReader(chemin_fichier)
-    
-    # Récupérer la taille de la page 5
-    page_num = 5
-    page_size = existing_pdf.pages[page_num].mediabox
-    page_width = page_size[2] - page_size[0]  # width
-    page_height = page_size[3] - page_size[1]  # height
-
-    # Créer un nouveau PDF pour les dessins
-    packet = BytesIO()
-    can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
-    # Lire les données JSON
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\mouvements_temporaires.json", 'r') as f:
-        data = json.load(f)
-    
-    # Dessiner le texte sur le canvas
-    ypos_index = 0
-    for mouvement in data["mouvements"]:
-        Date_de_sortie = mouvement["Date_de_sortie"]
-        Nom_equide = mouvement["Nom_equide"]
-        Motif = mouvement["Motif"]
-        Etape_eventuelle = mouvement["Etape_eventuelle"]
-        Lieu_destination = mouvement["Lieu_destination"]
-        Date_retour = mouvement["Date_retour"]
-
-        # Dessiner du texte pour chaque élément
-        can.drawString(90, 325 + ypos_index, Date_de_sortie)
-        can.drawString(180, 325 + ypos_index, Nom_equide)
-        can.drawString(300, 325 + ypos_index, Motif)
-        can.drawString(430, 325 + ypos_index, Etape_eventuelle)
-        can.drawString(560, 325 + ypos_index, Lieu_destination)
-        can.drawString(675, 325 + ypos_index, Date_retour)
-
-        ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
-
-    # Enregistrer les dessins dans le PDF temporaire
-    can.save()
-
-    # Déplacer le curseur au début du buffer
-    packet.seek(0)
-
-    # Lire le PDF temporaire contenant les dessins
-    new_pdf = PdfReader(packet)
-
-    # Fusionner les nouvelles pages avec la page existante
-    existing_page = existing_pdf.pages[page_num]
-    existing_page.merge_page(new_pdf.pages[0])
-
-    # Créer un PdfWriter pour le fichier de sortie
-    output = PdfWriter()
-    output.add_page(existing_page)
-
-    # Enregistrer uniquement la page modifiée dans un nouveau fichier PDF
-    with open("mouvements_temporaires.pdf", "wb") as outputStream:
-        output.write(outputStream)
   def generate_first_page(self, chemin_fichier, page_num, texte, sortie): 
 
    # " nouveau fichier modifie et caratheristiques"
@@ -621,114 +477,489 @@ class FenetrePrincipale(tk.Tk):
 
     with open("nouveau_fichier_modifie.pdf", "wb") as outputStream:
         output.write(outputStream)
-  def PDF_Interventions_Soins_Courant(self, chemin_fichier):
+
+
+#fonction de creation de PDF temporaires 
+  def create_temp_mouvement_temporaires(self, chemin_fichier):
     existing_pdf = PdfReader(chemin_fichier)
     
-    page_num = 7
+    # Récupérer la taille de la page 5
+    page_num = 5
+
+    output = PdfWriter()
+    for i in range(5):
+        output.add_page(existing_pdf.pages[page_num])
+
+    with open('mouvements_temporaires_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream)           
+ 
+   #fonction création de fichiers temporaires
+  def create_temp_controle_registre(self, chemin_fichier):
+    existing_pdf = PdfReader(chemin_fichier)
+    
+    # Récupérer la taille de la page 5
+    page_num = 9
+
+    output = PdfWriter()
+    for i in range(5):
+        output.add_page(existing_pdf.pages[page_num])
+
+    with open('controle_registre_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream) 
+  def create_temp_soins_courant(self, chemin_fichier):
+    existing_pdf = PdfReader(chemin_fichier)
+    
+    # Récupérer la taille de la page 
+    page_num =7
+
+    output = PdfWriter()
+    for i in range(5):
+        output.add_page(existing_pdf.pages[page_num])
+
+    with open('soins_courant_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream)   
+  def create_temp_caratheristiques(self,chemin_fichier):
+    existing_pdf = PdfReader(chemin_fichier)
+    
+    # Récupérer la taille de la page 
+    page_num = 4
+
+    output = PdfWriter()
+    for i in range(5):
+        output.add_page(existing_pdf.pages[page_num])
+
+    with open('caratheristiques_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream)    
+  
+
+
+# fonction de creation de PDF
+  def PDF_Interventions_Soins_Courant(self, chemin_fichier):
+
+    # Lire le PDF existant
+    self.create_temp_soins_courant(chemin_fichier)                                                                                          
+    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\soins_courant_temp.pdf")              
+
+    # Récupérer la taille de la page 0         
+    page_num = 0
     page_size = existing_pdf.pages[page_num].mediabox
-    page_width = page_size[2] - page_size[0]  # width
-    page_height = page_size[3] - page_size[1]  # height
+    page_width = float(page_size[2]) - float(page_size[0])  # width
+    page_height = float(page_size[3]) - float(page_size[1])  # height
 
-    packet = BytesIO()
-    can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
+    # Lire les données JSON
     with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\Soins_Courant.json", 'r') as f:
         data = json.load(f)
 
-    ypos_index = 30
-    for intervention in data["interventions"]:
-        Date = intervention["Date"]
-        Type_intervention = intervention["Type intervention"]
-        Intervenant = intervention["Intervenant"]
-        Nom_medicament = intervention["Traitement"]["Nom du medicament"]
-        Voie_administration = intervention["Traitement"]["Voie administration"]
-        Date_debut = intervention["Traitement"]["Date dedebut"]
-        Date_fin = intervention["Traitement"]["Date dedefin"]
-        N_ordonnance = intervention["N ordonnance"]
-        Delai_attente_competition = intervention["Delai attente competition"]
-        Delai_attente_abattage = intervention["Delai attente abattage"]
-
-        can.drawString(50, 280 + ypos_index, Date)
-        can.drawString(80, 280 + ypos_index, Type_intervention)
-        can.drawString(170, 280 + ypos_index, Intervenant)
-        can.drawString(280, 280 + ypos_index, Nom_medicament)
-        can.drawString(375, 280 + ypos_index, Voie_administration)
-        can.drawString(470, 280 + ypos_index, Date_debut)
-        can.drawString(515, 280 + ypos_index, Date_fin)
-        can.drawString(550, 280 + ypos_index, N_ordonnance)
-        can.drawString(620, 280 + ypos_index, Delai_attente_competition)
-        can.drawString(725, 280 + ypos_index, Delai_attente_abattage)
-
-        ypos_index -= 45
-
-    can.save()
-    packet.seek(0)
-
-    new_pdf = PdfReader(packet)
-    existing_page = existing_pdf.pages[page_num]
-    existing_page.merge_page(new_pdf.pages[0])
-
+    # Variables de gestion des pages
+    ypos_index = 0
+    result = 325  # Initialiser result au début de la première page
     output = PdfWriter()
-    output.add_page(existing_page)
 
-    with open("soins_courant.pdf", "wb") as outputStream:
+    # Ajouter toutes les pages du PDF existant à la sortie
+    for page in existing_pdf.pages:
+        output.add_page(page)
+
+    # Créer un nouvel objet PdfWriter sans les cinq premières pages
+    filtered_output = PdfWriter()
+    for i in range(5, len(output.pages)):
+        filtered_output.add_page(output.pages[i])
+
+    # Réassigner le writer original à celui filtré
+    output = filtered_output
+
+    # Variable pour suivre le numéro de page actuel dans le PDF final
+    current_page = page_num
+
+    while ypos_index < len(data["interventions"]):
+        # Créer un nouveau PDF pour les dessins
+        packet = BytesIO()
+        can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+ 
+        # Dessiner le texte sur le canvas
+        cpt = 0
+        while cpt < 6 and ypos_index < len(data["interventions"]):
+            intervention = data["interventions"][ypos_index]
+            Date = intervention["Date"]
+            Type_intervention = intervention["Type intervention"]
+            Intervenant = intervention["Intervenant"]
+            Nom_medicament = intervention["Traitement"]["Nom du medicament"]
+            Voie_administration = intervention["Traitement"]["Voie administration"]
+            Date_debut = intervention["Traitement"]["Date dedebut"]
+            Date_fin = intervention["Traitement"]["Date dedefin"]
+            N_ordonnance = intervention["N ordonnance"]
+            Delai_attente_competition = intervention["Delai attente competition"]
+            Delai_attente_abattage = intervention["Delai attente abattage"]
+
+            # Dessiner du texte pour chaque élément
+            can.drawString(90, result, Date)
+            can.drawString(180, result, Type_intervention)
+            can.drawString(300, result, Intervenant)
+            can.drawString(430, result, Nom_medicament)
+            can.drawString(560, result,  Voie_administration)
+            can.drawString(675, result, Date_debut )
+
+            can.drawString(720, result,  Date_fin)
+            can.drawString(780, result,  N_ordonnance )
+            can.drawString(820, result,  Delai_attente_competition)
+            can.drawString(870, result, Delai_attente_abattage)    
+
+            ypos_index += 1
+            result -= 45  # Décalage vertical pour chaque nouvel élément
+            cpt += 1
+
+        # Sauvegarder la page actuelle
+        can.save()
+        packet.seek(0)
+
+        new_pdf = PdfReader(packet)
+        new_page = new_pdf.pages[0]
+
+        # Ajouter la nouvelle page au PDF existant
+        if current_page < len(existing_pdf.pages):
+            print(" len"+str(len(existing_pdf.pages)))
+            print(" indice "+str(current_page))
+            existing_page = existing_pdf.pages[current_page]
+            existing_page.merge_page(new_page)
+            output.add_page(existing_page)
+            
+            print(" controle 1")
+        else:
+            
+            print("surcharge")
+
+        # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
+        result = 325
+        current_page += 1
+
+    with open('soins_courant.pdf', 'wb') as outputStream:
         output.write(outputStream)
-  def PDF_controle_registre(self, chemin_fichier):
+
+
+
+
+
+
+
+    # existing_pdf = PdfReader(chemin_fichier)   
+    # page_num = 7
+    # page_size = existing_pdf.pages[page_num].mediabox
+    # page_width = page_size[2] - page_size[0]  # width
+    # page_height = page_size[3] - page_size[1]  # height
+
+    # packet = BytesIO()
+    # can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+
+    # with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\Soins_Courant.json", 'r') as f:
+    #     data = json.load(f)
+
+    # ypos_index = 30
+    # for intervention in data["interventions"]:
+    #     Date = intervention["Date"]
+    #     Type_intervention = intervention["Type intervention"]
+    #     Intervenant = intervention["Intervenant"]
+    #     Nom_medicament = intervention["Traitement"]["Nom du medicament"]
+    #     Voie_administration = intervention["Traitement"]["Voie administration"]
+    #     Date_debut = intervention["Traitement"]["Date dedebut"]
+    #     Date_fin = intervention["Traitement"]["Date dedefin"]
+    #     N_ordonnance = intervention["N ordonnance"]
+    #     Delai_attente_competition = intervention["Delai attente competition"]
+    #     Delai_attente_abattage = intervention["Delai attente abattage"]
+
+    #     can.drawString(50, 280 + ypos_index, Date)
+    #     can.drawString(80, 280 + ypos_index, Type_intervention)
+    #     can.drawString(170, 280 + ypos_index, Intervenant)
+    #     can.drawString(280, 280 + ypos_index, Nom_medicament)
+    #     can.drawString(375, 280 + ypos_index, Voie_administration)
+    #     can.drawString(470, 280 + ypos_index, Date_debut)
+    #     can.drawString(515, 280 + ypos_index, Date_fin)
+    #     can.drawString(550, 280 + ypos_index, N_ordonnance)
+    #     can.drawString(620, 280 + ypos_index, Delai_attente_competition)
+    #     can.drawString(725, 280 + ypos_index, Delai_attente_abattage)
+
+    #     ypos_index -= 45
+
+    # can.save()
+    # packet.seek(0)
+
+    # new_pdf = PdfReader(packet)
+    # existing_page = existing_pdf.pages[page_num]
+    # existing_page.merge_page(new_pdf.pages[0])
+
+    # output = PdfWriter()
+    # output.add_page(existing_page)
+
+    # with open("soins_courant.pdf", "wb") as outputStream:
+    #     output.write(outputStream)                                                                                               
+  def PDF_controle_registre(self, chemin_fichier):  
     # Lire le PDF existant
-    existing_pdf = PdfReader(chemin_fichier)
+    self.create_temp_controle_registre(chemin_fichier)                                                                                          
+    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\controle_registre_temp.pdf")              
 
-    # Spécifier la page à modifier
-    page_num = 9
+    # Récupérer la taille de la page 0         
+    page_num = 0
     page_size = existing_pdf.pages[page_num].mediabox
-    page_width = page_size[2] - page_size[0]  # width
-    page_height = page_size[3] - page_size[1]  # height
-
-    # Créer un nouveau PDF pour les dessins
-    packet = BytesIO()
-    can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+    page_width = float(page_size[2]) - float(page_size[0])  # width
+    page_height = float(page_size[3]) - float(page_size[1])  # height
 
     # Lire les données JSON
     with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\controles.json", 'r') as f:
         data = json.load(f)
 
-    # Dessiner le texte sur le canvas
+    # Variables de gestion des pages
     ypos_index = 0
-    for controle in data["controle"]:
-        Date = controle["Date"]
-        Organisme_controle = controle["Organisme de controle"]
-        Motif_controle = controle["Motif de controle"]
-        Nom_controleur = controle["Nom du controleur"]
-        Cachet = controle["Cachet"]
-        Signature = controle["Signature"]
-
-        # Dessiner du texte pour chaque élément
-        can.drawString(100, 380 + ypos_index, Date)
-        can.drawString(190, 380 + ypos_index, Organisme_controle)
-        can.drawString(300, 380 + ypos_index, Motif_controle)
-        can.drawString(450, 380 + ypos_index, Nom_controleur)
-        can.drawString(550, 380 + ypos_index, Cachet)
-        can.drawString(700, 380 + ypos_index, Signature)    
-
-        ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
-
-    # Enregistrer les dessins dans le PDF temporaire
-    can.save()
-    packet.seek(0)
-
-    # Lire le PDF temporaire contenant les dessins
-    new_pdf = PdfReader(packet)
-
-    # Fusionner la nouvelle page avec la page existante
-    existing_page = existing_pdf.pages[page_num]
-    existing_page.merge_page(new_pdf.pages[0])
-
-    # Créer un PdfWriter pour le fichier de sortie
+    result = 325  # Initialiser result au début de la première page
     output = PdfWriter()
-    output.add_page(existing_page)
 
-    # Enregistrer uniquement la page modifiée dans un nouveau fichier PDF
-    with open("controle_registre.pdf", "wb") as outputStream:
-        output.write(outputStream)      
+    # Ajouter toutes les pages du PDF existant à la sortie
+    for page in existing_pdf.pages:
+        output.add_page(page)
+
+    # Créer un nouvel objet PdfWriter sans les cinq premières pages
+    filtered_output = PdfWriter()
+    for i in range(5, len(output.pages)):
+        filtered_output.add_page(output.pages[i])
+
+    # Réassigner le writer original à celui filtré
+    output = filtered_output
+
+    # Variable pour suivre le numéro de page actuel dans le PDF final
+    current_page = page_num
+
+    while ypos_index < len(data["controle"]):
+        # Créer un nouveau PDF pour les dessins
+        packet = BytesIO()
+        can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+ 
+        # Dessiner le texte sur le canvas
+        cpt = 0
+        while cpt < 6 and ypos_index < len(data["controle"]):
+            controle = data["controle"][ypos_index]
+            Date = controle["Date"]
+            Organisme_controle = controle["Organisme de controle"]
+            Motif_controle = controle["Motif de controle"]
+            Nom_controleur = controle["Nom du controleur"]
+            Cachet = controle["Cachet"]
+            Signature = controle["Signature"]
+
+            # Dessiner du texte pour chaque élément
+            can.drawString(90, result, Date)
+            can.drawString(180, result, Organisme_controle)
+            can.drawString(300, result, Motif_controle)
+            can.drawString(430, result, Nom_controleur)
+            can.drawString(560, result, Cachet )
+            can.drawString(675, result, Signature )
+
+            ypos_index += 1
+            result -= 45  # Décalage vertical pour chaque nouvel élément
+            cpt += 1
+
+        # Sauvegarder la page actuelle
+        can.save()
+        packet.seek(0)
+
+        new_pdf = PdfReader(packet)
+        new_page = new_pdf.pages[0]
+
+        # Ajouter la nouvelle page au PDF existant
+        if current_page < len(existing_pdf.pages):
+            print(" len"+str(len(existing_pdf.pages)))
+            print(" indice "+str(current_page))
+            existing_page = existing_pdf.pages[current_page]
+            existing_page.merge_page(new_page)
+            output.add_page(existing_page)
+            
+            print(" controle 1")
+        else:
+            
+            print("surcharge")
+
+        # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
+        result = 325
+        current_page += 1
+
+    with open('controle_registre.pdf', 'wb') as outputStream:
+        output.write(outputStream)
+  def PDF_mouvement_temporaires(self, chemin_fichier):  
+    # Lire le PDF existant
+    self.create_temp_mouvement_temporaires(chemin_fichier)                                                                                          
+    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\mouvements_temporaires_temp.pdf")              
+
+    # Récupérer la taille de la page 0         
+    page_num = 0
+    page_size = existing_pdf.pages[page_num].mediabox
+    page_width = float(page_size[2]) - float(page_size[0])  # width
+    page_height = float(page_size[3]) - float(page_size[1])  # height
+
+    # Lire les données JSON
+    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\mouvements_temporaires.json", 'r') as f:
+        data = json.load(f)
+
+    # Variables de gestion des pages
+    ypos_index = 0
+    result = 325  # Initialiser result au début de la première page
+    output = PdfWriter()
+
+    # Ajouter toutes les pages du PDF existant à la sortie
+    for page in existing_pdf.pages:
+        output.add_page(page)
+
+    # Créer un nouvel objet PdfWriter sans les cinq premières pages
+    filtered_output = PdfWriter()
+    for i in range(5, len(output.pages)):
+        filtered_output.add_page(output.pages[i])
+
+    # Réassigner le writer original à celui filtré
+    output = filtered_output
+
+    # Variable pour suivre le numéro de page actuel dans le PDF final
+    current_page = page_num
+
+    while ypos_index < len(data["mouvements_temporaires"]):
+        # Créer un nouveau PDF pour les dessins
+        packet = BytesIO()
+        can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+
+        # Dessiner le texte sur le canvas
+        cpt = 0
+        while cpt < 6 and ypos_index < len(data["mouvements_temporaires"]):
+            mouvement = data["mouvements_temporaires"][ypos_index]
+            Date_de_sortie = mouvement["Date de sortie"]
+            Nom_equide = mouvement["Nom equide"]
+            Motif = mouvement["Motif"]
+            Etape_eventuelle = mouvement["Etape eventuelle"]
+            Lieu_destination = mouvement["Lieu de destination (Adresse)"]
+            Date_retour = mouvement["Date de retour"]
+
+            # Dessiner du texte pour chaque élément
+            can.drawString(90, result, Date_de_sortie)
+            can.drawString(180, result, Nom_equide)
+            can.drawString(300, result, Motif)
+            can.drawString(430, result, Etape_eventuelle)
+            can.drawString(560, result, Lieu_destination)
+            can.drawString(675, result, Date_retour)
+
+            ypos_index += 1
+            result -= 45  # Décalage vertical pour chaque nouvel élément
+            cpt += 1
+
+        # Sauvegarder la page actuelle
+        can.save()
+        packet.seek(0)
+
+        new_pdf = PdfReader(packet)
+        new_page = new_pdf.pages[0]
+
+        # Ajouter la nouvelle page au PDF existant
+        if current_page < len(existing_pdf.pages):
+            print(" len"+str(len(existing_pdf.pages)))
+            print(" indice "+str(current_page))
+            existing_page = existing_pdf.pages[current_page]
+            existing_page.merge_page(new_page)
+            output.add_page(existing_page)
+            
+        else:
+   
+            print("surcharge")
+
+        # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
+        result = 325
+        current_page += 1
+
+    with open('mouvements_temporaires.pdf', 'wb') as outputStream:
+        output.write(outputStream)
+  def PDF_caratheristiques_animaux(self,chemin_fichier):        
+     # Lire le PDF existant
+    self.create_temp_caratheristiques(chemin_fichier)                                                                                          
+    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caratheristiques_temp.pdf")              
+
+    # Récupérer la taille de la page 0         
+    page_num = 0
+    page_size = existing_pdf.pages[page_num].mediabox
+    page_width = float(page_size[2]) - float(page_size[0])  # width
+    page_height = float(page_size[3]) - float(page_size[1])  # height
+
+    # Lire les données JSON
+    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caracteristiques_animaux.json", 'r') as f:
+        data = json.load(f)
+
+    # Variables de gestion des pages
+    ypos_index = 0
+    result = 325  # Initialiser result au début de la première page
+    output = PdfWriter()
+
+    # Ajouter toutes les pages du PDF existant à la sortie
+    for page in existing_pdf.pages:
+        output.add_page(page)
+
+    # Créer un nouvel objet PdfWriter sans les cinq premières pages
+    filtered_output = PdfWriter()
+    for i in range(5, len(output.pages)):
+        filtered_output.add_page(output.pages[i])
+
+    # Réassigner le writer original à celui filtré
+    output = filtered_output
+
+    # Variable pour suivre le numéro de page actuel dans le PDF final
+    current_page = page_num
+
+    while ypos_index < len(data["caracteristiques"]):
+        # Créer un nouveau PDF pour les dessins
+        packet = BytesIO()
+        can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+
+        # Dessiner le texte sur le canvas
+        cpt = 0
+        while cpt < 6 and ypos_index < len(data["caracteristiques"]):
+            caracteristiques = data["caracteristiques"][ypos_index]
+            nom =   caracteristiques["Nom"]
+            NeSIRE =   caracteristiques["NeSIRE"]
+            Netranspondeur =   caracteristiques["Netranspondeur"]
+            Nom_proprietaire =   caracteristiques["Nom et coordonnees du proprietaire"]
+            Date_de_premiere_entree =   caracteristiques["Date de premiere entree"]
+            Adresse_de_provenance =   caracteristiques["Adresse de provenance"]
+            Date_de_sortie_definitive =   caracteristiques["Date de sortie definitive"]
+            Adresse_destination =   caracteristiques["Adresse de destination"]
+
+            # Dessiner du texte pour chaque élément
+            can.drawString(80, 320 + ypos_index, nom)
+            can.drawString(160, 320 + ypos_index, NeSIRE)
+            can.drawString(250, 320 + ypos_index, Netranspondeur)
+            can.drawString(340, 320 + ypos_index, Nom_proprietaire)
+            can.drawString(440, 320 + ypos_index, Date_de_premiere_entree)
+            can.drawString(520, 320 + ypos_index, Adresse_de_provenance)
+            can.drawString(620, 320 + ypos_index, Date_de_sortie_definitive)
+            can.drawString(720, 320 + ypos_index, Adresse_destination)
+
+            ypos_index += 1
+            result -= 45  # Décalage vertical pour chaque nouvel élément
+            cpt += 1
+
+        # Sauvegarder la page actuelle
+        can.save()
+        packet.seek(0)
+
+        new_pdf = PdfReader(packet)
+        new_page = new_pdf.pages[0]
+
+        # Ajouter la nouvelle page au PDF existant
+        if current_page < len(existing_pdf.pages):
+            print(" animaux len"+str(len(existing_pdf.pages)))
+            print(" animaux indice "+str(current_page))
+            existing_page = existing_pdf.pages[current_page]
+            existing_page.merge_page(new_page)
+            output.add_page(existing_page)
+            
+        else:
+   
+            print("surcharge")
+
+        # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
+        result = 325
+        current_page += 1
+
+    with open('caratheristiques_animaux.pdf', 'wb') as outputStream:
+        output.write(outputStream)
+
   def controle_registre(self,width):    
 
         self.numberLines = width
@@ -761,81 +992,18 @@ class FenetrePrincipale(tk.Tk):
         
         self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
         self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')         
-
-
   def ajouter_texte_pdf(self, chemin_fichier, page_num):   
     # Exécuter les fonctions pour générer les PDF temporaires
     self.PDF_mouvement_temporaires(chemin_fichier)
     self.PDF_Interventions_Soins_Courant(chemin_fichier)
     self.PDF_controle_registre(chemin_fichier)
-    
-    # Lire le PDF existant
-    existing_pdf = PdfReader(chemin_fichier)
-
-    # Récupérer la taille de la page à partir du fichier existant
-    page_size = existing_pdf.pages[page_num].mediabox
-    page_width = page_size[2] - page_size[0]  # width
-    page_height = page_size[3] - page_size[1]  # height
-
-    # Créer un nouveau PDF pour les dessins
-    packet = BytesIO()
-    can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caracteristiques_animaux.json", 'r') as f:
-        data = json.load(f)
-
-    ypos_index = 0
-    for caracteristique in data["caracteristiques"]:
-        nom = caracteristique["Nom"]
-        NeSIRE = caracteristique["NeSIRE"]
-        Netranspondeur = caracteristique["Netranspondeur"]
-        Nom_proprietaire = caracteristique["Nom proprietaire"]
-        Date_de_premiere_entree = caracteristique["Date de premiere entree"]
-        Adresse_de_provenance = caracteristique["Adresse de provenance"]
-        Date_de_sortie_definitive = caracteristique["Date de sortie definitive"]
-        Adresse_destination = caracteristique["Adresse de destination"]
-
-        # Dessiner du texte pour chaque élément
-        can.drawString(80, 320 + ypos_index, nom)
-        can.drawString(160, 320 + ypos_index, NeSIRE)
-        can.drawString(250, 320 + ypos_index, Netranspondeur)
-        can.drawString(340, 320 + ypos_index, Nom_proprietaire)
-        can.drawString(440, 320 + ypos_index, Date_de_premiere_entree)
-        can.drawString(520, 320 + ypos_index, Adresse_de_provenance)
-        can.drawString(620, 320 + ypos_index, Date_de_sortie_definitive)
-        can.drawString(720, 320 + ypos_index, Adresse_destination)
-
-        ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
-
-    # Enregistrer les dessins dans le PDF temporaire
-    can.save()
-    packet.seek(0)
-    new_pdf = PdfReader(packet)
-
-    # Fusionner la nouvelle page avec la page existante
-    existing_page = existing_pdf.pages[page_num]
-    existing_page.merge_page(new_pdf.pages[0])
-
-    # Créer un PdfWriter pour le fichier temporaire
-    output_temp = PdfWriter()
-
-    # Ajouter les pages non modifiées et la page modifiée
-    for i, page in enumerate(existing_pdf.pages):
-        if i < 4:
-            output_temp.add_page(page)
-        elif i==4:
-            output_temp.add_page(existing_page)
-
-    # Sauvegarder les pages modifiées dans un fichier temporaire
-    temp_output_path = "caracteristiques_animaux_temp.pdf"
-    with open(temp_output_path, "wb") as outputStream:
-        output_temp.write(outputStream)
+    self.PDF_caratheristiques_animaux(chemin_fichier)
 
     # Créer un PdfWriter pour le fichier final combiné
     final_output = PdfWriter()
 
     # Ajouter les pages de chaque fichier PDF temporaire au fichier final
-    for file_path in [temp_output_path, "controle_registre.pdf", "mouvements_temporaires.pdf", "soins_courant.pdf"]:
+    for file_path in ["caracteristiques_animaux_temp.pdf", "controle_registre.pdf", "mouvements_temporaires.pdf", "soins_courant.pdf"]:
         if not os.path.exists(file_path):
             print(f"File not found: {file_path}")
             continue
@@ -857,7 +1025,7 @@ class FenetrePrincipale(tk.Tk):
         self.numberLines = width
         self.numberColumns = width
 
-        for j in range(self.numberColumns):   # sui ça affiche pas c'est qu'il y a zero 
+        for j in range(self.numberColumns):   # si ça affiche pas c'est qu'il y a zero 
             col_title = Label(self, text=self.col_titles[j], width=20, relief="solid", bg="lightgray", anchor="w")
             col_title.grid(row=0, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
 
@@ -884,7 +1052,6 @@ class FenetrePrincipale(tk.Tk):
         
         self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
         self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')         
-
   def create_text(self):
        for i in range(10, 15):
            line = []
@@ -894,27 +1061,24 @@ class FenetrePrincipale(tk.Tk):
              line.append(cell)
              self.data.append(line) #je veux que lorsque l'on appuie sur le bouton valider les informations entrées dans les champ de texte soient mises dans le fichier json suivant
        return self.data   
-     
-  def supprimer_widgets( self): #  self,width,col_titles,height):
-    # Liste des widgets à ne pas supprimer
-      widgets_a_garder = [self.navbar_canvas, self.scrollbar, self.navbar_frame]
+  def supprimer_widgets(self):
+        widgets_a_garder = [
+            self.navbar_canvas, self.scrollbar, self.navbar_frame,
+            self.btn_encadrement, self.btn_caractheristiques_animaux,
+            self.btn_mouvement_temporaire, self.btn_intervention_soins,
+            self.btn_controle_registre
+        ]
 
-      for widget in self.winfo_children():
-        # Vérifie si le widget a été créé dans __init__ et n'appartient pas au menu de navigation
-        if isinstance(widget, tk.Entry) and widget  not in widgets_a_garder : # and widget not in self.__init__( ): ##width, col_titles, height  ):
-            # Destruction du widget s'il n'a pas été créé dans __init__  
-            widget.destroy()
-            print(" destruction de "+str(widget))
-        
-        if isinstance(widget, tk.Label) and widget not in widgets_a_garder : # and widget not in self.__init__( ): #width, col_titles, height  ): 
-            # Destruction du widget s'il n'a pas été créé dans __init__
-            widget.destroy()
-            print(" destruction de "+str(widget))
-        
-        if isinstance(widget, tk.Button) and widget not in widgets_a_garder  : #  and widget not in self.__init__( ): # width, col_titles, height ):
-            # Destruction du widget s'il n'a pas été créé dans __init__
-            widget.destroy()
-            print(" destruction de "+str(widget)) 
+        for widget in self.winfo_children():
+            if isinstance(widget, tk.Entry) and widget not in widgets_a_garder:
+                widget.destroy()
+                print("destruction de " + str(widget))
+            if isinstance(widget, tk.Label) and widget not in widgets_a_garder:
+                widget.destroy()
+                print("destruction de " + str(widget))
+            if isinstance(widget, tk.Button) and widget not in widgets_a_garder:
+                widget.destroy()
+                print("destruction de " + str(widget))
 
   def ajouter_ligne(self):
         # Function to add a new row
@@ -929,13 +1093,12 @@ class FenetrePrincipale(tk.Tk):
    #ok
 # open the window on the deashboard
   def ouvrir_mouvement_temporaires(self, width,height):
-    
+      self.supprimer_widgets()
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Date_de_sortie", "Nom_equide", "Motif", "Etape_eventuelle", "Lieu_destination", "Date_retour"]  #["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
-    # Ajout de l'espace entre le menu de navigation et "Sire"
-      for j in range(len(self.col_title)):#len(self.col_title)):
+      self.col_title = ["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]  
+      for j in range(len(self.col_title)):      
         col_tmp = self.col_title[j]
         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
@@ -965,9 +1128,9 @@ class FenetrePrincipale(tk.Tk):
 
       btn_valider = tk.Button(self, text="Afficher mouvements temporaires ", command=lambda: Movements.view_temporary_movements(self))
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')    
-
   def open_encadrement_zootechnique(self):
       self.data=[]
+      self.supprimer_widgets()
       print("flag netoyage data")
    # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
@@ -978,14 +1141,14 @@ class FenetrePrincipale(tk.Tk):
       for j in range(len(self.col_title)):
         col_tmp = self.col_title[j]
         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
-        col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte   
+        col_title.grid(row=0, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte   
     
     # Création des champs d'entrée
       for i in range(15):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
-            cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
+            cell.grid(row=i+1, column=j, sticky='nsew')  # Commencer à la ligne 12
             row_data.append(cell)
         self.data.append(row_data)
 
@@ -1004,10 +1167,6 @@ class FenetrePrincipale(tk.Tk):
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
    # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas) 
-
-
-
-  #checked
   def ouvrir_interventions(self):
       self.data = []  # Assurez-vous que self.data est initialisé
     # Création du cadre à l'intérieur du canevas
@@ -1062,9 +1221,6 @@ class FenetrePrincipale(tk.Tk):
 
           # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
-  #ok 
-
-
   def ouvrir_controle_registre_elevage(self):
       # Création du cadre à l'intérieur du canevas
       self.data = []  
@@ -1102,9 +1258,9 @@ class FenetrePrincipale(tk.Tk):
       self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')                                                                 
     # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
-
   def ouvrir_caractheristiques_animaux(self):
       print("glage ouvrir caratheristiques animaux")
+      self.supprimer_widgets()
       self.data=[] 
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
@@ -1118,7 +1274,7 @@ class FenetrePrincipale(tk.Tk):
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
     
     # Création des champs d'entrée
-      for i in range(20):
+      for i in range(15):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
@@ -1140,15 +1296,16 @@ class FenetrePrincipale(tk.Tk):
       btn_valider = tk.Button(self, text="Valider", command=self.valider_caratheristiques_animaux)
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-      btn_valider = tk.Button(self, text="Afficher mes caractheristiques d' animaux", command=self.view_animals) # CaratheristiquesDetention.ouvrir_caracteristiques_lieu_detention  )
+      btn_valider = tk.Button(self, text="Afficher mes caractheristiques d'animaux", command=self.view_animals)  
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
 
  # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
-  # fontions de validations
 
+# fontions de validations
 #validations informations functions and put them in json  
   def valider_mouvements_temporaires(self):
+      print("valider mouvements temporaires")
       
       mouvements = []
      # Parcourir toutes les lignes de données
@@ -1167,7 +1324,6 @@ class FenetrePrincipale(tk.Tk):
     # Écriture des données dans un fichier JSON
       with open('mouvements_temporaires.json', 'w') as json_file:
          json.dump({"mouvements_temporaires": mouvements}, json_file, indent=4)           
-  
   def valider_carathersitiques_lieu(self):
     
       caracteristiques_lieu_detention = []
@@ -1223,7 +1379,6 @@ class FenetrePrincipale(tk.Tk):
         # Écriture des données dans un fichier JSON
         with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\controles.json', 'w') as json_file:
             json.dump({"controle": controle_data}, json_file, indent=4)
-  
   def valider_encadrement_Zootechnique_animaux(self): # elargir le panel pour que l'on voit tout
     # Collecte des données depuis les champs d'entrée
 
@@ -1241,16 +1396,8 @@ class FenetrePrincipale(tk.Tk):
             "Nom, adresse tel marechal ferrand": row_data[5].get() ,
             "Nom, adresse et N de telephone du dentiste": row_data[6].get() ,
         }
-        #elargir le panel
-        # Impression de débogage   
-     #   print("Données encadrement collectées:", encadrement)
        
         intervention_data.append(encadrement)
-
-    # Impression de débogage
-#    print("Toutes les données d'intervention:", intervention_data)
-
-    # Écriture des données dans un fichier JSON
  
     try:
         with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\encadrement_zootechnique.json', 'w') as json_file:
@@ -1258,8 +1405,7 @@ class FenetrePrincipale(tk.Tk):
             # Impression de débogage
             print("Les données ont été écrites dans encadrement_zootechnique.json")
     except Exception as e:
-        print(f"Erreur lors de l'écriture du fichier JSON: {e}")
-    
+        print(f"Erreur lors de l'écriture du fichier JSON: {e}")  
   def valider_informations_lieu(self):
     # Collecte des données depuis les champs d'entrée
        intervention_data = []
@@ -1309,7 +1455,6 @@ class FenetrePrincipale(tk.Tk):
     # Écrire le fichier JSON avec la liste des interventions
       with open('Soins_Courant.json', 'w') as f:
          json.dump({"interventions": interventions}, f, indent=4)     
-
   def valider_caratheristiques_animaux(self):
       print("flag valider animaux")
     # Initialiser une liste pour stocker les nouveaux caractéristiques
@@ -1322,14 +1467,7 @@ class FenetrePrincipale(tk.Tk):
             "Nom": row[0].get(),
             "NeSIRE": row[1].get(),
             "Netranspondeur": row[2].get(),
-            "Nom et coordonnees du proprietaire": row[3].get(),   #{
-            #     "Nom proprietaire": row[3].get(),
-            #     "Coordonnees": {
-            #         "Adresse proprietaire": row[4].get(),
-            #         "Ville": "Ville_1",
-            #         "Code postal": "12345"
-            #     }
-            # },
+            "Nom et coordonnees du proprietaire": row[3].get(),  
             "Adresse proprietaire": row[4].get(),
             "Date de premiere entree": row[5].get(),
             "Adresse de provenance": row[6].get(),
@@ -1351,259 +1489,67 @@ if __name__ == "__main__":
     app.mainloop() 
 
 
+#   def PDF_controle_registre(self, chemin_fichier):
+#     # Lire le PDF existant
+#     existing_pdf = PdfReader(chemin_fichier)
 
+#     # Spécifier la page à modifier
+#     page_num = 9
+#     page_size = existing_pdf.pages[page_num].mediabox
+#     page_width = page_size[2] - page_size[0]  # width
+#     page_height = page_size[3] - page_size[1]  # height
 
+#     # Créer un nouveau PDF pour les dessins
+#     packet = BytesIO()
+#     can = canvas.Canvas(packet, pagesize=(page_width, page_height))
 
+#     # Lire les données JSON
+#     with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\controles.json", 'r') as f:
+#         data = json.load(f)
 
+#     # Dessiner le texte sur le canvas
+#     ypos_index = 0
+#     for controle in data["controle"]:
+#         Date = controle["Date"]
+#         Organisme_controle = controle["Organisme de controle"]
+#         Motif_controle = controle["Motif de controle"]
+#         Nom_controleur = controle["Nom du controleur"]
+#         Cachet = controle["Cachet"]
+#         Signature = controle["Signature"]
 
+#         # Dessiner du texte pour chaque élément
+#         can.drawString(100, 380 + ypos_index, Date)
+#         can.drawString(190, 380 + ypos_index, Organisme_controle)
+#         can.drawString(300, 380 + ypos_index, Motif_controle)
+#         can.drawString(450, 380 + ypos_index, Nom_controleur)
+#         can.drawString(550, 380 + ypos_index, Cachet)
+#         can.drawString(700, 380 + ypos_index, Signature)    
 
+#         ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
 
+#     # Enregistrer les dessins dans le PDF temporaire
+#     can.save()
+#     packet.seek(0)
 
+#     # Lire le PDF temporaire contenant les dessins
+#     new_pdf = PdfReader(packet)
 
-  # def valider_encadrement_Zootechnique_animaux(self):
+#     # Fusionner la nouvelle page avec la page existante
+#     existing_page = existing_pdf.pages[page_num]
+#     existing_page.merge_page(new_pdf.pages[0])
 
-  #           # Imprimez le type et la longueur de row_data pour vérifier sa structure
-  #  # print(f"Type de row_data: {type(row_data)}, Longueur: {len(row_data)}")
-        
-  #   #     # Vérifiez chaque élément de row_data
-  #   # for i, item in enumerate(row_data):
-  #   #       print(f"Type de row_data[{i}]: {type(item)}")
-  #   #       if hasattr(item, 'get'):
-  #   #             print(f"row_data[{i}].get() = {item.get()}")
+#     # Créer un PdfWriter pour le fichier de sortie
+#     output = PdfWriter()
+#     output.add_page(existing_page)
 
-  #   for row_data in self.data:
-  #   #     # Vérifiez et imprimez la structure de row_data
-  #   #   print(f"Type de row_data: {type(row_data)}, Longueur: {len(row_data)}")
-  #    for i, item in enumerate(row_data):
-  #         print(f"Type de row_data[{i}]: {type(item)}")
-  #         if hasattr(item, 'get'):
-  #               print(f"row_data[{i}].get() = {item.get()}")
+#     # Enregistrer uniquement la page modifiée dans un nouveau fichier PDF
+#     with open("controle_registre.pdf", "wb") as outputStream:
+#         output.write(outputStream)     
+    # # Lire le PDF existant
+    # existing_pdf = PdfReader(chemin_fichier)
 
-
-  #   # Collecte des données depuis les champs d'entrée
-  #   intervention_data = []
-
-  #   for row_data in self.data:
-  #       encadrement = {
-  #           "Lieu Habituel et coordonee de detention": row_data[0].get() ,
-  #           "Nom et coordonees veterianire traitant": row_data[1].get() ,  
-  #           "Nom et coordonnees du veterinaire sanitaire": row_data[2].get() ,
-  #           "Nom et coordonnees du referent bien-etre animal": row_data[3].get() ,
-  #           "Nom adresse tel des Organismes sanitaires reconnus": row_data[4].get() ,
-  #           "Nom, adresse tel marcechal ferrand": row_data[5].get() ,
-  #           "Nom, adresse et N de telephone du dentiste": row_data[6].get() if len(row_data) > 6 else "",
-  #       }
-  #       # print("1"+row_data[14].get() )
-  #       # print("2"+row_data[15].get() )    
-  #       # print("3"+row_data[16].get() )
-  #       # print("4"+row_data[17].get() )
-  #       # print("5"+row_data[18].get() )
-  #       # print("6"+row_data[19].get() )
-  #       # print("7"+row_data[20].get() )
-        
-  #       # Impression de débogage   
-  #       print("Données encadrement collectées:", encadrement)
-       
-  #       intervention_data.append(encadrement)
-
-  #   # Impression de débogage
-  #   print("Toutes les données d'intervention:", intervention_data)
-
-  #   # Écriture des données dans un fichier JSON
-  #   with open('encadrement_zootechnique.json', 'w') as json_file:
-  #       json.dump({"encadrement": intervention_data}, json_file, indent=4)
-  #       # Impression de débogage
-  #       print("Les données ont été écrites dans encadrement_zootechnique.json")
-          
-  # def valider_encadrement_Zootechnique_animaux(self):
-  #       # Collecte des données depuis les champs d'entrée
-  #     intervention_data = []
-
-  #     for row_data in self.data:
-         
-  #     #  encadrement = {
-  #     #   "Lieu Habituel et coordonee de detention": row_data[0].get(),
-  #     #   "Nom et coordonees veterianire traitant": row_data[1].get(),
-  #     #   "Nom et coordonnees du veterinaire sanitaire": row_data[2].get(),
-  #     #   "Nom et coordonnees du referent bien-etre animal": row_data[3].get(),
-  #     #   "Nom adresse tel des Organismes sanitaires reconnus": row_data[4].get(),
-  #     #   "Nom, adresse tel marcechal ferrand": row_data[5].get(),  # ← Utilisez l'indice 5 ici
-  #     #   "Nom, adresse et N de telephone du dentiste": row_data[6].get()  # ← Cet indice est en dehors des limites de la liste
-  #     #  }  
-  #       encadrement = {
-  #           "Lieu Habituel et coordonee de detention": row_data[0].get() if len(row_data) > 0 else "",
-  #           "Nom et coordonees veterianire traitant": row_data[1].get() if len(row_data) > 1 else "",
-  #           "Nom et coordonnees du veterinaire sanitaire": row_data[2].get() if len(row_data) > 2 else "",
-  #           "Nom et coordonnees du referent bien-etre animal": row_data[3].get() if len(row_data) > 3 else "",
-  #           "Nom adresse tel des Organismes sanitaires reconnus": row_data[4].get() if len(row_data) > 4 else "",
-  #           "Nom, adresse tel marcechal ferrand": row_data[5].get() if len(row_data) > 5 else "",
-  #           "Nom, adresse et N de telephone du dentiste": row_data[6].get() if len(row_data) > 6 else ""
-  #       } 
-  #     print("1"+row_data[0].get() )
-  #     print("2"+row_data[1].get() )
-  #     print("3"+row_data[2].get() )
-  #     print("4"+row_data[3].get() )
-  #     print("5"+row_data[4].get() )
-  #     print("6"+row_data[5].get() )
-  #     print("7"+row_data[6].get() )
-        
-  #     intervention_data.append(encadrement)
-
-  #   # Écriture des données dans un fichier JSON
-  #     with open('encadrement_zootechnique.json', 'w') as json_file:
-  #      json.dump({"encadrement":intervention_data}, json_file, indent=4)   
-
-  # def open_encadrement_zootechnique(self):
-  #       # Création du cadre à l'intérieur du canevas
-  #     self.navbar_frame = tk.Frame(self.navbar_canvas)
-  #     self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-  #   # self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-  #     self.col_title = [ 
-  #           "Lieu Habituel et coordonee de detention", 
-  #           "Nom et coordonees veterianire traitant", 
-  #           "Nom et coordonnees du veterinaire sanitaire",
-  #           "Nom et coordonnees du referent bien-etre animal", 
-  #           "Nom adresse tel des Organismes sanitaires reconnus", 
-  #           "Nom, adresse tel marcechal ferrand",
-  #           "Nom, adresse et N de telephone du dentiste"
-  #       ]
-
-  #       # Ajout de l'espace entre le menu de navigation et "Sire"         
-  #     for j in range(len(self.col_title)):
-  #           col_tmp = self.col_title[j]
-  #           col_title = tk.Label(self.navbar_frame, text=col_tmp, width=25, relief="solid", bg="lightgray", anchor="w")
-  #           col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-
-  #       # Création des champs d'entrée
-  #     for i in range(self.numberLines):
-  #           row_data = []
-  #           for j in range(len(self.col_title)):        
-  #               cell = tk.Entry(self.navbar_frame, width=25)    
-  #               cell.grid(row=i+11, column=j, sticky='nsew')  # Commencer à la ligne 11                     
-  #               row_data.append(cell)
-  #           self.data.append(row_data)
-                                                                                              
-  #       # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-  #     for j in range(len(self.col_title)):
-  #       self.navbar_frame.grid_columnconfigure(j, weight=1)      
-
-  #       # Bouton de validation
-  #       self.navbar_frame.bouton_ajouter_ligne = Button(self.navbar_frame, text="Ajouter une ligne", command=self.ajouter_ligne)
-  #       self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 11, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #       btn_valider = tk.Button(self.navbar_frame, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
-  #       btn_valider.grid(row=self.numberLines + 12, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #       btn_encadrement = tk.Button(self.navbar_frame, text="encadrement zootechnique", command=lambda: print("Afficher encadrement zootechnique"))
-  #       btn_encadrement.grid(row=self.numberLines + 13, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #       # Redimensionner le canevas lorsque la taille de la fenêtre change
-  #       self.bind("<Configure>", self.redimensionner_canevas)
-
-
-
-
-
-
-  # def open_encadrement_zootechnique(self,width):
-   
-  #  # Création du cadre à l'intérieur du canevas
-  #     self.navbar_frame = tk.Frame(self.navbar_canvas)
-  #     self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-  #     self.col_title =  ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)
-                                                                       
-  #   # Ajout de l'espace entre le menu de navigation et "Sire"         
-  #     for j in range(len(self.col_title)):
-  #       col_tmp = self.col_title[j]
-  #       col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
-  #       col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte   
-    
-  #   # Création des champs d'entrée
-  #     for i in range(20):
-  #       row_data = []
-  #       for j in range(len(self.col_title)):
-  #           cell = tk.Entry(self.navbar_frame, width=22)
-  #           cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
-  #           row_data.append(cell)
-  #       self.data.append(row_data)
-
-  #   # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-  #     for j in range(len(self.col_title)):
-  #       self.navbar_frame.grid_columnconfigure(j, weight=1) 
-
-  #   # Bouton de validation
-  #     self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-  #     self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
-     
-  #     btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
-  #     btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #     btn_valider = tk.Button(self, text="encadrement zootechnique", command=lambda:EncadrementZootechnique.view_zootechnical_supervision(self))
-  #     btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
-  #  # Redimensionner le canevas lorsque la taille de la fenêtre change
-  #     self.bind("<Configure>", self.redimensionner_canevas)
-
-
-    # def open_encadrement_zootechnique(self):
-  #       # Création du cadre à l'intérieur du canevas
-  #     self.navbar_frame = tk.Frame(self.navbar_canvas)
-  #     self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-  #   # self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-  #     self.col_title = [ 
-  #           "Lieu Habituel et coordonee de detention", 
-  #           "Nom et coordonees veterianire traitant", 
-  #           "Nom et coordonnees du veterinaire sanitaire",
-  #           "Nom et coordonnees du referent bien-etre animal", 
-  #           "Nom adresse tel des Organismes sanitaires reconnus", 
-  #           "Nom, adresse tel marcechal ferrand",
-  #           "Nom, adresse et N de telephone du dentiste"
-  #       ]
-
-  #       # Ajout de l'espace entre le menu de navigation et "Sire"         
-  #     for j in range(len(self.col_title)):
-  #           col_tmp = self.col_title[j]
-  #           col_title = tk.Label(self.navbar_frame, text=col_tmp, width=25, relief="solid", bg="lightgray", anchor="w")
-  #           col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-
-  #       # Création des champs d'entrée
-  #     for i in range(self.numberLines):
-  #           row_data = []
-  #           for j in range(len(self.col_title)):        
-  #               cell = tk.Entry(self.navbar_frame, width=25)    
-  #               cell.grid(row=i+11, column=j, sticky='nsew')  # Commencer à la ligne 11                     
-  #               row_data.append(cell)
-  #           self.data.append(row_data)
-                                                                                              
-  #       # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-  #     for j in range(len(self.col_title)):
-  #       self.navbar_frame.grid_columnconfigure(j, weight=1)      
-
-  #       # Bouton de validation
-  #       self.navbar_frame.bouton_ajouter_ligne = Button(self.navbar_frame, text="Ajouter une ligne", command=self.ajouter_ligne)
-  #       self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 11, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #       btn_valider = tk.Button(self.navbar_frame, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
-  #       btn_valider.grid(row=self.numberLines + 12, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #       btn_encadrement = tk.Button(self.navbar_frame, text="encadrement zootechnique", command=lambda: print("Afficher encadrement zootechnique"))
-  #       btn_encadrement.grid(row=self.numberLines + 13, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-  #       # Redimensionner le canevas lorsque la taille de la fenêtre change
-  #       self.bind("<Configure>", self.redimensionner_canevas)
-
-
-
-      # print("falg mouvement")
-    # packet = BytesIO()
-    # can = canvas.Canvas(packet, pagesize=letter)
-    # packet = BytesIO()
-    # can = canvas.Canvas(packet, pagesize=letter)
-    # existing_pdf = PdfReader(chemin_fichier, "rb")
-    # output = PdfWriter()
-    # ypos_index=0
-    #     # Ouvrir le fichier PDF existant
     # # Récupérer la taille de la page à partir du fichier existant
-    # page_size = existing_pdf.pages[5].mediabox
+    # page_size = existing_pdf.pages[page_num].mediabox
     # page_width = page_size[2] - page_size[0]  # width
     # page_height = page_size[3] - page_size[1]  # height
 
@@ -1611,49 +1557,52 @@ if __name__ == "__main__":
     # packet = BytesIO()
     # can = canvas.Canvas(packet, pagesize=(page_width, page_height))
 
+    # with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caracteristiques_animaux.json", 'r') as f:   
+    #     data = json.load(f)
 
-    # print("je suis une nouille")
-    # with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\mouvements_temporaires.json", 'r') as f:
-    #     data = json.load(f)    
-    # for caracteristique in data["mouvements"]:
-    #     Date_de_sortie = caracteristique["Date_de_sortie"]
-    #     Nom_equide = caracteristique["Nom_equide"]
-    #     Motif = caracteristique["Motif"]
-    #     Etape_eventuelle = caracteristique["Etape_eventuelle"]
-    #     Lieu_destination = caracteristique["Lieu_destination"]
-    #     Date_retour = caracteristique["Date_retour"]
-
-    #     print("date"+Date_de_sortie)
-    #     print("equide"+Nom_equide)
-    #     print("Motif"+Motif)
+    # ypos_index = 0
+    # for caracteristique in data["caracteristiques"]:
+    #     nom = caracteristique["Nom"]
+    #     NeSIRE = caracteristique["NeSIRE"]
+    #     Netranspondeur = caracteristique["Netranspondeur"]
+    #     Nom_proprietaire = caracteristique["Nom et coordonnees du proprietaire"]
+    #     Date_de_premiere_entree = caracteristique["Date de premiere entree"]
+    #     Adresse_de_provenance = caracteristique["Adresse de provenance"]
+    #     Date_de_sortie_definitive = caracteristique["Date de sortie definitive"]
+    #     Adresse_destination = caracteristique["Adresse de destination"]
 
     #     # Dessiner du texte pour chaque élément
-    #     can.drawString(90, 325 + ypos_index,  Date_de_sortie)
-    #     can.drawString(180, 325 + ypos_index, Nom_equide)
-    #     can.drawString(300, 325 + ypos_index, Motif)
-    #     can.drawString(430, 325 + ypos_index, Etape_eventuelle)
-    #     can.drawString(560, 325 + ypos_index, Lieu_destination)
-    #     can.drawString(675, 325 + ypos_index, Date_retour)
-
+    #     can.drawString(80, 320 + ypos_index, nom)
+    #     can.drawString(160, 320 + ypos_index, NeSIRE)
+    #     can.drawString(250, 320 + ypos_index, Netranspondeur)
+    #     can.drawString(340, 320 + ypos_index, Nom_proprietaire)
+    #     can.drawString(440, 320 + ypos_index, Date_de_premiere_entree)
+    #     can.drawString(520, 320 + ypos_index, Adresse_de_provenance)
+    #     can.drawString(620, 320 + ypos_index, Date_de_sortie_definitive)
+    #     can.drawString(720, 320 + ypos_index, Adresse_destination)
 
     #     ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
 
     # # Enregistrer les dessins dans le PDF temporaire
     # can.save()
-
-    # # Déplacer le curseur au début du buffer
     # packet.seek(0)
-
-    # # Lire le PDF temporaire contenant les dessins
     # new_pdf = PdfReader(packet)
 
-    # # Fusionner les nouvelles pages avec la page existante
-    # for page in new_pdf.pages:
-    #  existing_pdf.pages[5].merge_page(page)
-    #     # Ajouter la page éditée au PDF final
-    # for page in existing_pdf.pages:
-    #  output.add_page(page) 
-    # with open("mouvements_temporaires.pdf", "wb") as outputStream:
-    #  output.write(outputStream)
-    # # flag données       
-  # si beug voir PDF_Interventions_Soins_Courant(self,chemin_fichier)
+    # # Fusionner la nouvelle page avec la page existante
+    # existing_page = existing_pdf.pages[page_num]
+    # existing_page.merge_page(new_pdf.pages[0])
+
+    # # Créer un PdfWriter pour le fichier temporaire
+    # output_temp = PdfWriter()
+
+    # # Ajouter les pages non modifiées et la page modifiée
+    # for i, page in enumerate(existing_pdf.pages):
+    #     if i < 4:
+    #         output_temp.add_page(page)
+    #     elif i==4:
+    #         output_temp.add_page(existing_page)
+
+    # # Sauvegarder les pages modifiées dans un fichier temporaire
+    # temp_output_path = "caracteristiques_animaux_temp.pdf"
+    # with open(temp_output_path, "wb") as outputStream:
+    #     output_temp.write(outputStream)

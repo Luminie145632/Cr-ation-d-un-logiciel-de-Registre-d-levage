@@ -20,12 +20,12 @@ from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 
 def regarder_carachersitiques_lieu_detention(self):
 
-     with open('caracteristiques_lieu_detention.json', 'r') as file:
+     with open('C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_lieu_detention.json', 'r') as file:
         data = json.load(file)
 
         # Parcourir les données
         for i, element in enumerate(data['caracteristiques_lieu_detention'], start=15):
-            text_fields = []
+            #text_fields = []
 
             # Parcourir les clés des sous-dictionnaires
             for key in element:
