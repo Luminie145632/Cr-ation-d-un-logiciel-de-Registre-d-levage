@@ -44,10 +44,7 @@ from reportlab.lib import colors
 from reportlab.platypus import Table
 from reportlab.lib.styles import getSampleStyleSheet
 
-
-
 class FenetrePrincipale(tk.Tk):
-
 
   def __init__(self,width,col_titles,height):
      
@@ -61,12 +58,8 @@ class FenetrePrincipale(tk.Tk):
               
         self.title("Accueil")
         self.geometry("1920x1080")
-
-        try:
-            self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
-        except Exception:
-            print("photo de cheval")
-
+        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+        
         self.navbar_canvas = tk.Canvas(self, bd=2, relief=tk.GROOVE  , width=1200, height=400) #, width=1600, height=800)
        # self.navbar_canvas = tk.Canvas(self.root)
         self.navbar_canvas.grid(row=10, columnspan=len(self.col_title), sticky="ew")
@@ -117,11 +110,7 @@ class FenetrePrincipale(tk.Tk):
         btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\nouilles.pdf', 4))
         btn_generer_pdf.place(relx=0.375, rely=0.55, anchor="center")
         
-        try:
-         self.setup_background_animation()
-        except Exception:     
-          print(" Marche pas photo de fond ")
-
+        self.setup_background_animation()
         self.create_navigation_panel()
         self.bind("<Configure>", self.redimensionner_canevas)
   
@@ -210,7 +199,7 @@ class FenetrePrincipale(tk.Tk):
         self.label_image = photo
 
   def lire_fichier():
-        folder_path="Cr-ation-d-un-logiciel-de-Registre-d-levage\view"
+        folder_path="/Creation_dun_logiciel_de_Registre_delevage/view"
         #parcourir les fichiers
         for path, dirs, files in os.walk(folder_path):
             for filename in files:
@@ -320,38 +309,30 @@ class FenetrePrincipale(tk.Tk):
          self.bind("<Configure>", self.redimensionner_image)       
 
   def load_image(self):
-        
-        try:
-     
-         image_path = self.image_paths[self.current_image_index]
-         image = Image.open(image_path)
-         image = image.resize((self.winfo_width(), self.winfo_height()))
-     
-         photo = ImageTk.PhotoImage(image)
-         self.label_image.configure(image=photo)
-         self.label_image.image = photo
-         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
-        
-         for child in self.label_image.winfo_children():
-            child.lift()
 
-         self.after(2000, self.load_image)
-        except Exception:
-          print(" ça marche pas ")
-
-  def redimensionner_image(self, event):
-      
-       try:
-        
         image_path = self.image_paths[self.current_image_index]
         image = Image.open(image_path)
         image = image.resize((self.winfo_width(), self.winfo_height()))
+     
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
-        self.label_image = photo
-       
-       except Exception:
-        print("photo marche pas ")          
+        self.label_image.image = photo
+        self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
+        
+        for child in self.label_image.winfo_children():
+            child.lift()
+
+        self.after(2000, self.load_image)
+
+  def redimensionner_image(self, event):
+      
+       image_path = self.image_paths[self.current_image_index]
+       image = Image.open(image_path)
+       image = image.resize((self.winfo_width(), self.winfo_height()))
+       photo = ImageTk.PhotoImage(image)
+       self.label_image.configure(image=photo)
+       self.label_image = photo
+                 
   # print the  elements from the databases
   def afficher_elements_canevas(self):
         # Création du cadre à l'intérieur du canevas
@@ -402,7 +383,7 @@ class FenetrePrincipale(tk.Tk):
       btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
   def view_animals(self):
      print("flag view animals")
-     with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_animaux.json', 'r') as file:
+     with open(r'/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json', 'r') as file:
         data = json.load(file)
 
         # Parcourir les données
@@ -435,14 +416,13 @@ class FenetrePrincipale(tk.Tk):
     # Redimensionner le canevas lorsque la taille de la fenêtre change                                                
      self.bind("<Configure>", self.redimensionner_canevas)
 
-
   def generate_first_page(self, chemin_fichier, page_num, texte, sortie): 
 
    # " nouveau fichier modifie et caratheristiques"
     packet = BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
 
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\encadrement_zootechnique.json", 'r') as f:
+    with open("/Creation_dun_logiciel_de_Registre_delevage/view/encadrement_zootechnique.json", 'r') as f:
         data = json.load(f)
           
     can.save()
@@ -451,7 +431,6 @@ class FenetrePrincipale(tk.Tk):
     new_pdf = PdfReader(packet)
     existing_pdf = PdfReader(chemin_fichier, "rb")
     output = PdfWriter()
-
 
         # Récupérer la taille de la page à partir du fichier existant
     page_size = existing_pdf.pages[page_num].mediabox
@@ -478,8 +457,7 @@ class FenetrePrincipale(tk.Tk):
     with open("nouveau_fichier_modifie.pdf", "wb") as outputStream:
         output.write(outputStream)
 
-
-#fonction de creation de PDF temporaires 
+    #fonction de creation de PDF temporaires 
   def create_temp_mouvement_temporaires(self, chemin_fichier):
     existing_pdf = PdfReader(chemin_fichier)
     
@@ -530,15 +508,13 @@ class FenetrePrincipale(tk.Tk):
 
     with open('caratheristiques_temp.pdf', 'wb') as outputStream:
         output.write(outputStream)    
-  
 
-
-# fonction de creation de PDF
+    # fonction de creation de PDF
   def PDF_Interventions_Soins_Courant(self, chemin_fichier):
 
     # Lire le PDF existant
     self.create_temp_soins_courant(chemin_fichier)                                                                                          
-    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\soins_courant_temp.pdf")              
+    existing_pdf = PdfReader("/Creation_dun_logiciel_de_Registre_delevage/view/soins_courant_temp.pdf")              
 
     # Récupérer la taille de la page 0         
     page_num = 0
@@ -547,7 +523,7 @@ class FenetrePrincipale(tk.Tk):
     page_height = float(page_size[3]) - float(page_size[1])  # height
 
     # Lire les données JSON
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\Soins_Courant.json", 'r') as f:
+    with open("/Creation_dun_logiciel_de_Registre_delevage/view/Soins_Courant.json", 'r') as f:
         data = json.load(f)
 
     # Variables de gestion des pages
@@ -624,7 +600,6 @@ class FenetrePrincipale(tk.Tk):
             
             print(" controle 1")
         else:
-            
             print("surcharge")
 
         # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
@@ -633,67 +608,11 @@ class FenetrePrincipale(tk.Tk):
 
     with open('soins_courant.pdf', 'wb') as outputStream:
         output.write(outputStream)
-
-
-
-
-
-
-
-    # existing_pdf = PdfReader(chemin_fichier)   
-    # page_num = 7
-    # page_size = existing_pdf.pages[page_num].mediabox
-    # page_width = page_size[2] - page_size[0]  # width
-    # page_height = page_size[3] - page_size[1]  # height
-
-    # packet = BytesIO()
-    # can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
-    # with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\Soins_Courant.json", 'r') as f:
-    #     data = json.load(f)
-
-    # ypos_index = 30
-    # for intervention in data["interventions"]:
-    #     Date = intervention["Date"]
-    #     Type_intervention = intervention["Type intervention"]
-    #     Intervenant = intervention["Intervenant"]
-    #     Nom_medicament = intervention["Traitement"]["Nom du medicament"]
-    #     Voie_administration = intervention["Traitement"]["Voie administration"]
-    #     Date_debut = intervention["Traitement"]["Date dedebut"]
-    #     Date_fin = intervention["Traitement"]["Date dedefin"]
-    #     N_ordonnance = intervention["N ordonnance"]
-    #     Delai_attente_competition = intervention["Delai attente competition"]
-    #     Delai_attente_abattage = intervention["Delai attente abattage"]
-
-    #     can.drawString(50, 280 + ypos_index, Date)
-    #     can.drawString(80, 280 + ypos_index, Type_intervention)
-    #     can.drawString(170, 280 + ypos_index, Intervenant)
-    #     can.drawString(280, 280 + ypos_index, Nom_medicament)
-    #     can.drawString(375, 280 + ypos_index, Voie_administration)
-    #     can.drawString(470, 280 + ypos_index, Date_debut)
-    #     can.drawString(515, 280 + ypos_index, Date_fin)
-    #     can.drawString(550, 280 + ypos_index, N_ordonnance)
-    #     can.drawString(620, 280 + ypos_index, Delai_attente_competition)
-    #     can.drawString(725, 280 + ypos_index, Delai_attente_abattage)
-
-    #     ypos_index -= 45
-
-    # can.save()
-    # packet.seek(0)
-
-    # new_pdf = PdfReader(packet)
-    # existing_page = existing_pdf.pages[page_num]
-    # existing_page.merge_page(new_pdf.pages[0])
-
-    # output = PdfWriter()
-    # output.add_page(existing_page)
-
-    # with open("soins_courant.pdf", "wb") as outputStream:
-    #     output.write(outputStream)                                                                                               
+                                                                                       
   def PDF_controle_registre(self, chemin_fichier):  
     # Lire le PDF existant
     self.create_temp_controle_registre(chemin_fichier)                                                                                          
-    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\controle_registre_temp.pdf")              
+    existing_pdf = PdfReader("/Creation_dun_logiciel_de_Registre_delevage/view/controle_registre_temp.pdf")              
 
     # Récupérer la taille de la page 0         
     page_num = 0
@@ -702,7 +621,7 @@ class FenetrePrincipale(tk.Tk):
     page_height = float(page_size[3]) - float(page_size[1])  # height
 
     # Lire les données JSON
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\controles.json", 'r') as f:
+    with open("/Creation_dun_logiciel_de_Registre_delevage/view/controles.json", 'r') as f:
         data = json.load(f)
 
     # Variables de gestion des pages
@@ -770,7 +689,6 @@ class FenetrePrincipale(tk.Tk):
             
             print(" controle 1")
         else:
-            
             print("surcharge")
 
         # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
@@ -782,7 +700,7 @@ class FenetrePrincipale(tk.Tk):
   def PDF_mouvement_temporaires(self, chemin_fichier):  
     # Lire le PDF existant
     self.create_temp_mouvement_temporaires(chemin_fichier)                                                                                          
-    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\mouvements_temporaires_temp.pdf")              
+    existing_pdf = PdfReader("/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires_temp.pdf")              
 
     # Récupérer la taille de la page 0         
     page_num = 0
@@ -791,7 +709,7 @@ class FenetrePrincipale(tk.Tk):
     page_height = float(page_size[3]) - float(page_size[1])  # height
 
     # Lire les données JSON
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\mouvements_temporaires.json", 'r') as f:
+    with open("/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires.json", 'r') as f:
         data = json.load(f)
 
     # Variables de gestion des pages
@@ -858,7 +776,6 @@ class FenetrePrincipale(tk.Tk):
             output.add_page(existing_page)
             
         else:
-   
             print("surcharge")
 
         # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
@@ -870,7 +787,7 @@ class FenetrePrincipale(tk.Tk):
   def PDF_caratheristiques_animaux(self,chemin_fichier):        
      # Lire le PDF existant
     self.create_temp_caratheristiques(chemin_fichier)                                                                                          
-    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caratheristiques_temp.pdf")              
+    existing_pdf = PdfReader("/Creation_dun_logiciel_de_Registre_delevage/view/caratheristiques_temp.pdf")              
 
     # Récupérer la taille de la page 0         
     page_num = 0
@@ -879,7 +796,7 @@ class FenetrePrincipale(tk.Tk):
     page_height = float(page_size[3]) - float(page_size[1])  # height
 
     # Lire les données JSON
-    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caracteristiques_animaux.json", 'r') as f:
+    with open("/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json", 'r') as f:
         data = json.load(f)
 
     # Variables de gestion des pages
@@ -950,7 +867,6 @@ class FenetrePrincipale(tk.Tk):
             output.add_page(existing_page)
             
         else:
-   
             print("surcharge")
 
         # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
@@ -1091,7 +1007,7 @@ class FenetrePrincipale(tk.Tk):
         self.numberLines += 1
 
    #ok
-# open the window on the deashboard
+    # open the window on the deashboard
   def ouvrir_mouvement_temporaires(self, width,height):
       self.supprimer_widgets()
     # Création du cadre à l'intérieur du canevas
@@ -1175,22 +1091,6 @@ class FenetrePrincipale(tk.Tk):
       self.col_title = ["Date", "Type intervention", "Intervenant", "Traitement", "N ordonnance","Date de debut","Date de fin","Delai attente competition","Delai attente abattage"]  # ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)   # ["Date_de_sortie", "Nom_equide", "Motif", "Etape_eventuelle", "Lieu_destination", "Date_retour"]  #["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
     # Ajout de l'espace entre le menu de navigation et "Sire"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
       for j in range(len(self.col_title)):#len(self.col_title)):
         col_tmp = self.col_title[j]
         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
@@ -1400,7 +1300,7 @@ class FenetrePrincipale(tk.Tk):
         intervention_data.append(encadrement)
  
     try:
-        with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\encadrement_zootechnique.json', 'w') as json_file:
+        with open(r'/Creation_dun_logiciel_de_Registre_delevage/view/encadrement_zootechnique.json', 'w') as json_file:
             json.dump({"encadrement": intervention_data}, json_file, indent=4)
             # Impression de débogage
             print("Les données ont été écrites dans encadrement_zootechnique.json")
@@ -1482,127 +1382,6 @@ class FenetrePrincipale(tk.Tk):
       with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_animaux.json', 'w') as json_file:
          json.dump({"caracteristiques":nouveaux_caract}, json_file, indent=4) 
 
-
-
 if __name__ == "__main__":
     app = FenetrePrincipale(width=1920, col_titles=["Colonne 1", "Colonne 2","c","c","c","colonne","c","c"], height=1080)
     app.mainloop() 
-
-
-#   def PDF_controle_registre(self, chemin_fichier):
-#     # Lire le PDF existant
-#     existing_pdf = PdfReader(chemin_fichier)
-
-#     # Spécifier la page à modifier
-#     page_num = 9
-#     page_size = existing_pdf.pages[page_num].mediabox
-#     page_width = page_size[2] - page_size[0]  # width
-#     page_height = page_size[3] - page_size[1]  # height
-
-#     # Créer un nouveau PDF pour les dessins
-#     packet = BytesIO()
-#     can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
-#     # Lire les données JSON
-#     with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\controles.json", 'r') as f:
-#         data = json.load(f)
-
-#     # Dessiner le texte sur le canvas
-#     ypos_index = 0
-#     for controle in data["controle"]:
-#         Date = controle["Date"]
-#         Organisme_controle = controle["Organisme de controle"]
-#         Motif_controle = controle["Motif de controle"]
-#         Nom_controleur = controle["Nom du controleur"]
-#         Cachet = controle["Cachet"]
-#         Signature = controle["Signature"]
-
-#         # Dessiner du texte pour chaque élément
-#         can.drawString(100, 380 + ypos_index, Date)
-#         can.drawString(190, 380 + ypos_index, Organisme_controle)
-#         can.drawString(300, 380 + ypos_index, Motif_controle)
-#         can.drawString(450, 380 + ypos_index, Nom_controleur)
-#         can.drawString(550, 380 + ypos_index, Cachet)
-#         can.drawString(700, 380 + ypos_index, Signature)    
-
-#         ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
-
-#     # Enregistrer les dessins dans le PDF temporaire
-#     can.save()
-#     packet.seek(0)
-
-#     # Lire le PDF temporaire contenant les dessins
-#     new_pdf = PdfReader(packet)
-
-#     # Fusionner la nouvelle page avec la page existante
-#     existing_page = existing_pdf.pages[page_num]
-#     existing_page.merge_page(new_pdf.pages[0])
-
-#     # Créer un PdfWriter pour le fichier de sortie
-#     output = PdfWriter()
-#     output.add_page(existing_page)
-
-#     # Enregistrer uniquement la page modifiée dans un nouveau fichier PDF
-#     with open("controle_registre.pdf", "wb") as outputStream:
-#         output.write(outputStream)     
-    # # Lire le PDF existant
-    # existing_pdf = PdfReader(chemin_fichier)
-
-    # # Récupérer la taille de la page à partir du fichier existant
-    # page_size = existing_pdf.pages[page_num].mediabox
-    # page_width = page_size[2] - page_size[0]  # width
-    # page_height = page_size[3] - page_size[1]  # height
-
-    # # Créer un nouveau PDF pour les dessins
-    # packet = BytesIO()
-    # can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
-    # with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caracteristiques_animaux.json", 'r') as f:   
-    #     data = json.load(f)
-
-    # ypos_index = 0
-    # for caracteristique in data["caracteristiques"]:
-    #     nom = caracteristique["Nom"]
-    #     NeSIRE = caracteristique["NeSIRE"]
-    #     Netranspondeur = caracteristique["Netranspondeur"]
-    #     Nom_proprietaire = caracteristique["Nom et coordonnees du proprietaire"]
-    #     Date_de_premiere_entree = caracteristique["Date de premiere entree"]
-    #     Adresse_de_provenance = caracteristique["Adresse de provenance"]
-    #     Date_de_sortie_definitive = caracteristique["Date de sortie definitive"]
-    #     Adresse_destination = caracteristique["Adresse de destination"]
-
-    #     # Dessiner du texte pour chaque élément
-    #     can.drawString(80, 320 + ypos_index, nom)
-    #     can.drawString(160, 320 + ypos_index, NeSIRE)
-    #     can.drawString(250, 320 + ypos_index, Netranspondeur)
-    #     can.drawString(340, 320 + ypos_index, Nom_proprietaire)
-    #     can.drawString(440, 320 + ypos_index, Date_de_premiere_entree)
-    #     can.drawString(520, 320 + ypos_index, Adresse_de_provenance)
-    #     can.drawString(620, 320 + ypos_index, Date_de_sortie_definitive)
-    #     can.drawString(720, 320 + ypos_index, Adresse_destination)
-
-    #     ypos_index -= 45  # Décalage vertical pour chaque nouvel élément
-
-    # # Enregistrer les dessins dans le PDF temporaire
-    # can.save()
-    # packet.seek(0)
-    # new_pdf = PdfReader(packet)
-
-    # # Fusionner la nouvelle page avec la page existante
-    # existing_page = existing_pdf.pages[page_num]
-    # existing_page.merge_page(new_pdf.pages[0])
-
-    # # Créer un PdfWriter pour le fichier temporaire
-    # output_temp = PdfWriter()
-
-    # # Ajouter les pages non modifiées et la page modifiée
-    # for i, page in enumerate(existing_pdf.pages):
-    #     if i < 4:
-    #         output_temp.add_page(page)
-    #     elif i==4:
-    #         output_temp.add_page(existing_page)
-
-    # # Sauvegarder les pages modifiées dans un fichier temporaire
-    # temp_output_path = "caracteristiques_animaux_temp.pdf"
-    # with open(temp_output_path, "wb") as outputStream:
-    #     output_temp.write(outputStream)

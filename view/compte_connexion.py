@@ -126,7 +126,7 @@ class FenetrePrincipale(tk.Tk):
         # Créer une boîte de message personnalisée pour s'adapter à la longueur du texte
         messagebox.showinfo("Connexion réussie", message)
         # Ouvrir la nouvelle fenêtre et fermer l'ancienne
-        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Accueil testV2.py"])
+        subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Accueil.py"])
         self.destroy()
 
 if __name__ == "__main__":
