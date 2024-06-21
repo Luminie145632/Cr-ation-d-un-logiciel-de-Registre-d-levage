@@ -43,13 +43,14 @@ class MaClasse(tk.Tk):
         # Redimensionner le canevas lorsque la taille de la fenêtre change
         self.bind("<Configure>", self.redimensionner_canevas)
 
-    def ajouter_champs_entree(self):
-        # Ajoutez vos champs d'entrée ici dans self.navbar_frame
-        # Par exemple :
-        for i in range(20):
-            entry = tk.Entry(self.navbar_frame)
-            entry.grid(row=i, column=0, sticky='ew')
-            self.data.append(entry)
+    def ajouter_ligne(self):
+        row_data = []
+        for j in range(len(self.col_title)):
+            cell = tk.Entry(self.inner_frame, width=22)
+            cell.grid(row=self.numberLines + 1, column=j, sticky='nsew')
+            row_data.append(cell)
+        self.data.append(row_data)
+        self.numberLines += 1  
 
     def redimensionner_canevas(self, event):
         self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
