@@ -11,13 +11,17 @@ from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 class Movements:
     
     def view_temporary_movements(self):
-     
-     with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\mouvements_temporaires.json', 'r') as file:
-        data = json.load(file)
+
+
+        print( " c c  flag ce fichier Mouvements" )
+        
+        with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\mouvements_temporaires.json', 'r') as file:
+          data = json.load(file)
+       
 
         # Parcourir les données
         for i, element in enumerate(data['mouvements_temporaires'], start=1):
-            text_fields = []
+
 
             # Parcourir les clés des sous-dictionnaires
             for key in element:
@@ -26,29 +30,25 @@ class Movements:
 
                 # Trouver l'index de la colonne correspondant à la clé
                 col_index = self.col_title.index(key)
+                print("indice "+str(i)+" < "+str(len(self.data))+ " ")   
+                if i > len(self.data):
+                    self.ajouter_ligne()
 
                 # Vérifier si l'indice i est valide pour self.data
-                if i < len(self.data):
+                if i <= len(self.data):
                     # Insérer la valeur dans le champ d'entrée correspondant
                     entry = self.data[i - 1][col_index]
                     entry.delete(0, 'end')  # Supprimer le contenu précédent
                     entry.insert(0, value)  # Insérer la nouvelle valeur
                 else:
+              #      self.ajouter_ligne
                     print(f"Erreur: L'indice {i} dépasse la taille de self.data.")
 
     # Ajouter les boutons en dehors de la boucle pour éviter la duplication
-     self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+        self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
 
-     btn_valider = Button(self, text="Modifier les informations", command= self.valider_mouvements_temporaires)
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
+        btn_valider = Button(self, text="Modifier les informations", command= self.valider_mouvements_temporaires)
+        btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
 # Redimensionner le canevas lorsque la taille de la fenêtre change
-     self.bind("<Configure>", self.redimensionner_canevas)
-
-
-
-
-
-
-
- 
+        self.bind("<Configure>", self.redimensionner_canevas)
