@@ -23,7 +23,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Frame pour contenir les parties du formulaire
         self.formulaire_frame = tk.Frame(self.canvas, bg="white")  # Changer la couleur d'arrière-plan au besoin
-        self.formulaire_frame.place(x=500, y=25)  # Ajustez selon vos besoins
+        self.formulaire_frame.place(x=450, y=8)  # Ajustez selon vos besoins
 
         # Création d'un titre pour la page
         titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
@@ -75,7 +75,7 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_2 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", row=1)
+        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numero de détenteur", row=1)
         self.create_label_entry(partie_frame, "Titre :", "entry_titre", "Saisissez votre titre", row=2)
         self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", row=3)
         self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", row=4)
@@ -89,8 +89,8 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
         self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_3", "Saisissez votre adresse", row=1)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numéro de votre téléphone", row=2)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", row=3)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numero de votre telephone", row=2)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numero de votre portable", row=3)
         self.create_label_entry(partie_frame, "Mail :", "entry_mail", "Saisissez votre adresse e-mail", row=4)
 
     def creer_partie_4(self, row):
@@ -100,11 +100,11 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_4 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_4.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom_4", "Saisissez votre prénom", row=1)
+        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom_4", "Saisissez votre prenom", row=1)
         self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage_partie_4", "Saisissez votre nom d'usage", row=2)
         self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", row=3)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", row=4)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", row=5)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numero de votre telephone", row=4)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numero de votre portable", row=5)
         self.create_label_entry(partie_frame, "Mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", row=6)
 
     def create_label_entry(self, frame, label_text, entry_name, placeholder_text, row):

@@ -147,26 +147,23 @@ class FenetrePrincipale(tk.Tk):
             self.entry_siret.config(state="normal")  # Activer le champ SIRET
             self.entry_code_ape.config(state="normal")  # Activer le champ Code APE
 
-    def create_label_entry(self, frame, label_text, entry_var_name, entry_placeholder, required=False, row=1, relx=5, rely=5):
-        # Création d'un frame pour l'étiquette et le champ de saisie
-        label_entry_frame = tk.Frame(frame)
-        label_entry_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
+    def create_label_entry(self, frame, label_text, entry_name, placeholder_text, row):
+        label_frame = tk.Frame(frame)
+        label_frame.grid(row=row, column=0, pady=5, padx=5, sticky="w")
 
-        # Création de l'étiquette
-        label = tk.Label(label_entry_frame, text=label_text, font=("Helvetica", 12))
-        label.grid(row=0, column=0, pady=(0, 5), sticky="w")
+        label = tk.Label(label_frame, text=label_text)
+        label.grid(row=0, column=0, sticky="w", pady=5)
 
-        # Création du champ de saisie
-        entry_var = tk.StringVar(value=entry_placeholder)
-        entry = tk.Entry(label_entry_frame, textvariable=entry_var, font=("Helvetica", 12), foreground="gray")
-        entry.grid(row=0, column=0, padx=(225, 0), sticky="w") # Ajustement du padding pour aligner correctement
+        entry_var = tk.StringVar()
+        entry = tk.Entry(label_frame, textvariable=entry_var, fg="grey")
+        entry.grid(row=0, column=1, pady=5, padx=5, sticky="w")
 
-        # Effacement du texte par défaut lors du clic sur le champ de saisie
-        entry.bind("<FocusIn>", lambda event, e=entry: self.on_entry_click(e))
-        entry.bind("<FocusOut>", lambda event, e=entry, p=entry_placeholder: self.on_focus_out(e, p))
+        entry.insert(0, placeholder_text)
+        entry.placeholder_text = placeholder_text
+        entry.bind("<FocusIn>", lambda event: self.on_entry_focus_in(entry_var, placeholder_text, entry))
+        entry.bind("<FocusOut>", lambda event: self.on_entry_focus_out(entry_var, placeholder_text, entry))
 
-        # Stockage du champ de saisie dans une variable d'instance
-        setattr(self, entry_var_name, entry)
+        setattr(self, entry_name, entry)
 
     def on_entry_focus_in(self, var, placeholder_text, entry):
         if var.get() == placeholder_text:
