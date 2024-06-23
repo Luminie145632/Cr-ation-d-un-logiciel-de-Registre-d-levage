@@ -1,3 +1,4 @@
+#flag
 import io
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
@@ -6,7 +7,7 @@ import glob
 import os
 import os.path           
 import Methode1
-import json
+import json      
 import PyPDF2
 import pypdf
 import tableprint
@@ -43,6 +44,7 @@ from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.platypus import Table
 from reportlab.lib.styles import getSampleStyleSheet
+import subprocess
 
 
 
@@ -71,7 +73,7 @@ class FenetrePrincipale(tk.Tk):
        # self.navbar_canvas = tk.Canvas(self.root)
         self.navbar_canvas.grid(row=10, columnspan=len(self.col_title), sticky="ew")
      
-        self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL, command=self.navbar_canvas.yview)
+        self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL, command=self.navbar_canvas.yview)      
         self.scrollbar.grid(row=10, column=len(self.col_title) + 5, sticky="ns")        
  
         self.navbar_canvas.config(yscrollcommand=self.scrollbar.set)
@@ -93,13 +95,17 @@ class FenetrePrincipale(tk.Tk):
 
         self.btn_controle_registre = tk.Button(self, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage())
         self.btn_controle_registre.grid(row=0, column=6, sticky="ew")
+
+
+        # self.btn_deconnexion = tk.Button(self, text="Déconnexion", command=self.deconnexion)
+        # self.btn_deconnexion.grid(row=0, column=7, sticky="ew")
     
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
         self.label_image.grid(row=0, column=7, sticky="ew")
 
 
-                # Texte additionnel 3
+        # Texte additionnel 3
         self.texte_instruction3 = "Vous etes actuellement sur la page principale "
         self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
         self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew")
@@ -115,9 +121,6 @@ class FenetrePrincipale(tk.Tk):
         self.etiquette_instruction2 = tk.Label(self, text=self.texte_instruction2, font=("Helvetica", 12))    
         self.etiquette_instruction2.grid(row=52, column=0, columnspan=self.numberColumns, sticky="nsew")
 
-
-
- 
         # Bouton pour générer le document PDF      
         self.btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\nouilles.pdf', 4))
         self.btn_generer_pdf.grid(row=53, column=0, columnspan=self.numberColumns, sticky="nsew")
@@ -129,7 +132,20 @@ class FenetrePrincipale(tk.Tk):
 
         self.create_navigation_panel()
         self.bind("<Configure>", self.redimensionner_canevas)
-     
+# user deconnexion
+
+  def deconnexion(self):
+        # Ajoutez ici la logique pour déconnecter l'utilisateur
+        messagebox.showinfo("Déconnexion", "Vous vous êtes déconnecté avec succès de votre espace")
+        self.destroy()  # Ferme la fenêtre actuelle
+        # Exécute le script Python externe
+        subprocess.run(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Compte.py"])
+            # Redimensionner le canevas lorsque la taille de la fenêtre change
+        self.bind("<Configure>", self.redimensionner_canevas)
+
+
+
+
  #fonction de gestion des images
   def load_image(self):
         
