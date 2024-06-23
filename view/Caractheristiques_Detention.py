@@ -20,7 +20,7 @@ from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
 
 def regarder_carachersitiques_lieu_detention(self):
 
-     with open('C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\caracteristiques_lieu_detention.json', 'r') as file:
+     with open('/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_lieu_detention.json', 'r') as file:
         data = json.load(file)
 
         # Parcourir les données
@@ -50,9 +50,6 @@ def regarder_carachersitiques_lieu_detention(self):
 
         btn_valider = Button(self, text="Modifier les informations", command=self.valider_carathersitiques_lieu)
         btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew') 
-
-
-
 
 def ouvrir_caracteristiques_lieu_detention(self,width):
     # Assurez-vous que les données précédentes sont effacées si nécessaire

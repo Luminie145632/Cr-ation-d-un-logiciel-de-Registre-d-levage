@@ -1,8 +1,8 @@
+import subprocess
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import glob
-import subprocess
 import json
 
 class FenetrePrincipale(tk.Tk):
@@ -22,8 +22,8 @@ class FenetrePrincipale(tk.Tk):
         self.label_image.pack(fill=tk.BOTH, expand=tk.YES)
 
         # Frame pour contenir les parties du formulaire
-        self.formulaire_frame = tk.Frame(self.canvas)
-        self.formulaire_frame.pack(side=tk.LEFT, padx=100, pady=200)  # Ajustez selon vos besoins
+        self.formulaire_frame = tk.Frame(self.canvas, bg="white")  # Changer la couleur d'arrière-plan au besoin
+        self.formulaire_frame.place(x=500, y=25)  # Ajustez selon vos besoins
 
         # Création d'un titre pour la page
         titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
@@ -33,9 +33,10 @@ class FenetrePrincipale(tk.Tk):
         self.creer_partie_1(row=1)
         self.creer_partie_2(row=2)
         self.creer_partie_3(row=3)
+        self.creer_partie_4(row=4)
 
         btn_soumettre = tk.Button(self.formulaire_frame, text="Valider", command=self.soumettre_formulaire)
-        btn_soumettre.grid(row=4, column=0, pady=10)
+        btn_soumettre.grid(row=5, column=0, pady=10)
 
         # Appel à la méthode pour gérer le fond d'image changeant
         self.setup_background_animation()
@@ -55,24 +56,24 @@ class FenetrePrincipale(tk.Tk):
         self.current_image_index = (self.current_image_index + 1) % len(self.image_paths)
 
         self.after(6000, self.load_image)
-        self.afficher_contenu_sur_image()
-
-    def afficher_contenu_sur_image(self):
-        # Obtenez la position actuelle de défilement verticale
-        y_scroll_position = self.canvas.yview()[0]
-
-        # Ajustez la position du formulaire en fonction du défilement
-        x_position = 500
-        y_position = 125 + y_scroll_position * self.winfo_height()
-
-        self.formulaire_frame.place(x=x_position, y=y_position)
 
     def creer_partie_1(self, row):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=5, sticky="w")
 
-        etiquette_bienvenue_1 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_1 = tk.Label(partie_frame, text="Adresse du lieu de détention et type d'activité", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 5), sticky="w")
+
+        self.create_label_entry(partie_frame, "Denomination :", "entry_denomination", "Saisissez votre denomination", row=1)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_1", "Saisissez votre adresse", row=2)
+        self.create_label_entry(partie_frame, "Type d'activite :", "entry_type_activite", "Saisissez votre type d'activite", row=3)
+
+    def creer_partie_2(self, row):
+        partie_frame = tk.Frame(self.formulaire_frame)
+        partie_frame.grid(row=row, column=0, pady=5, padx=5, sticky="w")
+
+        etiquette_bienvenue_2 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
         self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", row=1)
         self.create_label_entry(partie_frame, "Titre :", "entry_titre", "Saisissez votre titre", row=2)
@@ -80,26 +81,26 @@ class FenetrePrincipale(tk.Tk):
         self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", row=4)
         self.create_label_entry(partie_frame, "NUMAGRIT (Facultatif) :", "entry_numagrit", "Saisissez votre NUMAGRIT", row=5)
 
-    def creer_partie_2(self, row):
-        partie_frame = tk.Frame(self.formulaire_frame)
-        partie_frame.grid(row=row, column=0, pady=5, padx=5, sticky="w")
-
-        etiquette_bienvenue_2 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 16, "bold"))
-        etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
-
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", row=1)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numéro de votre téléphone", row=2)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", row=3)
-        self.create_label_entry(partie_frame, "Mail :", "entry_mail", "Saisissez votre adresse e-mail", row=4)
-
     def creer_partie_3(self, row):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=5, sticky="w")
 
-        etiquette_bienvenue_3 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_3 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom2", "Saisissez votre prénom", row=1)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_3", "Saisissez votre adresse", row=1)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel", "Saisissez le numéro de votre téléphone", row=2)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", row=3)
+        self.create_label_entry(partie_frame, "Mail :", "entry_mail", "Saisissez votre adresse e-mail", row=4)
+
+    def creer_partie_4(self, row):
+        partie_frame = tk.Frame(self.formulaire_frame)
+        partie_frame.grid(row=row, column=0, pady=5, padx=5, sticky="w")
+
+        etiquette_bienvenue_4 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_4.grid(row=0, column=0, pady=(0, 5), sticky="w")
+
+        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom_4", "Saisissez votre prénom", row=1)
         self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage_partie_4", "Saisissez votre nom d'usage", row=2)
         self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", row=3)
         self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", row=4)
@@ -139,40 +140,40 @@ class FenetrePrincipale(tk.Tk):
         placeholder_text = entry.placeholder_text if hasattr(entry, 'placeholder_text') else ""
         return value if value != placeholder_text else ""
 
-    def validate_entries(self):
-        # Vous pouvez ajouter ici la logique de validation
-        pass
-
     def soumettre_formulaire(self):
-        # Récupération des valeurs des champs pour chaque partie
+        denomination = self.get_entry_value(self.entry_denomination)
+        adresse_partie_1 = self.get_entry_value(self.entry_adresse_partie_1)
+        type_activite = self.get_entry_value(self.entry_type_activite)
         num_detenteur = self.get_entry_value(self.entry_num_detenteur)
         titre = self.get_entry_value(self.entry_titre)
         prenom = self.get_entry_value(self.entry_prenom)
         nom_usage = self.get_entry_value(self.entry_nom_usage)
         numagrit = self.get_entry_value(self.entry_numagrit)
-        adresse = self.get_entry_value(self.entry_adresse)
+        adresse_partie_3 = self.get_entry_value(self.entry_adresse_partie_3)
         tel = self.get_entry_value(self.entry_tel)
         portable = self.get_entry_value(self.entry_portable)
         mail = self.get_entry_value(self.entry_mail)
-        prenom2 = self.get_entry_value(self.entry_prenom2)
+        prenom_4 = self.get_entry_value(self.entry_prenom_4)
         nom_usage_partie_4 = self.get_entry_value(self.entry_nom_usage_partie_4)
         adresse_partie_4 = self.get_entry_value(self.entry_adresse_partie_4)
         tel_partie_4 = self.get_entry_value(self.entry_tel_partie_4)
         portable_partie_4 = self.get_entry_value(self.entry_portable_partie_4)
         mail_partie_4 = self.get_entry_value(self.entry_mail_partie_4)
 
-        # Affichage des informations dans une boîte de dialogue
         message = (
+            f"Denomination : {denomination}\n"
+            f"Adresse : {adresse_partie_1}\n"
+            f"Type d_activite : {type_activite}\n"
             f"Numero de detenteur (SIRE) : {num_detenteur}\n"
             f"Titre : {titre}\n"
             f"Prenom : {prenom}\n"
             f"Nom d'usage : {nom_usage}\n"
             f"NUMAGRIT : {numagrit}\n"
-            f"Adresse : {adresse}\n"
+            f"Adresse : {adresse_partie_3}\n"
             f"Telephone : {tel}\n"
             f"Portable : {portable}\n"
             f"Adresse e-mail : {mail}\n"
-            f"Prenom : {prenom2}\n"
+            f"Prenom : {prenom_4}\n"
             f"Nom d'usage : {nom_usage_partie_4}\n"
             f"Adresse : {adresse_partie_4}\n"
             f"Telephone : {tel_partie_4}\n"
@@ -181,23 +182,27 @@ class FenetrePrincipale(tk.Tk):
         )
 
         messagebox.showinfo("Récapitulatif des informations", message)
-        subprocess.Popen(["python", "view/Accueil testV2.py"])
-        self.creacompte()
-        self.destroy()
-
+        self.destroy()  # Ferme la fenêtre actuelle
+        # Exécute le script Python externe
+        subprocess.run(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Accueil.py"])
+            # Redimensionner le canevas lorsque la taille de la fenêtre change
+        #self.bind("<Configure>", self.redimensionner_canevas)
+    
     def creacompte(self):
-        # Collecte des informations du formulaire
         comptes = {
+            "Denomination": self.entry_denomination.get(),
+            "Adresse": self.entry_adresse_partie_1.get(),
+            "Type d_activite": self.entry_type_activite.get(),
             "Numero de detenteur (SIRE)" : self.entry_num_detenteur.get(),
             "Titre": self.entry_titre.get(),
             "Prenom": self.entry_prenom.get(),
             "Nom d'usage": self.entry_nom_usage.get(),
             "NUMAGRIT": self.entry_numagrit.get(),
-            "Adresse": self.entry_adresse.get(),
+            "Adresse": self.entry_adresse_partie_3.get(),
             "Telephone": self.entry_tel.get(),
             "Portable": self.entry_portable.get(),
             "Adresse e-mail": self.entry_mail.get(),
-            "Prenom": self.entry_prenom2.get(),
+            "Prenom": self.entry_prenom_4.get(),
             "Nom d'usage": self.entry_nom_usage_partie_4.get(),
             "Adresse": self.entry_adresse_partie_4.get(),
             "Telephone": self.entry_tel_partie_4.get(),
@@ -205,18 +210,15 @@ class FenetrePrincipale(tk.Tk):
             "Mail": self.entry_mail_partie_4.get()
         }
 
-        # Lecture des données existantes du fichier JSON s'il en existe
         try:
-            with open('/Creation_dun_logiciel_de_Registre_delevage/view/comptes_particuliers.json', 'r') as json_file:
+            with open('view/comptes_particuliers.json', 'r') as json_file:
                 comptes_data = json.load(json_file)["comptes"]
         except (FileNotFoundError, json.JSONDecodeError):
             comptes_data = []
 
-        # Ajout du nouveau compte à la liste
         comptes_data.append(comptes)
 
-        # Écriture des données dans un fichier JSON
-        with open('/Creation_dun_logiciel_de_Registre_delevage/view/comptes_particuliers.json', 'w') as json_file:
+        with open('view/comptes_particuliers.json', 'w') as json_file:
             json.dump({"comptes": comptes_data}, json_file, indent=4)
 
 if __name__ == "__main__":
