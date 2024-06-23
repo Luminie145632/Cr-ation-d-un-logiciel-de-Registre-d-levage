@@ -73,16 +73,12 @@ class FenetrePrincipale(tk.Tk):
 
         # Création d'un cadre intérieur pour les Entry widgets
         self.inner_frame = Frame(self.navbar_frame)
-
-        # Encadrement Zootechnique, Sanitaire et Medical des Animaux
-        self.btn_encadrement = tk.Button(self, text="Encadrement", command=lambda:self.open_encadrement_zootechnique())
-        self.btn_encadrement.grid(row=0, column=2, sticky="ew")
              
         # Présence et Caractéristiques des Animaux
         self.btn_caractheristiques_animaux = tk.Button(self, text="Présence", command=lambda:self.ouvrir_caractheristiques_animaux())
         self.btn_caractheristiques_animaux.grid(row=0, column=3, sticky="ew")
         
-        self.btn_mouvement_temporaire = tk.Button(self, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires(width,height))
+        self.btn_mouvement_temporaire = tk.Button(self, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires())
         self.btn_mouvement_temporaire.grid(row=0, column=4, sticky="ew")
         
         self.btn_intervention_soins = tk.Button(self, text="Intervents et Soins Courants", command=lambda:self.ouvrir_interventions())
@@ -95,20 +91,29 @@ class FenetrePrincipale(tk.Tk):
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
         self.label_image.grid(row=0, column=7, sticky="ew")
 
+
+                # Texte additionnel 3
+        self.texte_instruction3 = "Vous etes actuellement sur la page principale "
+        self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+        self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew")
+
         # Texte additionnel
-        texte_instruction = "Pour générer le document PDF qui va regrouper toutes les informations que vous avez entré dans les différentes parties de l'application."
+        self.texte_instruction = "Pour générer le document PDF qui va regrouper toutes les informations que vous avez entré dans les différentes parties de l'application."
         #  etiquette_instruction.grid(row=2, column=0, columnspan=self.numberColumns, sticky="nsew")
-        etiquette_instruction = tk.Label(self, text=texte_instruction, font=("Helvetica", 12))
-        etiquette_instruction.grid(row=19, column=0, columnspan=self.numberColumns, sticky="nsew")
+        self.etiquette_instruction = tk.Label(self, text=self.texte_instruction, font=("Helvetica", 12))
+        self.etiquette_instruction.grid(row=51, column=0, columnspan=self.numberColumns, sticky="nsew")
 
         # Texte additionnel2
-        texte_instruction2 = "Veuillez cliquer sur le bouton suivant :"
-        etiquette_instruction2 = tk.Label(self, text=texte_instruction2, font=("Helvetica", 12))
-        etiquette_instruction2.grid(row=20, column=0, columnspan=self.numberColumns, sticky="nsew")
+        self.texte_instruction2 = "Veuillez cliquer sur le bouton suivant :"
+        self.etiquette_instruction2 = tk.Label(self, text=self.texte_instruction2, font=("Helvetica", 12))    
+        self.etiquette_instruction2.grid(row=52, column=0, columnspan=self.numberColumns, sticky="nsew")
 
+
+
+ 
         # Bouton pour générer le document PDF      
-        btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\nouilles.pdf', 4))
-        btn_generer_pdf.place(relx=0.375, rely=0.55, anchor="center")
+        self.btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\nouilles.pdf', 4))
+        self.btn_generer_pdf.grid(row=53, column=0, columnspan=self.numberColumns, sticky="nsew")
         
         #self.setup_background_animation()
         self.create_navigation_panel()
@@ -358,6 +363,8 @@ class FenetrePrincipale(tk.Tk):
         for j in range(len(self.col_title)):
            self.navbar_frame.grid_columnconfigure(j, weight=1)
 
+
+  #fonction pour voir les éléments du json
   def view_caratherisis_detention_place(self):
      
       with open('caracteristiques_lieu_detention.json', 'r') as file:
@@ -399,7 +406,7 @@ class FenetrePrincipale(tk.Tk):
                 col_index = self.col_title.index(key)
 
                 # Vérifier si l'indice i est valide pour self.data
-                if i < len(self.data):
+                if i <= len(self.data):
                     # Insérer la valeur dans le champ d'entrée correspondant
                     entry = self.data[i - 1][col_index]
                     entry.delete(0, 'end')  # Supprimer le contenu précédent
@@ -488,7 +495,7 @@ class FenetrePrincipale(tk.Tk):
     existing_pdf = PdfReader(chemin_fichier)
     
     # Récupérer la taille de la page 
-    page_num =7
+    page_num = 7
 
     output = PdfWriter()
     for i in range(5):
@@ -496,7 +503,8 @@ class FenetrePrincipale(tk.Tk):
 
     with open('soins_courant_temp.pdf', 'wb') as outputStream:
         output.write(outputStream)   
-  def create_temp_caratheristiques(self,chemin_fichier):
+  def create_caractheristiques_animaux_tmp(self,chemin_fichier):
+
     existing_pdf = PdfReader(chemin_fichier)
     
     # Récupérer la taille de la page 
@@ -528,7 +536,7 @@ class FenetrePrincipale(tk.Tk):
 
     # Variables de gestion des pages
     ypos_index = 0
-    result = 325  # Initialiser result au début de la première page
+    result = 325 # Initialiser result au début de la première page
     output = PdfWriter()
 
     # Ajouter toutes les pages du PDF existant à la sortie
@@ -567,17 +575,17 @@ class FenetrePrincipale(tk.Tk):
             Delai_attente_abattage = intervention["Delai attente abattage"]
 
             # Dessiner du texte pour chaque élément
-            can.drawString(90, result, Date)
-            can.drawString(180, result, Type_intervention)
-            can.drawString(300, result, Intervenant)
-            can.drawString(430, result, Nom_medicament)
-            can.drawString(560, result,  Voie_administration)
-            can.drawString(675, result, Date_debut )
+            can.drawString(50, result, Date)
+            can.drawString(90, result, Type_intervention)
+            can.drawString(150, result, Intervenant)
+            can.drawString(250, result, Nom_medicament)
+            can.drawString(330, result,  Voie_administration)
+            can.drawString(470, result, Date_debut )
 
-            can.drawString(720, result,  Date_fin)
-            can.drawString(780, result,  N_ordonnance )
-            can.drawString(820, result,  Delai_attente_competition)
-            can.drawString(870, result, Delai_attente_abattage)    
+            can.drawString(510, result,  Date_fin)
+            can.drawString(550, result,  N_ordonnance )
+            can.drawString(620, result,  Delai_attente_competition)
+            can.drawString(715, result, Delai_attente_abattage)    
 
             ypos_index += 1
             result -= 45  # Décalage vertical pour chaque nouvel élément
@@ -592,8 +600,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Ajouter la nouvelle page au PDF existant
         if current_page < len(existing_pdf.pages):
-            print(" len"+str(len(existing_pdf.pages)))
-            print(" indice "+str(current_page))
+
             existing_page = existing_pdf.pages[current_page]
             existing_page.merge_page(new_page)
             output.add_page(existing_page)
@@ -626,7 +633,7 @@ class FenetrePrincipale(tk.Tk):
 
     # Variables de gestion des pages
     ypos_index = 0
-    result = 325  # Initialiser result au début de la première page
+    result = 365  # Initialiser result au début de la première page
     output = PdfWriter()
 
     # Ajouter toutes les pages du PDF existant à la sortie
@@ -651,6 +658,7 @@ class FenetrePrincipale(tk.Tk):
  
         # Dessiner le texte sur le canvas
         cpt = 0
+        result=355
         while cpt < 6 and ypos_index < len(data["controle"]):
             controle = data["controle"][ypos_index]
             Date = controle["Date"]
@@ -681,8 +689,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Ajouter la nouvelle page au PDF existant
         if current_page < len(existing_pdf.pages):
-            print(" len"+str(len(existing_pdf.pages)))
-            print(" indice "+str(current_page))
+
             existing_page = existing_pdf.pages[current_page]
             existing_page.merge_page(new_page)
             output.add_page(existing_page)
@@ -769,8 +776,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Ajouter la nouvelle page au PDF existant
         if current_page < len(existing_pdf.pages):
-            print(" len"+str(len(existing_pdf.pages)))
-            print(" indice "+str(current_page))
+
             existing_page = existing_pdf.pages[current_page]
             existing_page.merge_page(new_page)
             output.add_page(existing_page)
@@ -860,8 +866,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Ajouter la nouvelle page au PDF existant
         if current_page < len(existing_pdf.pages):
-            print(" animaux len"+str(len(existing_pdf.pages)))
-            print(" animaux indice "+str(current_page))
+
             existing_page = existing_pdf.pages[current_page]
             existing_page.merge_page(new_page)
             output.add_page(existing_page)
@@ -874,40 +879,7 @@ class FenetrePrincipale(tk.Tk):
         current_page += 1
 
     with open('caratheristiques_animaux.pdf', 'wb') as outputStream:
-        output.write(outputStream)
-
-  def controle_registre(self,width):    
-
-        self.numberLines = width
-        self.numberColumns = width
-
-        for j in range(self.numberColumns):   # sui ça affiche pas c'est qu'il y a zero 
-            col_title = Label(self, text=self.col_titles[j], width=20, relief="solid", bg="lightgray", anchor="w")
-            col_title.grid(row=0, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-
-        # Ajout des données du tableau
-        self.data = []
-        for i in range(1, self.numberLines + 1):
-            line = []
-            for j in range(self.numberColumns):
-                cell = Entry(self, width=20)  # Ajustez la largeur selon vos besoins
-                cell.grid(row=i, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-                line.append(cell)
-            self.data.append(line)
-
-        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-        for j in range(self.numberColumns):
-            self.grid_columnconfigure(j, weight=1)
-
-        # Bouton pour ajouter une nouvelle ligne
-        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=20, height=1)
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 1, columnspan=self.numberColumns, sticky='nsew')
-             
-        self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=self.valider_informations, width=20, height=1)
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=self.numberColumns, sticky='nsew')
-        
-        self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
-        self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')         
+        output.write(outputStream)     
   def ajouter_texte_pdf(self, chemin_fichier, page_num):   
     # Exécuter les fonctions pour générer les PDF temporaires
     self.PDF_mouvement_temporaires(chemin_fichier)
@@ -915,11 +887,112 @@ class FenetrePrincipale(tk.Tk):
     self.PDF_controle_registre(chemin_fichier)
     self.PDF_caratheristiques_animaux(chemin_fichier)
 
+
+
+    # Créer un PdfWriter pour le fichier final combiné
+    final_output = PdfWriter()
+
+
+    # Sauvegarder les pages modifiées dans un fichier temporaire
+    self.create_caractheristiques_animaux_tmp(chemin_fichier)                                                                                         
+    existing_pdf = PdfReader("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caratheristiques_temp.pdf")              
+
+    # Récupérer la taille de la page 0         
+    page_num = 0
+    page_size = existing_pdf.pages[page_num].mediabox
+    page_width = float(page_size[2]) - float(page_size[0])  # width
+    page_height = float(page_size[3]) - float(page_size[1])  # height
+
+    # Lire les données JSON
+    with open("C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\caracteristiques_animaux.json", 'r') as f:
+        data = json.load(f)
+
+    
+    result = 325  # Initialiser result au début de la première page
+    output_temp = PdfWriter()
+    ypos_index = 0
+
+    # Ajouter toutes les pages du PDF existant à la sortie
+    for page in existing_pdf.pages:
+       output_temp.add_page(page)
+
+    # Créer un nouvel objet PdfWriter sans les cinq premières pages
+    filtered_output = PdfWriter()
+    for i in range(5, len(output_temp.pages)):
+        filtered_output.add_page(output_temp.pages[i])
+
+    # Réassigner le writer original à celui filtré
+    output_temp = filtered_output
+
+    # Variable pour suivre le numéro de page actuel dans le PDF final
+    current_page = page_num
+
+    while ypos_index < len(data["caracteristiques"]):
+        # Créer un nouveau PDF pour les dessins
+        packet = BytesIO()
+        can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+
+        # Dessiner le texte sur le canvas
+        cpt = 0
+   
+        ypos_index2 = 0
+        while cpt < 6 and ypos_index < len(data["caracteristiques"]):
+
+            caracteristiques = data["caracteristiques"][ypos_index]
+            nom =   caracteristiques["Nom"]
+            NeSIRE =   caracteristiques["NeSIRE"]
+            Netranspondeur =   caracteristiques["Netranspondeur"]
+            Nom_proprietaire =   caracteristiques["Nom et coordonnees du proprietaire"]
+            Date_de_premiere_entree =   caracteristiques["Date de premiere entree"]
+            Adresse_de_provenance =   caracteristiques["Adresse de provenance"]
+            Date_de_sortie_definitive =   caracteristiques["Date de sortie definitive"]
+            Adresse_destination =   caracteristiques["Adresse de destination"]
+
+            # Dessiner du texte pour chaque élément
+            can.drawString(80, 320 + ypos_index2, nom)
+            can.drawString(160, 320 + ypos_index2, NeSIRE)
+            can.drawString(250, 320 + ypos_index2, Netranspondeur)
+            can.drawString(340, 320 + ypos_index2, Nom_proprietaire)
+            can.drawString(440, 320 + ypos_index2, Date_de_premiere_entree)
+            can.drawString(520, 320 + ypos_index2, Adresse_de_provenance)
+            can.drawString(620, 320 + ypos_index2, Date_de_sortie_definitive)
+            can.drawString(720, 320 + ypos_index2, Adresse_destination)
+            
+            ypos_index+=1
+            ypos_index2 -= 45
+            result -= 45  # Décalage vertical pour chaque nouvel élément
+            cpt += 1
+
+        # Sauvegarder la page actuelle
+        can.save()
+        packet.seek(0)
+
+        new_pdf = PdfReader(packet)
+        new_page = new_pdf.pages[0]
+
+        # Ajouter la nouvelle page au PDF existant
+        if current_page < len(existing_pdf.pages):
+            existing_page = existing_pdf.pages[current_page]
+            existing_page.merge_page(new_page)
+            output_temp.add_page(existing_page)
+            
+        else:
+
+            print("surcharge  texte ")
+
+        # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
+        result = 325
+        current_page += 1
+
+        temp_output_path = "caracteristiques_animaux_temp.pdf"
+        with open(temp_output_path, "wb") as outputStream:
+         output_temp.write(outputStream)
+
     # Créer un PdfWriter pour le fichier final combiné
     final_output = PdfWriter()
 
     # Ajouter les pages de chaque fichier PDF temporaire au fichier final
-    for file_path in ["caracteristiques_animaux_temp.pdf", "controle_registre.pdf", "mouvements_temporaires.pdf", "soins_courant.pdf"]:
+    for file_path in ["caracteristiques_animaux_temp.pdf",  "mouvements_temporaires.pdf", "soins_courant.pdf", "controle_registre.pdf"]:
         if not os.path.exists(file_path):
             print(f"File not found: {file_path}")
             continue
@@ -936,38 +1009,7 @@ class FenetrePrincipale(tk.Tk):
     except Exception as e:
         print("Erreur de sauvegarde:", e)
 
-  def controle_registre(self,width):    
-
-        self.numberLines = width
-        self.numberColumns = width
-
-        for j in range(self.numberColumns):   # si ça affiche pas c'est qu'il y a zero 
-            col_title = Label(self, text=self.col_titles[j], width=20, relief="solid", bg="lightgray", anchor="w")
-            col_title.grid(row=0, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-
-        # Ajout des données du tableau
-        self.data = []
-        for i in range(1, self.numberLines + 1):
-            line = []
-            for j in range(self.numberColumns):
-                cell = Entry(self, width=20)  # Ajustez la largeur selon vos besoins
-                cell.grid(row=i, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-                line.append(cell)
-            self.data.append(line)
-
-        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-        for j in range(self.numberColumns):
-            self.grid_columnconfigure(j, weight=1)
-
-        # Bouton pour ajouter une nouvelle ligne
-        self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=20, height=1)
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 1, columnspan=self.numberColumns, sticky='nsew')
-             
-        self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=self.valider_informations, width=20, height=1)
-        self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=self.numberColumns, sticky='nsew')
-        
-        self.bouton_menu_principal = Button(self, text="Retour au menu principal", command=self.return_main_menu, width=20, height=1)
-        self.bouton_menu_principal.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')         
+  #fonction de gestion de la fenetre    
   def create_text(self):
        for i in range(10, 15):
            line = []
@@ -978,24 +1020,30 @@ class FenetrePrincipale(tk.Tk):
              self.data.append(line) #je veux que lorsque l'on appuie sur le bouton valider les informations entrées dans les champ de texte soient mises dans le fichier json suivant
        return self.data   
   def supprimer_widgets(self):
-        widgets_a_garder = [
-            self.navbar_canvas, self.scrollbar, self.navbar_frame,
-            self.btn_encadrement, self.btn_caractheristiques_animaux,
-            self.btn_mouvement_temporaire, self.btn_intervention_soins,
-            self.btn_controle_registre
-        ]
+    widgets_a_garder = [
+      #  self.navbar_canvas, 
+        self.scrollbar,# self.navbar_frame,
+      #  self.btn_encadrement,
+        self.btn_generer_pdf,self.texte_instruction3,self.texte_instruction2, self.texte_instruction, self.etiquette_instruction,  self.etiquette_instruction2 , self.etiquette_instruction3,
+        self.btn_caractheristiques_animaux,
+        self.btn_mouvement_temporaire, self.btn_intervention_soins,
+        self.btn_controle_registre
+    ]
 
-        for widget in self.winfo_children():
-            if isinstance(widget, tk.Entry) and widget not in widgets_a_garder:
+    for widget in self.winfo_children():
+        if isinstance(widget, tk.Entry) and widget not in widgets_a_garder:
+            widget.destroy()
+     #       print("destruction de " + str(widget))
+        elif isinstance(widget, tk.Label) and widget not in widgets_a_garder:
+            if widget.cget("text") in self.col_title:
                 widget.destroy()
-                print("destruction de " + str(widget))
-            if isinstance(widget, tk.Label) and widget not in widgets_a_garder:
+      #          print("destruction de " + str(widget))
+            else:
                 widget.destroy()
-                print("destruction de " + str(widget))
-            if isinstance(widget, tk.Button) and widget not in widgets_a_garder:
-                widget.destroy()
-                print("destruction de " + str(widget))
-
+       #         print("destruction de " + str(widget))
+        elif isinstance(widget, tk.Button) and widget not in widgets_a_garder:
+            widget.destroy()
+        #    print("destruction de " + str(widget))
   def ajouter_ligne(self):
         # Function to add a new row
         row_data = []
@@ -1010,17 +1058,20 @@ class FenetrePrincipale(tk.Tk):
     # open the window on the deashboard
   def ouvrir_mouvement_temporaires(self, width,height):
       self.supprimer_widgets()
+        
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]  
+      self.col_title = ["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"] 
+
+
       for j in range(len(self.col_title)):      
         col_tmp = self.col_title[j]
-        col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
+        col_title = tk.Label(self.navbar_frame, text=col_tmp, width=30, relief="solid", bg="lightgray", anchor="w")
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
     
     # Création des champs d'entrée
-      for i in range(20):
+      for i in range(30):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
@@ -1037,17 +1088,23 @@ class FenetrePrincipale(tk.Tk):
 
     # Bouton de validation
       self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-      self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
+      self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title)+4, sticky='nsew')
      
       btn_valider = tk.Button(self, text="Valider", command=self.valider_mouvements_temporaires)
-      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
+      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title)+4, sticky='nsew')
 
       btn_valider = tk.Button(self, text="Afficher mouvements temporaires ", command=lambda: Movements.view_temporary_movements(self))
-      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')    
+      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title)+4, sticky='nsew')   
+
+
+    # Texte additionnel 3
+      self.texte_instruction3 = "Vous etes actuellement sur la page mouvmements temporaires "
+      self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+      self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew") 
   def open_encadrement_zootechnique(self):
       self.data=[]
       self.supprimer_widgets()
-      print("flag netoyage data")
+  
    # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
@@ -1060,7 +1117,7 @@ class FenetrePrincipale(tk.Tk):
         col_title.grid(row=0, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte   
     
     # Création des champs d'entrée
-      for i in range(15):
+      for i in range(30):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
@@ -1081,9 +1138,18 @@ class FenetrePrincipale(tk.Tk):
 
       btn_valider = tk.Button(self, text="encadrement zootechnique", command=lambda:EncadrementZootechnique.view_zootechnical_supervision(self))
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')  
+      
+          # Texte additionnel 3
+      self.texte_instruction3 = "Vous etes actuellement sur la page encadrement zootechnoique "
+      self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+      self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew") 
+
+  
    # Redimensionner le canevas lorsque la taille de la fenêtre change
+     
       self.bind("<Configure>", self.redimensionner_canevas) 
   def ouvrir_interventions(self):
+      self.supprimer_widgets()
       self.data = []  # Assurez-vous que self.data est initialisé
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
@@ -1097,11 +1163,11 @@ class FenetrePrincipale(tk.Tk):
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
     
     # Création des champs d'entrée
-      for i in range(20):
+      for i in range(30):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
-            cell.grid(row=i+14, column=j, sticky='nsew')  # Commencer à la ligne 12
+            cell.grid(row=i+14, column=j, sticky='nsew') 
             row_data.append(cell)
         self.data.append(row_data)
 
@@ -1117,25 +1183,33 @@ class FenetrePrincipale(tk.Tk):
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
       btn_valider = tk.Button(self, text="Afficher interventions", command=lambda: Interventions.view_informations_intervention(self))
-      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
+      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew') 
+         
+      self.texte_instruction3 = "Vous etes actuellement sur la page intervention et soins courant"
+      self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+      self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew") 
 
-          # Redimensionner le canevas lorsque la taille de la fenêtre change
+
+      # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
   def ouvrir_controle_registre_elevage(self):
       # Création du cadre à l'intérieur du canevas
-      self.data = []  
+      self.supprimer_widgets()
+      self.data = []  # Assurez-vous que self.data est initialisé
+    # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Date", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet","Signature"]
-
-      # Ajout de l'espace entre le menu de navigation et "Sire"
-      for j in range(len(self.col_title)):
-        col_tmp = self.col_title[j]
-        col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
-        col_title.grid(row=13, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+      self.col_title = ["Date", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet","Signature"]    
+ 
+    # Ajout de l'espace entre le menu de navigation et "Sire"
     
-      # Création des champs d'entrée
-      for i in range(20):
+      for j in range(len(self.col_title)):#len(self.col_title)):
+        col_tmp = self.col_title[j]
+        col_title = tk.Label(self.navbar_frame, text=col_tmp, width=30, relief="solid", bg="lightgray", anchor="w")
+        col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
+    
+    # Création des champs d'entrée
+      for i in range(30):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
@@ -1147,19 +1221,28 @@ class FenetrePrincipale(tk.Tk):
       for j in range(len(self.col_title)):
         self.navbar_frame.grid_columnconfigure(j, weight=1) 
 
-    # Bouton pour ajouter une nouvelle ligne
+    # Bouton de validation
+
+              # # Bouton pour ajouter une nouvelle ligne
       self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+      self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title)+4, sticky='nsew')
 
       btn_valider = tk.Button(self, text="Afficher les informations concernant le controle de mon registre d'élévage", command=lambda:controle.view_control(self))
-      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
+      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title)+4, sticky='nsew')
 
-      self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command=lambda : self.valider_informations_controle)
-      self.bouton_ajouter_ligne.grid(row=self.numberLines + 3, columnspan=len(self.col_title), sticky='nsew')                                                                 
+      self.bouton_ajouter_ligne = Button(self, text="Valider les informations", command= lambda : self.valider_informations_controle)
+      self.bouton_ajouter_ligne.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title)+4, sticky='nsew')  
+
+      self.texte_instruction3 = "Vous etes actuellement sur la page controle du registre d'élévage "
+      self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+      self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew")   
+
+
+
     # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
   def ouvrir_caractheristiques_animaux(self):
-      print("glage ouvrir caratheristiques animaux")
+    
       self.supprimer_widgets()
       self.data=[] 
     # Création du cadre à l'intérieur du canevas
@@ -1168,13 +1251,13 @@ class FenetrePrincipale(tk.Tk):
       self.col_title =  ["Nom","NeSIRE","Netranspondeur","Nom et coordonnees du proprietaire","Adresse proprietaire","Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"] 
           
     # Ajout de l'espace entre le menu de navigation et "Sire"
-      for j in range(9):#len(self.col_title)):
+      for j in range(9):
         col_tmp = self.col_title[j]
         col_title = tk.Label(self.navbar_frame, text=col_tmp, width=15, relief="solid", bg="lightgray", anchor="w")
         col_title.grid(row=10, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
     
     # Création des champs d'entrée
-      for i in range(15):
+      for i in range(30):
         row_data = []
         for j in range(len(self.col_title)):
             cell = tk.Entry(self.navbar_frame, width=22)
@@ -1199,13 +1282,63 @@ class FenetrePrincipale(tk.Tk):
       btn_valider = tk.Button(self, text="Afficher mes caractheristiques d'animaux", command=self.view_animals)  
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
 
+
+      self.texte_instruction3 = "Vous etes actuellement sur la page caratheristiques de animaux"
+      self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+      self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew") 
+
  # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.bind("<Configure>", self.redimensionner_canevas)
+  def ouvrir_caracteristiques_lieu_detention(self):
 
-# fontions de validations
+      self.navbar_frame = tk.Frame(self.navbar_canvas)
+      self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
+      self.col_title = ["Statut juridique (faculatitif)", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet", "Signature"]
+
+    # Ajouter tous les titres de colonne
+      for j in range(len(self.col_title)):
+        col_tmp = self.col_title[j]
+        col_title = tk.Label(self.inner_frame, text=col_tmp, width=10, relief="solid", bg="lightgray", anchor="w")
+        col_title.grid(row=0, column=j, sticky='nsew')
+
+    # Ajouter les lignes de données (20 dans votre cas)
+      for i in range(20):
+       for j in range(len(self.col_title)):
+            cell = tk.Entry(self.inner_frame, width=20)
+            cell.grid(row=i+1, column=j, sticky='nsew')
+
+    # Configurer la croissance des colonnes
+      for j in range(len(self.col_title)):
+        self.inner_frame.grid_columnconfigure(j, weight=1)
+
+    # Mettre à jour la taille du cadre intérieur pour que la scrollbar fonctionne correctement
+      self.inner_frame.update_idletasks()
+      self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
+
+    # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.bind("<Configure>", self.redimensionner_canevas)
+
+    # Bouton de validation
+      self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
+      self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
+     
+      btn_valider = tk.Button(self, text="Valider", command=self.valider_carathersitiques_lieu)
+      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
+
+      btn_valider = tk.Button(self, text="Afficher mes caractheristiques de lieu  de détention", command=CaratheristiquesDetention.regarder_carachersitiques_lieu_detention(self)) # CaratheristiquesDetention.ouvrir_caracteristiques_lieu_detention  )
+      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
+          # Redimensionner le canevas lorsque la taille de la fenêtre change
+      self.texte_instruction3 = "Vous etes actuellement sur la page caratheristiques du lieu de détention"
+      self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
+      self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew")   
+
+
+      self.bind("<Configure>", self.redimensionner_canevas) 
+
+
 #validations informations functions and put them in json  
   def valider_mouvements_temporaires(self):
-      print("valider mouvements temporaires")
+ 
       
       mouvements = []
      # Parcourir toutes les lignes de données
@@ -1281,10 +1414,9 @@ class FenetrePrincipale(tk.Tk):
             json.dump({"controle": controle_data}, json_file, indent=4)
   def valider_encadrement_Zootechnique_animaux(self): # elargir le panel pour que l'on voit tout
     # Collecte des données depuis les champs d'entrée
-
     #flag code test
     intervention_data = []
-    print("flag validations")
+
     for row_data in self.data:
 
         encadrement = {
@@ -1356,7 +1488,7 @@ class FenetrePrincipale(tk.Tk):
       with open('Soins_Courant.json', 'w') as f:
          json.dump({"interventions": interventions}, f, indent=4)     
   def valider_caratheristiques_animaux(self):
-      print("flag valider animaux")
+
     # Initialiser une liste pour stocker les nouveaux caractéristiques
       nouveaux_caract = []
 
