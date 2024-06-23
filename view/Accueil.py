@@ -1,3 +1,4 @@
+#flag
 import io
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
@@ -6,7 +7,7 @@ import glob
 import os
 import os.path           
 import Methode1
-import json
+import json      
 import PyPDF2
 import pypdf
 import tableprint
@@ -44,6 +45,8 @@ from reportlab.lib import colors
 from reportlab.platypus import Table
 from reportlab.lib.styles import getSampleStyleSheet
 
+
+
 class FenetrePrincipale(tk.Tk):
 
   def __init__(self,width,col_titles,height):
@@ -64,7 +67,7 @@ class FenetrePrincipale(tk.Tk):
        # self.navbar_canvas = tk.Canvas(self.root)
         self.navbar_canvas.grid(row=10, columnspan=len(self.col_title), sticky="ew")
      
-        self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL, command=self.navbar_canvas.yview)
+        self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL, command=self.navbar_canvas.yview)      
         self.scrollbar.grid(row=10, column=len(self.col_title) + 5, sticky="ns")        
  
         self.navbar_canvas.config(yscrollcommand=self.scrollbar.set)
@@ -86,13 +89,17 @@ class FenetrePrincipale(tk.Tk):
 
         self.btn_controle_registre = tk.Button(self, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage())
         self.btn_controle_registre.grid(row=0, column=6, sticky="ew")
+
+
+        # self.btn_deconnexion = tk.Button(self, text="Déconnexion", command=self.deconnexion)
+        # self.btn_deconnexion.grid(row=0, column=7, sticky="ew")
     
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
         self.label_image.grid(row=0, column=7, sticky="ew")
 
 
-                # Texte additionnel 3
+        # Texte additionnel 3
         self.texte_instruction3 = "Vous etes actuellement sur la page principale "
         self.etiquette_instruction3 = tk.Label(self, text=self.texte_instruction3, font=("Helvetica", 12))
         self.etiquette_instruction3.grid(row=50, column=0, columnspan=self.numberColumns, sticky="nsew")
@@ -108,9 +115,6 @@ class FenetrePrincipale(tk.Tk):
         self.etiquette_instruction2 = tk.Label(self, text=self.texte_instruction2, font=("Helvetica", 12))    
         self.etiquette_instruction2.grid(row=52, column=0, columnspan=self.numberColumns, sticky="nsew")
 
-
-
- 
         # Bouton pour générer le document PDF      
         self.btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('C:\\Cr-ation-d-un-logiciel-de-Registre-d-levage\\view\\nouilles.pdf', 4))
         self.btn_generer_pdf.grid(row=53, column=0, columnspan=self.numberColumns, sticky="nsew")
@@ -118,206 +122,15 @@ class FenetrePrincipale(tk.Tk):
         #self.setup_background_animation()
         self.create_navigation_panel()
         self.bind("<Configure>", self.redimensionner_canevas)
-  
-  # manage the window
-  def redimensionner_canevas(self, event):
-      self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all")) 
-  
-  def create_navigation_panel(self):
-       
-       self.col_title = ["Nom", "NeSIRE", "Netranspondeur", "Nom proprietaire", "Adresse proprietaire", "Date de premiere entree", "Adresse de provenance", "Date de sortie definitive", "Adresse de destination"]
- 
-       # Ajouter tous les titres de colonne à self.inner_frame
-       for j in range(6):#len(self.col_title)):
-        col_tmp = self.col_title[j]
-        col_title = tk.Label(self.inner_frame, text=col_tmp, width=20, relief="solid", bg="lightgray", anchor="w")
-        col_title.grid(row=0, column=j, sticky='nsew')
-
-       # Ajouter des lignes de données vides (20 dans votre cas)
-       for i in range(20):
-        for j in range(len(self.col_title)):
-            cell = tk.Entry(self.inner_frame, width=22)
-            cell.grid(row=i+1, column=j, sticky='nsew')
-
-       # Configurer la croissance des colonnes
-       for j in range(len(self.col_title)):
-        self.inner_frame.grid_columnconfigure(j, weight=1)
-
-       # Mettre à jour la taille du cadre intérieur pour que la scrollbar fonctionne correctement
-       self.inner_frame.update_idletasks()
-       self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))  
-
-  def ouvrir_caracteristiques_lieu_detention(self):
-      print("flag carathéristiques lieu détentions")
-      self.navbar_frame = tk.Frame(self.navbar_canvas)
-      self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Statut juridique (faculatitif)", "Organisme de controle", "Motif de controle", "Nom du controleur", "Cachet", "Signature"]
-
-    # Ajouter tous les titres de colonne
-      for j in range(len(self.col_title)):
-        col_tmp = self.col_title[j]
-        col_title = tk.Label(self.inner_frame, text=col_tmp, width=10, relief="solid", bg="lightgray", anchor="w")
-        col_title.grid(row=0, column=j, sticky='nsew')
-
-    # Ajouter les lignes de données (20 dans votre cas)
-      for i in range(20):
-       for j in range(len(self.col_title)):
-            cell = tk.Entry(self.inner_frame, width=20)
-            cell.grid(row=i+1, column=j, sticky='nsew')
-
-    # Configurer la croissance des colonnes
-      for j in range(len(self.col_title)):
-        self.inner_frame.grid_columnconfigure(j, weight=1)
-
-    # Mettre à jour la taille du cadre intérieur pour que la scrollbar fonctionne correctement
-      self.inner_frame.update_idletasks()
-      self.navbar_canvas.configure(scrollregion=self.navbar_canvas.bbox("all"))
-
-    # Redimensionner le canevas lorsque la taille de la fenêtre change
-      self.bind("<Configure>", self.redimensionner_canevas)
-
-    # Bouton de validation
-      self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-      self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
      
-      btn_valider = tk.Button(self, text="Valider", command=self.valider_carathersitiques_lieu)
-      btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
-
-      btn_valider = tk.Button(self, text="Afficher mes caractheristiques de lieu  de détention", command=CaratheristiquesDetention.regarder_carachersitiques_lieu_detention(self)) # CaratheristiquesDetention.ouvrir_caracteristiques_lieu_detention  )
-      btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
-          # Redimensionner le canevas lorsque la taille de la fenêtre change
-      self.bind("<Configure>", self.redimensionner_canevas) 
-
-  def setup_background_animation(self):
-      
-        self.image_paths = glob.glob("/Creation_dun_logiciel_de_Registre_delevage/images/*.png")
-        self.current_image_index = 0
-        #self.load_image()
-
-  def redimensionner_image(self, event):
-    
-        image_path = self.image_paths[self.current_image_index]
-        image = Image.open(image_path)
-        image = image.resize((self.winfo_width(), self.winfo_height()))
-        photo = ImageTk.PhotoImage(image)
-        self.label_image.configure(image=photo)
-        self.label_image = photo
-
-  def lire_fichier():
-        folder_path="/Creation_dun_logiciel_de_Registre_delevage/view"
-        #parcourir les fichiers
-        for path, dirs, files in os.walk(folder_path):
-            for filename in files:
-                print(filename)
-        # write in a pdf file
-
-        pdf_writer = PyPDF2.PdfFileWriter()
-        pdf_page = PyPDF2.pdf.PageObject()
-        pdf_writer.add_page(pdf_page)
-
-        with open('nouveau_fichier.pdf', 'wb') as output_pdf:
-         pdf_writer.write(output_pdf)
-        
-       # registre_elevage
-
-        with open('registre_elevage.pdf', 'rb') as file:
-          pdf_reader = PyPDF2.PdfReader(file)
-          num_pages = pdf_reader.numPages
-          print("Nombre de pages:", num_pages)
-
-          page_content = pdf_reader.pages[0]
-          print("Contenu de la première page:", page_content.extractText())
-
-          file.close()
-        with open('exemple.pdf', 'rb') as file:
-          # Créer un objet PdfFileReader pour lire le fichier PDF
-          pdf_reader = PyPDF2.PdfReader(file)
-    
-          # Créer un objet PdfFileWriter pour écrire dans le fichier PDF
-          pdf_writer = PyPDF2.PdfFileWriter()
-    
-    # Ajouter toutes les pages existantes à l'objet PdfFileWriter
-        for page_num in range(pdf_reader.pages):
-         page = pdf_reader.pages[page_num]
-         pdf_writer.addPage(page)
-    
-    # Créer un nouvel objet Page avec du texte
-        new_page = pdf_writer.addBlankPage(width=400, height=400)
-        new_page.mergePage(page)  # Vous pouvez également fusionner avec une page existante
-    
-    # Écrire du texte sur la nouvelle page
-        new_page.drawText(100, 200, "Bonjour, PyPDF2 !")
-    
-    # Écrire dans un nouveau fichier PDF
-        with open('nouveau_fichier.pdf', 'wb') as output_file:
-         pdf_writer.write(output_file)  
-     
-  def Mouvements_temporaires(self,numberColumns):
-   
-       label_titre_tableau = Label(self, text="MOUVEMENTS TEMPORAIRES DES ANIMAUX")
-       label_titre_tableau.grid(row=0, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-       # Phrase à deux trous
-       label_intro = Label(self, text="Liste des mouvements temporaires entre le")
-       label_intro.grid(row=1, column=0, sticky='nsew')
-
-       self.entry_debut = Entry(self, width=5)
-       self.entry_debut.grid(row=1, column=1, sticky='nsew')
-
-       label_et_le = Label(self, text="et le")
-       label_et_le.grid(row=1, column=2, sticky='nsew')
-
-       self.entry_fin = Entry(self, width=5)
-       self.entry_fin.grid(row=1, column=3, sticky='nsew')
-
-       # Phrase additionnelle
-       label_option = Label(self, text="(Option 1 : mouvements peu fréquents)")
-       label_option.grid(row=2, column=0, columnspan=self.numberColumns, sticky='nsew')
-
-       # Ajout des titres de colonnes
-       for j in range(self.numberColumns):
-         col_title = Label(self, text=self.col_titles[j], width=15, relief="solid", bg="lightgray", anchor="w")
-         col_title.grid(row=3, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-
-        # Ajout des données du tableau
-         self.data = []
-         for i in range(4, self.numberLines + 4):
-            line = []
-            for j in range(self.numberColumns):
-                cell = Entry(self, width=15)  # Ajustez la largeur selon vos besoins
-                cell.grid(row=i, column=j, sticky='nsew')  # Utilise sticky pour que la colonne s'adapte
-                line.append(cell)
-            self.data.append(line)
-
-        # Configurer la gestion des colonnes pour qu'elles s'adaptent au contenu
-         for j in range(self.numberColumns):
-            self.grid_columnconfigure(j, weight=1)
-
-        # Bouton pour ajouter une nouvelle ligne
-         self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne, width=15, height=1)
-         self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=self.numberColumns, sticky='nsew')
-        
-         btn_mouvement_temporaire = Button(self, text="Valider", command=  self.valider_informations, width=15, height=1)#self.signaler_mouvement_temporaire)
-         btn_mouvement_temporaire.grid(row=self.numberLines + 5, columnspan=self.numberColumns, sticky='nsew')
-        
-         btn_mouvement_temporaire = Button(self, text="Voir l'histoire de mes mouvements", command= lambda: Movements.view_temporary_movements , width=15, height=1)#self.signaler_mouvement_temporaire)
-         btn_mouvement_temporaire.grid(row=self.numberLines + 6, columnspan=self.numberColumns, sticky='nsew')
-        
-        # Création du Label pour afficher les images
-         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
-         self.label_image.grid(row=self.numberLines + 9, column=0, columnspan=self.numberColumns, sticky='nsew')
-          
-        # Appel à la méthode pour gérer le fond d'image changeant
-         self.setup_background_animation()
-
-        # Gestionnaire d'événements pour détecter les changements de taille de fenêtre
-         self.bind("<Configure>", self.redimensionner_image)       
-
+ #fonction de gestion des images
   def load_image(self):
-
-        image_path = self.image_paths[self.current_image_index]
-        #image = Image.open(image_path)
-        image = image.resize((self.winfo_width(), self.winfo_height()))
+        
+        try:
+     
+         image_path = self.image_paths[self.current_image_index]
+         image = Image.open(image_path)
+         image = image.resize((self.winfo_width(), self.winfo_height()))
      
         photo = ImageTk.PhotoImage(image)
         self.label_image.configure(image=photo)
