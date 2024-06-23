@@ -1,18 +1,1 @@
-{
-    "num_detenteur": "gdgd",
-    "type_detenteur": "Non professionnel",
-    "siret": "gdgd",
-    "code_ape": "Saisissez votre Code APE",
-    "statut_juridique": "Saisissez votre statut juridique (facultatif)",
-    "denomination": "Saisissez votre dénomination (facultatif)",
-    "adresse": "Saisissez votre adresse",
-    "tel": "Saisissez le numéro de votre téléphone",
-    "portable": "Saisissez le numéro de votre portable",
-    "mail": "Saisissez votre adresse e-mail",
-    "prenom": "Saisissez votre prénom",
-    "nom_usage": "Saisissez votre nom d'usage",
-    "adresse_partie_4": "Saisissez votre adresse",
-    "tel_partie_4": "Saisissez le numéro de votre téléphone",
-    "portable_partie_4": "Saisissez le numéro de votre portable",
-    "mail_partie_4": "Saisissez votre adresse e-mail"
-}
+{"Num\u00e9ro de d\u00e9tenteur": "Saisissez votre num\u00e9ro de d\u00e9tenteur", "Type de personne": "None", "N\u00b0 SIRET": "Saisissez votre N\u00b0 SIRET", "Code APE": "Saisissez votre Code APE", "Statut juridique": "Saisissez votre statut juridique (facultatif)", "D\u00e9nomination": "Saisissez votre d\u00e9nomination (facultatif)", "Adresse": "Saisissez votre adresse", "T\u00e9l\u00e9phone": "Saisissez le num\u00e9ro de votre t\u00e9l\u00e9phone", "Portable": "Saisissez le num\u00e9ro de votre portable", "Adresse e-mail": "Saisissez votre adresse e-mail", "Pr\u00e9nom": "Saisissez votre pr\u00e9nom", "Nom d'usage": "Saisissez votre nom d'usage", "Adresse responsable": "Saisissez votre adresse", "T\u00e9l\u00e9phone responsable": "Saisissez le num\u00e9ro de votre t\u00e9l\u00e9phone", "Portable responsable": "Saisissez le num\u00e9ro de votre portable", "Adresse e-mail responsable": "Saisissez votre adresse e-mail"}

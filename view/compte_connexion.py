@@ -15,7 +15,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Ajout de la phrase au centre
         etiquette_bienvenue = tk.Label(self, text="Veuillez saisir vos informations de connexion.", font=("Helvetica", 16, "bold"))
-        etiquette_bienvenue.pack(side="top", pady=20)
+        etiquette_bienvenue.pack(side="top", pady=5)
 
         # Création du Label pour afficher les images
         self.label_image = tk.Label(self, bd=0, highlightthickness=0)
@@ -115,7 +115,7 @@ class FenetrePrincipale(tk.Tk):
                         print("Les informations de connexion sont valides")
                         return True
                 print("Les informations de connexion ne sont pas valides")
-                messagebox.showwarning("Connexion échouée", "Identifiant ou mot de passe incorrect")
+                messagebox.showwarning("Connexion échouée", "Identifiant ou mot de passe incorrect                                      Veuillez réessayer de taper vos informations de connexion")
                 return False
 
         # Afficher un message de réussite de connexion avec une boîte de message personnalisée

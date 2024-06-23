@@ -29,6 +29,12 @@
             "Prenom": "test2",
             "Mot de passe": "test2",
             "Identifiant": "ttest2"
+        },
+        {
+            "Nom": "Test",
+            "Prenom": "Test",
+            "Mot de passe": "Azerty1234",
+            "Identifiant": "ttest"
         }
     ]
 }

@@ -11,9 +11,8 @@ from Soins_CourantGUI import Soins_cournat
 from Presence_et_Caratheristiques_animauxGUI import Presence_CaratherisisGUI
 #from Page_controle_du_registre_delevage import FenetrePrincipale
 import json
-#from tkinter import * (Cause des problèmes si décommenté)
+#from tkinter import * #(Cause des problèmes si décommenté)
 from tkinter import messagebox, Frame, Entry, Button, Label, BOTH, ttk, Canvas
-#from controller.Methode_1 import ouvrir_fichier, fermer_fichier
 import PyPDF2
 
 class FenetrePrincipale(tk.Tk):

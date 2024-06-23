@@ -69,9 +69,10 @@ class FenetrePrincipale(tk.Tk):
     def deconnexion(self):
         # Ajoutez ici la logique pour déconnecter l'utilisateur
         messagebox.showinfo("Déconnexion", "Vous vous êtes déconnecté avec succès de votre espace")
+        self.destroy()  # Ferme la fenêtre actuelle
         # Exécute le script Python externe
         subprocess.run(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Compte.py"])
-        self.destroy()  # Ferme la fenêtre actuelle
+        
 
     def afficher_pdf(self):
         # Ouvrir un dialogue pour sélectionner le fichier PDF

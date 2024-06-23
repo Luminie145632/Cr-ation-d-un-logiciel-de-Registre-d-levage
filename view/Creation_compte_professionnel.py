@@ -10,7 +10,7 @@ class FenetrePrincipale(tk.Tk):
         super().__init__()
 
         self.title("Page de création de l'espace d'un compte professionnel")
-        self.geometry("1920x1080")  # Ajustez la taille selon vos besoins
+        self.geometry("1920x1080")  # Ajustez la taille de la fenêtre
         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
         # Création du canvas pour afficher les images
@@ -26,7 +26,7 @@ class FenetrePrincipale(tk.Tk):
         self.formulaire_frame.pack(side=tk.LEFT, padx=100, pady=200)  # Ajustez selon vos besoins
 
         # Création d'un titre pour la page
-        titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
+        titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 15, "bold"))
         titre_page.grid(row=0, column=0, pady=20)
 
         # Création des parties du formulaire
@@ -71,7 +71,7 @@ class FenetrePrincipale(tk.Tk):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 2), sticky="w")
 
-        etiquette_bienvenue_1 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_1 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 12, "bold"))
         etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
         self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=False, row=1, relx=relx, rely=rely)
@@ -85,7 +85,7 @@ class FenetrePrincipale(tk.Tk):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
-        etiquette_bienvenue_2 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_2 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 12, "bold"))
         etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
         self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", required=False, row=1, relx=relx, rely=rely)
@@ -97,7 +97,7 @@ class FenetrePrincipale(tk.Tk):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
-        etiquette_bienvenue_3 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 16, "bold"))
+        etiquette_bienvenue_3 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 12, "bold"))
         etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
         self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", required=False, row=1, relx=relx, rely=rely)
@@ -146,7 +146,7 @@ class FenetrePrincipale(tk.Tk):
         # Création du champ de saisie
         entry_var = tk.StringVar(value=entry_placeholder)
         entry = tk.Entry(label_entry_frame, textvariable=entry_var, font=("Helvetica", 12), foreground="gray")
-        entry.grid(row=1, column=0, padx=(10, 0), sticky="w")
+        entry.grid(row=0, column=0, padx=(225, 0), sticky="w")
 
         # Effacement du texte par défaut lors du clic sur le champ de saisie
         entry.bind("<FocusIn>", lambda event, e=entry: self.on_entry_click(e))
@@ -212,7 +212,6 @@ class FenetrePrincipale(tk.Tk):
 
         # Appel à la méthode creacompte pour enregistrer les données dans le fichier JSON
         self.creacompte()
-
         # Ouvrir la nouvelle fenêtre et fermer l'ancienne
         subprocess.Popen(["python", "/Creation_dun_logiciel_de_Registre_delevage/view/Accueil testV2.py"])
         self.destroy()
