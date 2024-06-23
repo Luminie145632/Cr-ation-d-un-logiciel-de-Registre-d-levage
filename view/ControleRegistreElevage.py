@@ -20,7 +20,6 @@ class controle:
 
         # Parcourir les données
         for i, element in enumerate(data['controle'], start=1):
-            text_fields = []
 
             # Parcourir les clés des sous-dictionnaires
             for key in element:
@@ -31,7 +30,7 @@ class controle:
                 col_index = self.col_title.index(key)
 
                 # Vérifier si l'indice i est valide pour self.data
-                if i < len(self.data):
+                if i <= len(self.data):
                     # Insérer la valeur dans le champ d'entrée correspondant
                     entry = self.data[i - 1][col_index]
                     entry.delete(0, 'end')  # Supprimer le contenu précédent
@@ -41,12 +40,12 @@ class controle:
 
     # Ajouter les boutons en dehors de la boucle pour éviter la duplication
      self.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
-     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title), sticky='nsew')
+     self.bouton_ajouter_ligne.grid(row=self.numberLines + 4, columnspan=len(self.col_title)+4, sticky='nsew')
 
      btn_valider = Button(self, text="Modifier les informations", command=lambda: self.valider_informations_controle())
-     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
+     btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title)+4, sticky='nsew')       
 # Redimensionner le canevas lorsque la taille de la fenêtre change
      self.bind("<Configure>", self.redimensionner_canevas)
 
-    def redimensionner_canevas(self, event):
+    def redimensionner_canevas(self):
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
