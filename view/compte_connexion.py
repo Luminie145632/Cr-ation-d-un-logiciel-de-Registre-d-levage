@@ -108,7 +108,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Effectuer ici la vérification de l'identifiant et du mot de passe (par exemple, vérifier dans une base de données)
         def checkfile(identifiant, mot_de_passe):
-            with open("comptes.json") as comptes:
+            with open("/Creation_dun_logiciel_de_Registre_delevage/view/comptes.json") as comptes:
                 data = json.load(comptes)
                 for compte in data['comptes']:
                     if (identifiant == compte["Identifiant"]) and (mot_de_passe == compte["Mot de passe"]):

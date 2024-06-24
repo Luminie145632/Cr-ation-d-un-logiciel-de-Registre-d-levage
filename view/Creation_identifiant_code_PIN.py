@@ -107,7 +107,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Lecture des données existantes du fichier JSON s'il en existe
         try:
-            with open('comptes.json', 'r') as json_file:
+            with open('/Creation_dun_logiciel_de_Registre_delevage/view/comptes.json', 'r') as json_file:
                 comptes_data = json.load(json_file)["comptes"]
         except FileNotFoundError:
             comptes_data = []
@@ -116,7 +116,7 @@ class FenetrePrincipale(tk.Tk):
         comptes_data.append(compte)
 
         # Écriture des données dans un fichier JSON
-        with open('comptes.json', 'w') as json_file:
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/comptes.json', 'w') as json_file:
             json.dump({"comptes": comptes_data}, json_file, indent=4)
 
     def redimensionner_image(self, event):

@@ -1,40 +1,34 @@
 {
-
-   "comptes":[
-
-    {  
-        "nom_user":"uhuhu",
-        "password":"oool"
-       
-    },
-
-    {  
-        "nom_user":"jk",
-        "password":"nouilles"
-
-    },
-    {  
-        "nom_user":"jk",
-        "password":"nouilles"
-
-    }
-
-   ]
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
+    "comptes": [
+        {
+            "Nom": "test",
+            "Prenom": "test",
+            "Mot de passe": "test",
+            "Identifiant": "ttest"
+        },
+        {
+            "Nom": "test",
+            "Prenom": "test",
+            "Mot de passe": "test",
+            "Identifiant": "ttest"
+        },
+        {
+            "Nom": "test",
+            "Prenom": "test",
+            "Mot de passe": "test",
+            "Identifiant": "ttest"
+        },
+        {
+            "Nom": "test",
+            "Prenom": "test",
+            "Mot de passe": "test",
+            "Identifiant": "ttest"
+        },
+        {
+            "Nom": "test",
+            "Prenom": "test",
+            "Mot de passe": "test",
+            "Identifiant": "ttest"
+        }
+    ]
 }

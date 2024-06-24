@@ -1,4 +1,4 @@
-#flag  De fou 
+ # L 
 import io
 import sys
 sys.path.insert(1, '/Creation_dun_logiciel_de_Registre_delevage/')
@@ -60,8 +60,11 @@ class FenetrePrincipale(tk.Tk):
               
         self.title("Accueil")
         self.geometry("1920x1080")
-        self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
 
+        try:
+         self.iconbitmap("/Creation_dun_logiciel_de_Registre_delevage/images/horse_sans_fond.ico")
+        except Exception:
+           print("erreur")    
         self.navbar_canvas = tk.Canvas(self, bd=2, relief=tk.GROOVE  , width=1200, height=400) #, width=1600, height=800)
         #self.navbar_canvas = tk.Canvas(self.root)
         self.navbar_canvas.grid(row=10, columnspan=len(self.col_title), sticky="ew")
@@ -75,22 +78,6 @@ class FenetrePrincipale(tk.Tk):
 
         # Création d'un cadre intérieur pour les Entry widgets
         self.inner_frame = Frame(self.navbar_frame)
-             
-        # Présence et Caractéristiques des Animaux
-        # self.btn_caractheristiques_animaux = tk.Button(self, text="Présence", command=lambda:self.ouvrir_caractheristiques_animaux())
-        # self.btn_caractheristiques_animaux.grid(row=0, column=3, sticky="ew")
-        
-        # self.btn_mouvement_temporaire = tk.Button(self, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires())
-        # self.btn_mouvement_temporaire.grid(row=0, column=4, sticky="ew")
-        
-        # self.btn_intervention_soins = tk.Button(self, text="Interventions et Soins Courants", command=lambda:self.ouvrir_interventions())
-        # self.btn_intervention_soins.grid(row=0, column=5, sticky="ew")
-
-        # self.btn_controle_registre = tk.Button(self, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage())
-        # self.btn_controle_registre.grid(row=0, column=6, sticky="ew")
-
-        # self.btn_deconnexion = tk.Button(self, text="Déconnexion", command=self.deconnexion)
-        # self.btn_deconnexion.grid(row=0, column=7, sticky="ew")
 
         self.btn_caractheristiques_animaux = tk.Button(self, text="Présence", command=lambda:self.ouvrir_caractheristiques_animaux())
         self.btn_caractheristiques_animaux.grid(row=0, column=2, sticky="ew")
@@ -98,7 +85,7 @@ class FenetrePrincipale(tk.Tk):
         self.btn_mouvement_temporaire = tk.Button(self, text="Mouvements Temporaire des Animaux", command=lambda: self.ouvrir_mouvement_temporaires())
         self.btn_mouvement_temporaire.grid(row=0, column=3, sticky="ew")
 
-        self.btn_intervention_soins = tk.Button(self, text="Intervents et Soins Courants", command=lambda:self.ouvrir_interventions())
+        self.btn_intervention_soins = tk.Button(self, text="Interventions et Soins Courants", command=lambda:self.ouvrir_interventions())
         self.btn_intervention_soins.grid(row=0, column=4, sticky="ew")
 
         self.btn_controle_registre = tk.Button(self, text="Contrôle du Registre d'élevage", command=lambda:self.ouvrir_controle_registre_elevage())
@@ -125,10 +112,10 @@ class FenetrePrincipale(tk.Tk):
         # Texte additionnel2
         self.texte_instruction2 = "Veuillez cliquer sur le bouton suivant :"
         self.etiquette_instruction2 = tk.Label(self, text=self.texte_instruction2, font=("Helvetica", 12))    
-        self.etiquette_instruction2.grid(row=52, column=0, columnspan=self.numberColumns, sticky="nsew")
+        self.etiquette_instruction2.grid(row=52, column=0, columnspan=self.numberColumns, sticky="nsew")  
 
         # Bouton pour générer le document PDF      
-        self.btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf('/Creation_dun_logiciel_de_Registre_delevage/view/Fichier_de_base.pdf', 4))
+        self.btn_generer_pdf = tk.Button(self, text="Générer le document PDF", command=lambda: self.ajouter_texte_pdf("/Creation_dun_logiciel_de_Registre_delevage/view/Fichier_de_base.pdf", 4))
         self.btn_generer_pdf.grid(row=53, column=0, columnspan=self.numberColumns, sticky="nsew")
   
         #self.setup_background_animation()
@@ -208,7 +195,7 @@ class FenetrePrincipale(tk.Tk):
   #fonction pour voir les éléments du json
   def view_caratherisis_detention_place(self):
      
-      with open('caracteristiques_lieu_detention.json', 'r') as file:
+      with open('/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_lieu_detention.json', 'r') as file:
         data = json.load(file)
     
     # Affichage des animaux dans les zones de texte
@@ -231,7 +218,7 @@ class FenetrePrincipale(tk.Tk):
       btn_valider.grid(row=self.numberLines + 5, columnspan=len(self.col_title), sticky='nsew')       
   
   def view_animals(self):
-     with open(r'/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json', 'r') as file:
+     with open('/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json', 'r') as file:
         data = json.load(file)
 
         # Parcourir les données
@@ -275,7 +262,7 @@ class FenetrePrincipale(tk.Tk):
     for i in range(5):
         output.add_page(existing_pdf.pages[page_num])
 
-    with open('mouvements_temporaires_temp.pdf', 'wb') as outputStream:
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires_temp.pdf', 'wb') as outputStream:
         output.write(outputStream)           
  
    #fonction création de fichiers temporaires
@@ -289,8 +276,9 @@ class FenetrePrincipale(tk.Tk):
     for i in range(5):
         output.add_page(existing_pdf.pages[page_num])
 
-    with open('controle_registre_temp.pdf', 'wb') as outputStream:
-        output.write(outputStream) 
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/controle_registre_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream)
+
   def create_temp_soins_courant(self, chemin_fichier):
     existing_pdf = PdfReader(chemin_fichier)
     
@@ -301,11 +289,10 @@ class FenetrePrincipale(tk.Tk):
     for i in range(5):
         output.add_page(existing_pdf.pages[page_num])
 
-    with open('soins_courant_temp.pdf', 'wb') as outputStream:
-        output.write(outputStream) 
-  
-  def create_caractheristiques_animaux_tmp(self,chemin_fichier):
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/soins_courant_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream)
 
+  def create_caractheristiques_animaux_tmp(self,chemin_fichier):
     existing_pdf = PdfReader(chemin_fichier)
     
     # Récupérer la taille de la page 
@@ -315,9 +302,15 @@ class FenetrePrincipale(tk.Tk):
     for i in range(5):
         output.add_page(existing_pdf.pages[page_num])
 
-    with open('caratheristiques_temp.pdf', 'wb') as outputStream:
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/caratheristiques_temp.pdf', 'wb') as outputStream:
         output.write(outputStream)  
-  
+  def create_temp_carathersistiques_lieu_detention(self,chemin_fichier):     
+
+    output = PdfWriter()
+    existing_pdf = PdfReader(chemin_fichier)
+    output.add(existing_pdf.pages[2])
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/caractersistiques_lieu_detention_temp.pdf', 'wb') as outputStream:
+        output.write(outputStream) 
 # fonction de creation de PDF
 
   def PDF_Interventions_Soins_Courant(self, chemin_fichier):
@@ -415,7 +408,7 @@ class FenetrePrincipale(tk.Tk):
         result = 325
         current_page += 1
 
-    with open('soins_courant.pdf', 'wb') as outputStream:
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/soins_courant.pdf', 'wb') as outputStream:
         output.write(outputStream)                                                                                         
   def PDF_controle_registre(self, chemin_fichier):  
     # Lire le PDF existant
@@ -503,19 +496,19 @@ class FenetrePrincipale(tk.Tk):
         result = 325
         current_page += 1
 
-    with open('controle_registre.pdf', 'wb') as outputStream:
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/controle_registre.pdf', 'wb') as outputStream:
         output.write(outputStream)
   def PDF_mouvement_temporaires(self, chemin_fichier):  
     # Lire le PDF existant
-    self.create_temp_mouvement_temporaires(chemin_fichier)                                                                                          
-    existing_pdf = PdfReader("/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires_temp.pdf")              
+    self.create_temp_mouvement_temporaires(chemin_fichier)   #   Creation_dun_logiciel_de_Registre_delevage                                                                                       
+    existing_pdf = PdfReader( "/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires_temp.pdf" )          
 
     # Récupérer la taille de la page 0         
     page_num = 0
     page_size = existing_pdf.pages[page_num].mediabox
     page_width = float(page_size[2]) - float(page_size[0])  # width
     page_height = float(page_size[3]) - float(page_size[1])  # height
-
+                    
     # Lire les données JSON
     with open("/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires.json", 'r') as f:
         data = json.load(f)
@@ -589,8 +582,9 @@ class FenetrePrincipale(tk.Tk):
         result = 325
         current_page += 1
 
-    with open('mouvements_temporaires.pdf', 'wb') as outputStream:
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires.pdf', 'wb') as outputStream:
         output.write(outputStream)
+
   def PDF_caratheristiques_animaux(self,chemin_fichier):        
      # Lire le PDF existant
     self.create_temp_soins_courant(chemin_fichier)                                                                                          
@@ -679,13 +673,96 @@ class FenetrePrincipale(tk.Tk):
         result = 325
         current_page += 1
 
-    with open('caratheristiques_animaux.pdf', 'wb') as outputStream:
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/caratheristiques_animaux.pdf', 'wb') as outputStream:
         output.write(outputStream)
-    
+  def PDF_carathersistiques_lieu_detention_particulier(self,chemin_fichier,id):        
+     # Lire le PDF existant
+    self.create_temp_carathersistiques_lieu_detention_particulier(chemin_fichier)                                                                                          
+    existing_pdf = PdfReader("/Creation_dun_logiciel_de_Registre_delevage/view/carathersistiques_lieu_detention_temp.pdf")              
+
+    # Récupérer la taille de la page 0         
+    page_num = 0
+    page_size = existing_pdf.pages[page_num].mediabox
+    page_width = float(page_size[2]) - float(page_size[0])  # width
+    page_height = float(page_size[3]) - float(page_size[1])  # height
+
+    # Lire les données JSON
+    with open("/Creation_dun_logiciel_de_Registre_delevage/view/comptes_particuliers.json.json", 'r') as f:
+        data = json.load(f)
+
+    # Variables de gestion des pages
+
+    result = 325  # Initialiser result au début de la première page
+    output = PdfWriter()
+
+    # Ajouter toutes les pages du PDF existant à la sortie
+    #for page in existing_pdf.pages:
+    page=existing_pdf.pages[page_num]
+    output.add_page(page)
+
+    # Variable pour suivre le numéro de page actuel dans le PDF final
+    current_page = page_num
+
+    if id ==data["comptes"]["Numero de detenteur (SIRE)"]:
+        # Créer un nouveau PDF pour les dessins
+        packet = BytesIO()
+        can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+
+        # Dessiner le texte sur le canvas
+
+        caracteristiques = data["caracteristiques"][id]
+        NeSIRE =   caracteristiques["Numero de detenteur (SIRE)"]
+        prenomn =   caracteristiques["Prenom"]
+        Nom_usage =   caracteristiques["Nom d'usage"]
+        NUMAGRIT =   caracteristiques["NUMAGRIT"]
+        Adresse =   caracteristiques["Adresse"]
+        Telephone =   caracteristiques["Telephone"]
+        Portable =   caracteristiques["Portable"]
+        Adresse_mail =   caracteristiques["Adresse e-mail"]
+        Mail =   caracteristiques["Mail"]
+
+        # Dessiner du texte pour chaque élément
+        can.drawString(80, 320 ,  NeSIRE)
+        can.drawString(160, 320 , prenomn)
+        can.drawString(250, 320 , Nom_usage)
+        can.drawString(340, 320 , NUMAGRIT)
+        can.drawString(440, 320 , Adresse)
+        can.drawString(520, 320 , Telephone)
+        can.drawString(620, 320 , Portable)
+        can.drawString(720, 320 , Adresse_mail)
+
+            # ypos_index += 1
+        result -= 45  # Décalage vertical pour chaque nouvel élément
+            # cpt += 1
+
+        # Sauvegarder la page actuelle
+        can.save()
+        packet.seek(0)
+
+        new_pdf = PdfReader(packet)
+        new_page = new_pdf.pages[0]
+
+        # Ajouter la nouvelle page au PDF existant
+        if current_page < len(existing_pdf.pages):
+
+            existing_page = existing_pdf.pages[current_page]
+            existing_page.merge_page(new_page)
+            output.add_page(existing_page)
+            
+        else:
+            print("surcharge")
+
+        # Réinitialiser la position verticale et créer un nouveau canvas pour la prochaine page
+        result = 325
+        current_page += 1
+
+    with open('/Creation_dun_logiciel_de_Registre_delevage/view/caratheristiques_animaux.pdf', 'wb') as outputStream:
+        output.write(outputStream)
+
   def ajouter_texte_pdf(self, chemin_fichier, page_num):   
     # Exécuter les fonctions pour générer les PDF temporaires
     self.PDF_mouvement_temporaires(chemin_fichier)
-    self.PDF_Interventions_Soins_Courant(chemin_fichier)
+    # self.PDF_Interventions_Soins_Courant(chemin_fichier)
     self.PDF_controle_registre(chemin_fichier)
     self.PDF_caratheristiques_animaux(chemin_fichier)
 
@@ -705,7 +782,6 @@ class FenetrePrincipale(tk.Tk):
     # Lire les données JSON
     with open("/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json", 'r') as f:
         data = json.load(f)
-
     
     result = 325  # Initialiser result au début de la première page
     output_temp = PdfWriter()
@@ -782,7 +858,7 @@ class FenetrePrincipale(tk.Tk):
         result = 325
         current_page += 1
 
-        temp_output_path = "caracteristiques_animaux_temp.pdf"
+        temp_output_path = "/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux_temp.pdf"
         with open(temp_output_path, "wb") as outputStream:
          output_temp.write(outputStream)
 
@@ -790,7 +866,7 @@ class FenetrePrincipale(tk.Tk):
     final_output = PdfWriter()
 
     # Ajouter les pages de chaque fichier PDF temporaire au fichier final
-    for file_path in ["caracteristiques_animaux_temp.pdf",  "mouvements_temporaires.pdf", "soins_courant.pdf", "controle_registre.pdf"]:
+    for file_path in ["/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux_temp.pdf",  "/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires.pdf", "soins_courant.pdf", "controle_registre.pdf"]:
         if not os.path.exists(file_path):
             print(f"File not found: {file_path}")
             continue
@@ -983,8 +1059,10 @@ class FenetrePrincipale(tk.Tk):
     # Création du cadre à l'intérieur du canevas
       self.navbar_frame = tk.Frame(self.navbar_canvas)
       self.navbar_canvas.create_window((0, 0), window=self.navbar_frame, anchor='nw')
-      self.col_title = ["Date", "Type intervention", "Intervenant", "Traitement", "N ordonnance","Date de debut","Date de fin","Delai attente competition","Delai attente abattage"]  # ["Lieu Habituel et coordonee de detention", "Nom et coordonees veterianire traitant", "Nom et coordonnees du veterinaire sanitaire" ,"Nom et coordonnees du referent bien-etre animal", "Nom adresse tel des Organismes sanitaires reconnus", "Nom, adresse tel marcechal ferrand","Nom, adresse et N de telephone du dentiste"] #Nom, adresse et N° de téléphone du dentiste(facultatif)   # ["Date_de_sortie", "Nom_equide", "Motif", "Etape_eventuelle", "Lieu_destination", "Date_retour"]  #["Date de sortie", "Nom equide", "Motif", "Etape eventuelle", "Lieu de destination (Adresse)", "Date de retour"]
-    # Ajout de l'espace entre le menu de navigation et "Sire"
+      self.col_title = ["Date", "Type intervention", "Intervenant", "Traitement", "N ordonnance","Date de debut","Date de fin","Delai attente competition","Delai attente abattage"]
+
+
+  # Ajout de l'espace entre le menu de navigation et "Sire"
 
       for j in range(len(self.col_title)):
         col_tmp = self.col_title[j]
@@ -1008,7 +1086,7 @@ class FenetrePrincipale(tk.Tk):
       self.navbar_frame.bouton_ajouter_ligne = Button(self, text="Ajouter une ligne", command=self.ajouter_ligne)
       self.navbar_frame.bouton_ajouter_ligne.grid(row=self.numberLines + 4, column=0, columnspan=len(self.col_title), sticky='nsew')
     
-      btn_valider = tk.Button(self, text="Valider", command=self.valider_encadrement_Zootechnique_animaux)
+      btn_valider = tk.Button(self, text="Valider", command=self.valider_informations_intervention)
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
       btn_valider = tk.Button(self, text="Afficher interventions", command=lambda: Interventions.view_informations_intervention(self))
@@ -1151,7 +1229,7 @@ class FenetrePrincipale(tk.Tk):
       btn_valider = tk.Button(self, text="Valider", command=self.valider_carathersitiques_lieu)
       btn_valider.grid(row=self.numberLines + 5, column=0, columnspan=len(self.col_title), sticky='nsew')
 
-      btn_valider = tk.Button(self, text="Afficher mes caractheristiques de lieu  de détention", command=CaratheristiquesDetention.regarder_carachersitiques_lieu_detention(self)) # CaratheristiquesDetention.ouvrir_caracteristiques_lieu_detention  )
+      btn_valider = tk.Button(self, text="Afficher mes caractheristiques de lieu  de détention", command=CaratheristiquesDetention.regarder_carachersitiques_lieu_detention(self)) 
       btn_valider.grid(row=self.numberLines + 6, column=0, columnspan=len(self.col_title), sticky='nsew')   
           # Redimensionner le canevas lorsque la taille de la fenêtre change
       self.texte_instruction3 = "Vous etes actuellement sur la page caratheristiques du lieu de détention"
@@ -1177,7 +1255,7 @@ class FenetrePrincipale(tk.Tk):
         mouvements.append(mouvements_temporaires)  # Ajouter chaque mouvement à la liste
 
     # Écriture des données dans un fichier JSON
-      with open('mouvements_temporaires.json', 'w') as json_file:
+      with open('/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires.json', 'w') as json_file:
          json.dump({"mouvements_temporaires": mouvements}, json_file, indent=4)
          
   def valider_carathersitiques_lieu(self):
@@ -1214,7 +1292,7 @@ class FenetrePrincipale(tk.Tk):
         })
 
     # Écriture des données dans un fichier JSON
-      with open('caracteristiques_lieu_detention.json', 'w') as json_file:
+      with open('/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_lieu_detention.json', 'w') as json_file:
          json.dump({"caracteristiques_lieu_detention": caracteristiques_lieu_detention}, json_file, indent=4)
 
   def valider_informations_controle(self):      
@@ -1233,8 +1311,28 @@ class FenetrePrincipale(tk.Tk):
             controle_data.append(controle)
 
         # Écriture des données dans un fichier JSON
-        with open(r'/Creation_dun_logiciel_de_Registre_delevage/view/controles.json', 'w') as json_file:
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/controles.json', 'w') as json_file:
             json.dump({"controle": controle_data}, json_file, indent=4)
+
+  
+  def valider_informations_soins_courant(self):      
+        controle_data = []
+
+        # Parcourir toutes les lignes de données
+        for row_data in self.data:
+            controle = {
+                "Date": row_data[0].get(),
+                "Organisme de controle": row_data[1].get(),
+                "Motif de controle": row_data[2].get(),
+                "Nom du controleur": row_data[3].get(),
+                "Cachet": row_data[4].get(),
+                "Signature": row_data[5].get()
+            }
+            controle_data.append(controle)
+
+        # Écriture des données dans un fichier JSON
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/controles.json', 'w') as json_file:
+            json.dump({"controle": controle_data}, json_file, indent=4)          
 
   def valider_encadrement_Zootechnique_animaux(self): # elargir le panel pour que l'on voit tout
     # Collecte des données depuis les champs d'entrée
@@ -1256,7 +1354,7 @@ class FenetrePrincipale(tk.Tk):
         intervention_data.append(encadrement)
  
     try:
-        with open(r'/Creation_dun_logiciel_de_Registre_delevage/view/encadrement_zootechnique.json', 'w') as json_file:
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/encadrement_zootechnique.json', 'w') as json_file:
             json.dump({"encadrement": intervention_data}, json_file, indent=4)
             # Impression de débogage
             print("Les données ont été écrites dans encadrement_zootechnique.json")
@@ -1285,7 +1383,7 @@ class FenetrePrincipale(tk.Tk):
         intervention_data.append(intervention)
     
     # Écriture des données dans un fichier JSON
-       with open('interventions.json', 'w') as json_file:
+       with open('/Creation_dun_logiciel_de_Registre_delevage/view/interventions.json', 'w') as json_file:
         json.dump(intervention_data, json_file, indent=4)  
     
   def valider_informations_intervention(self):
@@ -1297,12 +1395,12 @@ class FenetrePrincipale(tk.Tk):
             "Date": row[0].get(),
             "Type intervention": row[1].get(),
             "Intervenant": row[2].get(),
-            "Traitement": {
-                "Nom du medicament": row[3].get(),
-                "Voie administration": row[4].get(),
-                "Date dedebut": row[5].get(),
-                "Date dedefin": row[6].get(),
-            },
+            
+            "Nom du medicament": row[3].get(),
+            "Voie administration": row[4].get(),
+            "Date dedebut": row[5].get(),
+            "Date dedefin": row[6].get(),
+        
             "N ordonnance": row[7].get(),
             "Delai attente competition": row[8].get(),
             "Delai attente abattage": row[9].get()
@@ -1311,7 +1409,7 @@ class FenetrePrincipale(tk.Tk):
         interventions.append(intervention)  # Ajouter l'intervention à la liste
     
     # Écrire le fichier JSON avec la liste des interventions
-      with open('Soins_Courant.json', 'w') as f:
+      with open('/Creation_dun_logiciel_de_Registre_delevage/view/Soins_Courant.json', 'w') as f:
          json.dump({"interventions": interventions}, f, indent=4)
   
   def valider_caratheristiques_animaux(self):
@@ -1337,7 +1435,7 @@ class FenetrePrincipale(tk.Tk):
         nouveaux_caract.append(caratheristiques_animaux)
             
     # Réécrire le fichier JSON avec la nouvelle structure
-      with open(r'/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json', 'w') as json_file:
+      with open('/Creation_dun_logiciel_de_Registre_delevage/view/caracteristiques_animaux.json', 'w') as json_file:
          json.dump({"caracteristiques":nouveaux_caract}, json_file, indent=4) 
 
 if __name__ == "__main__":

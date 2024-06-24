@@ -46,11 +46,9 @@ class CaratheristiquesDetention:
  def regarder_carachersitiques_lieu_detention(self):  
 
  #def view_zootechnical_supervision(self):
-        with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\lieu_detention.json', 'r') as file:      
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/lieu_detention.json', 'r') as file:      
 
             data = json.load(file)
-
-
 
         for i, element in enumerate(data['encadrement'],start=0):
          print("indice " + str(i))
@@ -90,7 +88,7 @@ class CaratheristiquesDetention:
     import json
     from tkinter import Button
 
-    with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\lieu_detention.json', 'r') as file:      
+    with open('Creation_dun_logiciel_de_Registre_delevage/view/lieu_detention.json', 'r') as file:      
         data = json.load(file)
 
     for i, element in enumerate(data['encadrement'],start=0):

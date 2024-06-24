@@ -37,7 +37,7 @@ class FenetrePrincipale(tk.Tk):
 
 
         btn_soumettre = tk.Button(self.formulaire_frame, text="Valider", command=self.soumettre_formulaire)
-        btn_soumettre.grid(row=5, column=0, pady=10)
+        btn_soumettre.grid(row=8, column=0, pady=10)
 
         # Appel à la méthode pour gérer le fond d'image changeant
         self.setup_background_animation()
@@ -76,50 +76,49 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_1 = tk.Label(partie_frame, text="Adresse du lieu de détention et type d'activité", font=("Helvetica", 12, "bold"))
         etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Denomination :", "entry_denomination", "Saisissez votre denomination", required=False, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", required=False, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Type d'activite :", "entry_type_activite", "Saisissez votre type d'activite", required=False, row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Denomination :", "entry_denomination_partie_1", "Saisissez votre denomination", row=1, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse", "Saisissez votre adresse", row=3, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Type d actjvite :", "entry_type_activite", "Saisissez votre type d'activite", row=4, relx=relx, rely=rely)
 
     def creer_partie_2(self, row, relx=None, rely=None):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 2), sticky="w")
 
-        etiquette_bienvenue_2 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 12, "bold"))
-        etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
+        etiquette_bienvenue_1 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 12, "bold"))
+        etiquette_bienvenue_1.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numéro de détenteur", required=False, row=1, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numero de detenteur", row=1, relx=relx, rely=rely)
         self.create_radio_buttons(partie_frame, row=2, relx=relx, rely=rely)  # Boutons radio sous le titre
-        self.create_label_entry(partie_frame, "N° SIRET :", "entry_siret", "Saisissez votre N° SIRET", required=False, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Code APE :", "entry_code_ape", "Saisissez votre Code APE", required=False, row=4, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Statut juridique (Facultatif) :", "entry_statut_juridique", "Saisissez votre statut juridique (facultatif)", required=False, row=5, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Dénomination (Facultatif) :", "entry_denomination_partie_2", "Saisissez votre dénomination (facultatif)", required=False, row=6, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "N° SIRET :", "entry_siret", "Saisissez votre N° SIRET", row=3, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Code APE :", "entry_code_ape", "Saisissez votre Code APE", row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Statut juridique :", "entry_statut_juridique", "Saisissez votre statut juridique (facultatif)", row=5, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Dénomination :", "entry_denomination_partie_2", "Saisissez votre dénomination (facultatif)", row=6, relx=relx, rely=rely)
 
     def creer_partie_3(self, row, relx=None, rely=None):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
-        etiquette_bienvenue_3 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 12, "bold"))
-        etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 5), sticky="w")
+        etiquette_bienvenue_2 = tk.Label(partie_frame, text="Coordonnées du détenteur (si différente du lieu de stationnement des équidés) :", font=("Helvetica", 12, "bold"))
+        etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_3", "Saisissez votre adresse", required=False, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Téléphone :", "entry_tel", "Saisissez le numéro de votre téléphone", required=False, row=2, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numéro de votre portable", required=False, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Adresse e-mail :", "entry_mail", "Saisissez votre adresse e-mail", required=False, row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_3", "Saisissez votre adresse", row=1, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Téléphone :", "entry_tel", "Saisissez le numero de votre telephone", row=2, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable", "Saisissez le numero de votre portable", row=3, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse e-mail :", "entry_mail", "Saisissez votre adresse e-mail", row=4, relx=relx, rely=rely)
 
     def creer_partie_4(self, row, relx=None, rely=None):
         partie_frame = tk.Frame(self.formulaire_frame)
         partie_frame.grid(row=row, column=0, pady=5, padx=((self.winfo_width() * relx) if relx is not None else 5), sticky="w")
 
-        etiquette_bienvenue_4 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 12, "bold"))
-        etiquette_bienvenue_4.grid(row=0, column=0, pady=(0, 5), sticky="w")
+        etiquette_bienvenue_3 = tk.Label(partie_frame, text="Personne responsable de la tenue du registre d'élevage", font=("Helvetica", 12, "bold"))
+        etiquette_bienvenue_3.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", required=False, row=1, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", required=False, row=2, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", required=False, row=3, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numéro de votre téléphone", required=False, row=4, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numéro de votre portable", required=False, row=5, relx=relx, rely=rely)
-        self.create_label_entry(partie_frame, "Adresse e-mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", required=False, row=6, relx=relx, rely=rely)
-
+        self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prenom",  row=1, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", row=2, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse :", "entry_adresse_partie_4", "Saisissez votre adresse", row=3, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Tél :", "entry_tel_partie_4", "Saisissez le numero de votre telephone", row=4, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Portable :", "entry_portable_partie_4", "Saisissez le numero de votre portable", row=5, relx=relx, rely=rely)
+        self.create_label_entry(partie_frame, "Adresse e-mail :", "entry_mail_partie_4", "Saisissez votre adresse e-mail", row=6, relx=relx, rely=rely)
 
     def create_radio_buttons(self, frame, row, relx=5, rely=5):
         # Frame pour les boutons radio
@@ -165,26 +164,27 @@ class FenetrePrincipale(tk.Tk):
 
         setattr(self, entry_name, entry)
 
-    def on_entry_focus_in(self, var, placeholder_text, entry):
-        if var.get() == placeholder_text:
-            entry.config(fg='black')
-            var.set('')
 
-    def on_entry_focus_out(self, var, placeholder_text, entry):
-        if not var.get():
-            var.set(placeholder_text)
-            entry.config(fg='grey')
+    def on_entry_click(self, entry):
+        if entry.get() == entry.cget("textvariable"):
+            entry.delete(0, "end")
+            entry.config(foreground="black")
+
+    def on_focus_out(self, entry, placeholder):
+        if entry.get() == "":
+            entry.insert(0, placeholder)
+            entry.config(foreground="gray")
 
     def get_entry_value(self, entry):
         value = entry.get()
-        placeholder_text = entry.placeholder_text if hasattr(entry, 'placeholder_text') else ""
-        return value if value != placeholder_text else ""
+        return value if value != entry.cget("textvariable") else ""
 
     def soumettre_formulaire(self):
         # Récupération des valeurs des champs pour chaque partie
-        denomination = self.get_entry_value(self.entry_denomination)
+        denomination_partie_1 = self.get_entry_value(self.entry_denomination_partie_1)
         adresse = self.get_entry_value(self.entry_adresse)
         type_activite = self.get_entry_value(self.entry_type_activite)
+        
         num_detenteur = self.get_entry_value(self.entry_num_detenteur)
         choix_type_detenteur = self.var_choix.get()
         siret = self.get_entry_value(self.entry_siret)
@@ -204,7 +204,7 @@ class FenetrePrincipale(tk.Tk):
 
         # Affichage des informations dans une boîte de dialogue
         message = (
-            f"Denomination : {denomination}\n"
+            f"Denomination : {denomination_partie_1}\n"
             f"Adresse : {adresse}\n"
             f"Type d'activité : {type_activite}\n"
             f"Numero de detenteur (SIRE) : {num_detenteur}\n"
@@ -236,25 +236,25 @@ class FenetrePrincipale(tk.Tk):
     def creacompte(self):
         # Collecte des informations du formulaire
         comptes = {
-            "Denomination": self.get_entry_value(self.denomination),
-            "Adresse": self.get_entry_value(self.adresse),
-            "Type d'activité": self.get_entry_value(self.entry_type_activite),
-            "Numero de detenteur (SIRE)": self.get_entry_value(self.entry_num_detenteur),
+            "Denomination": self.entry_denomination.get(),
+            "Adresse": self.adresse.get(),
+            "Type d'activité": self.entry_type_activite.get(),
+            "Numero de detenteur (SIRE)": self.entry_num_detenteur.get(),
             "Type de detenteur": self.var_choix.get(),
-            "N° SIRET": self.get_entry_value(self.entry_siret),
-            "Code APE": self.get_entry_value(self.entry_code_ape),
-            "Statut juridique": self.get_entry_value(self.entry_statut_juridique),
-            "Denomination": self.get_entry_value(self.entry_denomination_partie_2),
-            "Adresse": self.get_entry_value(self.entry_adresse),
-            "Telephone": self.get_entry_value(self.entry_tel),
-            "Portable": self.get_entry_value(self.entry_portable),
-            "Adresse e-mail": self.get_entry_value(self.entry_mail),
-            "Prenom": self.get_entry_value(self.entry_prenom),
-            "Nom d'usage": self.get_entry_value(self.entry_nom_usage),
-            "Adresse (responsable)": self.get_entry_value(self.entry_adresse_partie_4),
-            "Telephone (responsable)": self.get_entry_value(self.entry_tel_partie_4),
-            "Portable (responsable)": self.get_entry_value(self.entry_portable_partie_4),
-            "Adresse e-mail (responsable)": self.get_entry_value(self.entry_mail_partie_4)
+            "N° SIRET": self.entry_siret.get(),
+            "Code APE": self.entry_code_ape.get(),
+            "Statut juridique": self.entry_statut_juridique.get(),
+            "Denomination": self.entry_denomination_partie_2.get(),
+            "Adresse": self.entry_adresse.get(),
+            "Telephone": self.entry_tel.get(),
+            "Portable": self.entry_portable.get(),
+            "Adresse e-mail": self.entry_mail.get(),
+            "Prenom": self.entry_prenom.get(),
+            "Nom d'usage": self.entry_nom_usage.get(),
+            "Adresse (responsable)": self.entry_adresse_partie_4.get(),
+            "Telephone (responsable)": self.entry_tel_partie_4.get(),
+            "Portable (responsable)": self.entry_portable_partie_4.get(),
+            "Adresse e-mail (responsable)": self.entry_mail_partie_4.get()
         }
 
         # Lecture des données existantes du fichier JSON s'il en existe

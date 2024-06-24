@@ -15,7 +15,7 @@ from PIL import Image, ImageTk
 class controle:
     def view_control(self):
     
-     with open('controles.json', 'r') as file:
+     with open('/Creation_dun_logiciel_de_Registre_delevage/view/controles.json', 'r') as file:
         data = json.load(file)
 
         # Parcourir les données

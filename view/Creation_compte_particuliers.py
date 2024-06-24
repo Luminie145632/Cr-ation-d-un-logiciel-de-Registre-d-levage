@@ -23,10 +23,10 @@ class FenetrePrincipale(tk.Tk):
 
         # Frame pour contenir les parties du formulaire
         self.formulaire_frame = tk.Frame(self.canvas, bg="white")  # Changer la couleur d'arrière-plan au besoin
-        self.formulaire_frame.place(x=450, y=8)  # Ajustez selon vos besoins
+        self.formulaire_frame.place(x=450, y=5)  # Ajustez selon vos besoins
 
         # Création d'un titre pour la page
-        titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention", font=("Helvetica", 20, "bold"))
+        titre_page = tk.Label(self.formulaire_frame, text="Bienvenue sur la page Caractéristiques du Lieu de Détention pour Particulier", font=("Helvetica", 20, "bold"))
         titre_page.grid(row=0, column=0, pady=20)
 
         # Création des parties du formulaire
@@ -75,7 +75,7 @@ class FenetrePrincipale(tk.Tk):
         etiquette_bienvenue_2 = tk.Label(partie_frame, text="Informations concernant le détenteur des équidés", font=("Helvetica", 16, "bold"))
         etiquette_bienvenue_2.grid(row=0, column=0, pady=(0, 5), sticky="w")
 
-        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numero de détenteur", row=1)
+        self.create_label_entry(partie_frame, "Numéro de détenteur (SIRE) :", "entry_num_detenteur", "Saisissez votre numero de detenteur", row=1)
         self.create_label_entry(partie_frame, "Titre :", "entry_titre", "Saisissez votre titre", row=2)
         self.create_label_entry(partie_frame, "Prénom :", "entry_prenom", "Saisissez votre prénom", row=3)
         self.create_label_entry(partie_frame, "Nom d'usage :", "entry_nom_usage", "Saisissez votre nom d'usage", row=4)
@@ -211,14 +211,14 @@ class FenetrePrincipale(tk.Tk):
         }
 
         try:
-            with open('view/comptes_particuliers.json', 'r') as json_file:
+            with open('/Creation_dun_logiciel_de_Registre_delevage/Fichier_en_json/comptes_particuliers.json', 'r') as json_file:
                 comptes_data = json.load(json_file)["comptes"]
         except (FileNotFoundError, json.JSONDecodeError):
             comptes_data = []
 
         comptes_data.append(comptes)
 
-        with open('view/comptes_particuliers.json', 'w') as json_file:
+        with open('/Creation_dun_logiciel_de_Registre_delevage/Fichier_en_json/comptes_particuliers.json', 'w') as json_file:
             json.dump({"comptes": comptes_data}, json_file, indent=4)
 
 if __name__ == "__main__":

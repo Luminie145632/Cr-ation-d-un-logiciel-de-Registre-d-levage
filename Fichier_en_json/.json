@@ -1,0 +1,26 @@
+[
+    {
+        "Date_de_sortie": "08/09/2004",
+        "Nom_equide": "SAKI",
+        "Motif": "ATOUT",
+        "Etape_eventuelle": "ASUR",
+        "Lieu_destination": "AQILU",
+        "Date_retour": "08/09/2000"
+    },
+    {
+        "Date_de_sortie": "",
+        "Nom_equide": "",
+        "Motif": "",
+        "Etape_eventuelle": "",
+        "Lieu_destination": "",
+        "Date_retour": ""
+    },
+    {
+        "Date_de_sortie": "",
+        "Nom_equide": "",
+        "Motif": "",
+        "Etape_eventuelle": "",
+        "Lieu_destination": "",
+        "Date_retour": ""
+    }
+]

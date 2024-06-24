@@ -140,7 +140,7 @@ class Soins_cournat(Frame):
             }   
             mouvements_temporaires.append(mouvement)
 
-        with open('Soins_Courant.json', 'w') as f:
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/Soins_Courant.json', 'w') as f:
             json.dump(mouvements_temporaires, f, indent=4)
 
     def ajouter_ligne(self):

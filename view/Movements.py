@@ -15,7 +15,7 @@ class Movements:
 
         print( " c c  flag ce fichier Mouvements" )
         
-        with open(r'C:\Cr-ation-d-un-logiciel-de-Registre-d-levage\view\mouvements_temporaires.json', 'r') as file:
+        with open('/Creation_dun_logiciel_de_Registre_delevage/view/mouvements_temporaires.json', 'r') as file:
           data = json.load(file)
        
 
